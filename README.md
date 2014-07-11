@@ -15,5 +15,5 @@ Controller dll is currently only in 32 bit. This require the application to run 
 Import the project with Intellij
 Select the 32 bit Java 8 JDK where needed.
 
-Go to File -> Project structure -> set project language level to 8.
+Go to File -> Project structure -> set project language level to 8.  
 Run from GuiManager
