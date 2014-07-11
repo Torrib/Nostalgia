@@ -6,7 +6,7 @@ Tool for controlling and managing home entertainment systems with gamepads
 Setup
 =====
 
-Controller dll is currently only in 32 bit. This it to be run in 32 bit jvm for now.
+Controller dll is currently only in 32 bit. This require the application to run in the 32 bit JVM for now.
 
 Install Java 8 JDK (32 bit)
 Install Visual c++ runtime 2013 (32 bit)
