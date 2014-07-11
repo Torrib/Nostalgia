@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/bundles/Nostalgia/runtime/jre/lib/management-agent.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/bundles/Nostalgia/runtime/jre/lib/charsets.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/bundles/Nostalgia/runtime/jre/lib/rt.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/bundles/Nostalgia/runtime/jre/lib/jfxswt.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/bundles/Nostalgia/runtime/jre/lib/jce.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/bundles/Nostalgia/runtime/jre/lib/javaws.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/bundles/Nostalgia/runtime/jre/lib/plugin.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/bundles/Nostalgia/runtime/jre/lib/jsse.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/bundles/Nostalgia/runtime/jre/lib/resources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/bundles/Nostalgia/runtime/jre/lib/jfr.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

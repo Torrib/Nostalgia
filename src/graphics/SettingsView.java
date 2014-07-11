@@ -20,6 +20,9 @@ public class SettingsView {
     private Settings settings;
     private TextField menuFontField;
     private TextField menuFontSizeField;
+    private TextField messageFontField;
+    private TextField messageFontSizeField;
+    private TextField messageDelayField;
     private EditList<WindowSetting> applicationEditList;
 
     public SettingsView(Main main){
@@ -67,19 +70,25 @@ public class SettingsView {
         vBox.getChildren().addAll(tabPane, buttons);
 
         Scene scene = new Scene(vBox, 800, 600);
+        scene.getStylesheets().add("bordertitlepane.css");
         stage.setScene(scene);
         stage.show();
     }
 
-    public void show(){
-        stage.show();
-    }
-
-    public void hide(){
-        stage.hide();
-    }
-
     private Tab createGeneralTab(){
+        BorderTitledPane menuPane = getMenuPane();
+        BorderTitledPane messagePane = getMessagePane();
+
+        HBox hBox = new HBox(20);
+        hBox.getChildren().addAll(menuPane, messagePane);
+
+        Tab tab = new Tab();
+        tab.setContent(hBox);
+        tab.setText("General");
+        return tab;
+    }
+
+    private BorderTitledPane getMenuPane() {
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(12);
@@ -103,10 +112,42 @@ public class SettingsView {
         grid.add(menuFontSizeField, 1, 1);
         grid.setPadding(new Insets(15));
 
-        Tab tab = new Tab();
-        tab.setContent(grid);
-        tab.setText("General");
-        return tab;
+        return new BorderTitledPane("Menu", grid, 300, 150);
+    }
+
+    private BorderTitledPane getMessagePane() {
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(12);
+
+        Label messageFontabel = new Label("Message font");
+        messageFontabel.setTooltip(new Tooltip("The message box font"));
+
+        messageFontField = new TextField(settings.getMessageFont());
+        messageFontField.setTooltip(new Tooltip("The message box font"));
+
+        grid.add(messageFontabel, 0, 0);
+        grid.add(messageFontField, 1, 0);
+
+        Label messageFontSizeLabel = new Label("Menu font size");
+        messageFontSizeLabel.setTooltip(new Tooltip("The message box font size"));
+
+        messageFontSizeField = new TextField(""+settings.getMessageFontSize());
+        messageFontSizeField.setTooltip(new Tooltip("The message box font size"));
+
+        grid.add(messageFontSizeLabel, 0, 1);
+        grid.add(messageFontSizeField, 1, 1);
+
+        Label messageDelayLabel = new Label("Message time(ms)");
+        messageFontSizeLabel.setTooltip(new Tooltip("How long the message box will be displayed"));
+        messageDelayField = new TextField(""+settings.getMessageDelay());
+        messageDelayField.setTooltip(new Tooltip("How long the message box will be displayed"));
+
+        grid.add(messageDelayLabel, 0, 2);
+        grid.add(messageDelayField, 1, 2);
+        grid.setPadding(new Insets(15));
+
+        return new BorderTitledPane("Message Box", grid, 330, 200);
     }
 
     private Tab createApplicationTab(){
@@ -149,13 +190,17 @@ public class SettingsView {
     private void save(){
         settings.setMenuFont(menuFontField.getText());
         settings.setMenuFontSize(Integer.parseInt(menuFontSizeField.getText()));
+
+        settings.setMessageFont(messageFontField.getText());
+        settings.setMessageFontSize(Integer.parseInt(messageFontSizeField.getText()));
+        settings.setMessageDelay(Integer.parseInt(messageDelayField.getText()));
+
         for(WindowSetting s : applicationEditList.getItems())
             for(Hotkey h : s.getHotkeys())
                 h.setDelayLoops(h.getDelay() / settings.getControllerPullDelay());
         settings.setWindowSettings(applicationEditList.getItems());
 
         double selectedFontSize = settings.getMenuFontSize() + (settings.getMenuFontSize() * 0.2);
-
         settings.setMenuSelectedFontSize((int) selectedFontSize);
 
 

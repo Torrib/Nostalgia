@@ -20,7 +20,7 @@ public class Settings {
 
     private String messageFont = "impact";
     private int messageFontSize = 25;
-    private int defaultMessageDelay = 2000;
+    private int messageDelay = 2000;
 
     private int windowPullDelay = 1000;
     private int windowPullRefresh = 10000;
@@ -67,12 +67,12 @@ public class Settings {
         this.messageFontSize = messageFontSize;
     }
 
-    public int getDefaultMessageDelay() {
-        return defaultMessageDelay;
+    public int getMessageDelay() {
+        return messageDelay;
     }
 
-    public void setDefaultMessageDelay(int defaultMessageDelay) {
-        this.defaultMessageDelay = defaultMessageDelay;
+    public void setMessageDelay(int messageDelay) {
+        this.messageDelay = messageDelay;
     }
 
     public int getWindowPullDelay() {
@@ -156,7 +156,7 @@ public class Settings {
     }
 
     public void store(){
-        try (Writer writer = new FileWriter("s.json")) {
+        try (Writer writer = new FileWriter("settings.json")) {
             Gson gson = new GsonBuilder().create();
             gson.toJson(this, writer);
         }
@@ -167,7 +167,7 @@ public class Settings {
 
     public static Settings load(){
         try{
-            FileReader reader = new FileReader(new File("s.json"));
+            FileReader reader = new FileReader(new File("settings.json"));
             Gson gson = new GsonBuilder().create();
             return gson.fromJson(reader, Settings.class);
         }

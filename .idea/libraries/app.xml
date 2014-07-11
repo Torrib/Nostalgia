@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="app">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/bundles/Nostalgia/app/jna-4.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/bundles/Nostalgia/app/org.json-20120521.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/bundles/Nostalgia/app/Nostalgia.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/bundles/Nostalgia/app/jna-platform-4.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

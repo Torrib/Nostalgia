@@ -19,8 +19,6 @@ import javax.swing.filechooser.FileSystemView;
 import com.sun.jna.PointerType;
 
 import controller.ControllerHandler;
-import graphics.GuiManager;
-import graphics.SettingsView;
 import settings.ItemInterface;
 import settings.Settings;
 import settings.WindowSetting;

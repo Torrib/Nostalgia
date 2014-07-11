@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="jars">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/jars/jna-4.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/jna-platform-4.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/gson-2.2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/org.json-20120521.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

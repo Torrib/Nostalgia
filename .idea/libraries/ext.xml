@@ -1,0 +1,20 @@
+<component name="libraryTable">
+  <library name="ext">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/bundles/Nostalgia/runtime/jre/lib/ext/sunjce_provider.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/bundles/Nostalgia/runtime/jre/lib/ext/sunmscapi.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/bundles/Nostalgia/runtime/jre/lib/ext/sunec.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/bundles/Nostalgia/runtime/jre/lib/ext/nashorn.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/bundles/Nostalgia/runtime/jre/lib/ext/jfxrt.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/bundles/Nostalgia/runtime/jre/lib/ext/access-bridge-32.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/bundles/Nostalgia/runtime/jre/lib/ext/sunpkcs11.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/bundles/Nostalgia/runtime/jre/lib/ext/localedata.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/bundles/Nostalgia/runtime/jre/lib/ext/jaccess.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/bundles/Nostalgia/runtime/jre/lib/ext/dnsns.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/bundles/Nostalgia/runtime/jre/lib/ext/zipfs.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/bundles/Nostalgia/runtime/jre/lib/ext/cldrdata.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

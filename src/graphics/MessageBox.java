@@ -33,8 +33,6 @@ public class MessageBox {
 
         text = new Text();
         text.setFill(Color.WHITE);
-        text.setFont(Font.font(main.getSettings().getMessageFont(), main.getSettings().getMessageFontSize()));
-//        text.setWrappingWidth(180);
 
         BorderPane borderPane = new BorderPane();
         borderPane.setCenter(text);
@@ -66,13 +64,14 @@ public class MessageBox {
                 });
             }
         };
-        javax.swing.Timer timer = new javax.swing.Timer(main.getSettings().getDefaultMessageDelay(), action);
+        javax.swing.Timer timer = new javax.swing.Timer(main.getSettings().getMessageDelay(), action);
         timer.setRepeats(false);
         timer.start();
     }
 
     public void show(String message){
         text.setText(message);
+        text.setFont(Font.font(main.getSettings().getMessageFont(), main.getSettings().getMessageFontSize()));
         stage.setX(width - (text.getLayoutBounds().getWidth() + 50));
         stage.show();
         main.returnFocus();

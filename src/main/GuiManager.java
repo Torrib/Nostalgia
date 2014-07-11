@@ -1,5 +1,8 @@
-package graphics;
+package main;
 
+import graphics.MenuView;
+import graphics.MessageBox;
+import graphics.SettingsView;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
