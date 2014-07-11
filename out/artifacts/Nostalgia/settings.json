@@ -1,0 +1,167 @@
+
+{
+"globalSettings":
+[
+	{"guiFontsize": "75"},
+	{"listItemHeight": "85"},
+	{"guiExitDelay": "200"},
+	{"startButton": "7"},
+	{"buttonPressDelay": "50"},
+	{"windowPullDelay": "1000"},
+	{"windowPullRefresh": "10000"},
+	{"useDefaultWindowBindings": "true"},
+	{"guiFont": ""},
+	{"messageboxDelay": "2000"},
+	{"messageboxFont": "impact"},
+	{"buttonHoldDelay": "1000"},
+],
+"windows":
+[
+   {
+    	"name": "Enhanced PSX emulator",
+	"settings": 
+		[{"removeBorders": "true"},
+		 {"displayMessages": "true"},
+		 {"topmost": "false"}],
+    	"bindings": 
+		[{"name": "Continue", "command": "", "message": ""},
+	 	{"name": "Save", "command": "f1", "message": "Saved"},
+	 	{"name": "Load", "command": "f3", "message": "Loaded"},
+	 	{"name": "Switch state", "command": "f2", "message": "State Changed"},
+	 	{"name": "Toggle analog", "command": "f5", "message": "Analog toggled"},
+	 	{"name": "Quit", "command": "esc", "message": "Exiting"}],
+	"hotkeys":
+		[{"key": "6", "command": "f5", "message": "Analog toggled"},
+		 {"key": "8", "command": "f1", "message": "Saved"},
+		 {"key": "9", "command": "f3", "message": "Loaded"}]
+   },
+   {
+    	"name": "GSdx",
+	"settings": 
+		[{"removeBorders": "false"},
+		 {"displayMessages": "true"},
+		 {"topmost": "false"}],
+    	"bindings": 
+		[{"name": "Continue", "command": "", "message": ""},
+	 	{"name": "Save", "command": "f1", "message": "Saved"},
+	 	{"name": "Load", "command": "f3", "message": "Loaded"},
+	 	{"name": "Switch state", "command": "f2", "message": "State Changed"},
+	 	{"name": "Quit", "command": "esc", "message": "Exiting"}],
+	"hotkeys":
+		[{"key": "6", "command": "alt+enter", "message": ""},
+		 {"key": "8", "command": "f1", "message": "Saved"},
+		 {"key": "9", "command": "f3", "message": "Loaded"}]
+   },
+   {
+    	"name": "PPSSPP",
+	"settings": 
+		[{"removeBorders": "true"},
+		 {"displayMessages": "true"},
+		 {"topmost": "false"}],
+    	"bindings": 
+		[{"name": "Continue", "command": "", "message": ""},
+	 	{"name": "Save", "command": "f2", "message": "Saved"},
+	 	{"name": "Load", "command": "f4", "message": "Loaded"},
+	 	{"name": "Quit", "command": "alt+f4", "message": "Exiting"}],
+	"hotkeys":
+		[{"key": "6", "command": "", "message": ""},
+		 {"key": "8", "command": "f2", "message": "Saved"},
+		 {"key": "9", "command": "f4", "message": "Loaded"}]
+   },
+   {
+    	"name": "XBMC",
+	"settings": 
+		[{"removeBorders": "false"},
+		 {"displayMessages": "true"},
+		 {"topmost": "false"}],
+    	"bindings": 
+		[{"name": "Continue", "command": "", "message": ""},
+	 	{"name": "Toggle fullscreen", "command": "alt+enter", "message": ""},
+	 	{"name": "(psx) toggle multitap", "command": "psxMultitap()", "message": "multitap toggled"},
+	 	{"name": "Quit", "command": "alt+f4", "message": ""}],
+	"hotkeys":
+		[{"key": "6", "command": "alt+enter", "message": ""}]
+   },
+   {
+    	"name": "Dolphin",
+	"settings": 
+		[{"removeBorders": "false"},
+		 {"displayMessages": "true"},
+		 {"topmost": "false"}],
+    	"bindings": 
+		[{"name": "Continue", "command": "", "message": ""},
+	 	{"name": "Save", "command": "shift+f1", "message": "Saved"},
+		{"name": "Toggle fullscreen", "command": "alt+enter", "message": ""},
+	 	{"name": "Load", "command": "f1", "message": "Loaded"},
+	 	{"name": "Quit", "command": "alt+f4", "message": "Exiting"}],
+	"hotkeys":
+		[{"key": "6", "command": "alt+enter", "message": ""},
+		 {"key": "8", "command": "shift+f1", "message": "Saved"},
+		 {"key": "9", "command": "f1", "message": "Loaded"}]
+   },
+   {
+	"name": "Project64",
+	"settings": 
+		[{"removeBorders": "false"},
+		 {"displayMessages": "true"},
+		 {"topmost": "false"}],
+      "bindings": 
+		[{"name": "Continue", "command": "", "message": ""},
+	 	{"name": "Save", "command": "f5", "message": "Saved"},
+	 	{"name": "Load", "command": "f7", "message": "Loaded"},
+	 	{"name": "Quit", "command": "alt+f4", "message": "Exiting"}],
+	"hotkeys":
+		[{"key": "6", "command": "alt+enter", "message": ""},
+		 {"key": "8", "command": "f5", "message": "Saved"},
+		 {"key": "9", "command": "f7", "message": "Loaded"}]
+   },
+   {
+	"name": "VisualBoyAdvance",
+	"settings": 
+		[{"removeBorders": "false"},
+		 {"displayMessages": "true"},
+		 {"topmost": "false"}],
+      "bindings": 
+		[{"name": "Continue", "command": "", "message": ""},
+	 	{"name": "Save", "command": "shift+f1", "message": "Saved"},
+	 	{"name": "Load", "command": "f1", "message": "Loaded"},
+	 	{"name": "Quit", "command": "alt+f4", "message": "Exiting"}],
+	"hotkeys":
+		[{"key": "6", "command": "", "message": "Analog toggled"},
+		 {"key": "8", "command": "shift+f1", "message": "Saved"},
+		 {"key": "9", "command": "f1", "message": "Loaded"}]
+   },
+   {
+	"name": "Program Manager",
+	"settings": 
+		[{"removeBorders": "false"},
+		 {"displayMessages": "true"},
+		 {"topmost": "false"}],
+      "bindings": 
+		[{"name": "Continue", "command": "", "message": ""},
+		 {"name": "Launch XBMC", "command": "XBMC()", "message": "Launching XBMC"},
+	 	 {"name": "Shutdown", "command": "alt+f4,enter", "message": "Shutting down"}],
+   },
+   {
+    "name": "~default",
+	"settings": 
+		[{"removeBorders": "false"},
+		 {"displayMessages": "true"},
+		 {"topmost": "false"}],
+    	"bindings": 
+		[{"name": "Continue", "command": "", "message": ""},
+	 	{"name": "Enter", "command": "enter", "message": ""},
+	 	{"name": "Quit", "command": "alt+f4", "message": "Exiting"},
+	 	{"name": "Quit2", "command": "enter,alt+f4", "message": "Exiting"},],
+	"hotkeys":
+		[{"key": "6", "command": "enter", "message": "", "delay": "2000"},
+		 {"key": "cross", "command": "a", "message": "Saved", "delay": "200"},
+		 {"key": "r3", "command": "b", "message": "Loaded", "delay": "5000"}]
+   },
+],
+"programBindings":
+[
+	{"XBMC()": "C:\\Program Files (x86)\\XBMC\\XBMC.exe"},
+	{"psxMultitap()": "C:\\Nostalgia\\Scripts\\toggle_multitap.bat"}
+]
+}

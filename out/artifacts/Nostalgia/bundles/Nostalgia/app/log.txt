@@ -1,0 +1,66 @@
+06/07/2014 00:03:01 - Menu loaded
+06/07/2014 00:03:01 - MessageBox loaded
+06/07/2014 00:03:01 - ====================================================================
+06/07/2014 00:03:01 - 32
+06/07/2014 00:03:01 - Starting
+06/07/2014 00:03:03 - Loading bindings
+06/07/2014 00:03:03 - Program Manager: has no hotkeys
+06/07/2014 00:03:03 - Bindings loaded
+06/07/2014 00:03:03 - Loading settings
+06/07/2014 00:03:03 - Settings loaded
+06/07/2014 00:03:03 - Loading program bindings
+06/07/2014 00:03:03 - Program bindings loaded
+06/07/2014 00:03:03 - Windows 7 window handler loaded
+06/07/2014 00:03:03 - Window pulling started
+06/07/2014 00:03:03 - Creating controller handler
+06/07/2014 00:03:04 - Loading controlers
+06/07/2014 00:03:04 - Controllers loaded
+06/07/2014 00:03:04 - Loading controller interface
+06/07/2014 00:03:04 - Controller interface loaded
+06/07/2014 00:03:04 - Controller handler loaded
+06/07/2014 00:03:04 - Controller handler started
+06/07/2014 00:03:04 - Active window: log.txt - Notepad
+06/07/2014 00:03:07 - Active window: app
+06/07/2014 00:03:12 - Active window: log.txt - Notepad
+06/07/2014 00:03:14 - Active window: app
+06/07/2014 00:03:19 - Active window: PopupMessageWindow
+06/07/2014 00:03:19 - User exit(tray)
+06/07/2014 15:42:44 - Menu loaded
+06/07/2014 15:42:45 - MessageBox loaded
+06/07/2014 15:42:45 - ====================================================================
+06/07/2014 15:42:45 - 32
+06/07/2014 15:42:45 - Starting
+06/07/2014 15:42:46 - Loading bindings
+06/07/2014 15:42:46 - Program Manager: has no hotkeys
+06/07/2014 15:42:46 - Bindings loaded
+06/07/2014 15:42:46 - Loading settings
+06/07/2014 15:42:46 - Settings loaded
+06/07/2014 15:42:46 - Loading program bindings
+06/07/2014 15:42:46 - Program bindings loaded
+06/07/2014 15:42:47 - Windows 7 window handler loaded
+06/07/2014 15:42:47 - Window pulling started
+06/07/2014 15:42:47 - Creating controller handler
+06/07/2014 15:42:47 - Loading controlers
+06/07/2014 15:42:47 - Controllers loaded
+06/07/2014 15:42:47 - Loading controller interface
+06/07/2014 15:42:47 - Controller interface loaded
+06/07/2014 15:42:47 - Controller handler loaded
+06/07/2014 15:42:47 - Controller handler started
+06/07/2014 15:42:48 - Active window: 
+06/07/2014 15:42:49 - Active window: Nostalgia
+06/07/2014 15:42:58 - Active window: C:\Windows\System32\WindowsPowerShell\v1.0\Powershell.exe
+06/07/2014 15:43:01 - Active window: 
+06/07/2014 15:43:02 - Active window: Nostalgia
+06/07/2014 15:43:04 - Active window: log.txt - Notepad
+06/07/2014 15:43:07 - Active window: app
+06/07/2014 15:43:39 - Active window: 0% Komprimerer Nostalgia.zip
+06/07/2014 15:43:45 - Active window: Nostalgia
+06/07/2014 15:43:50 - Active window: 81% Komprimerer Nostalgia.zip
+06/07/2014 15:43:51 - Active window: Komprimerer
+06/07/2014 15:43:52 - Active window: artifacts
+06/07/2014 15:44:13 - Active window: 2% Komprimerer Nostalgia.zip
+06/07/2014 15:44:14 - Active window: C:\Windows\System32\WindowsPowerShell\v1.0\Powershell.exe
+06/07/2014 15:44:35 - Active window: LoadLibrary problem on 64 bit (runs on 32) - Google Chrome
+06/07/2014 15:44:57 - Active window: 
+06/07/2014 15:44:58 - Active window: PopupMessageWindow
+06/07/2014 15:44:58 - User exit(tray)
