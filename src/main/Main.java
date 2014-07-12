@@ -25,7 +25,7 @@ import settings.WindowSetting;
 
 
 public class Main extends Thread
-{	
+{
 	private OutputHandler outputHandler;
 	private GuiManager guiManager;
 	private PointerType activeWindowHandle;
@@ -47,10 +47,10 @@ public class Main extends Thread
 		log("====================================================================");
         log("Starting");
 		createTrayIcon();
+        loadControllers();
 		outputHandler = new OutputHandler(this);
 		windowHandler = getWindowHandler();
 		startWindowPulling(settings.getWindowPullDelay());
-		loadControllers();
 	}
 	
 	private void loadControllers()
@@ -141,10 +141,13 @@ public class Main extends Thread
 	
 	public void command(ItemInterface item)
 	{
+        if(item.getCommand().isEmpty())
+            return;
+
 		boolean commandPerformed = outputHandler.command(item.getCommand());
 
         if(commandPerformed) {
-            showMessageBox(item.getMessage());
+            showMessageBox(item.getMessage(), false);
             //TODO vibrate
         }
 
@@ -169,8 +172,11 @@ public class Main extends Thread
 		outputHandler.pressKey(key);
 	}
 
-	public void showMessageBox(String message)
+	public void showMessageBox(String message, boolean systemMessage)
 	{
+        if(systemMessage && settings.isDisableSystemMessages())
+            return;
+
         if(activeWindowSettings != null && !settings.isDisableMessages()) {
             if (!activeWindowSettings.isDisableMessages()) {
                 if (message != null && !message.isEmpty()) {

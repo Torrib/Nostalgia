@@ -17,19 +17,20 @@ public class Settings {
     private String menuFont = "";
     private int menuFontSize = 25;
     private int menuSelectedFontSize = 30;
+    private boolean muteMenu = false;
 
     private String messageFont = "impact";
     private int messageFontSize = 25;
     private int messageDelay = 2000;
+    private boolean disableMessages = false;
+    private boolean disableSystemMessages = false;
 
     private int windowPullDelay = 1000;
     private int windowPullRefresh = 10000;
 
     private int controllerPullDelay = 100;
     private int buttonPressDelay = 50;
-
-    private boolean disableMessages = false;
-    private boolean displaySystemMessages = true;
+    private boolean requireActivate = true;
 
     private boolean vibrateOnActivate = true;
     private List<WindowSetting> windowSettings = new ArrayList<>();
@@ -107,12 +108,12 @@ public class Settings {
         this.disableMessages = disableMessages;
     }
 
-    public boolean isDisplaySystemMessages() {
-        return displaySystemMessages;
+    public boolean isDisableSystemMessages() {
+        return disableSystemMessages;
     }
 
-    public void setDisplaySystemMessages(boolean displaySystemMessages) {
-        this.displaySystemMessages = displaySystemMessages;
+    public void setDisableSystemMessages(boolean disableSystemMessages) {
+        this.disableSystemMessages = disableSystemMessages;
     }
 
     public boolean isVibrateOnActivate() {
@@ -153,6 +154,14 @@ public class Settings {
 
     public void setMenuSelectedFontSize(int menuSelectedFontSize) {
         this.menuSelectedFontSize = menuSelectedFontSize;
+    }
+
+    public boolean menuMuted() {
+        return muteMenu;
+    }
+
+    public void setMenuMuted(boolean muteMenu) {
+        this.muteMenu = muteMenu;
     }
 
     public void store(){

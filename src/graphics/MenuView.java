@@ -8,15 +8,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TableCell;
 import javafx.scene.effect.Bloom;
-import javafx.scene.effect.Effect;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
@@ -25,21 +23,25 @@ import settings.MenuItem;
 
 import java.awt.*;
 import java.awt.event.InputEvent;
+import java.io.File;
 import java.util.List;
 
-/**
- * Created by thb on 01.07.2014.
- */
 public class MenuView {
 
+    private Main main;
     private Stage stage;
     private ListView<MenuItem> list;
     private Label controllerLabel;
+    private AudioClip menuSound;
 
     public MenuView(Main main){
+        this.main = main;
         stage = new Stage();
         stage.setTitle("Nostalgia menu");
-        list = new ListView<MenuItem>();
+        list = new ListView<>();
+
+        File file = new File("src/resources/button-29.mp3");
+        menuSound = new AudioClip(file.toURI().toString());
 
         list.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
@@ -58,6 +60,7 @@ public class MenuView {
         list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<MenuItem>() {
             @Override
             public void changed(ObservableValue<? extends MenuItem> observable, MenuItem oldValue, MenuItem newValue) {
+                playSound();
                 list.setCellFactory(new Callback<ListView<MenuItem>, ListCell<MenuItem>>() {
                     @Override
                     public ListCell<MenuItem> call(ListView<MenuItem> param) {
@@ -124,7 +127,11 @@ public class MenuView {
             bot.mouseRelease(InputEvent.BUTTON1_MASK);
         }
         catch (AWTException e){ e.printStackTrace();}
+    }
 
+    public void playSound(){
+        if(!main.getSettings().menuMuted())
+            menuSound.play();
     }
 
     public void hide(){

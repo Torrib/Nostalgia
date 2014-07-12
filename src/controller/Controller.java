@@ -44,7 +44,7 @@ public class Controller extends Thread{
         ControllerHandler.ControllerStruct buttons = new ControllerHandler.ControllerStruct();
         buttonCounter = new int[10];
         vibrate(400);
-        controllerHandler.getMain().showMessageBox("Controller " + (controllerNumber+1) + " Active");
+        controllerHandler.getMain().showMessageBox("Controller " + (controllerNumber+1) + " Active", true);
 
         while(active){
             try {
@@ -90,11 +90,11 @@ public class Controller extends Thread{
 
         if(connectionStatus != connected){
             if(connectionStatus) {
-                controllerHandler.getMain().showMessageBox("Controller " + (controllerNumber+1) + " Connected");
+                controllerHandler.getMain().showMessageBox("Controller " + (controllerNumber+1) + " Connected", true);
                 System.out.println("Controller " + controllerNumber + ": connected");
             }
             else {
-                controllerHandler.getMain().showMessageBox("Controller " + (controllerNumber+1) + " Disconnected");
+                controllerHandler.getMain().showMessageBox("Controller " + (controllerNumber+1) + " Disconnected", true);
                 System.out.println("Controller " + controllerNumber + ": disconnected");
                 active = false;
             }

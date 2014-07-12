@@ -507,3 +507,264 @@
 11/07/2014 23:56:41 - Active binding: []
 11/07/2014 23:56:43 - Active binding: [Inbox - torrib90@gmail.com - Gmail - Google Chrome]
 11/07/2014 23:58:47 - Active binding: [posh~git ~ Nostalgia [master]]
+11/07/2014 23:59:15 - Active binding: [Logitech G League of Legends Challenge #2 - Turnering - Gamer.no - Google Chrome]
+12/07/2014 00:00:51 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\graphics\MessageBox.java - IntelliJ IDEA 13.1.3]
+12/07/2014 00:01:08 - Menu loaded
+12/07/2014 00:01:08 - MessageBox loaded
+12/07/2014 00:01:08 - ====================================================================
+12/07/2014 00:01:08 - Starting
+12/07/2014 00:01:08 - Windows 7 window handler loaded
+12/07/2014 00:01:14 - Loading controlers
+12/07/2014 00:01:14 - Controllers loaded
+12/07/2014 00:01:14 - Loading controller interface
+12/07/2014 00:01:14 - Controller handler started
+12/07/2014 00:02:23 - Menu loaded
+12/07/2014 00:02:23 - MessageBox loaded
+12/07/2014 00:02:23 - ====================================================================
+12/07/2014 00:02:23 - Starting
+12/07/2014 00:02:24 - Loading controlers
+12/07/2014 00:02:24 - Controllers loaded
+12/07/2014 00:02:24 - Loading controller interface
+12/07/2014 00:02:24 - Controller handler started
+12/07/2014 00:02:24 - Windows 7 window handler loaded
+12/07/2014 00:02:25 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\main\Main.java - IntelliJ IDEA 13.1.3]
+12/07/2014 00:02:36 - Active binding: [PopupMessageWindow]
+12/07/2014 00:02:36 - Opening config
+12/07/2014 00:02:49 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\main\Main.java - IntelliJ IDEA 13.1.3]
+12/07/2014 00:02:58 - Active binding: Notepad[Untitled - Notepad]
+12/07/2014 00:03:04 - Active binding: []
+12/07/2014 00:03:05 - Opening config
+12/07/2014 00:03:16 - Active binding: [www.twitch.tv/riotgames/popout - Google Chrome]
+12/07/2014 00:03:58 - Active binding: []
+12/07/2014 00:03:59 - Active binding: [www.twitch.tv/riotgames/popout - Google Chrome]
+12/07/2014 00:04:11 - Active binding: Notepad[Untitled - Notepad]
+12/07/2014 00:04:13 - Active binding: [www.twitch.tv/riotgames/popout - Google Chrome]
+12/07/2014 00:04:18 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\main\Main.java - IntelliJ IDEA 13.1.3]
+12/07/2014 00:24:46 - Menu loaded
+12/07/2014 00:24:46 - MessageBox loaded
+12/07/2014 00:24:46 - ====================================================================
+12/07/2014 00:24:46 - Starting
+12/07/2014 00:24:46 - Loading controlers
+12/07/2014 00:24:46 - Controllers loaded
+12/07/2014 00:24:46 - Loading controller interface
+12/07/2014 00:24:46 - Controller handler started
+12/07/2014 00:24:46 - Windows 7 window handler loaded
+12/07/2014 00:24:47 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\graphics\MenuView.java - IntelliJ IDEA 13.1.3]
+12/07/2014 00:24:52 - Active binding: [www.twitch.tv/riotgames/popout - Google Chrome]
+12/07/2014 00:24:53 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\graphics\MenuView.java - IntelliJ IDEA 13.1.3]
+12/07/2014 00:24:55 - Active binding: Notepad[Untitled - Notepad]
+12/07/2014 00:25:15 - Unrecognized key: 
+12/07/2014 00:25:18 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\graphics\MenuView.java - IntelliJ IDEA 13.1.3]
+12/07/2014 00:25:19 - Active binding: [posh~git ~ Nostalgia [master]]
+12/07/2014 00:25:21 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\graphics\MenuView.java - IntelliJ IDEA 13.1.3]
+12/07/2014 00:26:13 - Active binding: [Select Fields to Generate Getters and Setters]
+12/07/2014 00:26:14 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\settings\Settings.java - IntelliJ IDEA 13.1.3]
+12/07/2014 09:57:45 - Menu loaded
+12/07/2014 09:57:45 - MessageBox loaded
+12/07/2014 09:57:45 - ====================================================================
+12/07/2014 09:57:45 - Starting
+12/07/2014 09:57:47 - Loading controlers
+12/07/2014 09:57:47 - Controllers loaded
+12/07/2014 09:57:47 - Loading controller interface
+12/07/2014 09:57:47 - Controller handler started
+12/07/2014 09:57:47 - Windows 7 window handler loaded
+12/07/2014 09:57:48 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\graphics\MenuView.java - IntelliJ IDEA 13.1.3]
+12/07/2014 09:57:54 - Active binding: [PopupMessageWindow]
+12/07/2014 09:57:54 - Opening config
+12/07/2014 09:57:58 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\graphics\MenuView.java - IntelliJ IDEA 13.1.3]
+12/07/2014 09:57:59 - Active binding: [PopupMessageWindow]
+12/07/2014 09:57:59 - User exit(tray)
+12/07/2014 10:05:15 - Menu loaded
+12/07/2014 10:05:15 - MessageBox loaded
+12/07/2014 10:05:15 - ====================================================================
+12/07/2014 10:05:15 - Starting
+12/07/2014 10:05:15 - Loading controlers
+12/07/2014 10:05:15 - Controllers loaded
+12/07/2014 10:05:15 - Loading controller interface
+12/07/2014 10:05:15 - Controller handler started
+12/07/2014 10:05:15 - Windows 7 window handler loaded
+12/07/2014 10:05:16 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\graphics\SettingsView.java - IntelliJ IDEA 13.1.3]
+12/07/2014 10:06:03 - Menu loaded
+12/07/2014 10:06:03 - MessageBox loaded
+12/07/2014 10:06:03 - ====================================================================
+12/07/2014 10:06:03 - Starting
+12/07/2014 10:06:03 - Loading controlers
+12/07/2014 10:06:03 - Controllers loaded
+12/07/2014 10:06:03 - Loading controller interface
+12/07/2014 10:06:03 - Controller handler started
+12/07/2014 10:06:03 - Windows 7 window handler loaded
+12/07/2014 10:06:04 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\graphics\SettingsView.java - IntelliJ IDEA 13.1.3]
+12/07/2014 10:06:15 - Active binding: [Start menu]
+12/07/2014 10:06:18 - Active binding: Notepad[Untitled - Notepad]
+12/07/2014 10:06:35 - Unrecognized key: 
+12/07/2014 10:06:37 - Active binding: []
+12/07/2014 10:06:39 - Active binding: [PopupMessageWindow]
+12/07/2014 10:06:39 - Opening config
+12/07/2014 10:06:44 - Active binding: Notepad[Untitled - Notepad]
+12/07/2014 10:07:05 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\graphics\SettingsView.java - IntelliJ IDEA 13.1.3]
+12/07/2014 10:07:07 - Active binding: []
+12/07/2014 10:07:12 - Active binding: [PopupMessageWindow]
+12/07/2014 10:07:12 - User exit(tray)
+12/07/2014 10:07:30 - Menu loaded
+12/07/2014 10:07:30 - MessageBox loaded
+12/07/2014 10:07:30 - ====================================================================
+12/07/2014 10:07:30 - Starting
+12/07/2014 10:07:31 - Loading controlers
+12/07/2014 10:07:31 - Controllers loaded
+12/07/2014 10:07:31 - Loading controller interface
+12/07/2014 10:07:31 - Controller handler started
+12/07/2014 10:07:31 - Windows 7 window handler loaded
+12/07/2014 10:07:33 - Active binding: Notepad[Untitled - Notepad]
+12/07/2014 10:07:42 - Unrecognized key: 
+12/07/2014 10:07:49 - Unrecognized key: 
+12/07/2014 10:07:52 - Opening config
+12/07/2014 10:08:09 - Unrecognized key: 
+12/07/2014 10:08:13 - Active binding: []
+12/07/2014 10:08:13 - Opening config
+12/07/2014 10:08:18 - Active binding: Notepad[Untitled - Notepad]
+12/07/2014 10:12:28 - Menu loaded
+12/07/2014 10:12:28 - MessageBox loaded
+12/07/2014 10:12:28 - ====================================================================
+12/07/2014 10:12:28 - Starting
+12/07/2014 10:12:28 - Loading controlers
+12/07/2014 10:12:28 - Controllers loaded
+12/07/2014 10:12:28 - Loading controller interface
+12/07/2014 10:12:28 - Controller handler started
+12/07/2014 10:12:28 - Windows 7 window handler loaded
+12/07/2014 10:12:29 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\graphics\MenuView.java - IntelliJ IDEA 13.1.3]
+12/07/2014 10:12:32 - Active binding: []
+12/07/2014 10:12:33 - Active binding: []
+12/07/2014 10:12:35 - Active binding: [PopupMessageWindow]
+12/07/2014 10:12:35 - Opening config
+12/07/2014 10:12:39 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\graphics\MenuView.java - IntelliJ IDEA 13.1.3]
+12/07/2014 10:12:43 - Active binding: [PopupMessageWindow]
+12/07/2014 10:12:43 - Opening config
+12/07/2014 10:12:47 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\graphics\MenuView.java - IntelliJ IDEA 13.1.3]
+12/07/2014 10:12:48 - Active binding: Notepad[Untitled - Notepad]
+12/07/2014 10:12:57 - Unrecognized key: 
+12/07/2014 10:12:59 - Active binding: []
+12/07/2014 10:13:00 - Active binding: [PopupMessageWindow]
+12/07/2014 10:13:00 - Opening config
+12/07/2014 10:13:04 - Active binding: Notepad[Untitled - Notepad]
+12/07/2014 10:13:13 - Unrecognized key: 
+12/07/2014 10:13:20 - Unrecognized key: 
+12/07/2014 10:13:25 - Unrecognized key: 
+12/07/2014 10:13:27 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\graphics\MenuView.java - IntelliJ IDEA 13.1.3]
+12/07/2014 10:13:39 - Menu loaded
+12/07/2014 10:13:39 - MessageBox loaded
+12/07/2014 10:13:39 - ====================================================================
+12/07/2014 10:13:39 - Starting
+12/07/2014 10:13:39 - Loading controlers
+12/07/2014 10:13:39 - Controllers loaded
+12/07/2014 10:13:39 - Loading controller interface
+12/07/2014 10:13:39 - Controller handler started
+12/07/2014 10:13:39 - Windows 7 window handler loaded
+12/07/2014 10:13:40 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\graphics\MenuView.java - IntelliJ IDEA 13.1.3]
+12/07/2014 10:13:47 - Active binding: Notepad[Untitled - Notepad]
+12/07/2014 10:14:02 - Unrecognized key: 
+12/07/2014 10:14:05 - Active binding: []
+12/07/2014 10:14:06 - Active binding: []
+12/07/2014 10:14:07 - Opening config
+12/07/2014 10:14:11 - Active binding: Notepad[Untitled - Notepad]
+12/07/2014 10:14:43 - Unrecognized key: 
+12/07/2014 10:14:58 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\graphics\MenuView.java - IntelliJ IDEA 13.1.3]
+12/07/2014 11:59:42 - Menu loaded
+12/07/2014 11:59:42 - MessageBox loaded
+12/07/2014 11:59:42 - ====================================================================
+12/07/2014 11:59:42 - Starting
+12/07/2014 11:59:44 - Loading controlers
+12/07/2014 11:59:44 - Controllers loaded
+12/07/2014 11:59:44 - Loading controller interface
+12/07/2014 11:59:44 - Controller handler started
+12/07/2014 11:59:44 - Windows 7 window handler loaded
+12/07/2014 11:59:45 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\graphics\SettingsView.java - IntelliJ IDEA 13.1.3]
+12/07/2014 12:13:08 - Active binding: []
+12/07/2014 12:13:09 - Active binding: [PopupMessageWindow]
+12/07/2014 12:13:09 - Opening config
+12/07/2014 12:13:19 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\graphics\SettingsView.java - IntelliJ IDEA 13.1.3]
+12/07/2014 12:14:34 - Menu loaded
+12/07/2014 12:14:34 - MessageBox loaded
+12/07/2014 12:14:34 - ====================================================================
+12/07/2014 12:14:34 - Starting
+12/07/2014 12:14:34 - Loading controlers
+12/07/2014 12:14:34 - Controllers loaded
+12/07/2014 12:14:34 - Loading controller interface
+12/07/2014 12:14:34 - Controller handler started
+12/07/2014 12:14:34 - Windows 7 window handler loaded
+12/07/2014 12:14:35 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\graphics\SettingsView.java - IntelliJ IDEA 13.1.3]
+12/07/2014 12:14:36 - Active binding: []
+12/07/2014 12:14:37 - Opening config
+12/07/2014 12:14:37 - Active binding: [PopupMessageWindow]
+12/07/2014 12:14:47 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\graphics\SettingsView.java - IntelliJ IDEA 13.1.3]
+12/07/2014 12:14:55 - Menu loaded
+12/07/2014 12:14:55 - MessageBox loaded
+12/07/2014 12:14:55 - ====================================================================
+12/07/2014 12:14:55 - Starting
+12/07/2014 12:14:55 - Loading controlers
+12/07/2014 12:14:55 - Controllers loaded
+12/07/2014 12:14:55 - Loading controller interface
+12/07/2014 12:14:55 - Controller handler started
+12/07/2014 12:14:55 - Windows 7 window handler loaded
+12/07/2014 12:14:56 - Active binding: []
+12/07/2014 12:14:57 - Active binding: [PopupMessageWindow]
+12/07/2014 12:14:57 - Opening config
+12/07/2014 12:15:01 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\graphics\SettingsView.java - IntelliJ IDEA 13.1.3]
+12/07/2014 12:18:48 - Menu loaded
+12/07/2014 12:18:48 - MessageBox loaded
+12/07/2014 12:18:48 - ====================================================================
+12/07/2014 12:18:48 - Starting
+12/07/2014 12:18:48 - Loading controlers
+12/07/2014 12:18:48 - Controllers loaded
+12/07/2014 12:18:48 - Loading controller interface
+12/07/2014 12:18:48 - Controller handler started
+12/07/2014 12:18:48 - Windows 7 window handler loaded
+12/07/2014 12:18:49 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\main\Main.java - IntelliJ IDEA 13.1.3]
+12/07/2014 12:19:02 - Active binding: Notepad[Untitled - Notepad]
+12/07/2014 12:19:13 - Active binding: []
+12/07/2014 12:19:14 - Opening config
+12/07/2014 12:19:14 - Active binding: [PopupMessageWindow]
+12/07/2014 12:19:20 - Active binding: Notepad[Untitled - Notepad]
+12/07/2014 12:19:36 - Menu loaded
+12/07/2014 12:19:36 - MessageBox loaded
+12/07/2014 12:19:36 - ====================================================================
+12/07/2014 12:19:36 - Starting
+12/07/2014 12:19:36 - Loading controlers
+12/07/2014 12:19:36 - Controllers loaded
+12/07/2014 12:19:36 - Loading controller interface
+12/07/2014 12:19:36 - Controller handler started
+12/07/2014 12:19:36 - Windows 7 window handler loaded
+12/07/2014 12:19:37 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\main\Main.java - IntelliJ IDEA 13.1.3]
+12/07/2014 12:19:38 - Active binding: Notepad[Untitled - Notepad]
+12/07/2014 12:20:01 - Menu loaded
+12/07/2014 12:20:01 - MessageBox loaded
+12/07/2014 12:20:01 - ====================================================================
+12/07/2014 12:20:01 - Starting
+12/07/2014 12:20:01 - Loading controlers
+12/07/2014 12:20:01 - Controllers loaded
+12/07/2014 12:20:01 - Loading controller interface
+12/07/2014 12:20:01 - Controller handler started
+12/07/2014 12:20:01 - Windows 7 window handler loaded
+12/07/2014 12:20:02 - Active binding: []
+12/07/2014 12:20:04 - Active binding: [PopupMessageWindow]
+12/07/2014 12:20:04 - Opening config
+12/07/2014 12:20:17 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\main\Main.java - IntelliJ IDEA 13.1.3]
+12/07/2014 12:20:40 - Menu loaded
+12/07/2014 12:20:40 - MessageBox loaded
+12/07/2014 12:20:40 - ====================================================================
+12/07/2014 12:20:40 - Starting
+12/07/2014 12:20:40 - Loading controlers
+12/07/2014 12:20:40 - Controllers loaded
+12/07/2014 12:20:40 - Loading controller interface
+12/07/2014 12:20:40 - Controller handler started
+12/07/2014 12:20:40 - Windows 7 window handler loaded
+12/07/2014 12:20:42 - Active binding: [PopupMessageWindow]
+12/07/2014 12:20:42 - Opening config
+12/07/2014 12:20:46 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\graphics\SettingsView.java - IntelliJ IDEA 13.1.3]
+12/07/2014 12:20:49 - Active binding: Notepad[Untitled - Notepad]
+12/07/2014 12:21:00 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\graphics\SettingsView.java - IntelliJ IDEA 13.1.3]
+12/07/2014 12:21:01 - Active binding: Notepad[Untitled - Notepad]
+12/07/2014 12:21:10 - Active binding: []
+12/07/2014 12:21:11 - Active binding: [PopupMessageWindow]
+12/07/2014 12:21:11 - Opening config
+12/07/2014 12:21:28 - Active binding: Notepad[Untitled - Notepad]
+12/07/2014 12:21:35 - Active binding: [Nostalgia - [C:\Users\thb\Documents\GitHub\Nostalgia] - [Nostalgia] - ...\src\graphics\SettingsView.java - IntelliJ IDEA 13.1.3]

@@ -2,16 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="df7bf621-27b8-42b5-8b21-f40795c37836" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/graphics/BorderTitledPane.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/bordertitlepane.css" />
-      <change type="DELETED" beforePath="C:\Users\thb\Documents\GitHub\Nostalgia\s.json" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\thb\Documents\GitHub\Nostalgia\src\graphics\GuiManager.java" afterPath="$PROJECT_DIR$/src/main/GuiManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/button-29.mp3" />
+      <change type="MOVED" beforePath="C:\Users\thb\Documents\GitHub\Nostalgia\src\bordertitlepane.css" afterPath="$PROJECT_DIR$/src/resources/bordertitlepane.css" />
+      <change type="MOVED" beforePath="C:\Users\thb\Documents\GitHub\Nostalgia\src\list.css" afterPath="$PROJECT_DIR$/src/resources/list.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/Controller.java" afterPath="$PROJECT_DIR$/src/controller/Controller.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Main.java" afterPath="$PROJECT_DIR$/src/main/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/MessageBox.java" afterPath="$PROJECT_DIR$/src/graphics/MessageBox.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Nostalgia.iml" afterPath="$PROJECT_DIR$/Nostalgia.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/MenuView.java" afterPath="$PROJECT_DIR$/src/graphics/MenuView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/settings/Settings.java" afterPath="$PROJECT_DIR$/src/settings/Settings.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/SettingsView.java" afterPath="$PROJECT_DIR$/src/graphics/SettingsView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log.txt" afterPath="$PROJECT_DIR$/log.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.json" afterPath="$PROJECT_DIR$/settings.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Nostalgia.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,44 +38,60 @@
       <file leaf-file-name="SettingsView.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/graphics/SettingsView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="858" max-vertical-offset="1853">
-              <caret line="145" column="42" selection-start-line="145" selection-start-column="42" selection-end-line="145" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1566" max-vertical-offset="3179">
+              <caret line="172" column="78" selection-start-line="172" selection-start-column="78" selection-end-line="172" selection-end-column="78" />
               <folding>
+                <element signature="docComment;class#SettingsView#0" expanded="false" />
                 <element signature="method#SettingsView#0;class#SettingsView#0" expanded="false" />
-                <element signature="method#getMenuPane#0;class#SettingsView#0" expanded="false" />
+                <element signature="class#1280:1462" expanded="false" />
+                <element signature="method#handle#0;class#1280:1462" expanded="false" />
+                <element signature="class#1502:1653" expanded="false" />
+                <element signature="class#1694:1852" expanded="false" />
+                <element signature="method#createGeneralTab#0;class#SettingsView#0" expanded="false" />
                 <element signature="method#createApplicationTab#0;class#SettingsView#0" expanded="false" />
+                <element signature="class#8224:8415" expanded="false" />
+                <element signature="class#8479:8685" expanded="false" />
+                <element signature="method#openApplicationView#0;class#SettingsView#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MessageBox.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="MenuView.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/graphics/MenuView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="613" max-vertical-offset="2074">
+              <caret line="75" column="76" selection-start-line="75" selection-start-column="76" selection-end-line="75" selection-end-column="76" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Settings.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/settings/Settings.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7154047" vertical-offset="151" max-vertical-offset="2125">
+              <caret line="32" column="43" selection-start-line="32" selection-start-column="43" selection-end-line="32" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessageBox.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/graphics/MessageBox.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33420366" vertical-offset="841" max-vertical-offset="1224">
+            <state vertical-scroll-proportion="0.0" vertical-offset="569" max-vertical-offset="1224">
               <caret line="73" column="110" selection-start-line="73" selection-start-column="110" selection-end-line="73" selection-end-column="110" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BorderTitledPane.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphics/BorderTitledPane.java">
+      <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="127" max-vertical-offset="561">
-              <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Settings.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/settings/Settings.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2040">
-              <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2023" max-vertical-offset="5202">
+              <caret line="148" column="30" selection-start-line="148" selection-start-column="30" selection-end-line="148" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -98,9 +115,12 @@
         <option value="$PROJECT_DIR$/src/list.css" />
         <option value="$PROJECT_DIR$/src/graphics/BorderTitledPane.java" />
         <option value="$PROJECT_DIR$/src/bordertitlepane.css" />
-        <option value="$PROJECT_DIR$/src/graphics/SettingsView.java" />
         <option value="$PROJECT_DIR$/src/graphics/MessageBox.java" />
+        <option value="$PROJECT_DIR$/src/graphics/MenuView.java" />
         <option value="$PROJECT_DIR$/src/settings/Settings.java" />
+        <option value="$PROJECT_DIR$/src/controller/Controller.java" />
+        <option value="$PROJECT_DIR$/src/main/Main.java" />
+        <option value="$PROJECT_DIR$/src/graphics/SettingsView.java" />
       </list>
     </option>
   </component>
@@ -121,7 +141,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
-    <option name="STATE" value="2" />
+    <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -136,8 +156,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -184,12 +202,50 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Nostalgia" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Nostalgia" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="graphics" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Nostalgia" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Nostalgia" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -204,6 +260,12 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="dynamic.classpath" value="false" />
+    <property name="FullScreen" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\thb\Documents\GitHub\Nostalgia\src\resources" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.GuiManager">
     <configuration default="false" name="GuiManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -257,19 +319,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -295,6 +344,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -377,7 +439,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -385,12 +447,13 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -400,9 +463,8 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32952693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -431,12 +493,88 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/graphics/SettingsView.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3672">
+          <caret line="65" column="76" selection-start-line="65" selection-start-column="76" selection-end-line="65" selection-end-column="76" />
+          <folding>
+            <element signature="docComment;class#SettingsView#0" expanded="false" />
+            <element signature="method#SettingsView#0;class#SettingsView#0" expanded="false" />
+            <element signature="class#1280:1462" expanded="false" />
+            <element signature="method#handle#0;class#1280:1462" expanded="false" />
+            <element signature="class#1502:1653" expanded="false" />
+            <element signature="class#1694:1852" expanded="false" />
+            <element signature="method#createGeneralTab#0;class#SettingsView#0" expanded="false" />
+            <element signature="method#createApplicationTab#0;class#SettingsView#0" expanded="false" />
+            <element signature="class#8224:8415" expanded="false" />
+            <element signature="class#8479:8685" expanded="false" />
+            <element signature="method#openApplicationView#0;class#SettingsView#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphics/MenuView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1700" max-vertical-offset="2125">
+          <caret line="136" column="5" selection-start-line="136" selection-start-column="5" selection-end-line="136" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/GuiManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="578" max-vertical-offset="1496">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphics/MessageBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1241" max-vertical-offset="1530">
+          <caret line="73" column="110" selection-start-line="73" selection-start-column="110" selection-end-line="73" selection-end-column="110" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="833" max-vertical-offset="5678">
+          <caret line="49" column="26" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphics/BorderTitledPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="127" max-vertical-offset="561">
+          <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/settings/Settings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2686" max-vertical-offset="3298">
+          <caret line="158" column="20" selection-start-line="158" selection-start-column="20" selection-end-line="158" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphics/SettingsView.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2907">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="docComment;class#SettingsView#0" expanded="false" />
             <element signature="method#SettingsView#0;class#SettingsView#0" expanded="false" />
-            <element signature="method#getMenuPane#0;class#SettingsView#0" expanded="false" />
+            <element signature="class#1280:1462" expanded="false" />
+            <element signature="method#handle#0;class#1280:1462" expanded="false" />
+            <element signature="class#1502:1653" expanded="false" />
+            <element signature="class#1694:1852" expanded="false" />
+            <element signature="method#createGeneralTab#0;class#SettingsView#0" expanded="false" />
             <element signature="method#createApplicationTab#0;class#SettingsView#0" expanded="false" />
+            <element signature="class#8224:8415" expanded="false" />
+            <element signature="class#8479:8685" expanded="false" />
+            <element signature="method#openApplicationView#0;class#SettingsView#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -462,9 +600,17 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2907">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="docComment;class#SettingsView#0" expanded="false" />
             <element signature="method#SettingsView#0;class#SettingsView#0" expanded="false" />
-            <element signature="method#getMenuPane#0;class#SettingsView#0" expanded="false" />
+            <element signature="class#1280:1462" expanded="false" />
+            <element signature="method#handle#0;class#1280:1462" expanded="false" />
+            <element signature="class#1502:1653" expanded="false" />
+            <element signature="class#1694:1852" expanded="false" />
+            <element signature="method#createGeneralTab#0;class#SettingsView#0" expanded="false" />
             <element signature="method#createApplicationTab#0;class#SettingsView#0" expanded="false" />
+            <element signature="class#8224:8415" expanded="false" />
+            <element signature="class#8479:8685" expanded="false" />
+            <element signature="method#openApplicationView#0;class#SettingsView#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -490,9 +636,17 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2907">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="docComment;class#SettingsView#0" expanded="false" />
             <element signature="method#SettingsView#0;class#SettingsView#0" expanded="false" />
-            <element signature="method#getMenuPane#0;class#SettingsView#0" expanded="false" />
+            <element signature="class#1280:1462" expanded="false" />
+            <element signature="method#handle#0;class#1280:1462" expanded="false" />
+            <element signature="class#1502:1653" expanded="false" />
+            <element signature="class#1694:1852" expanded="false" />
+            <element signature="method#createGeneralTab#0;class#SettingsView#0" expanded="false" />
             <element signature="method#createApplicationTab#0;class#SettingsView#0" expanded="false" />
+            <element signature="class#8224:8415" expanded="false" />
+            <element signature="class#8479:8685" expanded="false" />
+            <element signature="method#openApplicationView#0;class#SettingsView#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -513,19 +667,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/GuiManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1139">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/list.css">
+    <entry file="file://$PROJECT_DIR$/src/resources/list.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.73368144" vertical-offset="178" max-vertical-offset="561">
           <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -533,44 +678,89 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="127" max-vertical-offset="561">
           <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bordertitlepane.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48825064" vertical-offset="0" max-vertical-offset="383">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphics/SettingsView.java">
+    <entry file="file://$PROJECT_DIR$/src/resources/bordertitlepane.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="858" max-vertical-offset="1853">
-          <caret line="145" column="42" selection-start-line="145" selection-start-column="42" selection-end-line="145" selection-end-column="42" />
-          <folding>
-            <element signature="method#SettingsView#0;class#SettingsView#0" expanded="false" />
-            <element signature="method#getMenuPane#0;class#SettingsView#0" expanded="false" />
-            <element signature="method#createApplicationTab#0;class#SettingsView#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.48825064" vertical-offset="0" max-vertical-offset="383">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/settings/Settings.java">
+    <entry file="file://$PROJECT_DIR$/src/main/GuiManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2040">
-          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="264" max-vertical-offset="1139">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphics/MenuView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="613" max-vertical-offset="2074">
+          <caret line="75" column="76" selection-start-line="75" selection-start-column="76" selection-end-line="75" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1291" max-vertical-offset="2567">
+          <caret line="95" column="18" selection-start-line="95" selection-start-column="18" selection-end-line="95" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/ControllerHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1734">
+          <caret line="21" column="28" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/graphics/MessageBox.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33420366" vertical-offset="841" max-vertical-offset="1224">
+        <state vertical-scroll-proportion="0.0" vertical-offset="841" max-vertical-offset="1224">
           <caret line="73" column="110" selection-start-line="73" selection-start-column="110" selection-end-line="73" selection-end-column="110" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphics/SettingsView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1566" max-vertical-offset="3179">
+          <caret line="172" column="78" selection-start-line="172" selection-start-column="78" selection-end-line="172" selection-end-column="78" />
+          <folding>
+            <element signature="docComment;class#SettingsView#0" expanded="false" />
+            <element signature="method#SettingsView#0;class#SettingsView#0" expanded="false" />
+            <element signature="class#1280:1462" expanded="false" />
+            <element signature="method#handle#0;class#1280:1462" expanded="false" />
+            <element signature="class#1502:1653" expanded="false" />
+            <element signature="class#1694:1852" expanded="false" />
+            <element signature="method#createGeneralTab#0;class#SettingsView#0" expanded="false" />
+            <element signature="method#createApplicationTab#0;class#SettingsView#0" expanded="false" />
+            <element signature="class#8224:8415" expanded="false" />
+            <element signature="class#8479:8685" expanded="false" />
+            <element signature="method#openApplicationView#0;class#SettingsView#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2023" max-vertical-offset="5202">
+          <caret line="148" column="30" selection-start-line="148" selection-start-column="30" selection-end-line="148" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/settings/Settings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7154047" vertical-offset="151" max-vertical-offset="2125">
+          <caret line="32" column="43" selection-start-line="32" selection-start-column="43" selection-end-line="32" selection-end-column="43" />
           <folding />
         </state>
       </provider>
