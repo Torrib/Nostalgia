@@ -1,22 +1,13 @@
 package controller;
 
-import com.sun.jna.NativeLong;
-import com.sun.jna.Structure;
-import input.Binding;
-import main.Main;
+import main.WindowHandler;
 import settings.Hotkey;
-import settings.WindowSetting;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
-/**
- * Created by thb on 28.06.2014.
- */
 public class Controller extends Thread{
-
-    private final static int CONTROLLER_PULL_DELAY = 100;
 
     private int controllerNumber;
     private ControllerHandler.ControllerInterface controllerInterface;
@@ -25,7 +16,7 @@ public class Controller extends Thread{
     private boolean connected;
     private ControllerHandler controllerHandler;
     private boolean connectionStatus;
-    private List<Hotkey> hotkeys;
+    private List<Hotkey> hotkeys = new ArrayList<>();
     private int[] buttonCounter;
 
     public Controller(int controllerNumber, ControllerHandler controllerHandler, ControllerHandler.ControllerInterface controllerInterface){
@@ -61,7 +52,7 @@ public class Controller extends Thread{
                             controllerHandler.getMain().pressKey(KeyEvent.VK_BACK_SPACE);
                     }
                 }
-                else if(!hotkeys.isEmpty()){
+                else if(!hotkeys.isEmpty() && !controllerHandler.getMain().getSettings().isDisableHotkeys()){
                     int[] buttonArray =  buttons.getArray();
                     for(Hotkey hotkey : hotkeys){
                         if(buttonArray[hotkey.getButtonNumber()] == 1){
@@ -75,7 +66,7 @@ public class Controller extends Thread{
                         }
                     }
                 }
-                Thread.sleep(CONTROLLER_PULL_DELAY);
+                Thread.sleep(controllerHandler.getMain().getSettings().getControllerPullDelay());
             }
             catch (InterruptedException e){
                 e.printStackTrace();
@@ -92,6 +83,8 @@ public class Controller extends Thread{
             if(connectionStatus) {
                 controllerHandler.getMain().showMessageBox("Controller " + (controllerNumber+1) + " Connected", true);
                 System.out.println("Controller " + controllerNumber + ": connected");
+                if(!controllerHandler.getMain().getSettings().isRequireActivate())
+                    this.start();
             }
             else {
                 controllerHandler.getMain().showMessageBox("Controller " + (controllerNumber+1) + " Disconnected", true);
@@ -146,6 +139,9 @@ public class Controller extends Thread{
     }
 
     public void vibrate(int length){
+        if(controllerHandler.getMain().getSettings().isDisableVibration())
+            return;
+
         (new Thread() {
             public void run() {
                 try {

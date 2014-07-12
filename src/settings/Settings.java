@@ -25,14 +25,16 @@ public class Settings {
     private boolean disableMessages = false;
     private boolean disableSystemMessages = false;
 
+    private int controllerPullDelay = 100;
+    private boolean requireActivate = true;
+    private boolean disableVibration = false;
+    private boolean disableControllers = false;
+    private boolean disableHotkeys = false;
+    private int buttonPressDelay = 50;
+
     private int windowPullDelay = 1000;
     private int windowPullRefresh = 10000;
 
-    private int controllerPullDelay = 100;
-    private int buttonPressDelay = 50;
-    private boolean requireActivate = true;
-
-    private boolean vibrateOnActivate = true;
     private List<WindowSetting> windowSettings = new ArrayList<>();
     private Map<String, String> programBindings = new HashMap<>();
 
@@ -116,12 +118,12 @@ public class Settings {
         this.disableSystemMessages = disableSystemMessages;
     }
 
-    public boolean isVibrateOnActivate() {
-        return vibrateOnActivate;
+    public boolean isDisableVibration() {
+        return disableVibration;
     }
 
-    public void setVibrateOnActivate(boolean vibrateOnActivate) {
-        this.vibrateOnActivate = vibrateOnActivate;
+    public void setDisableVibration(boolean disableVibration) {
+        this.disableVibration = disableVibration;
     }
 
     public List<WindowSetting> getWindowSettings() {
@@ -162,6 +164,30 @@ public class Settings {
 
     public void setMenuMuted(boolean muteMenu) {
         this.muteMenu = muteMenu;
+    }
+
+    public boolean isRequireActivate() {
+        return requireActivate;
+    }
+
+    public void setRequireActivate(boolean requireActivate) {
+        this.requireActivate = requireActivate;
+    }
+
+    public boolean isDisableControllers() {
+        return disableControllers;
+    }
+
+    public void setDisableControllers(boolean disableControllers) {
+        this.disableControllers = disableControllers;
+    }
+
+    public boolean isDisableHotkeys() {
+        return disableHotkeys;
+    }
+
+    public void setDisableHotkeys(boolean disableHotkeys) {
+        this.disableHotkeys = disableHotkeys;
     }
 
     public void store(){

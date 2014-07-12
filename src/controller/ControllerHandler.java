@@ -23,13 +23,14 @@ public class ControllerHandler extends Thread{
             main.log(e.getMessage());
             main.log(e.toString());
         }
-        main.log("Loading controlers");
+
         controllers = new ArrayList<Controller>();
         controllers.add(new Controller(0, this, controllerInterface));
-        controllers.add(new Controller(1, this, controllerInterface));
-        controllers.add(new Controller(2, this, controllerInterface));
-        controllers.add(new Controller(3, this, controllerInterface));
-        main.log("Controllers loaded");
+        if(!main.getSettings().isDisableControllers()) {
+            controllers.add(new Controller(1, this, controllerInterface));
+            controllers.add(new Controller(2, this, controllerInterface));
+            controllers.add(new Controller(3, this, controllerInterface));
+        }
     }
 
     public boolean load(){
