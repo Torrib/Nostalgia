@@ -116,7 +116,7 @@ public class ApplicationView {
         HBox listBox = new HBox(20);
         listBox.getChildren().addAll(menuEditList, hotkeyList);
 
-        Button saveButton = new Button("Save");
+        Button saveButton = new Button("OK");
         Button cancelButton = new Button("Cancel");
 
         saveButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -126,7 +126,6 @@ public class ApplicationView {
                 windowSetting.setDisableMessages(disableMessagesCB.isSelected());
                 windowSetting.setName(nameField.getText());
                 windowSetting.setWindowName(applicationField.getText());
-                windowSetting.setTopmost(onTopCB.isSelected());
                 windowSetting.setVibration(disableVibrationCB.isSelected());
                 windowSetting.setRemoveBorders(removeBorderCB.isSelected());
                 windowSetting.setDisableHotkeys(disableHotkeysCB.isSelected());

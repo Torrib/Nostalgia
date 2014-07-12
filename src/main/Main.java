@@ -18,6 +18,7 @@ import javax.swing.filechooser.FileSystemView;
 
 import com.sun.jna.PointerType;
 
+import controller.Controller;
 import controller.ControllerHandler;
 import settings.ItemInterface;
 import settings.Settings;
@@ -72,11 +73,6 @@ public class Main extends Thread
 		    public void actionPerformed(ActionEvent e) 
 		    {
 		    	setActiveWindowSettings();
-		    	if(activeWindowSettings != null)
-		    	{
-			 		removeBorders(activeWindowHandle);
-			 		setTopMost(activeWindowHandle);
-		    	}
 		    }
 		};
 		new javax.swing.Timer(sleep, action).start();
@@ -139,7 +135,7 @@ public class Main extends Thread
 		return wh;
 	}
 	
-	public void command(ItemInterface item)
+	public void command(ItemInterface item, Controller controller)
 	{
         if(item.getCommand().isEmpty())
             return;
@@ -148,7 +144,12 @@ public class Main extends Thread
 
         if(commandPerformed) {
             showMessageBox(item.getMessage(), false);
-            //TODO vibrate
+            if(item.vibrate() && !activeWindowSettings.isVibration())
+                controller.vibrate(500);
+
+        }
+        else{
+            log("Command failed: " + item.getMessage() );
         }
 
 	}
@@ -196,24 +197,24 @@ public class Main extends Thread
             return;
 
  		PointerType hWnd = windowHandler.GetForegroundWindow();
- 		
+
  		if(hWnd == null)
  			return;
- 		
+
  		// Do nothing if the window handle if its the same.
  		// Refresh it every know and then(Some windows change text) every 10 sec by default.
- 		if(hWnd.equals(activeWindowHandle) && windowTextRefreshCounter < settings.getWindowPullRefresh())
+ 		if(hWnd.equals(activeWindowHandle) && windowTextRefreshCounter < settings.getWindowPullRefreshCount())
  		{
  			windowTextRefreshCounter++;
  			return;
  		}
  		windowTextRefreshCounter = 0;
- 		
+
  		String windowName = windowHandler.getWindowText(hWnd);
 
         if(windowName.equals("Nostalgia message"))
             return;
- 		
+
  		activeWindowSettings = getActiveWindowSettings(windowName);
  		activeWindowHandle = hWnd;
 
@@ -223,7 +224,8 @@ public class Main extends Thread
             activeWindowSettings = new WindowSetting();
 
         controllerHandler.setHotkeys(activeWindowSettings.getHotkeys());
- 		
+        modifyWindow();
+
  		log("Active binding: " + activeWindowSettings.getName() + "[" + windowName + "]");
  	}
 
@@ -236,27 +238,24 @@ public class Main extends Thread
         return null;
     }
 
+    private void modifyWindow(){
+        if(activeWindowSettings != null)
+        {
+            if(activeWindowSettings.isRemoveBorders())
+            {
+                windowHandler.removeBorder32(activeWindowHandle);
+                windowHandler.removeMenu(activeWindowHandle);
+            }
+            if(activeWindowSettings.isTopmost())
+            {
+                windowHandler.setTopMost(activeWindowHandle);
+            }
+        }
+    }
+
 	private void setWindowFocus(PointerType hwnd)
   	{
   		windowHandler.setWindowFocus(hwnd);
-  	}
- 	
- 	private void removeBorders(PointerType hWnd)
- 	{
- 		if(activeWindowSettings.isRemoveBorders())
- 		{
- 			windowHandler.removeBorder(hWnd);
- 			windowHandler.removeMenu(hWnd);
- 		}
- 	}
-  	
-  	private void setTopMost(PointerType hWnd)
-  	{
-  		if(activeWindowSettings.isTopmost())
-  		{
-  			windowHandler.setTopMost(hWnd);
-  			log("Set window topmost: " + activeWindowSettings.getName());
-  		}
   	}
   	
 	public void handleFunctionString(String key) 
@@ -278,40 +277,9 @@ public class Main extends Thread
     public void focusMenu(){
            windowHandler.setWindowFocus(windowHandler.getWindowHandle("Nostalgia menu"));
     }
-
-//	public String getSettings(String key)
-//	{
-//		return settingsOld.getSettings(key);
-//	}
-
-//	public int getSettingInt(String key)
-//	{
-//		return settingsOld.getSettingsInt(key);
-//	}
-//
-//	public boolean getSettingsBoolean(String key)
-//	{
-//		return settingsOld.getSettingsBoolean(key);
-//	}
 	
 	public void log(String message)
 	{
-		Date date = new Date();
-		try {
-		    PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("log.txt", true)));
-		    out.println(dateFormat.format(date) + " - " + message);
-		    out.close();
-		    System.out.println(message);
-		} 
-		catch (IOException e) 
-		{
-		    e.printStackTrace();
-		}
-	}
-	
-	public static void staticLog(String message)
-	{
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		Date date = new Date();
 		try {
 		    PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("log.txt", true)));
@@ -331,5 +299,9 @@ public class Main extends Thread
 
     public void setSettings(Settings settings){
         this.settings = settings;
+    }
+
+    public WindowSetting getActiveWindowSettings(){
+        return activeWindowSettings;
     }
 }

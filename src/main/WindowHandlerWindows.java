@@ -3,6 +3,7 @@ package main;
 import com.sun.jna.Native;
 import com.sun.jna.PointerType;
 import com.sun.jna.platform.win32.BaseTSD.LONG_PTR;
+import com.sun.jna.platform.win32.WinDef;
 import com.sun.jna.platform.win32.WinDef.HWND;
 import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.win32.StdCallLibrary;
@@ -19,6 +20,10 @@ public class WindowHandlerWindows implements WindowHandler
  	    HWND GetForegroundWindow();
  	    int SetForegroundWindow(PointerType hWnd);
  	    LONG_PTR GetWindowLongPtr(PointerType hWnd, int nIndex);
+
+        WinDef.LONG GetWindowLong(PointerType hWnd, int nIndex);
+        WinDef.LONG SetWindowLong(PointerType hWnd, int nIndex, WinDef.LONG newLong);
+
         HWND FindWindow(String winClass, String title);
  	    LONG_PTR SetWindowLongPtr(PointerType hWnd, int nIndex, LONG_PTR dwNewLong);
  	    boolean SetWindowPos(PointerType hWnd, int hWndInsertAfter, int X, int Y, int cx, int cy, int uFlags);
@@ -44,6 +49,22 @@ public class WindowHandlerWindows implements WindowHandler
 		User32.INSTANCE.SetWindowLongPtr(hWnd, -16, style);
 		User32.INSTANCE.SetWindowPos(hWnd, 0, 0, 0, 0, 0, 0x2 | 0x1 | 0x20);
 	}
+
+    public void removeBorder32(PointerType hWnd)
+    {
+        WinDef.LONG style = User32.INSTANCE.GetWindowLong(hWnd, -16);
+        int WS_CAPTION = 0x00800000 | 0x00400000;
+        long windowStyle = Long.parseLong(style.toString());
+        windowStyle = windowStyle & ~WS_CAPTION;
+        windowStyle = windowStyle & ~524288; //sysmenu
+        windowStyle = windowStyle & ~262144; //thickframe
+        windowStyle = windowStyle & ~536870912; //minimize
+        windowStyle = windowStyle & ~65536; //maximize
+//		windowStyle = windowStyle & ~12582913;
+        style = new WinDef.LONG(windowStyle | 0x1);
+        User32.INSTANCE.SetWindowLong(hWnd, -16, style);
+        User32.INSTANCE.SetWindowPos(hWnd, 0, 0, 0, 0, 0, 0x2 | 0x1 | 0x20);
+    }
 
 	@Override
 	public void removeMenu(PointerType hWnd) 

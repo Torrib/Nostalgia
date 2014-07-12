@@ -42,6 +42,11 @@ public class MenuItem implements ItemInterface{
     }
 
     @Override
+    public boolean vibrate() {
+        return false;
+    }
+
+    @Override
     public String toString(){
         return displayName;
     }

@@ -18,4 +18,6 @@ public interface WindowHandler
 
     public PointerType getWindowHandle(String title);
 
+    public void removeBorder32(PointerType hWnd);
+
 }

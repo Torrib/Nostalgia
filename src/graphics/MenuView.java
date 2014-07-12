@@ -49,7 +49,7 @@ public class MenuView {
                 if (keyEvent.getCode() == KeyCode.ENTER) {
                     main.returnFocus();
                     hide();
-                    main.command(list.getSelectionModel().getSelectedItem());
+                    main.command(list.getSelectionModel().getSelectedItem(), null);
                 }
                 if (keyEvent.getCode() == KeyCode.BACK_SPACE) {
                     hide();

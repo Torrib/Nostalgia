@@ -35,6 +35,9 @@ public class SettingsView {
     private CheckBox disableControllersCB;
     private CheckBox disableHotkeysCB;
 
+    private TextField windowPullField;
+    private TextField windowRefreshDelayField;
+
     private EditList<WindowSetting> applicationEditList;
 
     public SettingsView(Main main){
@@ -91,6 +94,7 @@ public class SettingsView {
         BorderTitledPane menuPane = createMenuPane();
         BorderTitledPane messagePane = createMessagePane();
         BorderTitledPane controllerPane = createControllerPane();
+        BorderTitledPane windowPane = createWindowPane();
 
 //        HBox hBox = new HBox(20);
 //        hBox.getChildren().addAll(menuPane, messagePane);
@@ -103,6 +107,7 @@ public class SettingsView {
         grid.add(menuPane, 0, 0);
         grid.add(messagePane, 1, 0);
         grid.add(controllerPane, 0, 1);
+        grid.add(windowPane, 1, 1);
 
         Tab tab = new Tab();
         tab.setContent(grid);
@@ -250,6 +255,32 @@ public class SettingsView {
         return new BorderTitledPane("Controllers", grid, 360, 300);
     }
 
+    private BorderTitledPane createWindowPane() {
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(12);
+
+        Label windowPullLabel = new Label("Window pull delay(ms)");
+        windowPullLabel.setTooltip(new Tooltip("How often window(active application) information will be pulled"));
+        windowPullField = new NumberTextField(settings.getWindowPullDelay());
+        windowPullField.setTooltip(new Tooltip("How often window(active application) information will be pulled"));
+
+        grid.add(windowPullLabel, 0, 0);
+        grid.add(windowPullField, 1, 0);
+
+        Label windowPullRefreshDelayLabel = new Label("Window refresh delay(ms)");
+        windowPullRefreshDelayLabel.setTooltip(new Tooltip("How often the window manager will refresh"));
+        windowRefreshDelayField = new NumberTextField(settings.getWindowPullRefresh());
+        windowRefreshDelayField.setTooltip(new Tooltip("How often the window manager will refresh"));
+
+        grid.add(windowPullRefreshDelayLabel, 0, 1);
+        grid.add(windowRefreshDelayField, 1, 1);
+
+        grid.setPadding(new Insets(15));
+
+        return new BorderTitledPane("Window handling", grid, 360, 100);
+    }
+
     private Tab createApplicationTab(){
 
         applicationEditList = new EditList<>(settings.getWindowSettings());
@@ -303,6 +334,11 @@ public class SettingsView {
         settings.setDisableVibration(disableVibrationCB.isSelected());
         settings.setDisableControllers(disableControllersCB.isSelected());
         settings.setDisableHotkeys(disableHotkeysCB.isSelected());
+
+        settings.setWindowPullDelay(Integer.parseInt(windowPullField.getText()));
+        settings.setWindowPullRefresh(Integer.parseInt(windowRefreshDelayField.getText()));
+        settings.setWindowPullRefreshCount(settings.getWindowPullRefresh() / settings.getWindowPullDelay());
+
 
         for(WindowSetting ws : applicationEditList.getItems())
             for(Hotkey hotkey : ws.getHotkeys())

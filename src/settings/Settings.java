@@ -34,6 +34,7 @@ public class Settings {
 
     private int windowPullDelay = 1000;
     private int windowPullRefresh = 10000;
+    private int windowPullRefreshCount = 10;
 
     private List<WindowSetting> windowSettings = new ArrayList<>();
     private Map<String, String> programBindings = new HashMap<>();
@@ -188,6 +189,14 @@ public class Settings {
 
     public void setDisableHotkeys(boolean disableHotkeys) {
         this.disableHotkeys = disableHotkeys;
+    }
+
+    public int getWindowPullRefreshCount() {
+        return windowPullRefreshCount;
+    }
+
+    public void setWindowPullRefreshCount(int windowPullRefreshCount) {
+        this.windowPullRefreshCount = windowPullRefreshCount;
     }
 
     public void store(){

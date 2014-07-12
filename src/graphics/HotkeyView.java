@@ -35,7 +35,7 @@ public class HotkeyView {
         TextField delayField = new TextField(""+hotkey.getDelay());
         Label vibrateLabel = new Label("Vibrate");
         CheckBox vibrateCB = new CheckBox();
-        vibrateCB.setSelected(hotkey.isVibrate());
+        vibrateCB.setSelected(hotkey.vibrate());
 
         Button saveButton = new Button("Save");
 

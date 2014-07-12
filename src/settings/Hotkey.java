@@ -46,10 +46,6 @@ public class Hotkey implements ItemInterface{
         this.delay = delay;
     }
 
-    public boolean isVibrate() {
-        return vibrate;
-    }
-
     public void setVibrate(boolean vibrate) {
         this.vibrate = vibrate;
     }
@@ -68,6 +64,11 @@ public class Hotkey implements ItemInterface{
 
     public void setDelayLoops(int delayLoops) {
         this.delayLoops = delayLoops;
+    }
+
+    @Override
+    public boolean vibrate() {
+        return vibrate;
     }
 
     @Override

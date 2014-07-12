@@ -7,4 +7,5 @@ public interface ItemInterface {
 
     public String getMessage();
     public String getCommand();
+    public boolean vibrate();
 }

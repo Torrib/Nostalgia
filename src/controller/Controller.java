@@ -52,7 +52,7 @@ public class Controller extends Thread{
                             controllerHandler.getMain().pressKey(KeyEvent.VK_BACK_SPACE);
                     }
                 }
-                else if(!hotkeys.isEmpty() && !controllerHandler.getMain().getSettings().isDisableHotkeys()){
+                else if(checkHotkeys()){
                     int[] buttonArray =  buttons.getArray();
                     for(Hotkey hotkey : hotkeys){
                         if(buttonArray[hotkey.getButtonNumber()] == 1){
@@ -62,7 +62,7 @@ public class Controller extends Thread{
                             buttonCounter[hotkey.getButtonNumber()] = 0;
 
                         if(buttonCounter[hotkey.getButtonNumber()] == hotkey.getDelayLoops()){
-                            controllerHandler.getMain().command(hotkey);
+                            controllerHandler.getMain().command(hotkey, this);
                         }
                     }
                 }
@@ -152,5 +152,11 @@ public class Controller extends Thread{
                 catch (InterruptedException e){ e.printStackTrace();}
             }
         }).start();
+    }
+
+    private boolean checkHotkeys(){
+        return(!hotkeys.isEmpty() &&
+                !controllerHandler.getMain().getSettings().isDisableHotkeys() &&
+                !controllerHandler.getMain().getActiveWindowSettings().isDisableHotkeys());
     }
 }
