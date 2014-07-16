@@ -371,3 +371,6 @@
 16/07/2014 20:52:57 - Active binding: Default[Start]
 16/07/2014 20:52:58 - Active binding: Default[Program Manager]
 16/07/2014 20:53:04 - Active binding: Default[C:\Windows\System32\WindowsPowerShell\v1.0\Powershell.exe]
+16/07/2014 20:53:15 - Active binding: Default[posh~git ~ Nostalgia [master]]
+16/07/2014 20:53:26 - Active binding: Default[posh~git ~ Nostalgia [master]]
+16/07/2014 20:53:37 - Active binding: Default[posh~git ~ Nostalgia [master]]
