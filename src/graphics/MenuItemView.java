@@ -1,6 +1,7 @@
 package graphics;
 
-import javafx.collections.FXCollections;
+import graphics.settings.WindowSettingsView;
+import graphics.utility.CommandBox;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -9,23 +10,29 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-import settings.Command;
+import models.Program;
 import settings.MenuItem;
+import settings.Settings;
+
+import java.util.List;
 
 public class MenuItemView{
 
-    public MenuItemView(ApplicationView applicationView, MenuItem menuItem, boolean newItem){
+    public MenuItemView(WindowSettingsView applicationView, MenuItem menuItem, boolean newItem, List<Program> programs){
 
         Stage stage = new Stage();
         stage.setTitle("Menu item");
+        stage.initOwner(applicationView.getStage());
+        stage.initModality(Modality.WINDOW_MODAL);
 
         Label nameLabel = new Label("Name");
         TextField nameField = new TextField(menuItem.getDisplayName());
         Label messageLabel = new Label("Message");
         TextField messageField = new TextField(menuItem.getMessage());
 
-        CommandBox commandBox = new CommandBox(menuItem.getCommands());
+        CommandBox commandBox = new CommandBox(menuItem.getCommands(), programs);
 
         Button saveButton = new Button("Save");
 

@@ -1,4 +1,4 @@
-package graphics;
+package graphics.utility;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -13,9 +13,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
+import models.Program;
 import settings.Command;
 import settings.Functions;
-import utils.NumberTextField;
+import graphics.utility.NumberTextField;
 
 import java.util.List;
 
@@ -23,11 +24,12 @@ import java.util.List;
 public class CommandBox extends VBox{
 
     private ComboBox<String> functionCombobox;
+    private ComboBox<Program> programCombobox;
     private Command command;
     private TextField delayField;
     private ListView<Command> commandList;
 
-    public CommandBox(List<Command> items){
+    public CommandBox(List<Command> items, List<Program> programs){
         super(10);
         command = new Command();
 
@@ -43,6 +45,7 @@ public class CommandBox extends VBox{
 
         HBox keyCommandBox = createKeyCommandBox();
         HBox functionCommandBox = createFunctionBox();
+        HBox programCommandBox = createProgramBox(programs);
 
         commandTypeCB.valueProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -57,6 +60,7 @@ public class CommandBox extends VBox{
                         swapPane.getChildren().add(functionCommandBox);
                         break;
                     case 2:
+                        swapPane.getChildren().add(programCommandBox);
                         break;
                 }
             }
@@ -90,6 +94,11 @@ public class CommandBox extends VBox{
                     case Command.FUNCTION:
                         commandList.getItems().add(new Command(functionCombobox.getSelectionModel().getSelectedIndex(),
                                 Integer.parseInt(delayField.getText()), functionCombobox.getSelectionModel().getSelectedItem().toString()));
+                        break;
+                    case Command.PROGRAM:
+                        commandList.getItems().add(new Command(programCombobox.getSelectionModel().getSelectedItem(),
+                                Integer.parseInt(delayField.getText())));
+                        break;
                 }
             }
         });
@@ -154,6 +163,19 @@ public class CommandBox extends VBox{
 
         HBox hBox = new HBox(10);
         hBox.getChildren().addAll(functionLabel, functionCombobox);
+        return hBox;
+    }
+
+    public HBox createProgramBox(List<Program> programs){
+        Label programLabel = new Label("Program");
+        programLabel.setTooltip(new Tooltip("Runs the program or script selected"));
+
+        programCombobox = new ComboBox(FXCollections.observableArrayList(programs));
+
+        programCombobox.getSelectionModel().select(0);
+
+        HBox hBox = new HBox(10);
+        hBox.getChildren().addAll(programLabel, programCombobox);
         return hBox;
     }
 

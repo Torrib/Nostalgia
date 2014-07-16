@@ -1,5 +1,8 @@
 package graphics;
 
+import graphics.settings.ProgramView;
+import graphics.settings.WindowSettingsView;
+import graphics.utility.EditList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -8,12 +11,12 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import main.Main;
+import models.Program;
 import settings.*;
-import utils.NumberTextField;
+import graphics.utility.NumberTextField;
 
-/**
- * Created by thb on 06.07.2014.
- */
+import java.util.ArrayList;
+
 public class SettingsView {
 
     private Main main;
@@ -38,7 +41,8 @@ public class SettingsView {
     private TextField windowPullField;
     private TextField windowRefreshDelayField;
 
-    private EditList<WindowSetting> applicationEditList;
+    private EditList<WindowSetting> windowEditList;
+    private EditList<Program> programEditList;
 
     public SettingsView(Main main){
         this.main = main;
@@ -49,7 +53,7 @@ public class SettingsView {
 
         TabPane tabPane = new TabPane();
 
-        tabPane.getTabs().addAll(createApplicationTab(), createGeneralTab());
+        tabPane.getTabs().addAll(createGeneralTab(), createWindowSettingsTab(), createProgramTab());
 
         Button saveButton = new Button("Save");
         Button applyButton = new Button("Apply");
@@ -281,41 +285,79 @@ public class SettingsView {
         return new BorderTitledPane("Window handling", grid, 360, 100);
     }
 
-    private Tab createApplicationTab(){
+    private Tab createWindowSettingsTab(){
 
-        applicationEditList = new EditList<>(settings.getWindowSettings());
+        windowEditList = new EditList<>(settings.getWindowSettings());
 
-        applicationEditList.getAddButton().setOnAction(new EventHandler<ActionEvent>() {
+        windowEditList.getAddButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 openApplicationView(new WindowSetting(), true);
             }
         });
 
-        applicationEditList.getEditButton().setOnAction(new EventHandler<ActionEvent>() {
+        windowEditList.getEditButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                openApplicationView(applicationEditList.getSelected(), false);
+                openApplicationView(windowEditList.getSelected(), false);
             }
         });
 
         Tab tab = new Tab();
-        tab.setContent(applicationEditList);
+        tab.setContent(windowEditList);
         tab.setText("Applications");
         return tab;
     }
 
+    private Tab createProgramTab(){
+
+        programEditList = new EditList<>(settings.getPrograms());
+
+        programEditList.getAddButton().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                openProgramView(new Program(), true);
+            }
+        });
+
+        programEditList.getEditButton().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                openProgramView(programEditList.getSelected(), false);
+            }
+        });
+
+        Tab tab = new Tab();
+        tab.setContent(programEditList);
+        tab.setText("Programs");
+        return tab;
+    }
+
+
     private void openApplicationView(WindowSetting windowSetting, boolean newSetting){
         if(windowSetting != null)
-            new ApplicationView(this, windowSetting, newSetting);
+            new WindowSettingsView(this, windowSetting, newSetting, settings.getPrograms());
     }
 
     public void addApplication(WindowSetting windowSetting){
-        applicationEditList.getItems().add(windowSetting);
+        windowEditList.getItems().add(windowSetting);
     }
 
     public void updateApplicationList(){
-        applicationEditList.update();
+        windowEditList.update();
+    }
+
+    private void openProgramView(Program program, boolean newProgram){
+        if(program != null)
+            new ProgramView(this, program, newProgram);
+    }
+
+    public void addProgram(Program program){
+        programEditList.getItems().add(program);
+    }
+
+    public void updateProgramList(){
+        programEditList.update();
     }
 
     private void save(){
@@ -339,11 +381,13 @@ public class SettingsView {
         settings.setWindowPullRefresh(Integer.parseInt(windowRefreshDelayField.getText()));
         settings.setWindowPullRefreshCount(settings.getWindowPullRefresh() / settings.getWindowPullDelay());
 
+        settings.setPrograms(programEditList.getItems());
 
-        for(WindowSetting ws : applicationEditList.getItems())
+
+        for(WindowSetting ws : windowEditList.getItems())
             for(Hotkey hotkey : ws.getHotkeys())
                 hotkey.setDelayLoops(hotkey.getDisplayTime() / settings.getControllerPullDelay());
-        settings.setWindowSettings(applicationEditList.getItems());
+        settings.setWindowSettings(windowEditList.getItems());
 
         double selectedFontSize = settings.getMenuFontSize() + (settings.getMenuFontSize() * 0.2);
         settings.setMenuSelectedFontSize((int) selectedFontSize);
@@ -351,5 +395,9 @@ public class SettingsView {
 
         settings.store();
         main.setSettings(settings);
+    }
+
+    public Stage getStage(){
+        return stage;
     }
 }

@@ -1,4 +1,4 @@
-package graphics;
+package graphics.utility;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

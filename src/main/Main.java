@@ -22,6 +22,7 @@ import controller.Controller;
 import controller.ControllerHandler;
 import interfaces.Item;
 import interfaces.OsHandler;
+import models.Program;
 import settings.Settings;
 import settings.WindowSetting;
 
@@ -248,15 +249,14 @@ public class Main extends Thread
   		osHandler.setWindowFocus(hwnd);
   	}
   	
-	public void handleFunctionString(String key) 
+	public void runProgram(Program program)
 	{
-		String program = settings.getProgramBindings().get(key);
 		try 
 		{
-			if(program.endsWith(".bat"))
-				Runtime.getRuntime().exec ("cmd /c " + program);
-			else
-				Runtime.getRuntime().exec (program);
+//			if(program.endsWith(".bat"))
+//				Runtime.getRuntime().exec ("cmd /c " + program);
+//			else
+				Runtime.getRuntime().exec (program.getPath());
 		} 
 		catch (IOException e) 
 		{

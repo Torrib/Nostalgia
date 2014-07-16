@@ -1,5 +1,7 @@
 package graphics;
 
+import graphics.settings.WindowSettingsView;
+import graphics.utility.CommandBox;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -9,17 +11,23 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import models.Program;
 import settings.Hotkey;
+
+import java.util.List;
 
 /**
  * Created by thb on 08.07.2014.
  */
 public class HotkeyView {
 
-    public HotkeyView(ApplicationView applicationView, Hotkey hotkey, boolean newItem){
+    public HotkeyView(WindowSettingsView applicationView, Hotkey hotkey, boolean newItem, List<Program> programs){
         Stage stage = new Stage();
         stage.setTitle("Menu item");
+        stage.initOwner(applicationView.getStage());
+        stage.initModality(Modality.WINDOW_MODAL);
 
         Label buttonLabel = new Label("Button");
         ComboBox buttonCB = new ComboBox(FXCollections.observableArrayList(hotkey.getButtonList()));
@@ -31,7 +39,7 @@ public class HotkeyView {
         Label vibrateLabel = new Label("Vibrate");
         CheckBox vibrateCB = new CheckBox();
         vibrateCB.setSelected(hotkey.vibrate());
-        CommandBox commandBox = new CommandBox(hotkey.getCommands());
+        CommandBox commandBox = new CommandBox(hotkey.getCommands(), programs);
 
         Button saveButton = new Button("Save");
 

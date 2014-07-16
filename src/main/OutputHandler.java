@@ -1,8 +1,5 @@
 package main;
 
-
-import input.KeyEventConverter;
-import javafx.scene.input.KeyCode;
 import settings.Command;
 import settings.Functions;
 
@@ -68,6 +65,9 @@ public class OutputHandler
                                     main.getActiveWindowSettings().isDisableHotkeys() ? false : true);
                             break;
                     }
+                }
+                else if(command.getCommandType() == Command.PROGRAM){
+                    main.runProgram(command.getProgram());
                 }
             }
             catch (InterruptedException e){

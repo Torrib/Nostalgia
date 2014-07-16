@@ -2,6 +2,7 @@ package settings;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import models.Program;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ public class Settings {
     private int windowPullRefreshCount = 10;
 
     private List<WindowSetting> windowSettings = new ArrayList<>();
+    private List<Program> programs = new ArrayList<>();
     private Map<String, String> programBindings = new HashMap<>();
 
     public String getMenuFont() {
@@ -197,6 +199,14 @@ public class Settings {
 
     public void setWindowPullRefreshCount(int windowPullRefreshCount) {
         this.windowPullRefreshCount = windowPullRefreshCount;
+    }
+
+    public List<Program> getPrograms() {
+        return programs;
+    }
+
+    public void setPrograms(List<Program> programs) {
+        this.programs = programs;
     }
 
     public void store(){

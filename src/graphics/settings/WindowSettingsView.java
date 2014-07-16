@@ -1,5 +1,9 @@
-package graphics;
+package graphics.settings;
 
+import graphics.utility.EditList;
+import graphics.HotkeyView;
+import graphics.MenuItemView;
+import graphics.SettingsView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -8,22 +12,30 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import models.Program;
 import settings.Hotkey;
 import settings.MenuItem;
+import settings.Settings;
 import settings.WindowSetting;
 
-/**
- * Created by thb on 08.07.2014.
- */
-public class ApplicationView {
+import java.util.List;
 
+public class WindowSettingsView {
+
+    Stage stage;
     EditList<MenuItem> menuEditList;
     EditList<Hotkey> hotkeyList;
+    List<Program> programs;
 
-    public ApplicationView(SettingsView settingsView, WindowSetting windowSetting, boolean newItem){
-        Stage stage = new Stage();
+    public WindowSettingsView(SettingsView settingsView, WindowSetting windowSetting, boolean newItem, List<Program> programs){
+        stage = new Stage();
         stage.setTitle("Application");
+        stage.initOwner(settingsView.getStage());
+        stage.initModality(Modality.WINDOW_MODAL);
+
+        this.programs = programs;
 
         Label nameLabel = new Label("Name");
         TextField nameField = new TextField(windowSetting.getName());
@@ -176,7 +188,7 @@ public class ApplicationView {
 
     private void openMenuItemView(MenuItem menuItem, boolean newItem){
         if(menuItem != null)
-            new MenuItemView(this, menuItem, newItem);
+            new MenuItemView(this, menuItem, newItem, programs);
     }
 
     public void addMenuItem(MenuItem menuItem){
@@ -189,7 +201,7 @@ public class ApplicationView {
 
     private void openHotkeyView(Hotkey hotkey, boolean newItem){
         if(hotkey != null)
-            new HotkeyView(this, hotkey, newItem);
+            new HotkeyView(this, hotkey, newItem, programs);
     }
 
     public void addHotkey(Hotkey hotkey){
@@ -198,5 +210,9 @@ public class ApplicationView {
 
     public void updateHotkeyList(){
         hotkeyList.update();
+    }
+
+    public Stage getStage(){
+        return stage;
     }
 }
