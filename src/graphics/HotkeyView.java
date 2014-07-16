@@ -1,53 +1,48 @@
 package graphics;
 
-import input.HotkeyConverter;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import settings.Hotkey;
-import settings.MenuItem;
 
 /**
  * Created by thb on 08.07.2014.
  */
 public class HotkeyView {
 
-    private Hotkey hotkey;
-
     public HotkeyView(ApplicationView applicationView, Hotkey hotkey, boolean newItem){
         Stage stage = new Stage();
         stage.setTitle("Menu item");
 
         Label buttonLabel = new Label("Button");
-        TextField buttonField = new TextField(hotkey.getButton());
+        ComboBox buttonCB = new ComboBox(FXCollections.observableArrayList(hotkey.getButtonList()));
+        buttonCB.getSelectionModel().select(hotkey.getButton());
         Label messageLabel = new Label("Message");
         TextField messageField = new TextField(hotkey.getMessage());
-        Label commandLabel = new Label("Command");
-        TextField commandField = new TextField(hotkey.getCommand());
-        Label delayLabel = new Label("Delay");
-        TextField delayField = new TextField(""+hotkey.getDelay());
+        Label displayTimeLabel = new Label("Display time");
+        TextField displayTimeField = new TextField(""+hotkey.getDisplayTime());
         Label vibrateLabel = new Label("Vibrate");
         CheckBox vibrateCB = new CheckBox();
         vibrateCB.setSelected(hotkey.vibrate());
+        CommandBox commandBox = new CommandBox(hotkey.getCommands());
 
         Button saveButton = new Button("Save");
 
         saveButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                hotkey.setButton(buttonField.getText());
+                hotkey.setButton(buttonCB.getSelectionModel().getSelectedIndex());
                 hotkey.setMessage(messageField.getText());
-                hotkey.setCommand(commandField.getText());
-                hotkey.setDelay(Integer.parseInt(delayField.getText()));
+                hotkey.setDisplayTime(Integer.parseInt(displayTimeField.getText()));
                 hotkey.setVibrate(vibrateCB.isSelected());
-                hotkey.setButtonNumber(HotkeyConverter.getHotkeyValue(buttonField.getText()));
+                hotkey.setCommands(commandBox.getItems());
 
                 if(newItem)
                     applicationView.addHotkey(hotkey);
@@ -66,24 +61,25 @@ public class HotkeyView {
         });
 
         GridPane grid = new GridPane();
-        grid.setPadding(new Insets(15));
-        grid.setHgap(10);
         grid.setVgap(10);
+        grid.setHgap(10);
         grid.add(buttonLabel, 0, 0);
-        grid.add(buttonField, 1, 0);
+        grid.add(buttonCB, 1, 0);
         grid.add(messageLabel, 0, 1);
         grid.add(messageField, 1, 1);
-        grid.add(commandLabel, 0, 2);
-        grid.add(commandField, 1, 2);
-        grid.add(delayLabel, 0, 3);
-        grid.add(delayField, 1, 3);
-        grid.add(vibrateLabel, 0, 4);
-        grid.add(vibrateCB, 1, 4);
+        grid.add(displayTimeLabel, 0, 2);
+        grid.add(displayTimeField, 1, 2);
+        grid.add(vibrateLabel, 0, 3);
+        grid.add(vibrateCB, 1, 3);
 
-        grid.add(saveButton, 0, 5);
-        grid.add(cancelButton, 1, 5);
+        HBox buttons = new HBox(30);
+        buttons.getChildren().addAll(saveButton, cancelButton);
 
-        Scene scene = new Scene(grid);
+        VBox vBox = new VBox(10);
+        vBox.getChildren().addAll(grid, commandBox, buttons);
+        vBox.setPadding(new Insets(15));
+
+        Scene scene = new Scene(vBox);
         stage.setScene(scene);
         stage.show();
     }

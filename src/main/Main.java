@@ -20,7 +20,8 @@ import com.sun.jna.PointerType;
 
 import controller.Controller;
 import controller.ControllerHandler;
-import settings.ItemInterface;
+import interfaces.Item;
+import interfaces.OsHandler;
 import settings.Settings;
 import settings.WindowSetting;
 
@@ -31,7 +32,7 @@ public class Main extends Thread
 	private GuiManager guiManager;
 	private PointerType activeWindowHandle;
     private WindowSetting activeWindowSettings;
-	private WindowHandler windowHandler;
+	private OsHandler osHandler;
 	private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 	private int windowTextRefreshCounter = 0;
     private ControllerHandler controllerHandler;
@@ -50,7 +51,7 @@ public class Main extends Thread
 		createTrayIcon();
         loadControllers();
 		outputHandler = new OutputHandler(this);
-		windowHandler = getWindowHandler();
+		osHandler = getOsHandler();
 		startWindowPulling(settings.getWindowPullDelay());
 	}
 	
@@ -117,13 +118,13 @@ public class Main extends Thread
         }
 	}
 	
-	private WindowHandler getWindowHandler()
+	private OsHandler getOsHandler()
 	{
 		//TODO add linux/mac support?
 		String os = System.getProperty("os.name");
-		WindowHandler wh = null;
+		OsHandler wh = null;
 		if(os.contains("Windows"))
-			wh = new WindowHandlerWindows();
+			wh = new WindowsHandler();
 		else
 		{
 			log("Unsupported OS: " + os);
@@ -134,27 +135,14 @@ public class Main extends Thread
 		log(os + " window handler loaded");
 		return wh;
 	}
-	
-	public void command(ItemInterface item, Controller controller)
-	{
-        if(item.getCommand().isEmpty())
-            return;
 
-		boolean commandPerformed = outputHandler.command(item.getCommand());
+    public void command(Item item, Controller controller){
+        outputHandler.handleKeyCommands(item.getCommands());
+        showMessageBox(item.getMessage(), false);
+    }
 
-        if(commandPerformed) {
-            showMessageBox(item.getMessage(), false);
-            if(item.vibrate() && !activeWindowSettings.isVibration())
-                controller.vibrate(500);
 
-        }
-        else{
-            log("Command failed: " + item.getMessage() );
-        }
-
-	}
-	
-	public void showMenu(int controller) {
+    public void showMenu(int controller) {
         if(guiManager.isMenuShowing())
             guiManager.hideMenu();
         else {
@@ -166,7 +154,7 @@ public class Main extends Thread
     public boolean isGuiActive(){
         return guiManager.isMenuShowing();
     }
-	
+
 	public void pressKey(int key)
 	{
 
@@ -188,7 +176,7 @@ public class Main extends Thread
 	}
 
     public void returnFocus(){
-        windowHandler.setWindowFocus(activeWindowHandle);
+        osHandler.setWindowFocus(activeWindowHandle);
     }
 
  	private void setActiveWindowSettings()
@@ -196,7 +184,7 @@ public class Main extends Thread
         if(isGuiActive())
             return;
 
- 		PointerType hWnd = windowHandler.GetForegroundWindow();
+ 		PointerType hWnd = osHandler.GetForegroundWindow();
 
  		if(hWnd == null)
  			return;
@@ -210,7 +198,7 @@ public class Main extends Thread
  		}
  		windowTextRefreshCounter = 0;
 
- 		String windowName = windowHandler.getWindowText(hWnd);
+ 		String windowName = osHandler.getWindowText(hWnd);
 
         if(windowName.equals("Nostalgia message"))
             return;
@@ -220,7 +208,9 @@ public class Main extends Thread
 
  		// If no bindings are found, a default is set, as long as useDefaultWindowBindings is true
  		if(activeWindowSettings == null)
-            //TODO create default window settings handling
+            activeWindowSettings = getActiveWindowSettings("~Default");
+
+        if(activeWindowSettings == null)
             activeWindowSettings = new WindowSetting();
 
         controllerHandler.setHotkeys(activeWindowSettings.getHotkeys());
@@ -243,19 +233,19 @@ public class Main extends Thread
         {
             if(activeWindowSettings.isRemoveBorders())
             {
-                windowHandler.removeBorder32(activeWindowHandle);
-                windowHandler.removeMenu(activeWindowHandle);
+                osHandler.removeBorder32(activeWindowHandle);
+                osHandler.removeMenu(activeWindowHandle);
             }
             if(activeWindowSettings.isTopmost())
             {
-                windowHandler.setTopMost(activeWindowHandle);
+                osHandler.setTopMost(activeWindowHandle);
             }
         }
     }
 
 	private void setWindowFocus(PointerType hwnd)
   	{
-  		windowHandler.setWindowFocus(hwnd);
+  		osHandler.setWindowFocus(hwnd);
   	}
   	
 	public void handleFunctionString(String key) 
@@ -275,7 +265,7 @@ public class Main extends Thread
 	}
 
     public void focusMenu(){
-           windowHandler.setWindowFocus(windowHandler.getWindowHandle("Nostalgia menu"));
+           osHandler.setWindowFocus(osHandler.getWindowHandle("Nostalgia menu"));
     }
 	
 	public void log(String message)
@@ -303,5 +293,22 @@ public class Main extends Thread
 
     public WindowSetting getActiveWindowSettings(){
         return activeWindowSettings;
+    }
+
+    public void killProcess(){
+        osHandler.killProcess(activeWindowHandle);
+    }
+
+    public void exit(){
+        System.exit(0);
+    }
+
+    public void shutdown(){
+        osHandler.shutdown();
+
+    }
+
+    public void sleep(){
+        osHandler.sleep();
     }
 }

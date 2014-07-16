@@ -1,6 +1,7 @@
 package main;
 
 import com.sun.jna.Native;
+import com.sun.jna.Platform;
 import com.sun.jna.PointerType;
 import com.sun.jna.platform.win32.BaseTSD.LONG_PTR;
 import com.sun.jna.platform.win32.WinDef;
@@ -8,10 +9,13 @@ import com.sun.jna.platform.win32.WinDef.HWND;
 import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.win32.StdCallLibrary;
 import com.sun.jna.win32.W32APIOptions;
+import interfaces.OsHandler;
 
-public class WindowHandlerWindows implements WindowHandler
+import java.io.IOException;
+
+public class WindowsHandler implements OsHandler
 {
-	
+
 	private interface User32 extends StdCallLibrary 
  	{
  		User32 INSTANCE = (User32) Native.loadLibrary("user32", User32.class, W32APIOptions.DEFAULT_OPTIONS);
@@ -31,6 +35,7 @@ public class WindowHandlerWindows implements WindowHandler
  	    int GetMenuItemCount(PointerType hMenu);
  	    boolean DrawMenuBar(PointerType hWnd);
  	    boolean RemoveMenu(PointerType hMenu, int uPosition, int uFlags);
+        boolean EndTask(PointerType hWnd, boolean shutdown, boolean force);
  	}
 
 	@Override
@@ -107,5 +112,35 @@ public class WindowHandlerWindows implements WindowHandler
 
     public PointerType getWindowHandle(String title){
         return User32.INSTANCE.FindWindow(null, title);
+    }
+
+
+    public void killProcess(PointerType handle){
+        System.out.println("Killing!");
+        User32.INSTANCE.EndTask(handle, false, true);
+    }
+
+    public void shutdown(){
+        try {
+            Runtime.getRuntime().exec("shutdown.exe -s -t 0");
+            System.exit(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void sleep(){
+        System.out.println("Sleeping");
+        Sleep.SetSuspendState(false, false, false);
+    }
+}
+
+class Sleep{
+    public static native boolean SetSuspendState(boolean hibernate, boolean forceCritical, boolean disableWakeEvent);
+
+    static {
+        if (Platform.isWindows())
+            Native.register("powrprof");
     }
 }

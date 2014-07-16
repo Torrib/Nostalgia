@@ -342,7 +342,7 @@ public class SettingsView {
 
         for(WindowSetting ws : applicationEditList.getItems())
             for(Hotkey hotkey : ws.getHotkeys())
-                hotkey.setDelayLoops(hotkey.getDelay() / settings.getControllerPullDelay());
+                hotkey.setDelayLoops(hotkey.getDisplayTime() / settings.getControllerPullDelay());
         settings.setWindowSettings(applicationEditList.getItems());
 
         double selectedFontSize = settings.getMenuFontSize() + (settings.getMenuFontSize() * 0.2);

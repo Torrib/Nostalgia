@@ -1,6 +1,5 @@
 package controller;
 
-import main.WindowHandler;
 import settings.Hotkey;
 
 import java.awt.event.KeyEvent;
@@ -55,13 +54,13 @@ public class Controller extends Thread{
                 else if(checkHotkeys()){
                     int[] buttonArray =  buttons.getArray();
                     for(Hotkey hotkey : hotkeys){
-                        if(buttonArray[hotkey.getButtonNumber()] == 1){
-                            buttonCounter[hotkey.getButtonNumber()]++;
+                        if(buttonArray[hotkey.getButton()] == 1){
+                            buttonCounter[hotkey.getButton()]++;
                         }
                         else
-                            buttonCounter[hotkey.getButtonNumber()] = 0;
+                            buttonCounter[hotkey.getButton()] = 0;
 
-                        if(buttonCounter[hotkey.getButtonNumber()] == hotkey.getDelayLoops()){
+                        if(buttonCounter[hotkey.getButton()] == hotkey.getDelayLoops()){
                             controllerHandler.getMain().command(hotkey, this);
                         }
                     }

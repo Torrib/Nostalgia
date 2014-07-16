@@ -25,6 +25,18 @@ public class EditList<T> extends BorderPane {
     public EditList(List<T> items){
         super();
 
+        setup(items);
+    }
+
+    public EditList(List<T> items, double width, double height){
+        super();
+
+        setup(items);
+        this.setMaxHeight(height);
+        this.setMaxWidth(width);
+    }
+
+    private void setup(List<T> items){
         list = new ListView<>();
         oItems = FXCollections.observableArrayList(items);
         list.setItems(oItems);
@@ -36,7 +48,8 @@ public class EditList<T> extends BorderPane {
         removeButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                list.getItems().remove(list.getSelectionModel().getSelectedItem());
+                if(list.getSelectionModel().getSelectedItem() != null)
+                    list.getItems().remove(list.getSelectionModel().getSelectedItem());
             }
         });
 

@@ -1,14 +1,14 @@
 package main;
 
 
-import input.Binding;
 import input.KeyEventConverter;
-import settings.Hotkey;
-import settings.MenuItem;
+import javafx.scene.input.KeyCode;
+import settings.Command;
+import settings.Functions;
 
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
-import java.util.Set;
+import java.util.List;
 
 public class OutputHandler
 {
@@ -30,89 +30,51 @@ public class OutputHandler
 		}
 	}
 
-	public boolean command(String command)
-	{	
-		if(command.endsWith("()"))
-		{
-			main.handleFunctionString(command);
-			return false;
-		}
+    public void handleKeyCommands(List<Command> commands){
+        for(Command command : commands){
+            try {
+                Thread.sleep(command.getDelay());
 
-		return pressButtons(command);
-	}
+                if(command.getCommandType() == Command.KEY) {
+                    if(command.getKeyCode() == null)
+                        return;
 
-	private boolean pressButtons(String buttons)
-	{
-		String[] keys = buttons.split(",");
-		for(String key : keys)
-		{
-			String[] holdKey = key.split("\\+");
-			if(holdKey.length > 1)
-			{
-				handleHoldButton(holdKey);
-			}
-			else
-			{
-				int keyValue = KeyEventConverter.convert(key);
-				if( keyValue >= 0)
-					pressKey(keyValue);
-				else
-				{
-					main.log("Unrecognized key: " + key);
-                    return false;
-				}
-			}
-		}
-        return true;
-	}
+                    if (command.isCtrl()) robot.keyPress(KeyEvent.VK_CONTROL);
+                    if (command.isAlt()) robot.keyPress(KeyEvent.VK_ALT);
+                    if (command.isShift()) robot.keyPress(KeyEvent.VK_SHIFT);
 
-	private void handleHoldButton(String[] values)
-	{
-		int key = KeyEventConverter.convert(values[1]);
-		if(key < 0)
-		{
-			main.log("Unkown controll key: " + values[0]);
-			System.out.println("Unkown controll key: " + values[0]);
-			return;
-		}
+                    pressKey(command.getKeyCode().impl_getCode());
 
-		if(values[0].equals("alt"))
-		{
-			pressKey(key, true, false, false);
-		}
-		else if(values[0].equals("ctrl"))
-		{
-			pressKey(key, false, true, false);
-		}
-		else if(values[0].equals("shift"))
-		{
-			pressKey(key, false, false, true);
-		}
-		else
-		{
-			main.log("Unkown controll key: " + values[0]);
-			System.out.println("Unkown controll key: " + values[0]);
-		}	 			
-	}
- 	
- 	private void pressKey(int key, boolean alt, boolean control, boolean shift)
- 	{
- 		if(alt)
- 			robot.keyPress(KeyEvent.VK_ALT);
- 		if(control)
- 			robot.keyPress(KeyEvent.VK_CONTROL);
- 		if(shift)
- 			robot.keyPress(KeyEvent.VK_SHIFT);
- 		
- 		pressKey(key);
- 		
- 		if(alt)
- 			robot.keyRelease(KeyEvent.VK_ALT);
- 		if(control)
- 			robot.keyRelease(KeyEvent.VK_CONTROL);
- 		if(shift)
- 			robot.keyRelease(KeyEvent.VK_SHIFT);
- 	}
+                    if (command.isCtrl()) robot.keyRelease(KeyEvent.VK_CONTROL);
+                    if (command.isAlt()) robot.keyRelease(KeyEvent.VK_ALT);
+                    if (command.isShift()) robot.keyRelease(KeyEvent.VK_SHIFT);
+                }
+                else if(command.getCommandType() == Command.FUNCTION){
+                    switch (command.getFunction()){
+                        case Functions.KILL:
+                            main.killProcess();
+                            break;
+                        case Functions.EXIT_NOSTALGIA:
+                            main.exit();
+                            break;
+                        case Functions.SHUTDOWN:
+                            main.shutdown();
+                            break;
+                        case Functions.SLEEP:
+                            main.sleep();
+                            break;
+                        case Functions.TOGGLE_HOTKEYS:
+                            main.getActiveWindowSettings().setDisableHotkeys(
+                                    main.getActiveWindowSettings().isDisableHotkeys() ? false : true);
+                            break;
+                    }
+                }
+            }
+            catch (InterruptedException e){
+                e.printStackTrace();
+            }
+        }
+    }
 
  	public void pressKey(int key)
  	{

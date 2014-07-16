@@ -14,7 +14,7 @@ public class WindowSetting {
     private boolean removeBorders = false;
     private boolean topmost = false;
     private boolean disableMessages = false;
-    private boolean vibration = true;
+    private boolean disableVibration = false;
     private boolean confirmation = false;
     private boolean disableHotkeys = false;
 
@@ -64,12 +64,12 @@ public class WindowSetting {
         this.disableMessages = disableMessages;
     }
 
-    public boolean isVibration() {
-        return vibration;
+    public boolean isDisableVibration() {
+        return disableVibration;
     }
 
-    public void setVibration(boolean vibration) {
-        this.vibration = vibration;
+    public void setDisableVibration(boolean disableVibration) {
+        this.disableVibration = disableVibration;
     }
 
     public boolean isConfirmation() {

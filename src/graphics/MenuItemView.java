@@ -1,24 +1,22 @@
 package graphics;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import settings.Command;
 import settings.MenuItem;
 
-/**
- * Created by thb on 08.07.2014.
- */
-public class MenuItemView {
-
-    private MenuItem menuItem;
+public class MenuItemView{
 
     public MenuItemView(ApplicationView applicationView, MenuItem menuItem, boolean newItem){
+
         Stage stage = new Stage();
         stage.setTitle("Menu item");
 
@@ -26,8 +24,8 @@ public class MenuItemView {
         TextField nameField = new TextField(menuItem.getDisplayName());
         Label messageLabel = new Label("Message");
         TextField messageField = new TextField(menuItem.getMessage());
-        Label commandLabel = new Label("Command");
-        TextField commandField = new TextField(menuItem.getCommand());
+
+        CommandBox commandBox = new CommandBox(menuItem.getCommands());
 
         Button saveButton = new Button("Save");
 
@@ -36,7 +34,7 @@ public class MenuItemView {
             public void handle(ActionEvent event) {
                 menuItem.setDisplayName(nameField.getText());
                 menuItem.setMessage(messageField.getText());
-                menuItem.setCommand(commandField.getText());
+                menuItem.setCommands(commandBox.getItems());
 
                 if(newItem)
                     applicationView.addMenuItem(menuItem);
@@ -55,19 +53,22 @@ public class MenuItemView {
         });
 
         GridPane grid = new GridPane();
-        grid.setPadding(new Insets(15));
         grid.setHgap(10);
         grid.setVgap(10);
         grid.add(nameLabel, 0, 0);
         grid.add(nameField, 1, 0);
         grid.add(messageLabel, 0, 1);
         grid.add(messageField, 1, 1);
-        grid.add(commandLabel, 0, 2);
-        grid.add(commandField, 1, 2);
-        grid.add(saveButton, 0, 3);
-        grid.add(cancelButton, 1, 3);
 
-        Scene scene = new Scene(grid);
+        HBox buttons = new HBox(30);
+        buttons.getChildren().addAll(saveButton, cancelButton);
+
+
+        VBox vBox = new VBox(20);
+        vBox.getChildren().addAll(grid, commandBox, buttons);
+        vBox.setPadding(new Insets(15));
+
+        Scene scene = new Scene(vBox);
         stage.setScene(scene);
         stage.show();
     }

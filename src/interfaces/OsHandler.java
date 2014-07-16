@@ -1,8 +1,8 @@
-package main;
+package interfaces;
 
 import com.sun.jna.PointerType;
 
-public interface WindowHandler 
+public interface OsHandler
 {
 	public void removeBorder(PointerType hWnd);
 	
@@ -19,5 +19,11 @@ public interface WindowHandler
     public PointerType getWindowHandle(String title);
 
     public void removeBorder32(PointerType hWnd);
+
+    public void killProcess(PointerType hWnd);
+
+    public void sleep();
+
+    public void shutdown();
 
 }

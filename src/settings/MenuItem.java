@@ -1,13 +1,20 @@
 package settings;
 
+import interfaces.Item;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by thb on 06.07.2014.
  */
-public class MenuItem implements ItemInterface{
+public class MenuItem implements Item {
 
     private String displayName = "";
     private String message = "";
     private String command = "";
+
+    List<Command> commands = new ArrayList<>();
 
     public MenuItem(){}
 
@@ -39,6 +46,14 @@ public class MenuItem implements ItemInterface{
 
     public void setCommand(String command) {
         this.command = command;
+    }
+
+    public List<Command> getCommands() {
+        return commands;
+    }
+
+    public void setCommands(List<Command> commands) {
+        this.commands = commands;
     }
 
     @Override

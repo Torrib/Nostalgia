@@ -70,17 +70,27 @@ public class MenuView {
                             public void updateItem(final MenuItem item, boolean empty) {
                                 super.updateItem(item, empty);
                                 if (item != null) {
+                                    String text;
+                                    if(item.toString().equals("Toggle hotkeys")) {
+                                        if(main.getActiveWindowSettings().isDisableHotkeys())
+                                            text = "Enable hotkeys";
+                                        else
+                                            text = "Disable hotkeys";
+                                    }
+                                    else
+                                        text = item.toString();
+
                                     if(item == newValue) {
 
                                         this.setTextFill(Color.WHITE);
                                         this.setFont(Font.font(main.getSettings().getMenuSelectedFontSize()));
                                         setEffect(new Bloom(0.1));
-                                        setText(item.toString());
+                                        setText(text);
                                     }
                                     else{
                                         this.setTextFill(Color.WHITE);
                                         this.setFont(Font.font(main.getSettings().getMenuFont(), main.getSettings().getMenuFontSize()));
-                                        setText(item.toString());
+                                        setText(text);
                                     }
                                 }
                             }
@@ -117,6 +127,7 @@ public class MenuView {
     }
 
     public void show(List<MenuItem> menuItems, int controller){
+        list.getItems().clear();
         list.setItems(FXCollections.observableArrayList(menuItems));
         controllerLabel.setText("Controller " + (controller+1));
         stage.show();

@@ -13,8 +13,6 @@ import settings.Hotkey;
 import settings.MenuItem;
 import settings.WindowSetting;
 
-import java.util.ArrayList;
-
 /**
  * Created by thb on 08.07.2014.
  */
@@ -41,14 +39,22 @@ public class ApplicationView {
         topGrid.add(applicationField, 1, 1);
 
         Label disableMessagesLabel = new Label("Disable messages");
+        disableMessagesLabel.setTooltip(new Tooltip("This will prevent any messages from being shown when this application is active"));
         CheckBox disableMessagesCB = new CheckBox();
         disableMessagesCB.setSelected(windowSetting.isDisableMessages());
+        disableMessagesCB.setTooltip(new Tooltip("This will prevent any messages from being shown when this application is active"));
+
         Label disableVibrationLabel = new Label("Disable vibration");
+        disableVibrationLabel.setTooltip(new Tooltip("This will prevent controller vibration when this application is active"));
         CheckBox disableVibrationCB = new CheckBox();
-        disableVibrationCB.setSelected(windowSetting.isVibration());
+        disableVibrationCB.setSelected(windowSetting.isDisableVibration());
+        disableVibrationCB.setTooltip(new Tooltip("This will prevent controller vibration when this application is active"));
+
         Label disableHotkeysLabel= new Label("Disable hotkeys");
         CheckBox disableHotkeysCB = new CheckBox();
+        disableHotkeysLabel.setTooltip(new Tooltip("This will disable all hotkeys for the application"));
         disableHotkeysCB.setSelected(windowSetting.isDisableHotkeys());
+        disableHotkeysCB.setTooltip(new Tooltip("This will disable all hotkeys for the application"));
 
         GridPane cbGrid = new GridPane();
         cbGrid.setVgap(10);
@@ -61,11 +67,16 @@ public class ApplicationView {
         cbGrid.add(disableHotkeysCB, 1,2);
 
         Label onTopLabel = new Label("Window on top");
+        onTopLabel.setTooltip(new Tooltip("Puts the application on top of other windows"));
         CheckBox onTopCB = new CheckBox();
         onTopCB.setSelected(windowSetting.isTopmost());
+        onTopCB.setTooltip(new Tooltip("Puts the application on top of other windows"));
+
         Label removeBorderLabel = new Label("Remove borders");
+        removeBorderLabel.setTooltip(new Tooltip("Removes the windows border and menu"));
         CheckBox removeBorderCB = new CheckBox();
         removeBorderCB.setSelected(windowSetting.isRemoveBorders());
+        removeBorderCB.setTooltip(new Tooltip("Removes the windows border and menu"));
 
         GridPane cbGrid2 = new GridPane();
         cbGrid2.setVgap(10);
@@ -105,6 +116,7 @@ public class ApplicationView {
         hotkeyList.getEditButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+
                 openHotkeyView(hotkeyList.getSelected(), false);
             }
         });
@@ -126,7 +138,7 @@ public class ApplicationView {
                 windowSetting.setDisableMessages(disableMessagesCB.isSelected());
                 windowSetting.setName(nameField.getText());
                 windowSetting.setWindowName(applicationField.getText());
-                windowSetting.setVibration(disableVibrationCB.isSelected());
+                windowSetting.setDisableVibration(disableVibrationCB.isSelected());
                 windowSetting.setRemoveBorders(removeBorderCB.isSelected());
                 windowSetting.setDisableHotkeys(disableHotkeysCB.isSelected());
                 windowSetting.setTopmost(onTopCB.isSelected());
@@ -163,7 +175,8 @@ public class ApplicationView {
     }
 
     private void openMenuItemView(MenuItem menuItem, boolean newItem){
-        new MenuItemView(this, menuItem, newItem);
+        if(menuItem != null)
+            new MenuItemView(this, menuItem, newItem);
     }
 
     public void addMenuItem(MenuItem menuItem){
@@ -175,7 +188,8 @@ public class ApplicationView {
     }
 
     private void openHotkeyView(Hotkey hotkey, boolean newItem){
-        new HotkeyView(this, hotkey, newItem);
+        if(hotkey != null)
+            new HotkeyView(this, hotkey, newItem);
     }
 
     public void addHotkey(Hotkey hotkey){
