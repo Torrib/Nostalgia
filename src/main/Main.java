@@ -58,6 +58,7 @@ public class Main extends Thread
 	
 	private void loadControllers()
 	{
+        log("Loading controller handler");
 		controllerHandler = new ControllerHandler(this);
         boolean loaded = controllerHandler.load();
         if(!loaded){
@@ -66,6 +67,7 @@ public class Main extends Thread
             return;
         }
         controllerHandler.start();
+        log("Controller handler loaded");
     }
 	
 	private void startWindowPulling(int sleep)
@@ -106,7 +108,7 @@ public class Main extends Thread
                     guiManager.showConfig();
                 }
             });
-            File file = new File("icon.ico");
+            File file = new File("src/resources/icon.ico");
 			Icon ico = FileSystemView.getFileSystemView().getSystemIcon(file );
 			Image img = ((ImageIcon) ico).getImage();
 			TrayIcon trayIcon = new TrayIcon(img, "Nostalgia", popMenu);
@@ -116,6 +118,7 @@ public class Main extends Thread
 		{
 			log(e1.toString());
 			e1.printStackTrace();
+            System.exit(1);
         }
 	}
 	

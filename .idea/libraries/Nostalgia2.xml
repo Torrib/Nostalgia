@@ -2,7 +2,6 @@
   <library name="Nostalgia2">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/Nostalgia.jar!/" />
-      <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/org.json-20120521.jar!/" />
       <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/jna-platform-4.1.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/out/artifacts/Nostalgia/jna-4.1.0.jar!/" />
     </CLASSES>

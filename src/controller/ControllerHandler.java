@@ -54,6 +54,7 @@ public class ControllerHandler extends Thread{
                 Thread.sleep(500);
             }
             catch (InterruptedException e){
+                main.log(e.toString());
                 e.printStackTrace();
             }
         }
