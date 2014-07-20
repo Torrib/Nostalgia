@@ -29,6 +29,8 @@ import settings.WindowSetting;
 
 public class Main extends Thread
 {
+    public static final Settings SETTINGS = Settings.load();
+
 	private OutputHandler outputHandler;
 	private GuiManager guiManager;
 	private PointerType activeWindowHandle;
@@ -37,11 +39,9 @@ public class Main extends Thread
 	private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 	private int windowTextRefreshCounter = 0;
     private ControllerHandler controllerHandler;
-    private Settings settings;
 
     public Main(GuiManager guiManager){
         this.guiManager = guiManager;
-        settings = Settings.load();
     }
 
     @Override
@@ -53,7 +53,7 @@ public class Main extends Thread
         loadControllers();
 		outputHandler = new OutputHandler(this);
 		osHandler = getOsHandler();
-		startWindowPulling(settings.getWindowPullDelay());
+		startWindowPulling(SETTINGS.getWindowPullDelay());
 	}
 	
 	private void loadControllers()
@@ -140,8 +140,10 @@ public class Main extends Thread
     public void command(Item item, Controller controller){
         outputHandler.handleKeyCommands(item.getCommands());
         showMessageBox(item.getMessage(), false);
-    }
+        if(item.vibrate())
+            controller.vibrate(400);
 
+    }
 
     public void showMenu(int controller) {
         if(guiManager.isMenuShowing())
@@ -164,10 +166,10 @@ public class Main extends Thread
 
 	public void showMessageBox(String message, boolean systemMessage)
 	{
-        if(systemMessage && settings.isDisableSystemMessages())
+        if(systemMessage && SETTINGS.isDisableSystemMessages())
             return;
 
-        if(activeWindowSettings != null && !settings.isDisableMessages()) {
+        if(activeWindowSettings != null && !SETTINGS.isDisableMessages()) {
             if (!activeWindowSettings.isDisableMessages()) {
                 if (message != null && !message.isEmpty()) {
                     guiManager.showMessageBox(message);
@@ -192,7 +194,7 @@ public class Main extends Thread
 
  		// Do nothing if the window handle if its the same.
  		// Refresh it every know and then(Some windows change text) every 10 sec by default.
- 		if(hWnd.equals(activeWindowHandle) && windowTextRefreshCounter < settings.getWindowPullRefreshCount())
+ 		if(hWnd.equals(activeWindowHandle) && windowTextRefreshCounter < SETTINGS.getWindowPullRefreshCount())
  		{
  			windowTextRefreshCounter++;
  			return;
@@ -216,13 +218,11 @@ public class Main extends Thread
 
         controllerHandler.setHotkeys(activeWindowSettings.getHotkeys());
         modifyWindow();
-
- 		log("Active binding: " + activeWindowSettings.getName() + "[" + windowName + "]");
  	}
 
     private WindowSetting getActiveWindowSettings(String windowName)
     {
-        for(WindowSetting windowSetting : settings.getWindowSettings())
+        for(WindowSetting windowSetting : SETTINGS.getWindowSettings())
             if(windowName.contains(windowSetting.getWindowName()))
                 return windowSetting;
 
@@ -256,7 +256,7 @@ public class Main extends Thread
 //			if(program.endsWith(".bat"))
 //				Runtime.getRuntime().exec ("cmd /c " + program);
 //			else
-				Runtime.getRuntime().exec (program.getPath());
+				Runtime.getRuntime().exec (program.getPreCommand() + " " + program.getPath() + " " + program.getPostCommand());
 		} 
 		catch (IOException e) 
 		{
@@ -283,14 +283,6 @@ public class Main extends Thread
 		}
 	}
 
-    public Settings getSettings(){
-        return settings;
-    }
-
-    public void setSettings(Settings settings){
-        this.settings = settings;
-    }
-
     public WindowSetting getActiveWindowSettings(){
         return activeWindowSettings;
     }
@@ -310,5 +302,9 @@ public class Main extends Thread
 
     public void sleep(){
         osHandler.sleep();
+    }
+
+    public void toggleHotkeys(){
+        Main.SETTINGS.setDisableHotkeys(Main.SETTINGS.isDisableHotkeys() ? false : true);
     }
 }

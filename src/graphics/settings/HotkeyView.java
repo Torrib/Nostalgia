@@ -1,6 +1,5 @@
-package graphics;
+package graphics.settings;
 
-import graphics.settings.WindowSettingsView;
 import graphics.utility.CommandBox;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -13,8 +12,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import models.Program;
-import settings.Hotkey;
+import models.Hotkey;
 
 import java.util.List;
 
@@ -34,18 +34,16 @@ public class HotkeyView {
         buttonCB.getSelectionModel().select(hotkey.getButton());
         Label messageLabel = new Label("Message");
         TextField messageField = new TextField(hotkey.getMessage());
-        Label displayTimeLabel = new Label("Display time");
+        Label displayTimeLabel = new Label("Hold time");
         TextField displayTimeField = new TextField(""+hotkey.getDisplayTime());
         Label vibrateLabel = new Label("Vibrate");
         CheckBox vibrateCB = new CheckBox();
         vibrateCB.setSelected(hotkey.vibrate());
         CommandBox commandBox = new CommandBox(hotkey.getCommands(), programs);
 
-        Button saveButton = new Button("Save");
-
-        saveButton.setOnAction(new EventHandler<ActionEvent>() {
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
-            public void handle(ActionEvent event) {
+            public void handle(WindowEvent event) {
                 hotkey.setButton(buttonCB.getSelectionModel().getSelectedIndex());
                 hotkey.setMessage(messageField.getText());
                 hotkey.setDisplayTime(Integer.parseInt(displayTimeField.getText()));
@@ -56,14 +54,6 @@ public class HotkeyView {
                     applicationView.addHotkey(hotkey);
                 else
                     applicationView.updateHotkeyList();
-                stage.close();
-            }
-        });
-
-        Button cancelButton = new Button("Cancel");
-        cancelButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
                 stage.close();
             }
         });
@@ -80,11 +70,8 @@ public class HotkeyView {
         grid.add(vibrateLabel, 0, 3);
         grid.add(vibrateCB, 1, 3);
 
-        HBox buttons = new HBox(30);
-        buttons.getChildren().addAll(saveButton, cancelButton);
-
         VBox vBox = new VBox(10);
-        vBox.getChildren().addAll(grid, commandBox, buttons);
+        vBox.getChildren().addAll(grid, commandBox);
         vBox.setPadding(new Insets(15));
 
         Scene scene = new Scene(vBox);

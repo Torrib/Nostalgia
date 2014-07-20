@@ -1,4 +1,4 @@
-package graphics;
+package graphics.settings;
 
 import javafx.geometry.Pos;
 import javafx.scene.Node;

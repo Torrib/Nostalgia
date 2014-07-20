@@ -1,13 +1,11 @@
-package settings;
+package models;
 
 import interfaces.Item;
+import main.Main;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by thb on 06.07.2014.
- */
 public class Hotkey implements Item {
 
     private int button = 0;
@@ -28,6 +26,15 @@ public class Hotkey implements Item {
     }
 
     public String getMessage() {
+        for(Command command : commands) {
+            if (command.getCommandType() == Command.FUNCTION) {
+                if (command.getFunction().isToggle()) {
+                    if (command.getEnableMessage() != null && command.getDisableMessage() != null) {
+                        return Main.SETTINGS.isDisableHotkeys() ? command.getDisableMessage() : command.getEnableMessage();
+                    }
+                }
+            }
+        }
         return message;
     }
 

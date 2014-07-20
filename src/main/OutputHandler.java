@@ -1,7 +1,7 @@
 package main;
 
-import settings.Command;
-import settings.Functions;
+import models.Command;
+import models.Functions;
 
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
@@ -47,7 +47,7 @@ public class OutputHandler
                     if (command.isShift()) robot.keyRelease(KeyEvent.VK_SHIFT);
                 }
                 else if(command.getCommandType() == Command.FUNCTION){
-                    switch (command.getFunction()){
+                    switch (command.getFunction().getFunctionType()){
                         case Functions.KILL:
                             main.killProcess();
                             break;
@@ -61,8 +61,7 @@ public class OutputHandler
                             main.sleep();
                             break;
                         case Functions.TOGGLE_HOTKEYS:
-                            main.getActiveWindowSettings().setDisableHotkeys(
-                                    main.getActiveWindowSettings().isDisableHotkeys() ? false : true);
+                            main.toggleHotkeys();
                             break;
                     }
                 }
@@ -79,7 +78,7 @@ public class OutputHandler
  	public void pressKey(int key)
  	{
  		robot.keyPress(key);
- 		robot.delay(main.getSettings().getButtonPressDelay());
+ 		robot.delay(Main.SETTINGS.getButtonPressDelay());
  		robot.keyRelease(key);
  	}
 }

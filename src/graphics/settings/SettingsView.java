@@ -1,25 +1,24 @@
-package graphics;
+package graphics.settings;
 
-import graphics.settings.ProgramView;
-import graphics.settings.WindowSettingsView;
 import graphics.utility.EditList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import main.Main;
+import models.Hotkey;
 import models.Program;
 import settings.*;
 import graphics.utility.NumberTextField;
 
-import java.util.ArrayList;
-
 public class SettingsView {
 
-    private Main main;
     private Stage stage;
     private Settings settings;
     private TextField menuFontField;
@@ -44,16 +43,17 @@ public class SettingsView {
     private EditList<WindowSetting> windowEditList;
     private EditList<Program> programEditList;
 
-    public SettingsView(Main main){
-        this.main = main;
+    public SettingsView(){
         stage = new Stage();
         stage.setTitle("Nostalgia message");
 
-        settings = Settings.load();
+        settings = Main.SETTINGS;
 
         TabPane tabPane = new TabPane();
+        tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
-        tabPane.getTabs().addAll(createGeneralTab(), createWindowSettingsTab(), createProgramTab());
+        tabPane.getTabs().addAll(createMenuTab(), createMessageTab(), createControllerTab(),
+                createWindowsTab(), createProgramTab(), createAdvancedTab());
 
         Button saveButton = new Button("Save");
         Button applyButton = new Button("Apply");
@@ -81,45 +81,22 @@ public class SettingsView {
             }
         });
 
-        HBox buttons = new HBox(15);
+        HBox buttons = new HBox(5);
         buttons.getChildren().addAll(saveButton, applyButton, cancelButton);
         buttons.setPadding(new Insets(15));
+        buttons.setAlignment(Pos.CENTER_RIGHT);
 
         VBox vBox = new VBox(20);
         vBox.getChildren().addAll(tabPane, buttons);
 
-        Scene scene = new Scene(vBox, 800, 600);
+        Scene scene = new Scene(vBox);
         scene.getStylesheets().add("resources/bordertitlepane.css");
+        scene.getStylesheets().add(("resources/settings.css"));
         stage.setScene(scene);
         stage.show();
     }
 
-    private Tab createGeneralTab(){
-        BorderTitledPane menuPane = createMenuPane();
-        BorderTitledPane messagePane = createMessagePane();
-        BorderTitledPane controllerPane = createControllerPane();
-        BorderTitledPane windowPane = createWindowPane();
-
-//        HBox hBox = new HBox(20);
-//        hBox.getChildren().addAll(menuPane, messagePane);
-
-        GridPane grid = new GridPane();
-        grid.setHgap(20);
-        grid.setVgap(24);
-//        grid.setPadding(new Insets(15));
-
-        grid.add(menuPane, 0, 0);
-        grid.add(messagePane, 1, 0);
-        grid.add(controllerPane, 0, 1);
-        grid.add(windowPane, 1, 1);
-
-        Tab tab = new Tab();
-        tab.setContent(grid);
-        tab.setText("General");
-        return tab;
-    }
-
-    private BorderTitledPane createMenuPane() {
+    private Tab createMenuTab(){
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(12);
@@ -151,10 +128,17 @@ public class SettingsView {
 
         grid.setPadding(new Insets(15));
 
-        return new BorderTitledPane("Menu", grid, 360, 180);
+        Tab tab = new Tab();
+        tab.setContent(grid);
+        tab.setText("Menu");
+
+        ImageView image = new ImageView(new Image(getClass().getResourceAsStream("/resources/menu.png")));
+        tab.setGraphic(image);
+        return tab;
     }
 
-    private BorderTitledPane createMessagePane() {
+
+    private Tab createMessageTab() {
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(12);
@@ -203,10 +187,16 @@ public class SettingsView {
 
         grid.setPadding(new Insets(15));
 
-        return new BorderTitledPane("Message Box", grid, 360, 250);
+        Tab tab = new Tab();
+        tab.setContent(grid);
+        tab.setText("Message");
+
+        ImageView image = new ImageView(new Image(getClass().getResourceAsStream("/resources/message.png")));
+        tab.setGraphic(image);
+        return tab;
     }
 
-    private BorderTitledPane createControllerPane() {
+    private Tab createControllerTab() {
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(12);
@@ -256,10 +246,16 @@ public class SettingsView {
         grid.add(disableHotkeysLabel, 0, 4);
         grid.add(disableHotkeysCB, 1, 4);
 
-        return new BorderTitledPane("Controllers", grid, 360, 300);
+        Tab tab = new Tab();
+        tab.setContent(grid);
+        tab.setText("Controllers");
+
+        ImageView image = new ImageView(new Image(getClass().getResourceAsStream("/resources/controller.png")));
+        tab.setGraphic(image);
+        return tab;
     }
 
-    private BorderTitledPane createWindowPane() {
+    private Tab createAdvancedTab() {
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(12);
@@ -282,10 +278,16 @@ public class SettingsView {
 
         grid.setPadding(new Insets(15));
 
-        return new BorderTitledPane("Window handling", grid, 360, 100);
+        Tab tab = new Tab();
+        tab.setContent(grid);
+        tab.setText("Advanced");
+
+        ImageView image = new ImageView(new Image(getClass().getResourceAsStream("/resources/advanced.png")));
+        tab.setGraphic(image);
+        return tab;
     }
 
-    private Tab createWindowSettingsTab(){
+    private Tab createWindowsTab(){
 
         windowEditList = new EditList<>(settings.getWindowSettings());
 
@@ -305,7 +307,10 @@ public class SettingsView {
 
         Tab tab = new Tab();
         tab.setContent(windowEditList);
-        tab.setText("Applications");
+        tab.setText("Windows");
+        ImageView image = new ImageView(new Image(getClass().getResourceAsStream("/resources/monitor.png")));
+        tab.setGraphic(image);
+
         return tab;
     }
 
@@ -330,6 +335,9 @@ public class SettingsView {
         Tab tab = new Tab();
         tab.setContent(programEditList);
         tab.setText("Programs");
+
+        ImageView image = new ImageView(new Image(getClass().getResourceAsStream("/resources/program.png")));
+        tab.setGraphic(image);
         return tab;
     }
 
@@ -392,9 +400,7 @@ public class SettingsView {
         double selectedFontSize = settings.getMenuFontSize() + (settings.getMenuFontSize() * 0.2);
         settings.setMenuSelectedFontSize((int) selectedFontSize);
 
-
         settings.store();
-        main.setSettings(settings);
     }
 
     public Stage getStage(){

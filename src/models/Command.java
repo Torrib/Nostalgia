@@ -1,13 +1,7 @@
-package settings;
+package models;
 
-import com.sun.javafx.scene.input.KeyCodeMap;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import models.Program;
 
-/**
- * Created by thb on 13.07.2014.
- */
 public class Command {
 
     public static final int KEY = 0;
@@ -21,8 +15,12 @@ public class Command {
     private boolean shift = false;
     private KeyCode keyCode;
 
-    private int function = 0;
-    private String functionName = "";
+    private Function function;
+
+    private String enableDisplay = "";
+    private String disableDisplay = "";
+    private String enableMessage = "";
+    private String disableMessage = "";
 
     private Program program;
 
@@ -41,11 +39,10 @@ public class Command {
         this.delay = delay;
     }
 
-    public Command(int function, int delay, String functionName){
+    public Command(Function function, int delay){
         this.commandType = FUNCTION;
         this.function = function;
         this.delay = delay;
-        this.functionName = functionName;
     }
 
     public Command(Program program, int delay){
@@ -103,13 +100,10 @@ public class Command {
         this.commandType = commandType;
     }
 
-    public int getFunction() {
+    public Function getFunction() {
         return function;
     }
 
-    public void setFunction(int function) {
-        this.function = function;
-    }
 
     public Program getProgram() {
         return program;
@@ -117,6 +111,38 @@ public class Command {
 
     public void setProgram(Program program) {
         this.program = program;
+    }
+
+    public String getEnableDisplay() {
+        return enableDisplay;
+    }
+
+    public void setEnableDisplay(String enableDisplay) {
+        this.enableDisplay = enableDisplay;
+    }
+
+    public String getDisableDisplay() {
+        return disableDisplay;
+    }
+
+    public void setDisableDisplay(String disableDisplay) {
+        this.disableDisplay = disableDisplay;
+    }
+
+    public String getEnableMessage() {
+        return enableMessage;
+    }
+
+    public void setEnableMessage(String enableMessage) {
+        this.enableMessage = enableMessage;
+    }
+
+    public String getDisableMessage() {
+        return disableMessage;
+    }
+
+    public void setDisableMessage(String disableMessage) {
+        this.disableMessage = disableMessage;
     }
 
     public String toString(){
@@ -130,7 +156,7 @@ public class Command {
                 result += keyCode.toString();
                 return result;
             case FUNCTION:
-                return functionName + "()";
+                return function.getName() + "()";
             case PROGRAM:
                 return "Run: " + program.toString();
         }

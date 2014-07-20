@@ -1,6 +1,8 @@
-package settings;
+package models;
 
 import interfaces.Item;
+import main.Main;
+import models.Command;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,16 +14,14 @@ public class MenuItem implements Item {
 
     private String displayName = "";
     private String message = "";
-    private String command = "";
 
     List<Command> commands = new ArrayList<>();
 
     public MenuItem(){}
 
-    public MenuItem(String displayName, String message, String command){
+    public MenuItem(String displayName, String message){
         this.displayName = displayName;
         this.message = message;
-        this.command = command;
     }
 
     public String getDisplayName() {
@@ -33,19 +33,20 @@ public class MenuItem implements Item {
     }
 
     public String getMessage() {
+        for(Command command : commands) {
+            if (command.getCommandType() == Command.FUNCTION) {
+                if (command.getFunction().isToggle()) {
+                    if (command.getEnableMessage() != null && command.getDisableMessage() != null) {
+                        return Main.SETTINGS.isDisableHotkeys() ? command.getDisableMessage() : command.getEnableMessage();
+                    }
+                }
+            }
+        }
         return message;
     }
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public String getCommand() {
-        return command;
-    }
-
-    public void setCommand(String command) {
-        this.command = command;
     }
 
     public List<Command> getCommands() {
@@ -63,6 +64,17 @@ public class MenuItem implements Item {
 
     @Override
     public String toString(){
+
+        for(Command command : commands){
+            if(command.getCommandType() == Command.FUNCTION){
+                if(command.getFunction().isToggle()){
+                    if(command.getEnableDisplay() != null && command.getDisableDisplay() != null){
+                        return Main.SETTINGS.isDisableHotkeys() ? command.getEnableDisplay() : command.getDisableDisplay();
+                    }
+                }
+            }
+        }
+
         return displayName;
     }
 }

@@ -2,18 +2,14 @@ package main;
 
 import graphics.MenuView;
 import graphics.MessageBox;
-import graphics.SettingsView;
+import graphics.settings.SettingsView;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
-import main.Main;
-import settings.MenuItem;
+import models.MenuItem;
 
 import java.util.List;
 
-/**
- * Created by thb on 29.06.2014.
- */
 public class GuiManager extends Application{
 
     private Main main;
@@ -38,6 +34,7 @@ public class GuiManager extends Application{
         main.log("MessageBox loaded");
 
         main.start();
+        showConfig();
     }
 
     public void showMenu(List<MenuItem> menuItems, int controller){
@@ -75,7 +72,7 @@ public class GuiManager extends Application{
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                new SettingsView(main);
+                new SettingsView();
             }
         });
     }

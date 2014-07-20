@@ -1,9 +1,6 @@
 package graphics.settings;
 
 import graphics.utility.EditList;
-import graphics.HotkeyView;
-import graphics.MenuItemView;
-import graphics.SettingsView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -15,9 +12,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import models.Program;
-import settings.Hotkey;
-import settings.MenuItem;
-import settings.Settings;
+import models.Hotkey;
+import models.MenuItem;
 import settings.WindowSetting;
 
 import java.util.List;

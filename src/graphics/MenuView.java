@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import main.Main;
-import settings.MenuItem;
+import models.MenuItem;
 
 import java.awt.*;
 import java.awt.event.InputEvent;
@@ -28,14 +28,12 @@ import java.util.List;
 
 public class MenuView {
 
-    private Main main;
     private Stage stage;
     private ListView<MenuItem> list;
     private Label controllerLabel;
     private AudioClip menuSound;
 
     public MenuView(Main main){
-        this.main = main;
         stage = new Stage();
         stage.setTitle("Nostalgia menu");
         list = new ListView<>();
@@ -70,27 +68,17 @@ public class MenuView {
                             public void updateItem(final MenuItem item, boolean empty) {
                                 super.updateItem(item, empty);
                                 if (item != null) {
-                                    String text;
-                                    if(item.toString().equals("Toggle hotkeys")) {
-                                        if(main.getActiveWindowSettings().isDisableHotkeys())
-                                            text = "Enable hotkeys";
-                                        else
-                                            text = "Disable hotkeys";
-                                    }
-                                    else
-                                        text = item.toString();
-
                                     if(item == newValue) {
 
                                         this.setTextFill(Color.WHITE);
-                                        this.setFont(Font.font(main.getSettings().getMenuSelectedFontSize()));
+                                        this.setFont(Font.font(Main.SETTINGS.getMenuSelectedFontSize()));
                                         setEffect(new Bloom(0.1));
-                                        setText(text);
+                                        setText(item.toString());
                                     }
                                     else{
                                         this.setTextFill(Color.WHITE);
-                                        this.setFont(Font.font(main.getSettings().getMenuFont(), main.getSettings().getMenuFontSize()));
-                                        setText(text);
+                                        this.setFont(Font.font(Main.SETTINGS.getMenuFont(), Main.SETTINGS.getMenuFontSize()));
+                                        setText(item.toString());
                                     }
                                 }
                             }
@@ -105,7 +93,7 @@ public class MenuView {
 
         controllerLabel = new Label();
         controllerLabel.setTextFill(Color.WHITE);
-        controllerLabel.setFont(Font.font(main.getSettings().getMenuFont(), main.getSettings().getMenuFontSize()));
+        controllerLabel.setFont(Font.font(Main.SETTINGS.getMenuFont(), Main.SETTINGS.getMenuFontSize()));
 
         BorderPane borderPane = new BorderPane();
         borderPane.setCenter(controllerLabel);
@@ -141,7 +129,7 @@ public class MenuView {
     }
 
     public void playSound(){
-        if(!main.getSettings().menuMuted())
+        if(!Main.SETTINGS.menuMuted())
             menuSound.play();
     }
 

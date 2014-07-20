@@ -16,9 +16,6 @@ import main.Main;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by thb on 30.06.2014.
- */
 public class MessageBox {
 
     private Main main;
@@ -64,14 +61,14 @@ public class MessageBox {
                 });
             }
         };
-        javax.swing.Timer timer = new javax.swing.Timer(main.getSettings().getMessageDelay(), action);
+        javax.swing.Timer timer = new javax.swing.Timer(Main.SETTINGS.getMessageDelay(), action);
         timer.setRepeats(false);
         timer.start();
     }
 
     public void show(String message){
         text.setText(message);
-        text.setFont(Font.font(main.getSettings().getMessageFont(), main.getSettings().getMessageFontSize()));
+        text.setFont(Font.font(Main.SETTINGS.getMessageFont(), Main.SETTINGS.getMessageFontSize()));
         stage.setX(width - (text.getLayoutBounds().getWidth() + 50));
         stage.show();
         main.returnFocus();

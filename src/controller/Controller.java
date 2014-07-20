@@ -1,6 +1,7 @@
 package controller;
 
-import settings.Hotkey;
+import main.Main;
+import models.Hotkey;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -65,7 +66,7 @@ public class Controller extends Thread{
                         }
                     }
                 }
-                Thread.sleep(controllerHandler.getMain().getSettings().getControllerPullDelay());
+                Thread.sleep(Main.SETTINGS.getControllerPullDelay());
             }
             catch (InterruptedException e){
                 e.printStackTrace();
@@ -82,7 +83,7 @@ public class Controller extends Thread{
             if(connectionStatus) {
                 controllerHandler.getMain().showMessageBox("Controller " + (controllerNumber+1) + " Connected", true);
                 System.out.println("Controller " + controllerNumber + ": connected");
-                if(!controllerHandler.getMain().getSettings().isRequireActivate())
+                if(!Main.SETTINGS.isRequireActivate())
                     this.start();
             }
             else {
@@ -116,29 +117,21 @@ public class Controller extends Thread{
         return active;
     }
 
-    public void setActive(boolean active){
-        this.active = active;
-    }
-
     public void setHotkeys(List<Hotkey> hotkeys){
         this.hotkeys = hotkeys;
         buttonCounter = new int[10];
     }
 
     private boolean analogDown(ControllerHandler.ControllerStruct buttons){
-        if(buttons.leftStickX < -30000)
-            return true;
-        return false;
+        return buttons.leftStickX < -30000;
     }
 
     private boolean analogUp(ControllerHandler.ControllerStruct buttons){
-        if(buttons.leftStickX > 30000)
-            return true;
-        return false;
+        return buttons.leftStickX > 30000;
     }
 
     public void vibrate(int length){
-        if(controllerHandler.getMain().getSettings().isDisableVibration())
+        if(Main.SETTINGS.isDisableVibration())
             return;
 
         (new Thread() {
@@ -153,9 +146,9 @@ public class Controller extends Thread{
         }).start();
     }
 
-    private boolean checkHotkeys(){
+    public boolean checkHotkeys(){
         return(!hotkeys.isEmpty() &&
-                !controllerHandler.getMain().getSettings().isDisableHotkeys() &&
+                !Main.SETTINGS.isDisableHotkeys() &&
                 !controllerHandler.getMain().getActiveWindowSettings().isDisableHotkeys());
     }
 }

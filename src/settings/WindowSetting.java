@@ -1,5 +1,8 @@
 package settings;
 
+import models.Hotkey;
+import models.MenuItem;
+
 import java.util.ArrayList;
 import java.util.List;
 

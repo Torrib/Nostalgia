@@ -10,9 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by thb on 05.07.2014.
- */
 public class Settings {
 
     private String menuFont = "";
@@ -226,7 +223,7 @@ public class Settings {
             return gson.fromJson(reader, Settings.class);
         }
         catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Unable to load settings");
         }
         return new Settings();
     }

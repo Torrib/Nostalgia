@@ -1,8 +1,5 @@
 package models;
 
-/**
- * Created by thb on 16.07.2014.
- */
 public class Program {
 
     private String name = "";

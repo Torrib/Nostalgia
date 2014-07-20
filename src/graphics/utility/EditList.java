@@ -7,9 +7,12 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -41,9 +44,24 @@ public class EditList<T> extends BorderPane {
         oItems = FXCollections.observableArrayList(items);
         list.setItems(oItems);
 
-        addButton = new Button("+");
-        removeButton = new Button("-");
-        editButton = new Button("edit");
+        ImageView addImage = new ImageView(new Image(getClass().getResourceAsStream("/resources/add.png")));
+        ImageView removeImage = new ImageView(new Image(getClass().getResourceAsStream("/resources/remove.png")));
+        ImageView editImage = new ImageView(new Image(getClass().getResourceAsStream("/resources/edit.png")));
+
+        addButton = new Button();
+        addButton.setGraphic(addImage);
+        addImage.setFitWidth(10);
+        addImage.setFitHeight(10);
+
+        removeButton = new Button();
+        removeImage.setFitWidth(10);
+        removeImage.setFitHeight(10);
+        removeButton.setGraphic(removeImage);
+
+        editButton = new Button();
+        editImage.setFitWidth(10);
+        editImage.setFitHeight(10);
+        editButton.setGraphic(editImage);
 
         removeButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override

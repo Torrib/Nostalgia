@@ -1,9 +1,8 @@
 package controller;
 
 import com.sun.jna.*;
-import input.Binding;
 import main.Main;
-import settings.Hotkey;
+import models.Hotkey;
 
 import java.util.*;
 
@@ -24,9 +23,9 @@ public class ControllerHandler extends Thread{
             main.log(e.toString());
         }
 
-        controllers = new ArrayList<Controller>();
+        controllers = new ArrayList<>();
         controllers.add(new Controller(0, this, controllerInterface));
-        if(!main.getSettings().isDisableControllers()) {
+        if(!Main.SETTINGS.isDisableControllers()) {
             controllers.add(new Controller(1, this, controllerInterface));
             controllers.add(new Controller(2, this, controllerInterface));
             controllers.add(new Controller(3, this, controllerInterface));
@@ -40,7 +39,6 @@ public class ControllerHandler extends Thread{
 
     @Override
     public void run() {
-        main.log("Controller handler started");
         while(true) {
             try {
                 for (Controller controller : controllers) {

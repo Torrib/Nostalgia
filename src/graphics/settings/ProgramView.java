@@ -1,7 +1,5 @@
 package graphics.settings;
 
-import com.sun.jna.platform.win32.WinDef;
-import graphics.SettingsView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
