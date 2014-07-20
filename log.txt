@@ -1943,3 +1943,15 @@
 20/07/2014 12:16:29 - Starting
 20/07/2014 12:16:31 - Loading controller interface
 20/07/2014 12:16:31 - Windows 7 window handler loaded
+20/07/2014 12:48:36 - Menu loaded
+20/07/2014 12:48:36 - MessageBox loaded
+20/07/2014 12:48:36 - ====================================================================
+20/07/2014 12:48:36 - Starting
+20/07/2014 12:48:36 - Loading controller interface
+20/07/2014 12:48:36 - Windows 7 window handler loaded
+20/07/2014 12:58:55 - Menu loaded
+20/07/2014 12:58:55 - MessageBox loaded
+20/07/2014 12:58:55 - ====================================================================
+20/07/2014 12:58:55 - Starting
+20/07/2014 12:58:56 - Loading controller interface
+20/07/2014 12:58:56 - Windows 7 window handler loaded

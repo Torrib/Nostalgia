@@ -26,3 +26,7 @@
 .list-view .scroll-pane .content{
     -fx-background-color: transparent;
 }
+
+.label{
+ -fx-alignment: CENTER;
+ }

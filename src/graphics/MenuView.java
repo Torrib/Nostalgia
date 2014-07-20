@@ -4,6 +4,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -15,6 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
@@ -96,15 +98,17 @@ public class MenuView {
         controllerLabel.setFont(Font.font(Main.SETTINGS.getMenuFont(), Main.SETTINGS.getMenuFontSize()));
 
         BorderPane borderPane = new BorderPane();
-        borderPane.setCenter(controllerLabel);
-        borderPane.setBottom(list);
+        borderPane.setTop(controllerLabel);
+        borderPane.setCenter(list);
 
 //        list.setMaxHeight(200);
 //        list.setLayoutY(500);
 
         borderPane.setStyle("-fx-background-color: transparent;");
 
-        Scene scene = new Scene(borderPane, 1200, 600);
+        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+
+        Scene scene = new Scene(borderPane, primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight());
         scene.getStylesheets().add("list.css");
         scene.setFill(Color.rgb(0, 0, 0, 0.95));
         stage.setScene(scene);
