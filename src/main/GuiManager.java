@@ -34,7 +34,6 @@ public class GuiManager extends Application{
         main.log("MessageBox loaded");
 
         main.start();
-        showConfig();
     }
 
     public void showMenu(List<MenuItem> menuItems, int controller){

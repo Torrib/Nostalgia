@@ -1,0 +1,25 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="Nostalgia">
+    <output-path>$PROJECT_DIR$/out/artifacts/Nostalgia</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="main.GuiManager" />
+        <option name="description" value="" />
+        <option name="htmlParamFile" value="" />
+        <option name="paramFile" value="" />
+        <option name="title" value="Nostalgia" />
+        <option name="vendor" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="Nostalgia.jar">
+        <element id="module-output" name="Nostalgia" />
+      </element>
+      <element id="library" level="project" name="Nostalgia2" />
+      <element id="library" level="project" name="lib" />
+      <element id="library" level="project" name="jars" />
+      <element id="library" level="project" name="ext" />
+      <element id="library" level="project" name="app" />
+    </root>
+  </artifact>
+</component>

@@ -4,7 +4,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
-import javafx.geometry.Rectangle2D;
+import javafx.geometry.*;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -16,6 +17,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -93,20 +95,21 @@ public class MenuView {
 
         list.getSelectionModel().selectFirst();
 
+        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+
         controllerLabel = new Label();
         controllerLabel.setTextFill(Color.WHITE);
         controllerLabel.setFont(Font.font(Main.SETTINGS.getMenuFont(), Main.SETTINGS.getMenuFontSize()));
+        controllerLabel.setPadding(new Insets(primaryScreenBounds.getHeight() / 5, 0, 0, (primaryScreenBounds.getWidth() / 2) - 55));
 
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(controllerLabel);
-        borderPane.setCenter(list);
+        borderPane.setBottom(list);
 
 //        list.setMaxHeight(200);
 //        list.setLayoutY(500);
 
         borderPane.setStyle("-fx-background-color: transparent;");
-
-        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 
         Scene scene = new Scene(borderPane, primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight());
         scene.getStylesheets().add("list.css");
