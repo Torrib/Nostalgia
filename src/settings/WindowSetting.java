@@ -1,5 +1,6 @@
 package settings;
 
+import models.Command;
 import models.Hotkey;
 import models.MenuItem;
 
@@ -21,8 +22,8 @@ public class WindowSetting {
     private boolean confirmation = false;
     private boolean disableHotkeys = false;
 
-    private String preMenuComand = "";
-    private String postMenuCommand = "";
+    private List<Command> preMenuComands = new ArrayList<>();
+    private List<Command> postMenuCommands = new ArrayList<>();
 
     private List<MenuItem> menuItems = new ArrayList<>();
     private List<Hotkey> hotkeys = new ArrayList<>();
@@ -83,22 +84,6 @@ public class WindowSetting {
         this.confirmation = confirmation;
     }
 
-    public String getPreMenuComand() {
-        return preMenuComand;
-    }
-
-    public void setPreMenuComand(String preMenuComand) {
-        this.preMenuComand = preMenuComand;
-    }
-
-    public String getPostMenuCommand() {
-        return postMenuCommand;
-    }
-
-    public void setPostMenuCommand(String postMenuCommand) {
-        this.postMenuCommand = postMenuCommand;
-    }
-
     public List<MenuItem> getMenuItems() {
         return menuItems;
     }
@@ -121,6 +106,22 @@ public class WindowSetting {
 
     public void setDisableHotkeys(boolean disableHotkeys) {
         this.disableHotkeys = disableHotkeys;
+    }
+
+    public List<Command> getPreMenuComands() {
+        return preMenuComands;
+    }
+
+    public void setPreMenuComands(List<Command> preMenuComands) {
+        this.preMenuComands = preMenuComands;
+    }
+
+    public List<Command> getPostMenuCommands() {
+        return postMenuCommands;
+    }
+
+    public void setPostMenuCommands(List<Command> postMenuCommands) {
+        this.postMenuCommands = postMenuCommands;
     }
 
     @Override

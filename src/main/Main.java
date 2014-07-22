@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -22,6 +23,7 @@ import controller.Controller;
 import controller.ControllerHandler;
 import interfaces.Item;
 import interfaces.OsHandler;
+import models.Command;
 import models.Program;
 import settings.Settings;
 import settings.WindowSetting;
@@ -54,7 +56,16 @@ public class Main extends Thread
 		outputHandler = new OutputHandler(this);
 		osHandler = getOsHandler();
 		startWindowPulling(SETTINGS.getWindowPullDelay());
-	}
+//        try {
+//
+//            WinRegistry.writeStringValue(WinRegistry.HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+//                    "Nostalgia", "C:\\Users\\thb\\Documents\\GitHub\\Nostalgia\\out\\artifacts\\Nostalgia\\bundles\\Nostalgia\\Nostalgia.exe");
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        } catch (InvocationTargetException e) {
+//            e.printStackTrace();
+//        }
+    }
 	
 	private void loadControllers()
 	{
@@ -63,7 +74,6 @@ public class Main extends Thread
         boolean loaded = controllerHandler.load();
         if(!loaded){
             log("Unable to load controller.dll");
-            System.err.println("Unable to load controller.dll");
             return;
         }
         controllerHandler.start();
@@ -145,15 +155,20 @@ public class Main extends Thread
         showMessageBox(item.getMessage(), false);
         if(item.vibrate())
             controller.vibrate(400);
+    }
 
+    public void command(List<Command> commands){
+        outputHandler.handleKeyCommands(commands);
     }
 
     public void showMenu(int controller) {
         if(guiManager.isMenuShowing())
             guiManager.hideMenu();
         else {
-            if(!activeWindowSettings.getMenuItems().isEmpty())
+            if(!activeWindowSettings.getMenuItems().isEmpty()) {
+                command(activeWindowSettings.getPreMenuComands());
                 guiManager.showMenu(activeWindowSettings.getMenuItems(), controller);
+            }
         }
     }
 

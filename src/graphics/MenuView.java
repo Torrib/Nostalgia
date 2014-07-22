@@ -32,12 +32,14 @@ import java.util.List;
 
 public class MenuView {
 
+    private Main main;
     private Stage stage;
     private ListView<MenuItem> list;
     private Label controllerLabel;
     private AudioClip menuSound;
 
     public MenuView(Main main){
+        this.main = main;
         stage = new Stage();
         stage.setTitle("Nostalgia menu");
         list = new ListView<>();
@@ -49,7 +51,6 @@ public class MenuView {
             @Override
             public void handle(KeyEvent keyEvent) {
                 if (keyEvent.getCode() == KeyCode.ENTER) {
-                    main.returnFocus();
                     hide();
                     main.command(list.getSelectionModel().getSelectedItem(), null);
                 }
@@ -141,7 +142,9 @@ public class MenuView {
     }
 
     public void hide(){
+        main.returnFocus();
         stage.hide();
+        main.command(main.getActiveWindowSettings().getPostMenuCommands());
     }
 
     public boolean isShowing(){

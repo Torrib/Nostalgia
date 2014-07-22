@@ -305,6 +305,8 @@ public class SettingsView {
             }
         });
 
+        windowEditList.setPadding(new Insets(25));
+
         Tab tab = new Tab();
         tab.setContent(windowEditList);
         tab.setText("Windows");
@@ -331,6 +333,8 @@ public class SettingsView {
                 openProgramView(programEditList.getSelected(), false);
             }
         });
+
+        programEditList.setPadding(new Insets(25));
 
         Tab tab = new Tab();
         tab.setContent(programEditList);

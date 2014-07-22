@@ -76,7 +76,6 @@ public class EditList<T> extends BorderPane {
 
         this.setCenter(list);
         this.setRight(buttons);
-        this.setPadding(new Insets(25));
         this.setMargin(list, new Insets(0, 10, 0, 0));
     }
 

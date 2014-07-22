@@ -126,8 +126,10 @@ public class CommandBox extends VBox{
 
                 switch (commandTypeCB.getSelectionModel().getSelectedIndex()){
                     case Command.KEY:
-                        commandList.getItems().add(new Command(command.isCtrl(), command.isAlt(),
-                                command.isShift(), command.getKeyCode(), Integer.parseInt(delayField.getText())));
+                        if(command.getKeyCode() != null) {
+                            commandList.getItems().add(new Command(command.isCtrl(), command.isAlt(),
+                                    command.isShift(), command.getKeyCode(), Integer.parseInt(delayField.getText())));
+                        }
                         break;
                     case Command.FUNCTION:
                         Command command = new Command(functionCombobox.getSelectionModel().getSelectedItem(),
@@ -201,6 +203,7 @@ public class CommandBox extends VBox{
                     command.setKeyCode(event.getCode());
                     detectKeyPressField.setText(command.toString());
                 }
+                event.consume();
             }
         });
 

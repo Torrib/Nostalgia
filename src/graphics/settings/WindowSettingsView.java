@@ -4,6 +4,7 @@ import graphics.utility.EditList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -11,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import models.Command;
 import models.Program;
 import models.Hotkey;
 import models.MenuItem;
@@ -20,10 +22,13 @@ import java.util.List;
 
 public class WindowSettingsView {
 
-    Stage stage;
-    EditList<MenuItem> menuEditList;
-    EditList<Hotkey> hotkeyList;
-    List<Program> programs;
+    private Stage stage;
+    private EditList<MenuItem> menuEditList;
+    private EditList<Hotkey> hotkeyList;
+    private List<Program> programs;
+
+    private List<Command> preMenuCommands;
+    private List<Command> postMenuCommands;
 
     public WindowSettingsView(SettingsView settingsView, WindowSetting windowSetting, boolean newItem, List<Program> programs){
         stage = new Stage();
@@ -32,6 +37,8 @@ public class WindowSettingsView {
         stage.initModality(Modality.WINDOW_MODAL);
 
         this.programs = programs;
+        preMenuCommands = windowSetting.getPreMenuComands();
+        postMenuCommands = windowSetting.getPostMenuCommands();
 
         Label nameLabel = new Label("Name");
         TextField nameField = new TextField(windowSetting.getName());
@@ -94,8 +101,40 @@ public class WindowSettingsView {
         cbGrid2.add(removeBorderLabel, 0, 1);
         cbGrid2.add(removeBorderCB, 1, 1);
 
+        Label preMenuLabel = new Label("Pre-menu Command");
+        Button preMenuButton = new Button("Edit");
+        preMenuLabel.setTooltip(new Tooltip("Command that will be executed before the menu is opened"));
+        preMenuButton.setTooltip(new Tooltip("Command that will be executed before the menu is opened"));
+
+        Label postMenuLabel = new Label("Post-menu Command");
+        Button postMenuButton = new Button("Edit");
+        postMenuLabel.setTooltip(new Tooltip("Command that will be executed after the menu is closed"));
+        postMenuButton.setTooltip(new Tooltip("Command that will be executed after the menu is closed"));
+
+        preMenuButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                openMenuCommandView(preMenuCommands, true);
+            }
+        });
+
+        postMenuButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                openMenuCommandView(postMenuCommands, false);
+            }
+        });
+
+        GridPane menuCommandPane = new GridPane();
+        menuCommandPane.setVgap(10);
+        menuCommandPane.setHgap(10);
+        menuCommandPane.add(preMenuLabel, 0, 0);
+        menuCommandPane.add(preMenuButton, 1, 0);
+        menuCommandPane.add(postMenuLabel, 0, 1);
+        menuCommandPane.add(postMenuButton, 1, 1);
+
         HBox centerBox = new HBox(20);
-        centerBox.getChildren().addAll(cbGrid, cbGrid2);
+        centerBox.getChildren().addAll(cbGrid, cbGrid2, new Label("        "), menuCommandPane);
 
         menuEditList = new EditList<MenuItem>(windowSetting.getMenuItems());
         menuEditList.getAddButton().setOnAction(new EventHandler<ActionEvent>() {
@@ -130,11 +169,16 @@ public class WindowSettingsView {
         });
 
 
+        VBox menuBox = new VBox(10);
+        menuBox.getChildren().addAll(new Label("Menu items"), menuEditList);
+
+        VBox hotkeyBox = new VBox(10);
+        hotkeyBox.getChildren().addAll(new Label("Hotkeys"), hotkeyList);
 
 
 
         HBox listBox = new HBox(20);
-        listBox.getChildren().addAll(menuEditList, hotkeyList);
+        listBox.getChildren().addAll(menuBox, hotkeyBox);
 
         Button saveButton = new Button("OK");
         Button cancelButton = new Button("Cancel");
@@ -151,6 +195,8 @@ public class WindowSettingsView {
                 windowSetting.setDisableHotkeys(disableHotkeysCB.isSelected());
                 windowSetting.setTopmost(onTopCB.isSelected());
                 windowSetting.setHotkeys(hotkeyList.getItems());
+                windowSetting.setPreMenuComands(preMenuCommands);
+                windowSetting.setPostMenuCommands(postMenuCommands);
 
                 if(newItem)
                     settingsView.addApplication(windowSetting);
@@ -167,8 +213,9 @@ public class WindowSettingsView {
             }
         });
 
-        HBox buttons = new HBox(50);
+        HBox buttons = new HBox(10);
         buttons.getChildren().addAll(saveButton, cancelButton);
+        buttons.setAlignment(Pos.CENTER_RIGHT);
 
         VBox vBox = new VBox(25);
         vBox.getChildren().addAll(topGrid, centerBox, listBox, buttons);
@@ -210,5 +257,17 @@ public class WindowSettingsView {
 
     public Stage getStage(){
         return stage;
+    }
+
+    private void openMenuCommandView(List<Command> commands, boolean preCommand){
+        new MenuCommandView(this, commands, programs, preCommand);
+    }
+
+    public void setPreMenuCommands(List<Command> commands){
+        preMenuCommands = commands;
+    }
+
+    public void setPostMenuCommands(List<Command> commands){
+        postMenuCommands = commands;
     }
 }

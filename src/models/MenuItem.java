@@ -2,14 +2,11 @@ package models;
 
 import interfaces.Item;
 import main.Main;
-import models.Command;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by thb on 06.07.2014.
- */
+
 public class MenuItem implements Item {
 
     private String displayName = "";
