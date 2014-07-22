@@ -1,15 +1,11 @@
 package graphics.settings;
 
 import graphics.utility.CommandBox;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -17,7 +13,6 @@ import javafx.stage.WindowEvent;
 import models.Program;
 import models.MenuItem;
 
-import javax.sound.midi.Soundbank;
 import java.util.List;
 
 public class MenuItemView{
@@ -34,20 +29,26 @@ public class MenuItemView{
         Label messageLabel = new Label("Message");
         TextField messageField = new TextField(menuItem.getMessage());
 
-        CommandBox commandBox = new CommandBox(menuItem.getCommands(), programs);
+        CommandBox commandBox = new CommandBox(menuItem.getCommands(), programs, stage);
 
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
-                menuItem.setDisplayName(nameField.getText());
-                menuItem.setMessage(messageField.getText());
-                menuItem.setCommands(commandBox.getItems());
+                if(commandBox.isIgnoreCloseRequest()){
+                    event.consume();
+                    commandBox.setIgnoreCloseRequest(false);
+                }
+                else {
+                    menuItem.setDisplayName(nameField.getText());
+                    menuItem.setMessage(messageField.getText());
+                    menuItem.setCommands(commandBox.getItems());
 
-                if(newItem)
-                    applicationView.addMenuItem(menuItem);
-                else
-                    applicationView.updateMenuItemList();
-                stage.close();
+                    if (newItem)
+                        applicationView.addMenuItem(menuItem);
+                    else
+                        applicationView.updateMenuItemList();
+                    stage.close();
+                }
             }
         });
 

@@ -1,5 +1,7 @@
 package graphics.utility;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -16,6 +18,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 import models.Function;
 import models.Program;
@@ -39,10 +42,11 @@ public class CommandBox extends VBox{
     private TextField enableMessageField;
     private TextField disableTextField;
     private TextField disableMessageField;
+    private boolean ignoreCloseRequest = false;
 
     boolean showingToggleInfo = false;
 
-    public CommandBox(List<Command> items, List<Program> programs){
+    public CommandBox(List<Command> items, List<Program> programs, Stage stage){
         super(10);
         command = new Command();
 
@@ -182,6 +186,17 @@ public class CommandBox extends VBox{
         VBox swapBox = new VBox(10);
         swapBox.getChildren().addAll(swapPane, addButton);
 
+        //Prevents the window from closing on alt+f4 press
+        stage.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(final KeyEvent event) {
+                if (event.getCode() == KeyCode.F4 && event.isAltDown()) {
+                    event.consume();
+                    ignoreCloseRequest = true;
+                }
+            }
+        });
+
         this.getChildren().addAll(commandList, commandGrid, swapBox);
     }
 
@@ -316,5 +331,13 @@ public class CommandBox extends VBox{
         grid.add(disableMessageField, 1, 3);
 
         return grid;
+    }
+
+    public boolean isIgnoreCloseRequest() {
+        return ignoreCloseRequest;
+    }
+
+    public void setIgnoreCloseRequest(boolean ignoreCloseRequest) {
+        this.ignoreCloseRequest = ignoreCloseRequest;
     }
 }

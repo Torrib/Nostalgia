@@ -36,7 +36,7 @@ public class NumberTextField extends TextField
 
     private boolean validate(String text)
     {
-        if (text.matches("[0-9]") || text == "")
+        if (text.matches("[0-9]*$") || text == "")
         {
             return true;
         }

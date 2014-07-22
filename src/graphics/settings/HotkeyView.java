@@ -39,22 +39,28 @@ public class HotkeyView {
         Label vibrateLabel = new Label("Vibrate");
         CheckBox vibrateCB = new CheckBox();
         vibrateCB.setSelected(hotkey.vibrate());
-        CommandBox commandBox = new CommandBox(hotkey.getCommands(), programs);
+        CommandBox commandBox = new CommandBox(hotkey.getCommands(), programs, stage);
 
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
-                hotkey.setButton(buttonCB.getSelectionModel().getSelectedIndex());
-                hotkey.setMessage(messageField.getText());
-                hotkey.setDisplayTime(Integer.parseInt(displayTimeField.getText()));
-                hotkey.setVibrate(vibrateCB.isSelected());
-                hotkey.setCommands(commandBox.getItems());
+                if(commandBox.isIgnoreCloseRequest()){
+                    event.consume();
+                    commandBox.setIgnoreCloseRequest(false);
+                }
+                else {
+                    hotkey.setButton(buttonCB.getSelectionModel().getSelectedIndex());
+                    hotkey.setMessage(messageField.getText());
+                    hotkey.setDisplayTime(Integer.parseInt(displayTimeField.getText()));
+                    hotkey.setVibrate(vibrateCB.isSelected());
+                    hotkey.setCommands(commandBox.getItems());
 
-                if(newItem)
-                    applicationView.addHotkey(hotkey);
-                else
-                    applicationView.updateHotkeyList();
-                stage.close();
+                    if (newItem)
+                        applicationView.addHotkey(hotkey);
+                    else
+                        applicationView.updateHotkeyList();
+                    stage.close();
+                }
             }
         });
 

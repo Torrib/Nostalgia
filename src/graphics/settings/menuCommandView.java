@@ -21,19 +21,25 @@ public class MenuCommandView {
         stage.initOwner(applicationView.getStage());
         stage.initModality(Modality.WINDOW_MODAL);
 
-        CommandBox commandBox = new CommandBox(commands, programs);
+        CommandBox commandBox = new CommandBox(commands, programs, stage);
 
         commandBox.setPadding(new Insets(15));
 
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
-                if(preMenuCommand)
-                    applicationView.setPreMenuCommands(commandBox.getItems());
-                else
-                    applicationView.setPostMenuCommands(commandBox.getItems());
+                if(commandBox.isIgnoreCloseRequest()){
+                    event.consume();
+                    commandBox.setIgnoreCloseRequest(false);
+                }
+                else {
+                    if (preMenuCommand)
+                        applicationView.setPreMenuCommands(commandBox.getItems());
+                    else
+                        applicationView.setPostMenuCommands(commandBox.getItems());
 
-                stage.close();
+                    stage.close();
+                }
             }
         });
 
