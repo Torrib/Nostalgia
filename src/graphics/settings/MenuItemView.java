@@ -39,6 +39,10 @@ public class MenuItemView{
                     commandBox.setIgnoreCloseRequest(false);
                 }
                 else {
+                    if(nameField.getText().isEmpty()){
+                        nameField.setStyle("-fx-border-color: red;-fx-border-style: round|outside");
+                        return;
+                    }
                     menuItem.setDisplayName(nameField.getText());
                     menuItem.setMessage(messageField.getText());
                     menuItem.setCommands(commandBox.getItems());

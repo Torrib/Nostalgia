@@ -186,6 +186,14 @@ public class WindowSettingsView {
         saveButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                if(nameField.getText().isEmpty()){
+                    nameField.setStyle("-fx-border-color: red;-fx-border-style: round|outside");
+                    return;
+                }
+                if(applicationField.getText().isEmpty()){
+                    applicationField.setStyle("-fx-border-color: red;-fx-border-style: round|outside");
+                    return;
+                }
                 windowSetting.setMenuItems(menuEditList.getItems());
                 windowSetting.setDisableMessages(disableMessagesCB.isSelected());
                 windowSetting.setName(nameField.getText());

@@ -101,14 +101,11 @@ public class MenuView {
         controllerLabel = new Label();
         controllerLabel.setTextFill(Color.WHITE);
         controllerLabel.setFont(Font.font(Main.SETTINGS.getMenuFont(), Main.SETTINGS.getMenuFontSize()));
-        controllerLabel.setPadding(new Insets(primaryScreenBounds.getHeight() / 5, 0, 0, (primaryScreenBounds.getWidth() / 2) - 55));
+        controllerLabel.setPadding(new Insets(primaryScreenBounds.getHeight() / 5, 0, primaryScreenBounds.getHeight() / 5, (primaryScreenBounds.getWidth() / 2) - 55));
 
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(controllerLabel);
-        borderPane.setBottom(list);
-
-//        list.setMaxHeight(200);
-//        list.setLayoutY(500);
+        borderPane.setCenter(list);
 
         borderPane.setStyle("-fx-background-color: transparent;");
 

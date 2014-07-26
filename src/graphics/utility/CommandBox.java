@@ -1,7 +1,5 @@
 package graphics.utility;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -18,7 +16,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 import models.Function;
 import models.Program;
@@ -59,7 +56,20 @@ public class CommandBox extends VBox{
         commandList.setCellFactory(new Callback<ListView<Command>, ListCell<Command>>() {
             @Override
             public ListCell<Command> call(ListView<Command> param) {
-                return new RemovableCell<>(observableCommands, 100);
+                DraggableRemovableCell<Command> cell = new DraggableRemovableCell<Command>(observableCommands, 100);
+                cell.init(observableCommands);
+                return cell;
+            }
+        });
+
+        commandList.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode().equals(KeyCode.DELETE)){
+                    if(commandList.getSelectionModel().getSelectedItem() != null){
+                        commandList.getItems().remove(commandList.getSelectionModel().getSelectedItem());
+                    }
+                }
             }
         });
 

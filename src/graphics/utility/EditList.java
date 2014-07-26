@@ -98,6 +98,7 @@ public class EditList<T> extends BorderPane {
     public void update(){
         list.setItems(null);
         list.setItems(getItems());
+        list.getSelectionModel().select(-1);
     }
 
     public T getSelected(){

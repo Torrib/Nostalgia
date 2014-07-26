@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import main.PredefinedProgramCommands;
 import models.Program;
 
 import java.io.File;
@@ -27,6 +28,8 @@ public class ProgramView {
         stage.setTitle(newItem ? "Add Program" : "Edit program");
         stage.initOwner(settingsView.getStage());
         stage.initModality(Modality.WINDOW_MODAL);
+
+        PredefinedProgramCommands programCommands = new PredefinedProgramCommands();
 
         Label nameLabel = new Label("Name");
         TextField nameField = new TextField(program.getName());
@@ -53,8 +56,13 @@ public class ProgramView {
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("Select file to run");
                 File file = fileChooser.showOpenDialog(stage);
-                if(file != null)
+                if(file != null) {
                     pathField.setText(file.getAbsolutePath());
+                    int index = file.getName().lastIndexOf('.');
+                    String extension = file.getName().substring(index);
+                    preCommandField.setText(programCommands.getPreString(extension));
+                    preCommandField.setText(programCommands.getPostString(extension));
+                }
             }
         });
 
@@ -68,17 +76,25 @@ public class ProgramView {
         saveButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                program.setName(nameField.getText());
-                program.setPreCommand(preCommandField.getText());
-                program.setPostCommand(postCommandField.getText());
-                program.setPath(pathField.getText());
+                if(nameField.getText().isEmpty()){
+                    nameField.setStyle("-fx-border-color: red;");
+                }
+                else if(pathField.getText().isEmpty()){
+                    pathField.setStyle("-fx-border-color: red;");
+                }
+                else {
+                    program.setName(nameField.getText());
+                    program.setPreCommand(preCommandField.getText());
+                    program.setPostCommand(postCommandField.getText());
+                    program.setPath(pathField.getText());
 
-                if(newItem)
-                    settingsView.addProgram(program);
-                else
-                    settingsView.updateProgramList();
+                    if (newItem)
+                        settingsView.addProgram(program);
+                    else
+                        settingsView.updateProgramList();
 
-                stage.close();
+                    stage.close();
+                }
             }
         });
 

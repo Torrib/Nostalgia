@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.InvocationTargetException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,6 +28,7 @@ import models.Command;
 import models.Program;
 import settings.Settings;
 import settings.WindowSetting;
+import windows.Registry;
 
 
 public class Main extends Thread
@@ -56,15 +58,6 @@ public class Main extends Thread
 		outputHandler = new OutputHandler(this);
 		osHandler = getOsHandler();
 		startWindowPulling(SETTINGS.getWindowPullDelay());
-//        try {
-//
-//            WinRegistry.writeStringValue(WinRegistry.HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
-//                    "Nostalgia", "C:\\Users\\thb\\Documents\\GitHub\\Nostalgia\\out\\artifacts\\Nostalgia\\bundles\\Nostalgia\\Nostalgia.exe");
-//        } catch (IllegalAccessException e) {
-//            e.printStackTrace();
-//        } catch (InvocationTargetException e) {
-//            e.printStackTrace();
-//        }
     }
 	
 	private void loadControllers()

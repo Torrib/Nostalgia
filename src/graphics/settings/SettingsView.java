@@ -349,6 +349,8 @@ public class SettingsView {
     private void openApplicationView(WindowSetting windowSetting, boolean newSetting){
         if(windowSetting != null)
             new WindowSettingsView(this, windowSetting, newSetting, settings.getPrograms());
+        else
+            System.out.println("Null");
     }
 
     public void addApplication(WindowSetting windowSetting){
