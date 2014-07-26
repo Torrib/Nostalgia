@@ -1,8 +1,6 @@
 package settings;
 
-import models.Command;
-import models.Hotkey;
-import models.MenuItem;
+import models.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +25,10 @@ public class WindowSetting {
 
     private List<MenuItem> menuItems = new ArrayList<>();
     private List<Hotkey> hotkeys = new ArrayList<>();
+
+    public WindowSetting(){
+        menuItems.add(new MenuItem("Continue", ""));
+    }
 
     public String getName() {
         return name;

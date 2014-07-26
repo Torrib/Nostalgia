@@ -145,9 +145,9 @@ public class CommandBox extends VBox{
                         Command command = new Command(functionCombobox.getSelectionModel().getSelectedItem(),
                                 Integer.parseInt(delayField.getText()));
                         if(command.getFunction().isToggle()){
-                            command.setEnableDisplay(enableTextField.getText());
+                            command.setEnableMenuText(enableTextField.getText());
                             command.setEnableMessage(enableMessageField.getText());
-                            command.setDisableDisplay(disableTextField.getText());
+                            command.setDisableMenuText(disableTextField.getText());
                             command.setDisableMessage(disableMessageField.getText());
                         }
 
@@ -176,9 +176,9 @@ public class CommandBox extends VBox{
                         break;
                     case Command.FUNCTION:
                         functionCombobox.getSelectionModel().select(newValue.getFunction());
-                        enableTextField.setText(newValue.getEnableDisplay());
+                        enableTextField.setText(newValue.getEnableMenuText());
                         enableMessageField.setText(newValue.getEnableMessage());
-                        disableTextField.setText(newValue.getDisableDisplay());
+                        disableTextField.setText(newValue.getDisableMenuText());
                         disableMessageField.setText(newValue.getDisableMessage());
                         break;
                     case Command.PROGRAM:

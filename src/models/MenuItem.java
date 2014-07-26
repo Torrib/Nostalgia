@@ -65,8 +65,8 @@ public class MenuItem implements Item {
         for(Command command : commands){
             if(command.getCommandType() == Command.FUNCTION){
                 if(command.getFunction().isToggle()){
-                    if(command.getEnableDisplay() != null && command.getDisableDisplay() != null){
-                        return Main.SETTINGS.isDisableHotkeys() ? command.getEnableDisplay() : command.getDisableDisplay();
+                    if(!command.getEnableMenuText().isEmpty() && !command.getDisableMenuText().isEmpty()){
+                        return Main.SETTINGS.isDisableHotkeys() ? command.getEnableMenuText() : command.getDisableMenuText();
                     }
                 }
             }

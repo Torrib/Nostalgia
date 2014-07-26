@@ -7,15 +7,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="df7bf621-27b8-42b5-8b21-f40795c37836" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/KeyCommand.java" />
-      <change type="MOVED" beforePath="C:\Users\thb\Documents\GitHub\Nostalgia\src\graphics\settings\menuCommandView.java" afterPath="$PROJECT_DIR$/src/graphics/settings/MenuCommandView.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/graphics/utility/DraggableCell.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/models/Command.java" afterPath="$PROJECT_DIR$/src/models/Command.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/utility/CommandBox.java" afterPath="$PROJECT_DIR$/src/graphics/utility/CommandBox.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/settings/HotkeyView.java" afterPath="$PROJECT_DIR$/src/graphics/settings/HotkeyView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/settings/MenuItemView.java" afterPath="$PROJECT_DIR$/src/graphics/settings/MenuItemView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/OutputHandler.java" afterPath="$PROJECT_DIR$/src/main/OutputHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/utility/EditList.java" afterPath="$PROJECT_DIR$/src/graphics/utility/EditList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/models/MenuItem.java" afterPath="$PROJECT_DIR$/src/models/MenuItem.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/settings/SettingsView.java" afterPath="$PROJECT_DIR$/src/graphics/settings/SettingsView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/settings/WindowSetting.java" afterPath="$PROJECT_DIR$/src/settings/WindowSetting.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphics/settings/WindowSettingsView.java" afterPath="$PROJECT_DIR$/src/graphics/settings/WindowSettingsView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log.txt" afterPath="$PROJECT_DIR$/log.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.json" afterPath="$PROJECT_DIR$/settings.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Nostalgia.iws" />
@@ -42,8 +43,8 @@
       <file leaf-file-name="CommandBox.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/graphics/utility/CommandBox.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3252" max-vertical-offset="5661">
-              <caret line="217" column="75" selection-start-line="217" selection-start-column="75" selection-end-line="217" selection-end-column="75" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="407" max-vertical-offset="5661">
+              <caret line="56" column="21" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -59,58 +60,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Command.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/models/Command.java">
+      <file leaf-file-name="EditList.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/graphics/utility/EditList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="855" max-vertical-offset="1360">
-              <caret line="106" column="39" selection-start-line="106" selection-start-column="39" selection-end-line="106" selection-end-column="39" />
-              <folding>
-                <element signature="method#Command#1;class#Command#0" expanded="false" />
-                <element signature="method#Command#2;class#Command#0" expanded="false" />
-                <element signature="method#Command#3;class#Command#0" expanded="false" />
-                <element signature="e#2316#2317#0" expanded="true" />
-                <element signature="e#2372#2373#0" expanded="true" />
-                <element signature="e#2416#2417#0" expanded="true" />
-                <element signature="method#toString#0;class#Command#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="KeyCommand.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/models/KeyCommand.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.72357726" vertical-offset="702" max-vertical-offset="1071">
-              <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-              <folding>
-                <element signature="e#1126#1127#0" expanded="true" />
-                <element signature="e#1156#1157#0" expanded="true" />
-                <element signature="e#1203#1204#0" expanded="true" />
-                <element signature="e#1241#1242#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WindowSettingsView.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphics/settings/WindowSettingsView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2584" max-vertical-offset="4165">
-              <caret line="222" column="0" selection-start-line="222" selection-start-column="0" selection-end-line="222" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="200" max-vertical-offset="1717">
+              <caret line="39" column="32" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="32" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MenuItemView.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphics/settings/MenuItemView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="798" max-vertical-offset="1394">
-              <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="81" selection-end-column="65" />
-              <folding>
-                <element signature="e#2652#2653#0" expanded="true" />
-                <element signature="e#2697#2698#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -118,22 +73,19 @@
       <file leaf-file-name="SettingsView.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/graphics/settings/SettingsView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="393" max-vertical-offset="6545">
-              <caret line="45" column="26" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="4821" max-vertical-offset="6545">
+              <caret line="314" column="30" selection-start-line="314" selection-start-column="30" selection-end-line="314" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HotkeyView.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphics/settings/HotkeyView.java">
+      <file leaf-file-name="DraggableCell.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/graphics/utility/DraggableCell.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="947" max-vertical-offset="1530">
-              <caret line="84" column="30" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="30" />
-              <folding>
-                <element signature="e#3196#3197#0" expanded="true" />
-                <element signature="e#3241#3242#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="-5.0612245" vertical-offset="2086" max-vertical-offset="2669">
+              <caret line="18" column="66" selection-start-line="18" selection-start-column="66" selection-end-line="18" selection-end-column="66" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -175,9 +127,7 @@
         <option value="$PROJECT_DIR$/src/main/GuiManager.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/WinRegistry.java" />
-        <option value="$PROJECT_DIR$/src/models/MenuItem.java" />
         <option value="$PROJECT_DIR$/src/graphics/settings/menuCommandView.java" />
-        <option value="$PROJECT_DIR$/src/settings/WindowSetting.java" />
         <option value="$PROJECT_DIR$/src/graphics/utility/NumberTextField.java" />
         <option value="$PROJECT_DIR$/src/windows/Registry.java" />
         <option value="$PROJECT_DIR$/src/main/Main.java" />
@@ -185,11 +135,7 @@
         <option value="$PROJECT_DIR$/src/graphics/settings/ProgramView.java" />
         <option value="$PROJECT_DIR$/src/graphics/utility/DragableCell.java" />
         <option value="$PROJECT_DIR$/src/graphics/utility/RemovableCell.java" />
-        <option value="$PROJECT_DIR$/src/graphics/utility/DraggableCell.java" />
-        <option value="$PROJECT_DIR$/src/graphics/utility/DraggableRemovableCell.java" />
         <option value="$PROJECT_DIR$/src/graphics/MenuView.java" />
-        <option value="$PROJECT_DIR$/src/graphics/settings/WindowSettingsView.java" />
-        <option value="$PROJECT_DIR$/src/graphics/utility/EditList.java" />
         <option value="$PROJECT_DIR$/src/controller/ControllerStructure.java" />
         <option value="$PROJECT_DIR$/src/controller/Controller.java" />
         <option value="$PROJECT_DIR$/src/controller/ControllerInterface.java" />
@@ -197,12 +143,18 @@
         <option value="$PROJECT_DIR$/src/graphics/settings/MenuItemView.java" />
         <option value="$PROJECT_DIR$/src/graphics/settings/HotkeyView.java" />
         <option value="$PROJECT_DIR$/src/graphics/settings/MenuCommandView.java" />
-        <option value="$PROJECT_DIR$/src/graphics/settings/SettingsView.java" />
         <option value="$PROJECT_DIR$/src/models/KeyPress.java" />
-        <option value="$PROJECT_DIR$/src/models/Command.java" />
         <option value="$PROJECT_DIR$/src/main/OutputHandler.java" />
         <option value="$PROJECT_DIR$/src/graphics/utility/CommandBox.java" />
         <option value="$PROJECT_DIR$/src/models/KeyCommand.java" />
+        <option value="$PROJECT_DIR$/src/models/Command.java" />
+        <option value="$PROJECT_DIR$/src/models/MenuItem.java" />
+        <option value="$PROJECT_DIR$/src/settings/WindowSetting.java" />
+        <option value="$PROJECT_DIR$/src/graphics/utility/DraggableRemovableCell.java" />
+        <option value="$PROJECT_DIR$/src/graphics/utility/EditList.java" />
+        <option value="$PROJECT_DIR$/src/graphics/settings/WindowSettingsView.java" />
+        <option value="$PROJECT_DIR$/src/graphics/settings/SettingsView.java" />
+        <option value="$PROJECT_DIR$/src/graphics/utility/DraggableCell.java" />
       </list>
     </option>
   </component>
@@ -454,6 +406,9 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Controller.dll" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="graphics.utility" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\thb\Documents\GitHub\Nostalgia\src\graphics\utility" />
     </key>
@@ -641,14 +596,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-16" y="2" width="1382" height="742" extended-state="1" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32626426" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32569557" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39967373" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -661,7 +616,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19818456" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31260228" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31260228" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -694,13 +649,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/graphics/settings/BorderTitledPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="127" max-vertical-offset="561">
-          <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/settings/Settings.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2686" max-vertical-offset="3298">
@@ -883,13 +831,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/MenuItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4746193" vertical-offset="0" max-vertical-offset="1139">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/WinRegistry.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4690027" vertical-offset="4042" max-vertical-offset="6579">
@@ -919,13 +860,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/settings/WindowSetting.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.9784367" vertical-offset="0" max-vertical-offset="1445">
-          <caret line="110" column="46" selection-start-line="110" selection-start-column="46" selection-end-line="110" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/windows/Registry.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
@@ -940,26 +874,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphics/utility/DraggableRemovableCell.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="762" max-vertical-offset="3451">
-          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/graphics/MenuView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="520" max-vertical-offset="2142">
           <caret line="87" column="33" selection-start-line="87" selection-start-column="33" selection-end-line="87" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphics/utility/EditList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="922" max-vertical-offset="1530">
-          <caret line="91" column="5" selection-start-line="91" selection-start-column="5" selection-end-line="91" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -1003,33 +921,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphics/settings/WindowSettingsView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2584" max-vertical-offset="4165">
-          <caret line="222" column="0" selection-start-line="222" selection-start-column="0" selection-end-line="222" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphics/settings/MenuItemView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="798" max-vertical-offset="1394">
-          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="81" selection-end-column="65" />
-          <folding>
-            <element signature="e#2652#2653#0" expanded="true" />
-            <element signature="e#2697#2698#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphics/settings/SettingsView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="393" max-vertical-offset="6545">
-          <caret line="45" column="26" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/graphics/settings/MenuCommandView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6096939" vertical-offset="577" max-vertical-offset="1088">
@@ -1046,8 +937,89 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="947" max-vertical-offset="1530">
           <caret line="84" column="30" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="30" />
           <folding>
-            <element signature="e#3196#3197#0" expanded="true" />
-            <element signature="e#3241#3242#0" expanded="true" />
+            <element signature="e#3196#3197#0" expanded="false" />
+            <element signature="e#3241#3242#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/Command.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36856368" vertical-offset="0" max-vertical-offset="1360">
+          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+          <folding>
+            <element signature="method#Command#1;class#Command#0" expanded="false" />
+            <element signature="method#Command#2;class#Command#0" expanded="false" />
+            <element signature="method#Command#3;class#Command#0" expanded="false" />
+            <element signature="e#2297#2298#0" expanded="true" />
+            <element signature="e#2330#2331#0" expanded="true" />
+            <element signature="e#2386#2387#0" expanded="true" />
+            <element signature="e#2430#2431#0" expanded="true" />
+            <element signature="method#toString#0;class#Command#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphics/utility/EditList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="200" max-vertical-offset="1717">
+          <caret line="39" column="32" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphics/settings/WindowSettingsView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.88617885" vertical-offset="2104" max-vertical-offset="4199">
+          <caret line="167" column="13" selection-start-line="167" selection-start-column="13" selection-end-line="167" selection-end-column="13" />
+          <folding>
+            <element signature="e#6292#6293#0" expanded="true" />
+            <element signature="e#6362#6363#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/MenuItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.58536583" vertical-offset="668" max-vertical-offset="1139">
+          <caret line="68" column="122" selection-start-line="68" selection-start-column="104" selection-end-line="68" selection-end-column="122" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphics/settings/MenuItemView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37127373" vertical-offset="798" max-vertical-offset="1394">
+          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+          <folding>
+            <element signature="e#2652#2653#0" expanded="true" />
+            <element signature="e#2697#2698#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/KeyCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.8292683" vertical-offset="294" max-vertical-offset="1071">
+          <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+          <folding>
+            <element signature="e#1126#1127#0" expanded="true" />
+            <element signature="e#1156#1157#0" expanded="true" />
+            <element signature="e#1203#1204#0" expanded="true" />
+            <element signature="e#1241#1242#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/settings/WindowSetting.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1734694" vertical-offset="306" max-vertical-offset="1513">
+          <caret line="25" column="36" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="36" />
+          <folding>
+            <element signature="e#751#752#0" expanded="true" />
+            <element signature="e#810#811#0" expanded="true" />
+            <element signature="e#2594#2595#0" expanded="true" />
+            <element signature="e#2631#2632#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1060,40 +1032,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/Command.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="855" max-vertical-offset="1360">
-          <caret line="106" column="39" selection-start-line="106" selection-start-column="39" selection-end-line="106" selection-end-column="39" />
-          <folding>
-            <element signature="method#Command#1;class#Command#0" expanded="false" />
-            <element signature="method#Command#2;class#Command#0" expanded="false" />
-            <element signature="method#Command#3;class#Command#0" expanded="false" />
-            <element signature="e#2316#2317#0" expanded="true" />
-            <element signature="e#2372#2373#0" expanded="true" />
-            <element signature="e#2416#2417#0" expanded="true" />
-            <element signature="method#toString#0;class#Command#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/graphics/utility/CommandBox.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3252" max-vertical-offset="5661">
-          <caret line="217" column="75" selection-start-line="217" selection-start-column="75" selection-end-line="217" selection-end-column="75" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="407" max-vertical-offset="5661">
+          <caret line="56" column="21" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/KeyCommand.java">
+    <entry file="file://$PROJECT_DIR$/src/graphics/settings/SettingsView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.72357726" vertical-offset="702" max-vertical-offset="1071">
-          <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-          <folding>
-            <element signature="e#1126#1127#0" expanded="true" />
-            <element signature="e#1156#1157#0" expanded="true" />
-            <element signature="e#1203#1204#0" expanded="true" />
-            <element signature="e#1241#1242#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="4821" max-vertical-offset="6545">
+          <caret line="314" column="30" selection-start-line="314" selection-start-column="30" selection-end-line="314" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphics/utility/DraggableRemovableCell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44387755" vertical-offset="30" max-vertical-offset="3009">
+          <caret line="30" column="45" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphics/utility/DraggableCell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.0612245" vertical-offset="2086" max-vertical-offset="2669">
+          <caret line="18" column="66" selection-start-line="18" selection-start-column="66" selection-end-line="18" selection-end-column="66" />
+          <folding />
         </state>
       </provider>
     </entry>

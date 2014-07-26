@@ -12,8 +12,8 @@ public class Command {
 
     private Function function;
 
-    private String enableDisplay = "";
-    private String disableDisplay = "";
+    private String enableMenuText = "";
+    private String disableMenuText = "";
     private String enableMessage = "";
     private String disableMessage = "";
 
@@ -72,20 +72,20 @@ public class Command {
         this.program = program;
     }
 
-    public String getEnableDisplay() {
-        return enableDisplay;
+    public String getEnableMenuText() {
+        return enableMenuText;
     }
 
-    public void setEnableDisplay(String enableDisplay) {
-        this.enableDisplay = enableDisplay;
+    public void setEnableMenuText(String enableMenuText) {
+        this.enableMenuText = enableMenuText;
     }
 
-    public String getDisableDisplay() {
-        return disableDisplay;
+    public String getDisableMenuText() {
+        return disableMenuText;
     }
 
-    public void setDisableDisplay(String disableDisplay) {
-        this.disableDisplay = disableDisplay;
+    public void setDisableMenuText(String disableMenuText) {
+        this.disableMenuText = disableMenuText;
     }
 
     public String getEnableMessage() {

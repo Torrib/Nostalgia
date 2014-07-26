@@ -136,7 +136,7 @@ public class WindowSettingsView {
         HBox centerBox = new HBox(20);
         centerBox.getChildren().addAll(cbGrid, cbGrid2, new Label("        "), menuCommandPane);
 
-        menuEditList = new EditList<MenuItem>(windowSetting.getMenuItems());
+        menuEditList = new EditList<MenuItem>(windowSetting.getMenuItems(), true);
         menuEditList.getAddButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -151,7 +151,7 @@ public class WindowSettingsView {
             }
         });
 
-        hotkeyList = new EditList<>(windowSetting.getHotkeys());
+        hotkeyList = new EditList<>(windowSetting.getHotkeys(), false);
 
         hotkeyList.getAddButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override

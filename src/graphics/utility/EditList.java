@@ -6,11 +6,13 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 
 import java.io.File;
 import java.util.List;
@@ -25,24 +27,35 @@ public class EditList<T> extends BorderPane {
     private Button editButton;
     private ObservableList<T> oItems;
 
-    public EditList(List<T> items){
+    public EditList(List<T> items, boolean draggable){
         super();
-
-        setup(items);
+        setup(items, draggable);
     }
 
-    public EditList(List<T> items, double width, double height){
+    public EditList(List<T> items, boolean draggable, double width, double height){
         super();
 
-        setup(items);
+        setup(items, draggable);
         this.setMaxHeight(height);
         this.setMaxWidth(width);
     }
 
-    private void setup(List<T> items){
+    private void setup(List<T> items, boolean draggable){
         list = new ListView<>();
         oItems = FXCollections.observableArrayList(items);
         list.setItems(oItems);
+
+        if(draggable) {
+
+            list.setCellFactory(new Callback<ListView<T>, ListCell<T>>() {
+                @Override
+                public ListCell<T> call(ListView<T> param) {
+                    DraggableCell cell = new DraggableCell<T>();
+                    cell.init(oItems);
+                    return cell;
+                }
+            });
+        }
 
         ImageView addImage = new ImageView(new Image(getClass().getResourceAsStream("/resources/add.png")));
         ImageView removeImage = new ImageView(new Image(getClass().getResourceAsStream("/resources/remove.png")));

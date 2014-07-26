@@ -290,7 +290,7 @@ public class SettingsView {
 
     private Tab createWindowsTab(){
 
-        windowEditList = new EditList<>(settings.getWindowSettings());
+        windowEditList = new EditList<>(settings.getWindowSettings(), false);
 
         windowEditList.getAddButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -319,7 +319,7 @@ public class SettingsView {
 
     private Tab createProgramTab(){
 
-        programEditList = new EditList<>(settings.getPrograms());
+        programEditList = new EditList<>(settings.getPrograms(), false);
 
         programEditList.getAddButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override
