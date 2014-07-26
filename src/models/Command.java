@@ -1,7 +1,5 @@
 package models;
 
-import javafx.scene.input.KeyCode;
-
 public class Command {
 
     public static final int KEY = 0;
@@ -10,10 +8,7 @@ public class Command {
 
     private int commandType = KEY;
 
-    private boolean ctrl = false;
-    private boolean alt = false;
-    private boolean shift = false;
-    private KeyCode keyCode;
+    private KeyCommand keyCommand;
 
     private Function function;
 
@@ -30,12 +25,9 @@ public class Command {
 
     }
 
-    public Command(boolean ctrl, boolean alt, boolean shift, KeyCode keyCode, int delay) {
+    public Command(KeyCommand keyCommand, int delay) {
         this.commandType = KEY;
-        this.ctrl = ctrl;
-        this.alt = alt;
-        this.shift = shift;
-        this.keyCode = keyCode;
+        this.keyCommand = keyCommand;
         this.delay = delay;
     }
 
@@ -49,39 +41,6 @@ public class Command {
         this.commandType = PROGRAM;
         this.program = program;
         this.delay = delay;
-    }
-
-
-    public boolean isCtrl() {
-        return ctrl;
-    }
-
-    public void setCtrl(boolean ctrl) {
-        this.ctrl = ctrl;
-    }
-
-    public boolean isAlt() {
-        return alt;
-    }
-
-    public void setAlt(boolean alt) {
-        this.alt = alt;
-    }
-
-    public boolean isShift() {
-        return shift;
-    }
-
-    public void setShift(boolean shift) {
-        this.shift = shift;
-    }
-
-    public KeyCode getKeyCode() {
-        return keyCode;
-    }
-
-    public void setKeyCode(KeyCode keyCode) {
-        this.keyCode = keyCode;
     }
 
     public int getDelay() {
@@ -145,16 +104,18 @@ public class Command {
         this.disableMessage = disableMessage;
     }
 
-    public String toString(){
-        String result = "";
+    public KeyCommand getKeyCommand() {
+        return keyCommand;
+    }
 
+    public void setKeyCommand(KeyCommand keyCommand) {
+        this.keyCommand = keyCommand;
+    }
+
+    public String toString(){
         switch (commandType) {
             case KEY:
-                result += ctrl ? "CTRL+" : "";
-                result += alt ? "ALT+" : "";
-                result += shift ? "Shift+" : "";
-                result += keyCode.toString();
-                return result;
+                return keyCommand.toString();
             case FUNCTION:
                 return function.getName() + "()";
             case PROGRAM:

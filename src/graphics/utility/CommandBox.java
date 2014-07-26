@@ -17,10 +17,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import models.Function;
-import models.Program;
-import models.Command;
-import models.Functions;
+import models.*;
 
 import java.util.List;
 
@@ -29,7 +26,7 @@ public class CommandBox extends VBox{
 
     private ComboBox<Function> functionCombobox;
     private ComboBox<Program> programCombobox;
-    private Command command;
+    private KeyCommand keyCommand;
     private TextField delayField;
     private ListView<Command> commandList;
 
@@ -45,7 +42,7 @@ public class CommandBox extends VBox{
 
     public CommandBox(List<Command> items, List<Program> programs, Stage stage){
         super(10);
-        command = new Command();
+        keyCommand = new KeyCommand();
 
         ObservableList<Command> observableCommands = FXCollections.observableArrayList(items);
 
@@ -56,7 +53,7 @@ public class CommandBox extends VBox{
         commandList.setCellFactory(new Callback<ListView<Command>, ListCell<Command>>() {
             @Override
             public ListCell<Command> call(ListView<Command> param) {
-                DraggableRemovableCell<Command> cell = new DraggableRemovableCell<Command>(observableCommands, 100);
+                DraggableRemovableCell<Command> cell = new DraggableRemovableCell<>(observableCommands, 100);
                 cell.init(observableCommands);
                 return cell;
             }
@@ -115,7 +112,7 @@ public class CommandBox extends VBox{
 
         Label delayLabel = new Label("Delay");
         delayLabel.setTooltip(new Tooltip("The delay to wait before performing the command"));
-        delayField = new NumberTextField(command.getDelay());
+        delayField = new NumberTextField("200");
 
         GridPane commandGrid = new GridPane();
         commandGrid.setHgap(10);
@@ -140,9 +137,8 @@ public class CommandBox extends VBox{
 
                 switch (commandTypeCB.getSelectionModel().getSelectedIndex()){
                     case Command.KEY:
-                        if(command.getKeyCode() != null) {
-                            commandList.getItems().add(new Command(command.isCtrl(), command.isAlt(),
-                                    command.isShift(), command.getKeyCode(), Integer.parseInt(delayField.getText())));
+                        if(keyCommand.getKeyCode() != null) {
+                            commandList.getItems().add(new Command(keyCommand, Integer.parseInt(delayField.getText())));
                         }
                         break;
                     case Command.FUNCTION:
@@ -204,6 +200,7 @@ public class CommandBox extends VBox{
                     event.consume();
                     ignoreCloseRequest = true;
                 }
+                event.consume();
             }
         });
 
@@ -221,12 +218,14 @@ public class CommandBox extends VBox{
         detectKeyPressField.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                if (!event.getCode().equals(KeyCode.CONTROL) && !event.getCode().equals(KeyCode.ALT) && !event.getCode().equals(KeyCode.SHIFT)){
-                    command.setShift(event.isShiftDown());
-                    command.setCtrl(event.isControlDown());
-                    command.setAlt(event.isAltDown());
-                    command.setKeyCode(event.getCode());
-                    detectKeyPressField.setText(command.toString());
+                if (!event.getCode().equals(KeyCode.CONTROL) && !event.getCode().equals(KeyCode.ALT)
+                        && !event.getCode().equals(KeyCode.SHIFT) && !event.getCode().equals(KeyCode.WINDOWS)){
+                    keyCommand.setShift(event.isShiftDown());
+                    keyCommand.setCtrl(event.isControlDown());
+                    keyCommand.setAlt(event.isAltDown());
+                    keyCommand.setWindows(event.isMetaDown());
+                    keyCommand.setKeyCode(event.getCode());
+                    detectKeyPressField.setText(keyCommand.toString());
                 }
                 event.consume();
             }

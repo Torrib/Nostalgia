@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -41,14 +42,28 @@ public class HotkeyView {
         vibrateCB.setSelected(hotkey.vibrate());
         CommandBox commandBox = new CommandBox(hotkey.getCommands(), programs, stage);
 
-        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+        GridPane grid = new GridPane();
+        grid.setVgap(10);
+        grid.setHgap(10);
+        grid.add(buttonLabel, 0, 0);
+        grid.add(buttonCB, 1, 0);
+        grid.add(messageLabel, 0, 1);
+        grid.add(messageField, 1, 1);
+        grid.add(displayTimeLabel, 0, 2);
+        grid.add(displayTimeField, 1, 2);
+        grid.add(vibrateLabel, 0, 3);
+        grid.add(vibrateCB, 1, 3);
+
+        Button saveButton = new Button("Save");
+        Button cancelButton = new Button("Cancel");
+
+        saveButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(WindowEvent event) {
-                if(commandBox.isIgnoreCloseRequest()){
+            public void handle(ActionEvent event) {
+                if (commandBox.isIgnoreCloseRequest()) {
                     event.consume();
                     commandBox.setIgnoreCloseRequest(false);
-                }
-                else {
+                } else {
                     hotkey.setButton(buttonCB.getSelectionModel().getSelectedIndex());
                     hotkey.setMessage(messageField.getText());
                     hotkey.setDisplayTime(Integer.parseInt(displayTimeField.getText()));
@@ -64,20 +79,19 @@ public class HotkeyView {
             }
         });
 
-        GridPane grid = new GridPane();
-        grid.setVgap(10);
-        grid.setHgap(10);
-        grid.add(buttonLabel, 0, 0);
-        grid.add(buttonCB, 1, 0);
-        grid.add(messageLabel, 0, 1);
-        grid.add(messageField, 1, 1);
-        grid.add(displayTimeLabel, 0, 2);
-        grid.add(displayTimeField, 1, 2);
-        grid.add(vibrateLabel, 0, 3);
-        grid.add(vibrateCB, 1, 3);
+        cancelButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                stage.close();
+            }
+        });
+
+        HBox buttonBox = new HBox(5);
+        buttonBox.setAlignment(Pos.CENTER);
+        buttonBox.getChildren().addAll(saveButton, cancelButton);
 
         VBox vBox = new VBox(10);
-        vBox.getChildren().addAll(grid, commandBox);
+        vBox.getChildren().addAll(grid, commandBox, buttonBox);
         vBox.setPadding(new Insets(15));
 
         Scene scene = new Scene(vBox);

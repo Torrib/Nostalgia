@@ -45,7 +45,8 @@ public class SettingsView {
 
     public SettingsView(){
         stage = new Stage();
-        stage.setTitle("Nostalgia message");
+        stage.setTitle("Nostalgia settings");
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/controller.png")));
 
         settings = Main.SETTINGS;
 

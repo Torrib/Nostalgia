@@ -2,6 +2,7 @@ package main;
 
 import models.Command;
 import models.Functions;
+import models.KeyCommand;
 
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
@@ -33,18 +34,21 @@ public class OutputHandler
                 Thread.sleep(command.getDelay());
 
                 if(command.getCommandType() == Command.KEY) {
-                    if(command.getKeyCode() == null)
+                    KeyCommand keyCommand = command.getKeyCommand();
+                    if(keyCommand == null || keyCommand.getKeyCode() == null)
                         return;
 
-                    if (command.isCtrl()) robot.keyPress(KeyEvent.VK_CONTROL);
-                    if (command.isAlt()) robot.keyPress(KeyEvent.VK_ALT);
-                    if (command.isShift()) robot.keyPress(KeyEvent.VK_SHIFT);
+                    if (keyCommand.isCtrl()) robot.keyPress(KeyEvent.VK_CONTROL);
+                    if (keyCommand.isAlt()) robot.keyPress(KeyEvent.VK_ALT);
+                    if (keyCommand.isShift()) robot.keyPress(KeyEvent.VK_SHIFT);
+                    if (keyCommand.isWindows()) robot.keyPress(KeyEvent.VK_WINDOWS);
 
-                    pressKey(command.getKeyCode().impl_getCode());
+                    pressKey(keyCommand.getKeyCode().impl_getCode());
 
-                    if (command.isCtrl()) robot.keyRelease(KeyEvent.VK_CONTROL);
-                    if (command.isAlt()) robot.keyRelease(KeyEvent.VK_ALT);
-                    if (command.isShift()) robot.keyRelease(KeyEvent.VK_SHIFT);
+                    if (keyCommand.isCtrl()) robot.keyRelease(KeyEvent.VK_CONTROL);
+                    if (keyCommand.isAlt()) robot.keyRelease(KeyEvent.VK_ALT);
+                    if (keyCommand.isShift()) robot.keyRelease(KeyEvent.VK_SHIFT);
+                    if (keyCommand.isWindows()) robot.keyRelease(KeyEvent.VK_WINDOWS);
                 }
                 else if(command.getCommandType() == Command.FUNCTION){
                     switch (command.getFunction().getFunctionType()){

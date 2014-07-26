@@ -2,9 +2,14 @@ package graphics.settings;
 
 
 import graphics.utility.CommandBox;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -25,14 +30,16 @@ public class MenuCommandView {
 
         commandBox.setPadding(new Insets(15));
 
-        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+        Button saveButton = new Button("Save");
+        Button cancelButton = new Button("Cancel");
+
+        saveButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(WindowEvent event) {
-                if(commandBox.isIgnoreCloseRequest()){
+            public void handle(ActionEvent event) {
+                if (commandBox.isIgnoreCloseRequest()) {
                     event.consume();
                     commandBox.setIgnoreCloseRequest(false);
-                }
-                else {
+                } else {
                     if (preMenuCommand)
                         applicationView.setPreMenuCommands(commandBox.getItems());
                     else
@@ -43,8 +50,23 @@ public class MenuCommandView {
             }
         });
 
+        cancelButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                stage.close();
+            }
+        });
 
-        Scene scene = new Scene(commandBox);
+        HBox buttonBox = new HBox(5);
+        buttonBox.setAlignment(Pos.CENTER);
+        buttonBox.setPadding(new Insets(0,0, 10,0));
+        buttonBox.getChildren().addAll(saveButton, cancelButton);
+
+        VBox vBox = new VBox(10);
+        vBox.getChildren().addAll(commandBox, buttonBox);
+
+
+        Scene scene = new Scene(vBox);
         stage.setScene(scene);
         stage.show();
     }
