@@ -10,7 +10,7 @@ import java.util.List;
 public class Controller extends Thread{
 
     private int controllerNumber;
-    private ControllerHandler.ControllerInterface controllerInterface;
+    private ControllerInterface controllerInterface;
     private boolean active;
     private int guideButtonCounter;
     private boolean connected;
@@ -19,7 +19,7 @@ public class Controller extends Thread{
     private List<Hotkey> hotkeys = new ArrayList<>();
     private int[] buttonCounter;
 
-    public Controller(int controllerNumber, ControllerHandler controllerHandler, ControllerHandler.ControllerInterface controllerInterface){
+    public Controller(int controllerNumber, ControllerHandler controllerHandler, ControllerInterface controllerInterface){
         this.controllerNumber = controllerNumber;
         this.controllerHandler = controllerHandler;
         this.controllerInterface = controllerInterface;
@@ -32,7 +32,7 @@ public class Controller extends Thread{
     public void run() {
         active = true;
         System.out.println("Controller: " + controllerNumber + " activated");
-        ControllerHandler.ControllerStruct buttons = new ControllerHandler.ControllerStruct();
+        ControllerStructure buttons = new ControllerStructure();
         buttonCounter = new int[10];
         vibrate(400);
         controllerHandler.getMain().showMessageBox("Controller " + (controllerNumber+1) + " Active", true);
@@ -122,11 +122,11 @@ public class Controller extends Thread{
         buttonCounter = new int[10];
     }
 
-    private boolean analogDown(ControllerHandler.ControllerStruct buttons){
+    private boolean analogDown(ControllerStructure buttons){
         return buttons.leftStickX < -30000;
     }
 
-    private boolean analogUp(ControllerHandler.ControllerStruct buttons){
+    private boolean analogUp(ControllerStructure buttons){
         return buttons.leftStickX > 30000;
     }
 

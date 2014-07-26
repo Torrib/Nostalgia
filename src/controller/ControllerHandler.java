@@ -1,6 +1,7 @@
 package controller;
 
-import com.sun.jna.*;
+import com.sun.jna.Native;
+import com.sun.jna.Platform;
 import main.Main;
 import models.Hotkey;
 
@@ -16,7 +17,14 @@ public class ControllerHandler extends Thread{
     public ControllerHandler(Main main) {
         this.main = main;
         try{
-            this.controllerInterface = ControllerInterface.INSTANCE;
+            if(Platform.is64Bit()) {
+                this.controllerInterface = (ControllerInterface) Native.loadLibrary("Controller64.dll", ControllerInterface.class);
+                main.log("Controller64.dll loaded");
+            }
+            else {
+                this.controllerInterface = (ControllerInterface) Native.loadLibrary("Controller.dll", ControllerInterface.class);
+                main.log("Controller.dll loaded");
+            }
         }
         catch (Exception e){
             main.log(e.getMessage());
@@ -63,37 +71,6 @@ public class ControllerHandler extends Thread{
     public void setHotkeys(List<Hotkey> hotkeys){
         for(Controller controller : controllers)
             controller.setHotkeys(hotkeys);
-    }
-
-    public interface ControllerInterface extends Library {
-        ControllerInterface INSTANCE = (ControllerInterface) Native.loadLibrary("Controller.dll", ControllerInterface.class);
-        boolean initController();
-        boolean getControllerConnected(int controller);
-        int getGuideStatus(int controller);
-        int getControllerState(int controller, ControllerStruct controllerStruct);
-        void startVibration(int controller, int leftMotor, int rightMotor);
-        void stopVibration(int controller);
-        void turnControllerOff(int controller);
-        void close();
-    }
-
-    public static class ControllerStruct extends Structure{
-        public int up, down, left, right, start, back;
-        public int aButton, bButton, xButton, yButton, guideButton;
-        public int l1, l2, l3, r1, r2, r3;
-        public int leftStickY, leftStickX, rightStickY, rightStickX;
-
-        public int[] getArray(){
-            return new int[] {aButton, bButton, yButton, xButton, l1, r1, back, start, l3, r3 };
-        }
-        protected List getFieldOrder() {
-            return Arrays.asList(new String[] {"up", "down",  "left", "right", "start", "back",
-                    "aButton", "bButton", "xButton", "yButton", "guideButton",
-                    "l1", "l2", "l3", "r1", "r2", "r3",
-                    "leftStickY", "leftStickX", "rightStickY", "rightStickX"
-
-            });
-        }
     }
 
     public Main getMain(){
