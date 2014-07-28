@@ -8,6 +8,7 @@ import java.util.List;
 
 public class Hotkey implements Item {
 
+    private String name = "";
     private int button = 0;
     private String message = "";
     private int displayTime = 2000;
@@ -62,6 +63,14 @@ public class Hotkey implements Item {
         this.delayLoops = delayLoops;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public List<Command> getCommands() {
         return commands;
@@ -78,7 +87,10 @@ public class Hotkey implements Item {
 
     @Override
     public String toString(){
-        return getButtonList()[button];
+        if(!name.isEmpty())
+            return name + "(" + getButtonList()[button] + ")";
+        else
+            return getButtonList()[button];
     }
 
     public void setCommands(List<Command> commands) {

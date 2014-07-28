@@ -31,6 +31,11 @@ public class MenuItemView{
         TextField nameField = new TextField(menuItem.getDisplayName());
         Label messageLabel = new Label("Message");
         TextField messageField = new TextField(menuItem.getMessage());
+        Label confirmationLabel = new Label("Confirmation");
+        CheckBox confirmationCB = new CheckBox();
+        confirmationCB.setSelected(menuItem.isConfirmation());
+        confirmationLabel.setTooltip(new Tooltip("Require confirmation before performing the command"));
+        confirmationCB.setTooltip(new Tooltip("Require confirmation before performing the command"));
 
         CommandBox commandBox = new CommandBox(menuItem.getCommands(), programs, stage);
 
@@ -41,6 +46,8 @@ public class MenuItemView{
         grid.add(nameField, 1, 0);
         grid.add(messageLabel, 0, 1);
         grid.add(messageField, 1, 1);
+        grid.add(confirmationLabel, 0, 2);
+        grid.add(confirmationCB, 1, 2);
 
         Button saveButton = new Button("Save");
         Button cancelButton = new Button("Cancel");
@@ -60,6 +67,7 @@ public class MenuItemView{
                     menuItem.setDisplayName(nameField.getText());
                     menuItem.setMessage(messageField.getText());
                     menuItem.setCommands(commandBox.getItems());
+                    menuItem.setConfirmation(confirmationCB.isSelected());
 
                     if (newItem)
                         applicationView.addMenuItem(menuItem);

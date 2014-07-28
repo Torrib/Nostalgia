@@ -151,4 +151,8 @@ public class Controller extends Thread{
                 !Main.SETTINGS.isDisableHotkeys() &&
                 !controllerHandler.getMain().getActiveWindowSettings().isDisableHotkeys());
     }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 }

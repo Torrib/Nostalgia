@@ -1,5 +1,7 @@
 package models;
 
+import javafx.scene.input.KeyCode;
+
 public class Command {
 
     public static final int KEY = 0;
@@ -57,6 +59,10 @@ public class Command {
 
     public void setCommandType(int commandType) {
         this.commandType = commandType;
+    }
+
+    public void setFunction(Function function) {
+        this.function = function;
     }
 
     public Function getFunction() {

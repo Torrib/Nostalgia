@@ -22,7 +22,7 @@ import javafx.scene.paint.Color;
 
 public class DraggableRemovableCell<T> extends ListCell<T> implements ChangeListener<Number>{
 
-    public static DataFormat dataFormat =  new DataFormat("mycell");
+    public static DataFormat dataFormat =  new DataFormat("mydeletecell");
     private static IntegerProperty ind = new SimpleIntegerProperty(-1);
     private static Object temp = null;
     private ObservableList items;

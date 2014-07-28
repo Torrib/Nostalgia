@@ -3605,3 +3605,667 @@
 26/07/2014 22:49:04 - Windows 7 window handler loaded
 26/07/2014 22:49:07 - Opening config
 26/07/2014 22:49:30 - Opening config
+27/07/2014 09:22:18 - Menu loaded
+27/07/2014 09:22:18 - MessageBox loaded
+27/07/2014 09:22:18 - ====================================================================
+27/07/2014 09:22:18 - Starting
+27/07/2014 09:22:18 - Loading controller handler
+27/07/2014 09:22:20 - Controller64.dll loaded
+27/07/2014 09:22:20 - Loading controller interface
+27/07/2014 09:22:20 - Controller handler loaded
+27/07/2014 09:22:20 - Windows 7 window handler loaded
+27/07/2014 09:22:25 - Opening config
+27/07/2014 11:31:41 - Menu loaded
+27/07/2014 11:31:41 - MessageBox loaded
+27/07/2014 11:31:41 - ====================================================================
+27/07/2014 11:31:41 - Starting
+27/07/2014 11:31:42 - Loading controller handler
+27/07/2014 11:31:42 - Controller64.dll loaded
+27/07/2014 11:31:42 - Loading controller interface
+27/07/2014 11:31:43 - Controller handler loaded
+27/07/2014 11:31:43 - Windows 7 window handler loaded
+27/07/2014 11:31:44 - Opening config
+27/07/2014 11:31:56 - User exit(tray)
+27/07/2014 11:34:06 - Menu loaded
+27/07/2014 11:34:06 - MessageBox loaded
+27/07/2014 11:34:06 - ====================================================================
+27/07/2014 11:34:06 - Starting
+27/07/2014 11:34:06 - Loading controller handler
+27/07/2014 11:34:06 - Controller64.dll loaded
+27/07/2014 11:34:06 - Loading controller interface
+27/07/2014 11:34:06 - Controller handler loaded
+27/07/2014 11:34:06 - Windows 7 window handler loaded
+27/07/2014 11:34:11 - Opening config
+27/07/2014 11:34:40 - Menu loaded
+27/07/2014 11:34:40 - MessageBox loaded
+27/07/2014 11:34:40 - ====================================================================
+27/07/2014 11:34:40 - Starting
+27/07/2014 11:34:40 - Loading controller handler
+27/07/2014 11:34:40 - Controller64.dll loaded
+27/07/2014 11:34:40 - Loading controller interface
+27/07/2014 11:34:40 - Controller handler loaded
+27/07/2014 11:34:40 - Windows 7 window handler loaded
+27/07/2014 11:34:42 - Opening config
+27/07/2014 11:37:46 - Menu loaded
+27/07/2014 11:37:46 - MessageBox loaded
+27/07/2014 11:37:46 - ====================================================================
+27/07/2014 11:37:46 - Starting
+27/07/2014 11:37:46 - Loading controller handler
+27/07/2014 11:37:47 - Controller64.dll loaded
+27/07/2014 11:37:47 - Loading controller interface
+27/07/2014 11:37:47 - Controller handler loaded
+27/07/2014 11:37:47 - Windows 7 window handler loaded
+27/07/2014 11:37:49 - Opening config
+27/07/2014 11:38:40 - Menu loaded
+27/07/2014 11:38:40 - MessageBox loaded
+27/07/2014 11:38:40 - ====================================================================
+27/07/2014 11:38:40 - Starting
+27/07/2014 11:38:40 - Loading controller handler
+27/07/2014 11:38:40 - Controller64.dll loaded
+27/07/2014 11:38:40 - Loading controller interface
+27/07/2014 11:38:40 - Controller handler loaded
+27/07/2014 11:38:40 - Windows 7 window handler loaded
+27/07/2014 11:38:44 - Opening config
+27/07/2014 11:38:53 - Opening config
+27/07/2014 11:47:05 - Menu loaded
+27/07/2014 11:47:05 - MessageBox loaded
+27/07/2014 11:47:05 - ====================================================================
+27/07/2014 11:47:05 - Starting
+27/07/2014 11:47:05 - Loading controller handler
+27/07/2014 11:47:05 - Controller64.dll loaded
+27/07/2014 11:47:05 - Loading controller interface
+27/07/2014 11:47:05 - Controller handler loaded
+27/07/2014 11:47:05 - Windows 7 window handler loaded
+27/07/2014 11:47:08 - Opening config
+27/07/2014 11:47:13 - Opening config
+27/07/2014 11:47:20 - User exit(tray)
+27/07/2014 11:47:46 - Menu loaded
+27/07/2014 11:47:46 - MessageBox loaded
+27/07/2014 11:47:46 - ====================================================================
+27/07/2014 11:47:46 - Starting
+27/07/2014 11:47:46 - Loading controller handler
+27/07/2014 11:47:46 - Controller64.dll loaded
+27/07/2014 11:47:46 - Loading controller interface
+27/07/2014 11:47:46 - Controller handler loaded
+27/07/2014 11:47:46 - Windows 7 window handler loaded
+27/07/2014 11:47:51 - Opening config
+27/07/2014 11:47:59 - Opening config
+27/07/2014 11:51:00 - Menu loaded
+27/07/2014 11:51:00 - MessageBox loaded
+27/07/2014 11:51:00 - ====================================================================
+27/07/2014 11:51:00 - Starting
+27/07/2014 11:51:01 - Loading controller handler
+27/07/2014 11:51:01 - Controller64.dll loaded
+27/07/2014 11:51:01 - Loading controller interface
+27/07/2014 11:51:01 - Controller handler loaded
+27/07/2014 11:51:01 - Windows 7 window handler loaded
+27/07/2014 11:51:04 - Opening config
+27/07/2014 11:51:12 - Opening config
+27/07/2014 12:14:56 - Menu loaded
+27/07/2014 12:14:56 - MessageBox loaded
+27/07/2014 12:14:56 - ====================================================================
+27/07/2014 12:14:56 - Starting
+27/07/2014 12:14:56 - Loading controller handler
+27/07/2014 12:14:56 - Controller64.dll loaded
+27/07/2014 12:14:56 - Loading controller interface
+27/07/2014 12:14:56 - Controller handler loaded
+27/07/2014 12:14:56 - Windows 7 window handler loaded
+27/07/2014 12:15:00 - Opening config
+27/07/2014 12:15:05 - User exit(tray)
+27/07/2014 12:17:10 - Menu loaded
+27/07/2014 12:17:10 - MessageBox loaded
+27/07/2014 12:17:10 - ====================================================================
+27/07/2014 12:17:10 - Starting
+27/07/2014 12:17:11 - Loading controller handler
+27/07/2014 12:17:11 - Controller64.dll loaded
+27/07/2014 12:17:11 - Loading controller interface
+27/07/2014 12:17:11 - Controller handler loaded
+27/07/2014 12:17:11 - Windows 7 window handler loaded
+27/07/2014 12:17:34 - Opening config
+27/07/2014 12:18:05 - User exit(tray)
+27/07/2014 12:19:39 - Menu loaded
+27/07/2014 12:19:39 - MessageBox loaded
+27/07/2014 12:19:39 - ====================================================================
+27/07/2014 12:19:39 - Starting
+27/07/2014 12:19:39 - Loading controller handler
+27/07/2014 12:19:39 - Controller64.dll loaded
+27/07/2014 12:19:39 - Loading controller interface
+27/07/2014 12:19:39 - Controller handler loaded
+27/07/2014 12:19:39 - Windows 7 window handler loaded
+27/07/2014 12:19:42 - Opening config
+27/07/2014 12:21:01 - Menu loaded
+27/07/2014 12:21:01 - MessageBox loaded
+27/07/2014 12:21:01 - ====================================================================
+27/07/2014 12:21:01 - Starting
+27/07/2014 12:21:01 - Loading controller handler
+27/07/2014 12:21:01 - Controller64.dll loaded
+27/07/2014 12:21:01 - Loading controller interface
+27/07/2014 12:21:01 - Controller handler loaded
+27/07/2014 12:21:01 - Windows 7 window handler loaded
+27/07/2014 12:21:10 - Opening config
+27/07/2014 12:23:08 - Menu loaded
+27/07/2014 12:23:08 - MessageBox loaded
+27/07/2014 12:23:08 - ====================================================================
+27/07/2014 12:23:08 - Starting
+27/07/2014 12:23:08 - Loading controller handler
+27/07/2014 12:23:08 - Controller64.dll loaded
+27/07/2014 12:23:08 - Loading controller interface
+27/07/2014 12:23:08 - Controller handler loaded
+27/07/2014 12:23:08 - Windows 7 window handler loaded
+27/07/2014 12:23:12 - Opening config
+27/07/2014 12:41:30 - Menu loaded
+27/07/2014 12:41:30 - MessageBox loaded
+27/07/2014 12:41:30 - ====================================================================
+27/07/2014 12:41:30 - Starting
+27/07/2014 12:41:31 - Loading controller handler
+27/07/2014 12:41:31 - Controller64.dll loaded
+27/07/2014 12:41:31 - Loading controller interface
+27/07/2014 12:41:31 - Controller handler loaded
+27/07/2014 12:41:31 - Windows 7 window handler loaded
+27/07/2014 12:41:38 - Opening config
+27/07/2014 12:41:59 - User exit(tray)
+27/07/2014 12:43:28 - Menu loaded
+27/07/2014 12:43:28 - MessageBox loaded
+27/07/2014 12:43:28 - ====================================================================
+27/07/2014 12:43:28 - Starting
+27/07/2014 12:43:28 - Loading controller handler
+27/07/2014 12:43:29 - Controller64.dll loaded
+27/07/2014 12:43:29 - Loading controller interface
+27/07/2014 12:43:29 - Controller handler loaded
+27/07/2014 12:43:29 - Windows 7 window handler loaded
+27/07/2014 12:43:31 - Opening config
+27/07/2014 12:43:39 - Stopping controller: 01
+27/07/2014 12:44:13 - Stopping controller: 01
+27/07/2014 14:19:22 - Menu loaded
+27/07/2014 14:19:23 - MessageBox loaded
+27/07/2014 14:19:23 - ====================================================================
+27/07/2014 14:19:23 - Starting
+27/07/2014 14:19:23 - Loading controller handler
+27/07/2014 14:19:24 - Controller64.dll loaded
+27/07/2014 14:19:24 - Loading controller interface
+27/07/2014 14:19:24 - Controller handler loaded
+27/07/2014 14:19:24 - Windows 7 window handler loaded
+27/07/2014 14:22:32 - Menu loaded
+27/07/2014 14:22:32 - MessageBox loaded
+27/07/2014 14:22:32 - ====================================================================
+27/07/2014 14:22:32 - Starting
+27/07/2014 14:22:32 - Loading controller handler
+27/07/2014 14:22:32 - Controller64.dll loaded
+27/07/2014 14:22:32 - Loading controller interface
+27/07/2014 14:22:32 - Controller handler loaded
+27/07/2014 14:22:32 - Windows 7 window handler loaded
+27/07/2014 14:22:33 - Opening config
+27/07/2014 14:23:50 - Menu loaded
+27/07/2014 14:23:50 - MessageBox loaded
+27/07/2014 14:23:50 - ====================================================================
+27/07/2014 14:23:50 - Starting
+27/07/2014 14:23:50 - Loading controller handler
+27/07/2014 14:23:51 - Controller64.dll loaded
+27/07/2014 14:23:51 - Loading controller interface
+27/07/2014 14:23:51 - Controller handler loaded
+27/07/2014 14:23:51 - Windows 7 window handler loaded
+27/07/2014 14:23:52 - Opening config
+27/07/2014 14:29:25 - Menu loaded
+27/07/2014 14:29:25 - MessageBox loaded
+27/07/2014 14:29:25 - ====================================================================
+27/07/2014 14:29:25 - Starting
+27/07/2014 14:29:25 - Loading controller handler
+27/07/2014 14:29:25 - Controller64.dll loaded
+27/07/2014 14:29:25 - Loading controller interface
+27/07/2014 14:29:25 - Controller handler loaded
+27/07/2014 14:29:25 - Windows 7 window handler loaded
+27/07/2014 14:29:27 - Opening config
+27/07/2014 16:09:09 - Menu loaded
+27/07/2014 16:09:09 - MessageBox loaded
+27/07/2014 16:09:09 - ====================================================================
+27/07/2014 16:09:09 - Starting
+27/07/2014 16:09:09 - Loading controller handler
+27/07/2014 16:09:09 - Controller64.dll loaded
+27/07/2014 16:09:09 - Loading controller interface
+27/07/2014 16:09:09 - Controller handler loaded
+27/07/2014 16:09:09 - Windows 7 window handler loaded
+27/07/2014 16:09:11 - Opening config
+27/07/2014 16:12:38 - Menu loaded
+27/07/2014 16:12:38 - MessageBox loaded
+27/07/2014 16:12:38 - ====================================================================
+27/07/2014 16:12:38 - Starting
+27/07/2014 16:12:38 - Loading controller handler
+27/07/2014 16:12:38 - Controller64.dll loaded
+27/07/2014 16:12:38 - Loading controller interface
+27/07/2014 16:12:38 - Controller handler loaded
+27/07/2014 16:12:38 - Windows 7 window handler loaded
+27/07/2014 16:12:41 - Opening config
+27/07/2014 16:23:09 - Menu loaded
+27/07/2014 16:23:09 - MessageBox loaded
+27/07/2014 16:23:09 - ====================================================================
+27/07/2014 16:23:09 - Starting
+27/07/2014 16:23:10 - Loading controller handler
+27/07/2014 16:23:11 - Controller64.dll loaded
+27/07/2014 16:23:11 - Loading controller interface
+27/07/2014 16:23:11 - Controller handler loaded
+27/07/2014 16:23:11 - Windows 7 window handler loaded
+27/07/2014 16:23:15 - Opening config
+27/07/2014 16:23:32 - Opening config
+27/07/2014 16:23:56 - Menu loaded
+27/07/2014 16:23:56 - MessageBox loaded
+27/07/2014 16:23:56 - ====================================================================
+27/07/2014 16:23:56 - Starting
+27/07/2014 16:23:56 - Loading controller handler
+27/07/2014 16:23:56 - Controller64.dll loaded
+27/07/2014 16:23:56 - Loading controller interface
+27/07/2014 16:23:56 - Controller handler loaded
+27/07/2014 16:23:56 - Windows 7 window handler loaded
+27/07/2014 16:24:06 - Menu loaded
+27/07/2014 16:24:06 - MessageBox loaded
+27/07/2014 16:24:06 - ====================================================================
+27/07/2014 16:24:06 - Starting
+27/07/2014 16:24:06 - Loading controller handler
+27/07/2014 16:24:06 - Controller64.dll loaded
+27/07/2014 16:24:06 - Loading controller interface
+27/07/2014 16:24:06 - Controller handler loaded
+27/07/2014 16:24:06 - Windows 7 window handler loaded
+27/07/2014 16:24:08 - Opening config
+27/07/2014 16:24:56 - Menu loaded
+27/07/2014 16:24:56 - MessageBox loaded
+27/07/2014 16:24:56 - ====================================================================
+27/07/2014 16:24:56 - Starting
+27/07/2014 16:24:56 - Loading controller handler
+27/07/2014 16:24:56 - Controller64.dll loaded
+27/07/2014 16:24:56 - Loading controller interface
+27/07/2014 16:24:56 - Controller handler loaded
+27/07/2014 16:24:56 - Windows 7 window handler loaded
+27/07/2014 16:24:59 - Opening config
+27/07/2014 16:39:49 - Menu loaded
+27/07/2014 16:39:49 - MessageBox loaded
+27/07/2014 16:39:49 - ====================================================================
+27/07/2014 16:39:50 - Starting
+27/07/2014 16:39:50 - Loading controller handler
+27/07/2014 16:39:50 - Controller64.dll loaded
+27/07/2014 16:39:50 - Loading controller interface
+27/07/2014 16:39:50 - Controller handler loaded
+27/07/2014 16:39:50 - Windows 7 window handler loaded
+27/07/2014 16:39:52 - Opening config
+27/07/2014 18:47:08 - Menu loaded
+27/07/2014 18:47:08 - MessageBox loaded
+27/07/2014 18:47:08 - ====================================================================
+27/07/2014 18:47:08 - Starting
+27/07/2014 18:47:08 - Loading controller handler
+27/07/2014 18:47:10 - Controller64.dll loaded
+27/07/2014 18:47:10 - Loading controller interface
+27/07/2014 18:47:10 - Controller handler loaded
+27/07/2014 18:47:10 - Windows 7 window handler loaded
+27/07/2014 18:47:14 - Opening config
+27/07/2014 19:16:24 - Opening config
+27/07/2014 19:29:33 - Menu loaded
+27/07/2014 19:29:33 - MessageBox loaded
+27/07/2014 19:29:33 - ====================================================================
+27/07/2014 19:29:33 - Starting
+27/07/2014 19:29:33 - Loading controller handler
+27/07/2014 19:29:34 - Controller64.dll loaded
+27/07/2014 19:29:34 - Loading controller interface
+27/07/2014 19:29:34 - Controller handler loaded
+27/07/2014 19:29:34 - Windows 7 window handler loaded
+27/07/2014 19:29:35 - Opening config
+27/07/2014 19:38:27 - Opening config
+27/07/2014 20:45:01 - ====================================================================
+27/07/2014 20:45:01 - Starting
+27/07/2014 20:45:01 - Loading controller handler
+27/07/2014 20:45:01 - Controller64.dll loaded
+27/07/2014 20:45:01 - Loading controller interface
+27/07/2014 20:45:01 - Controller handler loaded
+27/07/2014 20:45:01 - Windows 7 window handler loaded
+27/07/2014 20:45:03 - Opening config
+27/07/2014 20:46:47 - ====================================================================
+27/07/2014 20:46:47 - Starting
+27/07/2014 20:46:47 - Loading controller handler
+27/07/2014 20:46:47 - Controller64.dll loaded
+27/07/2014 20:46:47 - Loading controller interface
+27/07/2014 20:46:47 - Controller handler loaded
+27/07/2014 20:46:47 - Windows 7 window handler loaded
+27/07/2014 20:48:44 - ====================================================================
+27/07/2014 20:48:44 - Starting
+27/07/2014 20:48:44 - Loading controller handler
+27/07/2014 20:48:45 - Controller64.dll loaded
+27/07/2014 20:48:45 - Loading controller interface
+27/07/2014 20:48:45 - Controller handler loaded
+27/07/2014 20:48:45 - Windows 7 window handler loaded
+27/07/2014 20:49:12 - ====================================================================
+27/07/2014 20:49:12 - Starting
+27/07/2014 20:49:12 - Loading controller handler
+27/07/2014 20:49:12 - Controller64.dll loaded
+27/07/2014 20:49:12 - Loading controller interface
+27/07/2014 20:49:12 - Controller handler loaded
+27/07/2014 20:49:12 - Windows 7 window handler loaded
+27/07/2014 20:51:40 - ====================================================================
+27/07/2014 20:51:40 - Starting
+27/07/2014 20:51:40 - Loading controller handler
+27/07/2014 20:51:40 - Controller64.dll loaded
+27/07/2014 20:51:40 - Loading controller interface
+27/07/2014 20:51:40 - Controller handler loaded
+27/07/2014 20:51:40 - Windows 7 window handler loaded
+27/07/2014 20:54:36 - ====================================================================
+27/07/2014 20:54:36 - Starting
+27/07/2014 20:54:36 - Loading controller handler
+27/07/2014 20:54:36 - Controller64.dll loaded
+27/07/2014 20:54:36 - Loading controller interface
+27/07/2014 20:54:36 - Controller handler loaded
+27/07/2014 20:54:36 - Windows 7 window handler loaded
+27/07/2014 20:55:41 - ====================================================================
+27/07/2014 20:55:41 - Starting
+27/07/2014 20:55:41 - Loading controller handler
+27/07/2014 20:55:41 - Controller64.dll loaded
+27/07/2014 20:55:41 - Loading controller interface
+27/07/2014 20:55:41 - Controller handler loaded
+27/07/2014 20:55:41 - Windows 7 window handler loaded
+27/07/2014 21:19:28 - ====================================================================
+27/07/2014 21:19:28 - Starting
+27/07/2014 21:19:28 - Loading controller handler
+27/07/2014 21:19:28 - Controller64.dll loaded
+27/07/2014 21:19:28 - Loading controller interface
+27/07/2014 21:19:28 - Controller handler loaded
+27/07/2014 21:19:28 - Windows 7 window handler loaded
+27/07/2014 21:19:45 - Opening config
+27/07/2014 21:23:02 - ====================================================================
+27/07/2014 21:23:02 - Starting
+27/07/2014 21:23:02 - Loading controller handler
+27/07/2014 21:23:02 - Controller64.dll loaded
+27/07/2014 21:23:02 - Loading controller interface
+27/07/2014 21:23:02 - Controller handler loaded
+27/07/2014 21:23:02 - Windows 7 window handler loaded
+27/07/2014 21:23:04 - Opening config
+27/07/2014 21:25:15 - ====================================================================
+27/07/2014 21:25:15 - Starting
+27/07/2014 21:25:15 - Loading controller handler
+27/07/2014 21:25:15 - Controller64.dll loaded
+27/07/2014 21:25:15 - Loading controller interface
+27/07/2014 21:25:15 - Controller handler loaded
+27/07/2014 21:25:15 - Windows 7 window handler loaded
+27/07/2014 21:25:30 - ====================================================================
+27/07/2014 21:25:30 - Starting
+27/07/2014 21:25:30 - Loading controller handler
+27/07/2014 21:25:30 - Controller64.dll loaded
+27/07/2014 21:25:30 - Loading controller interface
+27/07/2014 21:25:30 - Controller handler loaded
+27/07/2014 21:25:30 - Windows 7 window handler loaded
+27/07/2014 21:26:13 - ====================================================================
+27/07/2014 21:26:13 - Starting
+27/07/2014 21:26:13 - Loading controller handler
+27/07/2014 21:26:13 - Controller64.dll loaded
+27/07/2014 21:26:13 - Loading controller interface
+27/07/2014 21:26:13 - Controller handler loaded
+27/07/2014 21:26:13 - Windows 7 window handler loaded
+27/07/2014 21:26:15 - Opening config
+27/07/2014 21:32:42 - ====================================================================
+27/07/2014 21:32:42 - Starting
+27/07/2014 21:32:42 - Loading controller handler
+27/07/2014 21:32:42 - Controller64.dll loaded
+27/07/2014 21:32:42 - Loading controller interface
+27/07/2014 21:32:42 - Controller handler loaded
+27/07/2014 21:32:42 - Windows 7 window handler loaded
+27/07/2014 21:32:44 - Opening config
+27/07/2014 22:28:26 - ====================================================================
+27/07/2014 22:28:26 - Starting
+27/07/2014 22:28:27 - Loading controller handler
+27/07/2014 22:28:27 - Controller64.dll loaded
+27/07/2014 22:28:27 - Loading controller interface
+27/07/2014 22:28:27 - Controller handler loaded
+27/07/2014 22:28:27 - Windows 7 window handler loaded
+27/07/2014 22:30:43 - ====================================================================
+27/07/2014 22:30:43 - Starting
+27/07/2014 22:30:43 - Loading controller handler
+27/07/2014 22:30:43 - Controller64.dll loaded
+27/07/2014 22:30:43 - Loading controller interface
+27/07/2014 22:30:43 - Controller handler loaded
+27/07/2014 22:30:43 - Windows 7 window handler loaded
+27/07/2014 22:33:21 - ====================================================================
+27/07/2014 22:33:21 - Starting
+27/07/2014 22:33:22 - Loading controller handler
+27/07/2014 22:33:22 - Controller64.dll loaded
+27/07/2014 22:33:22 - Loading controller interface
+27/07/2014 22:33:22 - Controller handler loaded
+27/07/2014 22:33:22 - Windows 7 window handler loaded
+27/07/2014 22:34:18 - ====================================================================
+27/07/2014 22:34:18 - Starting
+27/07/2014 22:34:18 - Loading controller handler
+27/07/2014 22:34:18 - Controller64.dll loaded
+27/07/2014 22:34:18 - Loading controller interface
+27/07/2014 22:34:18 - Controller handler loaded
+27/07/2014 22:34:18 - Windows 7 window handler loaded
+27/07/2014 22:34:29 - ====================================================================
+27/07/2014 22:34:29 - Starting
+27/07/2014 22:34:29 - Loading controller handler
+27/07/2014 22:34:29 - Controller64.dll loaded
+27/07/2014 22:34:29 - Loading controller interface
+27/07/2014 22:34:29 - Controller handler loaded
+27/07/2014 22:34:29 - Windows 7 window handler loaded
+27/07/2014 22:34:44 - ====================================================================
+27/07/2014 22:34:44 - Starting
+27/07/2014 22:34:44 - Loading controller handler
+27/07/2014 22:34:44 - Controller64.dll loaded
+27/07/2014 22:34:44 - Loading controller interface
+27/07/2014 22:34:44 - Controller handler loaded
+27/07/2014 22:34:44 - Windows 7 window handler loaded
+27/07/2014 23:07:03 - ====================================================================
+27/07/2014 23:07:03 - Starting
+27/07/2014 23:07:03 - Loading controller handler
+27/07/2014 23:07:04 - Controller64.dll loaded
+27/07/2014 23:07:04 - Loading controller interface
+27/07/2014 23:07:04 - Controller handler loaded
+27/07/2014 23:07:04 - Windows 7 window handler loaded
+27/07/2014 23:08:19 - ====================================================================
+27/07/2014 23:08:19 - Starting
+27/07/2014 23:08:19 - Loading controller handler
+27/07/2014 23:08:19 - Controller64.dll loaded
+27/07/2014 23:08:19 - Loading controller interface
+27/07/2014 23:08:19 - Controller handler loaded
+27/07/2014 23:08:19 - Windows 7 window handler loaded
+27/07/2014 23:09:09 - ====================================================================
+27/07/2014 23:09:09 - Starting
+27/07/2014 23:09:09 - Loading controller handler
+27/07/2014 23:09:09 - Controller64.dll loaded
+27/07/2014 23:09:09 - Loading controller interface
+27/07/2014 23:09:09 - Controller handler loaded
+27/07/2014 23:09:09 - Windows 7 window handler loaded
+27/07/2014 23:09:22 - ====================================================================
+27/07/2014 23:09:22 - Starting
+27/07/2014 23:09:22 - Loading controller handler
+27/07/2014 23:09:22 - Controller64.dll loaded
+27/07/2014 23:09:22 - Loading controller interface
+27/07/2014 23:09:22 - Controller handler loaded
+27/07/2014 23:09:22 - Windows 7 window handler loaded
+27/07/2014 23:10:16 - ====================================================================
+27/07/2014 23:10:16 - Starting
+27/07/2014 23:10:16 - Loading controller handler
+27/07/2014 23:10:17 - Controller64.dll loaded
+27/07/2014 23:10:17 - Loading controller interface
+27/07/2014 23:10:17 - Controller handler loaded
+27/07/2014 23:10:17 - Windows 7 window handler loaded
+27/07/2014 23:11:48 - ====================================================================
+27/07/2014 23:11:48 - Starting
+27/07/2014 23:11:49 - Loading controller handler
+27/07/2014 23:11:49 - Controller64.dll loaded
+27/07/2014 23:11:49 - Loading controller interface
+27/07/2014 23:11:49 - Controller handler loaded
+27/07/2014 23:11:49 - Windows 7 window handler loaded
+27/07/2014 23:15:33 - ====================================================================
+27/07/2014 23:15:33 - Starting
+27/07/2014 23:15:33 - Loading controller handler
+27/07/2014 23:15:34 - Controller64.dll loaded
+27/07/2014 23:15:34 - Loading controller interface
+27/07/2014 23:15:34 - Controller handler loaded
+27/07/2014 23:15:34 - Windows 7 window handler loaded
+27/07/2014 23:15:57 - ====================================================================
+27/07/2014 23:15:57 - Starting
+27/07/2014 23:15:57 - Loading controller handler
+27/07/2014 23:15:57 - Controller64.dll loaded
+27/07/2014 23:15:57 - Loading controller interface
+27/07/2014 23:15:57 - Controller handler loaded
+27/07/2014 23:15:57 - Windows 7 window handler loaded
+27/07/2014 23:16:01 - ====================================================================
+27/07/2014 23:16:01 - Starting
+27/07/2014 23:16:02 - Loading controller handler
+27/07/2014 23:16:02 - Controller64.dll loaded
+27/07/2014 23:16:02 - Loading controller interface
+27/07/2014 23:16:02 - Controller handler loaded
+27/07/2014 23:16:02 - Windows 7 window handler loaded
+27/07/2014 23:19:58 - ====================================================================
+27/07/2014 23:19:58 - Starting
+27/07/2014 23:19:58 - Loading controller handler
+27/07/2014 23:19:58 - Controller64.dll loaded
+27/07/2014 23:19:58 - Loading controller interface
+27/07/2014 23:19:58 - Controller handler loaded
+27/07/2014 23:19:58 - Windows 7 window handler loaded
+27/07/2014 23:20:00 - Opening config
+28/07/2014 18:46:06 - ====================================================================
+28/07/2014 18:46:06 - Starting
+28/07/2014 18:46:06 - Loading controller handler
+28/07/2014 18:46:07 - Controller64.dll loaded
+28/07/2014 18:46:07 - Loading controller interface
+28/07/2014 18:46:07 - Controller handler loaded
+28/07/2014 18:46:07 - Windows 7 window handler loaded
+28/07/2014 18:46:52 - ====================================================================
+28/07/2014 18:46:52 - Starting
+28/07/2014 18:46:52 - Loading controller handler
+28/07/2014 18:46:52 - Controller64.dll loaded
+28/07/2014 18:46:52 - Loading controller interface
+28/07/2014 18:46:52 - Controller handler loaded
+28/07/2014 18:46:52 - Windows 7 window handler loaded
+28/07/2014 18:47:22 - ====================================================================
+28/07/2014 18:47:22 - Starting
+28/07/2014 18:47:22 - Loading controller handler
+28/07/2014 18:47:22 - Controller64.dll loaded
+28/07/2014 18:47:22 - Loading controller interface
+28/07/2014 18:47:22 - Controller handler loaded
+28/07/2014 18:47:22 - Windows 7 window handler loaded
+28/07/2014 18:58:02 - ====================================================================
+28/07/2014 18:58:02 - Starting
+28/07/2014 18:58:02 - Loading controller handler
+28/07/2014 18:58:02 - Controller64.dll loaded
+28/07/2014 18:58:02 - Loading controller interface
+28/07/2014 18:58:02 - Controller handler loaded
+28/07/2014 18:58:02 - Windows 7 window handler loaded
+28/07/2014 18:58:20 - ====================================================================
+28/07/2014 18:58:20 - Starting
+28/07/2014 18:58:20 - Loading controller handler
+28/07/2014 18:58:20 - Controller64.dll loaded
+28/07/2014 18:58:20 - Loading controller interface
+28/07/2014 18:58:20 - Controller handler loaded
+28/07/2014 18:58:20 - Windows 7 window handler loaded
+28/07/2014 18:58:46 - ====================================================================
+28/07/2014 18:58:46 - Starting
+28/07/2014 18:58:46 - Loading controller handler
+28/07/2014 18:58:46 - Controller64.dll loaded
+28/07/2014 18:58:46 - Loading controller interface
+28/07/2014 18:58:46 - Controller handler loaded
+28/07/2014 18:58:46 - Windows 7 window handler loaded
+28/07/2014 18:58:58 - ====================================================================
+28/07/2014 18:58:58 - Starting
+28/07/2014 18:58:58 - Loading controller handler
+28/07/2014 18:58:58 - Controller64.dll loaded
+28/07/2014 18:58:58 - Loading controller interface
+28/07/2014 18:58:58 - Controller handler loaded
+28/07/2014 18:58:58 - Windows 7 window handler loaded
+28/07/2014 18:59:23 - ====================================================================
+28/07/2014 18:59:23 - Starting
+28/07/2014 18:59:24 - Loading controller handler
+28/07/2014 18:59:24 - Controller64.dll loaded
+28/07/2014 18:59:24 - Loading controller interface
+28/07/2014 18:59:24 - Controller handler loaded
+28/07/2014 18:59:24 - Windows 7 window handler loaded
+28/07/2014 19:00:57 - ====================================================================
+28/07/2014 19:00:57 - Starting
+28/07/2014 19:00:57 - Loading controller handler
+28/07/2014 19:00:58 - Controller64.dll loaded
+28/07/2014 19:00:58 - Loading controller interface
+28/07/2014 19:00:58 - Controller handler loaded
+28/07/2014 19:00:58 - Windows 7 window handler loaded
+28/07/2014 19:11:14 - ====================================================================
+28/07/2014 19:11:14 - Starting
+28/07/2014 19:11:14 - Loading controller handler
+28/07/2014 19:11:15 - Controller64.dll loaded
+28/07/2014 19:11:15 - Loading controller interface
+28/07/2014 19:11:15 - Controller handler loaded
+28/07/2014 19:11:15 - Windows 7 window handler loaded
+28/07/2014 19:16:19 - ====================================================================
+28/07/2014 19:16:19 - Starting
+28/07/2014 19:16:19 - Loading controller handler
+28/07/2014 19:16:19 - Controller64.dll loaded
+28/07/2014 19:16:19 - Loading controller interface
+28/07/2014 19:16:19 - Controller handler loaded
+28/07/2014 19:16:19 - Windows 7 window handler loaded
+28/07/2014 20:34:07 - ====================================================================
+28/07/2014 20:34:07 - Starting
+28/07/2014 20:34:08 - Loading controller handler
+28/07/2014 20:35:36 - ====================================================================
+28/07/2014 20:35:36 - Starting
+28/07/2014 20:35:36 - Loading controller handler
+28/07/2014 20:35:55 - ====================================================================
+28/07/2014 20:35:55 - Starting
+28/07/2014 20:35:55 - Loading controller handler
+28/07/2014 20:36:15 - ====================================================================
+28/07/2014 20:36:15 - Starting
+28/07/2014 20:36:15 - Loading controller handler
+28/07/2014 20:36:15 - Controller64.dll loaded
+28/07/2014 20:36:15 - Loading controller interface
+28/07/2014 20:36:15 - Controller handler loaded
+28/07/2014 20:36:46 - ====================================================================
+28/07/2014 20:36:46 - Starting
+28/07/2014 20:36:46 - Loading controller handler
+28/07/2014 20:36:46 - Controller64.dll loaded
+28/07/2014 20:36:46 - Loading controller interface
+28/07/2014 20:36:46 - Controller handler loaded
+28/07/2014 20:36:46 - Windows 7 window handler loaded
+28/07/2014 20:37:03 - ====================================================================
+28/07/2014 20:37:03 - Starting
+28/07/2014 20:37:03 - Loading controller handler
+28/07/2014 20:37:15 - ====================================================================
+28/07/2014 20:37:15 - Starting
+28/07/2014 20:37:15 - Loading controller handler
+28/07/2014 20:37:15 - Controller64.dll loaded
+28/07/2014 20:37:15 - Loading controller interface
+28/07/2014 20:37:15 - Controller handler loaded
+28/07/2014 20:37:15 - Windows 7 window handler loaded
+28/07/2014 20:43:56 - ====================================================================
+28/07/2014 20:43:56 - Starting
+28/07/2014 20:43:56 - Loading controller handler
+28/07/2014 20:43:56 - Controller64.dll loaded
+28/07/2014 20:43:56 - Loading controller interface
+28/07/2014 20:43:56 - Controller handler loaded
+28/07/2014 20:43:56 - Windows 7 window handler loaded
+28/07/2014 20:44:00 - Opening config
+28/07/2014 20:46:56 - ====================================================================
+28/07/2014 20:46:56 - Starting
+28/07/2014 20:46:56 - Loading controller handler
+28/07/2014 20:46:57 - Controller64.dll loaded
+28/07/2014 20:46:57 - Loading controller interface
+28/07/2014 20:46:57 - Controller handler loaded
+28/07/2014 20:46:57 - Windows 7 window handler loaded
+28/07/2014 20:48:46 - ====================================================================
+28/07/2014 20:48:46 - Starting
+28/07/2014 20:48:46 - Loading controller handler
+28/07/2014 20:48:46 - Controller64.dll loaded
+28/07/2014 20:48:46 - Loading controller interface
+28/07/2014 20:48:46 - Controller handler loaded
+28/07/2014 20:48:46 - Windows 7 window handler loaded
+28/07/2014 20:57:26 - ====================================================================
+28/07/2014 20:57:26 - Starting
+28/07/2014 20:57:26 - Loading controller handler
+28/07/2014 20:57:26 - Controller64.dll loaded
+28/07/2014 20:57:26 - Loading controller interface
+28/07/2014 20:57:26 - Controller handler loaded
+28/07/2014 20:57:26 - Windows 7 window handler loaded
+28/07/2014 20:57:31 - Opening config
+28/07/2014 21:01:34 - ====================================================================
+28/07/2014 21:01:34 - Starting
+28/07/2014 21:01:34 - Loading controller handler
+28/07/2014 21:01:34 - Controller64.dll loaded
+28/07/2014 21:01:34 - Loading controller interface
+28/07/2014 21:01:34 - Controller handler loaded
+28/07/2014 21:01:34 - Windows 7 window handler loaded
+28/07/2014 21:03:11 - ====================================================================
+28/07/2014 21:03:11 - Starting
+28/07/2014 21:03:12 - Loading controller handler
+28/07/2014 21:03:12 - Controller64.dll loaded
+28/07/2014 21:03:12 - Loading controller interface
+28/07/2014 21:03:12 - Controller handler loaded
+28/07/2014 21:03:12 - Windows 7 window handler loaded

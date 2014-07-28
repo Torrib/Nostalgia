@@ -2,7 +2,7 @@ package settings;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import models.Program;
+import models.*;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -37,6 +37,11 @@ public class Settings {
     private List<WindowSetting> windowSettings = new ArrayList<>();
     private List<Program> programs = new ArrayList<>();
     private Map<String, String> programBindings = new HashMap<>();
+
+    private boolean disableController1 = false;
+    private boolean disableController2 = false;
+    private boolean disableController3 = false;
+    private boolean disableController4 = false;
 
     public String getMenuFont() {
         return menuFont;
@@ -206,6 +211,47 @@ public class Settings {
         this.programs = programs;
     }
 
+    public List<Boolean> getControllerDisabledStatus() {
+        List<Boolean> statuses = new ArrayList<>();
+        statuses.add(disableController1);
+        statuses.add(disableController2);
+        statuses.add(disableController3);
+        statuses.add(disableController4);
+        return statuses;
+    }
+
+    public boolean isDisableController1() {
+        return disableController1;
+    }
+
+    public void setDisableController1(boolean disableController1) {
+        this.disableController1 = disableController1;
+    }
+
+    public boolean isDisableController2() {
+        return disableController2;
+    }
+
+    public void setDisableController2(boolean disableController2) {
+        this.disableController2 = disableController2;
+    }
+
+    public boolean isDisableController3() {
+        return disableController3;
+    }
+
+    public void setDisableController3(boolean disableController3) {
+        this.disableController3 = disableController3;
+    }
+
+    public boolean isDisableController4() {
+        return disableController4;
+    }
+
+    public void setDisableController4(boolean disableController4) {
+        this.disableController4 = disableController4;
+    }
+
     public void store(){
         try (Writer writer = new FileWriter("settings.json")) {
             Gson gson = new GsonBuilder().create();
@@ -225,6 +271,7 @@ public class Settings {
         catch (Exception e) {
             System.out.println("Unable to load settings");
         }
+
         return new Settings();
     }
 }

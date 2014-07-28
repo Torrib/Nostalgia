@@ -34,8 +34,12 @@ public class SettingsView {
     private TextField pullDelayField;
     private CheckBox requireActivateCB;
     private CheckBox disableVibrationCB;
-    private CheckBox disableControllersCB;
     private CheckBox disableHotkeysCB;
+
+    private CheckBox disableController1;
+    private CheckBox disableController2;
+    private CheckBox disableController3;
+    private CheckBox disableController4;
 
     private TextField windowPullField;
     private TextField windowRefreshDelayField;
@@ -43,7 +47,10 @@ public class SettingsView {
     private EditList<WindowSetting> windowEditList;
     private EditList<Program> programEditList;
 
-    public SettingsView(){
+    private Main main;
+
+    public SettingsView(Main main){
+        this.main = main;
         stage = new Stage();
         stage.setTitle("Nostalgia settings");
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/controller.png")));
@@ -229,26 +236,58 @@ public class SettingsView {
         grid.add(disableVibrationLabel, 0, 2);
         grid.add(disableVibrationCB, 1, 2);
 
-        Label disableControllersLabel = new Label("Disable controller 2-4");
-        disableControllersLabel.setTooltip(new Tooltip("Disables all controllers but controller 1"));
-        disableControllersCB = new CheckBox();
-        disableControllersCB.setSelected(settings.isDisableControllers());
-        disableControllersCB.setTooltip(new Tooltip("Disables all controllers but controller 1"));
-
-        grid.add(disableControllersLabel, 0, 3);
-        grid.add(disableControllersCB, 1, 3);
-
         Label disableHotkeysLabel = new Label("Disable hotkeys");
         disableHotkeysLabel.setTooltip(new Tooltip("Disables hotkeys for all applications"));
         disableHotkeysCB = new CheckBox();
         disableHotkeysCB.setSelected(settings.isDisableHotkeys());
         disableHotkeysCB.setTooltip(new Tooltip("Disables hotkeys for all applications"));
 
-        grid.add(disableHotkeysLabel, 0, 4);
-        grid.add(disableHotkeysCB, 1, 4);
+        grid.add(disableHotkeysLabel, 0, 3);
+        grid.add(disableHotkeysCB, 1, 3);
+
+        Label disableC1Label = new Label("Disable controller 1");
+        disableC1Label.setTooltip(new Tooltip("Prevents Controller 1 from using Nostalgia functionality"));
+        disableController1 = new CheckBox();
+        disableController1.setSelected(settings.isDisableController1());
+        disableController1.setTooltip(new Tooltip("Prevents Controller 1 from using Nostalgia functionality"));
+
+        Label disableC2Label = new Label("Disable controller 2");
+        disableC2Label.setTooltip(new Tooltip("Prevents Controller 2 from using Nostalgia functionality"));
+        disableController2 = new CheckBox();
+        disableController2.setSelected(settings.isDisableController2());
+        disableController2.setTooltip(new Tooltip("Prevents Controller 2 from using Nostalgia functionality"));
+
+        Label disableC3Label = new Label("Disable controller 3");
+        disableC3Label.setTooltip(new Tooltip("Prevents Controller 3 from using Nostalgia functionality"));
+        disableController3 = new CheckBox();
+        disableController3.setSelected(settings.isDisableController3());
+        disableController3.setTooltip(new Tooltip("Prevents Controller 3 from using Nostalgia functionality"));
+
+        Label disableC4Label = new Label("Disable controller 4");
+        disableC4Label.setTooltip(new Tooltip("Prevents Controller 4 from using Nostalgia functionality"));
+        disableController4 = new CheckBox();
+        disableController4.setSelected(settings.isDisableController4());
+        disableController4.setTooltip(new Tooltip("Prevents Controller 4 from using Nostalgia functionality"));
+
+        GridPane disableControllersGrid = new GridPane();
+        disableControllersGrid.setHgap(10);
+        disableControllersGrid.setVgap(12);
+        disableControllersGrid.setPadding(new Insets(15));
+
+        disableControllersGrid.add(disableC1Label, 0, 0);
+        disableControllersGrid.add(disableController1, 1, 0);
+        disableControllersGrid.add(disableC2Label, 0, 1);
+        disableControllersGrid.add(disableController2, 1, 1);
+        disableControllersGrid.add(disableC3Label, 0, 2);
+        disableControllersGrid.add(disableController3, 1, 2);
+        disableControllersGrid.add(disableC4Label, 0, 3);
+        disableControllersGrid.add(disableController4, 1, 3);
+
+        VBox vBox = new VBox(20);
+        vBox.getChildren().addAll(grid, disableControllersGrid);
 
         Tab tab = new Tab();
-        tab.setContent(grid);
+        tab.setContent(vBox);
         tab.setText("Controllers");
 
         ImageView image = new ImageView(new Image(getClass().getResourceAsStream("/resources/controller.png")));
@@ -389,8 +428,12 @@ public class SettingsView {
         settings.setControllerPullDelay(Integer.parseInt(pullDelayField.getText()));
         settings.setRequireActivate(requireActivateCB.isSelected());
         settings.setDisableVibration(disableVibrationCB.isSelected());
-        settings.setDisableControllers(disableControllersCB.isSelected());
         settings.setDisableHotkeys(disableHotkeysCB.isSelected());
+
+        settings.setDisableController1(disableController1.isSelected());
+        settings.setDisableController2(disableController2.isSelected());
+        settings.setDisableController3(disableController3.isSelected());
+        settings.setDisableController4(disableController4.isSelected());
 
         settings.setWindowPullDelay(Integer.parseInt(windowPullField.getText()));
         settings.setWindowPullRefresh(Integer.parseInt(windowRefreshDelayField.getText()));
@@ -408,6 +451,7 @@ public class SettingsView {
         settings.setMenuSelectedFontSize((int) selectedFontSize);
 
         settings.store();
+        main.updateControllerStatus();
     }
 
     public Stage getStage(){

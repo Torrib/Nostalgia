@@ -67,6 +67,18 @@ public class OutputHandler
                         case Functions.TOGGLE_HOTKEYS:
                             main.toggleHotkeys();
                             break;
+                        case Functions.TURN_OFF_CONTROLLERS:
+                            main.turnOffControllers();
+                            break;
+                        case Functions.INCREASE_VOLUME:
+                            main.increaseVolume();
+                            break;
+                        case Functions.DECREASE_VOLUME:
+                            main.decreaseVolume();
+                            break;
+                        case Functions.MUTE:
+                            main.mute();
+                            break;
                     }
                 }
                 else if(command.getCommandType() == Command.PROGRAM){

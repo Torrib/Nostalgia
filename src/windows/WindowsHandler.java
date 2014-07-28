@@ -1,4 +1,4 @@
-package main;
+package windows;
 
 import com.sun.jna.Native;
 import com.sun.jna.Platform;
@@ -15,6 +15,7 @@ import java.io.IOException;
 
 public class WindowsHandler implements OsHandler
 {
+    private WindowsUtility windowsUtility;
 
 	private interface User32 extends StdCallLibrary 
  	{
@@ -37,6 +38,13 @@ public class WindowsHandler implements OsHandler
  	    boolean RemoveMenu(PointerType hMenu, int uPosition, int uFlags);
         boolean EndTask(PointerType hWnd, boolean shutdown, boolean force);
  	}
+
+    public WindowsHandler(){
+        if(Platform.is64Bit())
+            windowsUtility = (WindowsUtility) Native.loadLibrary("windows/WindowsUtility64.dll", WindowsUtility.class);
+        else
+            windowsUtility = (WindowsUtility) Native.loadLibrary("windows/WindowsUtility.dll", WindowsUtility.class);
+    }
 
 	@Override
 	public void removeBorder(PointerType hWnd) 
@@ -131,8 +139,21 @@ public class WindowsHandler implements OsHandler
 
     @Override
     public void sleep(){
-        System.out.println("Sleeping");
         Sleep.SetSuspendState(false, false, false);
+    }
+
+    public void increaseVolume(){
+        for(int i = 0; i < 5; i++)
+            windowsUtility.increaseVolume();
+    }
+
+    public void decreaseVolume(){
+        for(int i = 0; i < 5; i++)
+            windowsUtility.decreaseVolume();
+    }
+
+    public void mute(){
+        windowsUtility.mute();
     }
 }
 

@@ -12,6 +12,8 @@ public class MenuItem implements Item {
     private String displayName = "";
     private String message = "";
 
+    private boolean confirmation = false;
+
     List<Command> commands = new ArrayList<>();
 
     public MenuItem(){}
@@ -57,6 +59,14 @@ public class MenuItem implements Item {
     @Override
     public boolean vibrate() {
         return false;
+    }
+
+    public boolean isConfirmation() {
+        return confirmation;
+    }
+
+    public void setConfirmation(boolean confirmation) {
+        this.confirmation = confirmation;
     }
 
     @Override

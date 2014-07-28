@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.InvocationTargetException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,7 +27,6 @@ import models.Command;
 import models.Program;
 import settings.Settings;
 import settings.WindowSetting;
-import windows.Registry;
 
 
 public class Main extends Thread
@@ -131,7 +129,7 @@ public class Main extends Thread
 		String os = System.getProperty("os.name");
 		OsHandler wh = null;
 		if(os.contains("Windows"))
-			wh = new WindowsHandler();
+			wh = new windows.WindowsHandler();
 		else
 		{
 			log("Unsupported OS: " + os);
@@ -264,10 +262,7 @@ public class Main extends Thread
 	{
 		try 
 		{
-//			if(program.endsWith(".bat"))
-//				Runtime.getRuntime().exec ("cmd /c " + program);
-//			else
-				Runtime.getRuntime().exec (program.getPreCommand() + " " + program.getPath() + " " + program.getPostCommand());
+			Runtime.getRuntime().exec (program.getPreCommand() + " " + program.getPath() + " " + program.getPostCommand());
 		} 
 		catch (IOException e) 
 		{
@@ -308,14 +303,36 @@ public class Main extends Thread
 
     public void shutdown(){
         osHandler.shutdown();
-
     }
 
     public void sleep(){
         osHandler.sleep();
     }
 
+    public void turnOffControllers(){
+        controllerHandler.turnOffControllers();
+    }
+
+    public void increaseVolume(){
+        osHandler.increaseVolume();
+    }
+
+    public void decreaseVolume(){
+        osHandler.decreaseVolume();
+    }
+
+    public void mute(){
+        osHandler.mute();
+    }
+
     public void toggleHotkeys(){
         Main.SETTINGS.setDisableHotkeys(Main.SETTINGS.isDisableHotkeys() ? false : true);
     }
+
+
+    public void updateControllerStatus(){
+        controllerHandler.updateControllers();
+    }
+
+
 }

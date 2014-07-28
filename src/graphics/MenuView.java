@@ -18,6 +18,7 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -37,6 +38,7 @@ public class MenuView {
     private ListView<MenuItem> list;
     private Label controllerLabel;
     private AudioClip menuSound;
+    private boolean stopSound;
 
     public MenuView(Main main){
         this.main = main;
@@ -120,6 +122,7 @@ public class MenuView {
     }
 
     public void show(List<MenuItem> menuItems, int controller){
+        stopSound = true;
         list.getItems().clear();
         list.setItems(FXCollections.observableArrayList(menuItems));
         controllerLabel.setText("Controller " + (controller+1));
@@ -131,11 +134,13 @@ public class MenuView {
             bot.mouseRelease(InputEvent.BUTTON1_MASK);
         }
         catch (AWTException e){ e.printStackTrace();}
+        stopSound = false;
     }
 
     public void playSound(){
         if(!Main.SETTINGS.menuMuted())
-            menuSound.play();
+            if(!stopSound)
+                menuSound.play();
     }
 
     public void hide(){

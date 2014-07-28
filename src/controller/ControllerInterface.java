@@ -5,7 +5,6 @@ import com.sun.jna.Native;
 import com.sun.jna.Platform;
 
 public interface ControllerInterface extends Library {
-//    ControllerInterface INSTANCE = (ControllerInterface) Native.loadLibrary("C:\\Users\\thb\\Downloads\\simpleDLL\\x64\\Release\\Controller.dll", ControllerInterface.class);
     boolean initController();
     boolean getControllerConnected(int controller);
     int getGuideStatus(int controller);

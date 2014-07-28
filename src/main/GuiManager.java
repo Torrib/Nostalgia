@@ -29,9 +29,7 @@ public class GuiManager extends Application{
         Platform.setImplicitExit(false);
 
         menu = new MenuView(main);
-        main.log("Menu loaded");
         messageBox = new MessageBox(main);
-        main.log("MessageBox loaded");
 
         main.start();
     }
@@ -71,7 +69,7 @@ public class GuiManager extends Application{
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                new SettingsView();
+                new SettingsView(main);
             }
         });
     }

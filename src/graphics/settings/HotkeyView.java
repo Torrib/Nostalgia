@@ -30,6 +30,9 @@ public class HotkeyView {
         stage.initOwner(applicationView.getStage());
         stage.initModality(Modality.WINDOW_MODAL);
 
+
+        Label nameLabel = new Label("Name");
+        TextField nameField = new TextField(hotkey.getName());
         Label buttonLabel = new Label("Button");
         ComboBox buttonCB = new ComboBox(FXCollections.observableArrayList(hotkey.getButtonList()));
         buttonCB.getSelectionModel().select(hotkey.getButton());
@@ -45,14 +48,16 @@ public class HotkeyView {
         GridPane grid = new GridPane();
         grid.setVgap(10);
         grid.setHgap(10);
-        grid.add(buttonLabel, 0, 0);
-        grid.add(buttonCB, 1, 0);
-        grid.add(messageLabel, 0, 1);
-        grid.add(messageField, 1, 1);
-        grid.add(displayTimeLabel, 0, 2);
-        grid.add(displayTimeField, 1, 2);
-        grid.add(vibrateLabel, 0, 3);
-        grid.add(vibrateCB, 1, 3);
+        grid.add(nameLabel, 0, 0);
+        grid.add(nameField, 1, 0);
+        grid.add(buttonLabel, 0, 1);
+        grid.add(buttonCB, 1, 1);
+        grid.add(messageLabel, 0, 2);
+        grid.add(messageField, 1, 2);
+        grid.add(displayTimeLabel, 0, 3);
+        grid.add(displayTimeField, 1, 3);
+        grid.add(vibrateLabel, 0, 4);
+        grid.add(vibrateCB, 1, 4);
 
         Button saveButton = new Button("Save");
         Button cancelButton = new Button("Cancel");
@@ -64,6 +69,7 @@ public class HotkeyView {
                     event.consume();
                     commandBox.setIgnoreCloseRequest(false);
                 } else {
+                    hotkey.setName(nameField.getText());
                     hotkey.setButton(buttonCB.getSelectionModel().getSelectedIndex());
                     hotkey.setMessage(messageField.getText());
                     hotkey.setDisplayTime(Integer.parseInt(displayTimeField.getText()));

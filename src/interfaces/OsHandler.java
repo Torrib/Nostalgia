@@ -23,7 +23,10 @@ public interface OsHandler
     public void killProcess(PointerType hWnd);
 
     public void sleep();
-
     public void shutdown();
+
+    public void increaseVolume();
+    public void decreaseVolume();
+    public void mute();
 
 }

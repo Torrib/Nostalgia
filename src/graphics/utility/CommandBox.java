@@ -150,9 +150,7 @@ public class CommandBox extends VBox{
                             command.setDisableMenuText(disableTextField.getText());
                             command.setDisableMessage(disableMessageField.getText());
                         }
-
                         commandList.getItems().add(command);
-
                         break;
                     case Command.PROGRAM:
                         commandList.getItems().add(new Command(programCombobox.getSelectionModel().getSelectedItem(),
