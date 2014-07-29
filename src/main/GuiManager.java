@@ -32,6 +32,9 @@ public class GuiManager extends Application{
         messageBox = new MessageBox(main);
 
         main.start();
+
+        if(Main.SETTINGS.isFirstRun())
+            showConfig();
     }
 
     public void showMenu(List<MenuItem> menuItems, int controller){

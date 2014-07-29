@@ -5,9 +5,6 @@ import models.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by thb on 06.07.2014.
- */
 public class WindowSetting {
 
     private String name = "";
@@ -17,7 +14,6 @@ public class WindowSetting {
     private boolean topmost = false;
     private boolean disableMessages = false;
     private boolean disableVibration = false;
-    private boolean confirmation = false;
     private boolean disableHotkeys = false;
 
     private List<Command> preMenuComands = new ArrayList<>();
@@ -76,14 +72,6 @@ public class WindowSetting {
 
     public void setDisableVibration(boolean disableVibration) {
         this.disableVibration = disableVibration;
-    }
-
-    public boolean isConfirmation() {
-        return confirmation;
-    }
-
-    public void setConfirmation(boolean confirmation) {
-        this.confirmation = confirmation;
     }
 
     public List<MenuItem> getMenuItems() {

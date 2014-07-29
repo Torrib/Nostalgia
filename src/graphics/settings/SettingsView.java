@@ -415,6 +415,8 @@ public class SettingsView {
     }
 
     private void save(){
+        settings.setFirstRun(false);
+
         settings.setMenuFont(menuFontField.getText());
         settings.setMenuFontSize(Integer.parseInt(menuFontSizeField.getText()));
         settings.setMenuMuted(muteMenuCB.isSelected());

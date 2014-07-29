@@ -12,6 +12,8 @@ import java.util.Map;
 
 public class Settings {
 
+    private boolean firstRun = true;
+
     private String menuFont = "";
     private int menuFontSize = 25;
     private int menuSelectedFontSize = 30;
@@ -42,6 +44,14 @@ public class Settings {
     private boolean disableController2 = false;
     private boolean disableController3 = false;
     private boolean disableController4 = false;
+
+    public boolean isFirstRun() {
+        return firstRun;
+    }
+
+    public void setFirstRun(boolean firstRun) {
+        this.firstRun = firstRun;
+    }
 
     public String getMenuFont() {
         return menuFont;

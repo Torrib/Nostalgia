@@ -18,6 +18,7 @@ public class Controller extends Thread{
     private boolean connectionStatus;
     private List<Hotkey> hotkeys = new ArrayList<>();
     private int[] buttonCounter;
+    private int xCounter = 0;
 
     public Controller(int controllerNumber, ControllerHandler controllerHandler, ControllerInterface controllerInterface){
         this.controllerNumber = controllerNumber;
@@ -42,12 +43,22 @@ public class Controller extends Thread{
                 controllerInterface.getControllerState(controllerNumber, buttons);
                 if (controllerHandler.getMain().isGuiActive()) {
                     if(controllerHandler.getMenuController() == controllerNumber) {
-                        if (buttons.aButton == 1)
-                            controllerHandler.getMain().pressKey(KeyEvent.VK_ENTER);
-                        else if (buttons.down == 1 || analogDown(buttons))
+                        if (buttons.aButton == 1) {
+                            if(xCounter == 0) {
+                                controllerHandler.getMain().pressKey(KeyEvent.VK_ENTER);
+                            }
+                            xCounter++;
+                        }
+                        else if(buttons.aButton != 1)
+                            xCounter = 0;
+                        if (buttons.down == 1 || analogDown(buttons))
                             controllerHandler.getMain().pressKey(KeyEvent.VK_DOWN);
                         else if (buttons.up == 1 || analogUp(buttons))
                             controllerHandler.getMain().pressKey(KeyEvent.VK_UP);
+                        else if (buttons.left == 1)
+                            controllerHandler.getMain().pressKey(KeyEvent.VK_LEFT);
+                        else if (buttons.right == 1)
+                            controllerHandler.getMain().pressKey(KeyEvent.VK_RIGHT);
                         else if (buttons.bButton == 1)
                             controllerHandler.getMain().pressKey(KeyEvent.VK_BACK_SPACE);
                     }

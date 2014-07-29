@@ -36,6 +36,7 @@ public class MenuView {
     private Main main;
     private Stage stage;
     private ListView<MenuItem> list;
+    private BorderPane borderPane;
     private Label controllerLabel;
     private AudioClip menuSound;
     private boolean stopSound;
@@ -53,8 +54,7 @@ public class MenuView {
             @Override
             public void handle(KeyEvent keyEvent) {
                 if (keyEvent.getCode() == KeyCode.ENTER) {
-                    hide();
-                    main.command(list.getSelectionModel().getSelectedItem(), null);
+                    performCommand();
                 }
                 if (keyEvent.getCode() == KeyCode.BACK_SPACE) {
                     hide();
@@ -105,7 +105,7 @@ public class MenuView {
         controllerLabel.setFont(Font.font(Main.SETTINGS.getMenuFont(), Main.SETTINGS.getMenuFontSize()));
         controllerLabel.setPadding(new Insets(primaryScreenBounds.getHeight() / 5, 0, primaryScreenBounds.getHeight() / 5, (primaryScreenBounds.getWidth() / 2) - 55));
 
-        BorderPane borderPane = new BorderPane();
+        borderPane = new BorderPane();
         borderPane.setTop(controllerLabel);
         borderPane.setCenter(list);
 
@@ -151,5 +151,79 @@ public class MenuView {
 
     public boolean isShowing(){
         return stage.isShowing();
+    }
+
+
+    private void performCommand(){
+        if(list.getSelectionModel().getSelectedItem().isConfirmation()) {
+
+            ListView<String> confirmationList = new ListView();
+            confirmationList.getItems().addAll("OK", "Cancel");
+            confirmationList.setOrientation(Orientation.HORIZONTAL);
+
+            confirmationList.setOnKeyReleased(new EventHandler<KeyEvent>() {
+                @Override
+                public void handle(KeyEvent keyEvent) {
+                    if (keyEvent.getCode() == KeyCode.ENTER) {
+                        if(confirmationList.getSelectionModel().getSelectedIndex() == 0){
+                            hide();
+                            main.command(list.getSelectionModel().getSelectedItem(), null);
+                        }
+                        else{
+                            borderPane.getChildren().removeAll(confirmationList);
+                            borderPane.setCenter(list);
+                        }
+                    }
+                    if (keyEvent.getCode() == KeyCode.BACK_SPACE) {
+                        borderPane.getChildren().removeAll(confirmationList);
+                        borderPane.setCenter(list);
+                    }
+                }
+            });
+
+            confirmationList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+                @Override
+                public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                    playSound();
+                    confirmationList.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+                        @Override
+                        public ListCell<String> call(ListView<String> param) {
+                            ListCell<String> cell = new ListCell<String>() {
+
+                                @Override
+                                public void updateItem(final String item, boolean empty) {
+                                    super.updateItem(item, empty);
+                                    if (item != null) {
+                                        if(item == newValue) {
+                                            this.setTextFill(Color.WHITE);
+                                            this.setFont(Font.font(Main.SETTINGS.getMenuSelectedFontSize()));
+                                            setEffect(new Bloom(0.1));
+                                            setText(item);
+                                        }
+                                        else{
+                                            this.setTextFill(Color.WHITE);
+                                            this.setFont(Font.font(Main.SETTINGS.getMenuFont(), Main.SETTINGS.getMenuFontSize()));
+                                            setText(item);
+                                        }
+                                    }
+                                }
+                            };
+                            return cell;
+                        }
+                    });
+                }
+            });
+
+            confirmationList.getSelectionModel().selectLast();
+
+            borderPane.getChildren().removeAll(list);
+            borderPane.setCenter(confirmationList);
+            //TODO fix better centering
+            confirmationList.setMaxWidth(300);
+        }
+        else {
+            hide();
+            main.command(list.getSelectionModel().getSelectedItem(), null);
+        }
     }
 }
