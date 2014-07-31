@@ -1,8 +1,6 @@
 package graphics.settings;
 
 import graphics.utility.EditList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -43,6 +41,7 @@ public class SettingsView {
 
     private TextField windowPullField;
     private TextField windowRefreshDelayField;
+    private CheckBox runOnStartupCB;
 
     private EditList<WindowSetting> windowEditList;
     private EditList<Program> programEditList;
@@ -67,27 +66,13 @@ public class SettingsView {
         Button applyButton = new Button("Apply");
         Button cancelButton = new Button("Cancel");
 
-        saveButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                save();
-                stage.close();
-            }
+        saveButton.setOnAction(event -> {
+            save();
+            stage.close();
         });
 
-        applyButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                save();
-            }
-        });
-
-        cancelButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                stage.close();
-            }
-        });
+        applyButton.setOnAction(event -> save());
+        cancelButton.setOnAction(event -> stage.close());
 
         HBox buttons = new HBox(5);
         buttons.getChildren().addAll(saveButton, applyButton, cancelButton);
@@ -296,25 +281,31 @@ public class SettingsView {
     }
 
     private Tab createAdvancedTab() {
-        GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(12);
-
         Label windowPullLabel = new Label("Window pull delay(ms)");
         windowPullLabel.setTooltip(new Tooltip("How often window(active application) information will be pulled"));
         windowPullField = new NumberTextField(settings.getWindowPullDelay());
         windowPullField.setTooltip(new Tooltip("How often window(active application) information will be pulled"));
-
-        grid.add(windowPullLabel, 0, 0);
-        grid.add(windowPullField, 1, 0);
 
         Label windowPullRefreshDelayLabel = new Label("Window refresh delay(ms)");
         windowPullRefreshDelayLabel.setTooltip(new Tooltip("How often the window manager will refresh"));
         windowRefreshDelayField = new NumberTextField(settings.getWindowPullRefresh());
         windowRefreshDelayField.setTooltip(new Tooltip("How often the window manager will refresh"));
 
+        Label runOnStartupLabel = new Label("Run on startup");
+        runOnStartupCB = new CheckBox();
+        runOnStartupCB.setSelected(settings.isRunOnStartup());
+        runOnStartupLabel.setTooltip(new Tooltip("Run Nostalgia when the computer starts (Requires administrator rights)"));
+        runOnStartupCB.setTooltip(new Tooltip("Run Nostalgia when the computer starts (Requires administrator rights)"));
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(12);
+        grid.add(windowPullLabel, 0, 0);
+        grid.add(windowPullField, 1, 0);
         grid.add(windowPullRefreshDelayLabel, 0, 1);
         grid.add(windowRefreshDelayField, 1, 1);
+        grid.add(runOnStartupLabel, 0, 2);
+        grid.add(runOnStartupCB, 1, 2);
 
         grid.setPadding(new Insets(15));
 
@@ -331,19 +322,8 @@ public class SettingsView {
 
         windowEditList = new EditList<>(settings.getWindowSettings(), false);
 
-        windowEditList.getAddButton().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                openApplicationView(new WindowSetting(), true);
-            }
-        });
-
-        windowEditList.getEditButton().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                openApplicationView(windowEditList.getSelected(), false);
-            }
-        });
+        windowEditList.getAddButton().setOnAction(event -> openApplicationView(new WindowSetting(), true));
+        windowEditList.getEditButton().setOnAction(event -> openApplicationView(windowEditList.getSelected(), false));
 
         windowEditList.setPadding(new Insets(25));
 
@@ -360,19 +340,8 @@ public class SettingsView {
 
         programEditList = new EditList<>(settings.getPrograms(), false);
 
-        programEditList.getAddButton().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                openProgramView(new Program(), true);
-            }
-        });
-
-        programEditList.getEditButton().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                openProgramView(programEditList.getSelected(), false);
-            }
-        });
+        programEditList.getAddButton().setOnAction(event -> openProgramView(new Program(), true));
+        programEditList.getEditButton().setOnAction(event -> openProgramView(programEditList.getSelected(), false));
 
         programEditList.setPadding(new Insets(25));
 
@@ -440,6 +409,7 @@ public class SettingsView {
         settings.setWindowPullDelay(Integer.parseInt(windowPullField.getText()));
         settings.setWindowPullRefresh(Integer.parseInt(windowRefreshDelayField.getText()));
         settings.setWindowPullRefreshCount(settings.getWindowPullRefresh() / settings.getWindowPullDelay());
+        settings.setRunOnStartup(runOnStartupCB.isSelected());
 
         settings.setPrograms(programEditList.getItems());
 
@@ -454,6 +424,7 @@ public class SettingsView {
 
         settings.store();
         main.updateControllerStatus();
+        main.handleRunOnStartup();
     }
 
     public Stage getStage(){

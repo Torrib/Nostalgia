@@ -11,7 +11,11 @@ import com.sun.jna.win32.StdCallLibrary;
 import com.sun.jna.win32.W32APIOptions;
 import interfaces.OsHandler;
 
+import java.awt.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class WindowsHandler implements OsHandler
 {
@@ -124,7 +128,6 @@ public class WindowsHandler implements OsHandler
 
 
     public void killProcess(PointerType handle){
-        System.out.println("Killing!");
         User32.INSTANCE.EndTask(handle, false, true);
     }
 
@@ -154,6 +157,42 @@ public class WindowsHandler implements OsHandler
 
     public void mute(){
         windowsUtility.mute();
+    }
+
+    public void handleRunOnStartup(boolean runOnStartup){
+        try {
+            String value = WinRegistry.readString(WinRegistry.HKEY_LOCAL_MACHINE,
+                    "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", "Nostalgia");
+
+            if(runOnStartup && value == null){
+                String path = System.getProperty("user.dir");
+                path = path.replace("\\", "\\\\");
+                String file = "\\\"" + path + "\\\\Nostalgia.jar\\\"";
+                createRegFile("\"" + file + "\"");
+
+                Desktop.getDesktop().open(new File("windows\\Nostalgia.reg"));
+            }
+            else if(!runOnStartup && value != null){
+                createRegFile("-");
+                Desktop.getDesktop().open(new File("windows\\Nostalgia.reg"));
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void createRegFile(String value){
+        try {
+            PrintWriter writer = new PrintWriter("windows\\Nostalgia.reg");
+            writer.println("Windows Registry Editor Version 5.00");
+            writer.println();
+            writer.println("[HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run]");
+            writer.println("\"Nostalgia\"=" + value);
+            writer.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
 

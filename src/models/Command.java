@@ -1,7 +1,5 @@
 package models;
 
-import javafx.scene.input.KeyCode;
-
 public class Command {
 
     public static final int KEY = 0;
@@ -49,20 +47,8 @@ public class Command {
         return delay;
     }
 
-    public void setDelay(int delay) {
-        this.delay = delay;
-    }
-
     public int getCommandType() {
         return commandType;
-    }
-
-    public void setCommandType(int commandType) {
-        this.commandType = commandType;
-    }
-
-    public void setFunction(Function function) {
-        this.function = function;
     }
 
     public Function getFunction() {
@@ -112,10 +98,6 @@ public class Command {
 
     public KeyCommand getKeyCommand() {
         return keyCommand;
-    }
-
-    public void setKeyCommand(KeyCommand keyCommand) {
-        this.keyCommand = keyCommand;
     }
 
     public String toString(){

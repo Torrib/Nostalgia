@@ -2,8 +2,6 @@ package graphics.settings;
 
 import graphics.utility.CommandBox;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -13,15 +11,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import models.Program;
 import models.Hotkey;
 
 import java.util.List;
 
-/**
- * Created by thb on 08.07.2014.
- */
 public class HotkeyView {
 
     public HotkeyView(WindowSettingsView applicationView, Hotkey hotkey, boolean newItem, List<Program> programs){
@@ -34,7 +28,7 @@ public class HotkeyView {
         Label nameLabel = new Label("Name");
         TextField nameField = new TextField(hotkey.getName());
         Label buttonLabel = new Label("Button");
-        ComboBox buttonCB = new ComboBox(FXCollections.observableArrayList(hotkey.getButtonList()));
+        ComboBox<String> buttonCB = new ComboBox(FXCollections.observableArrayList(hotkey.getButtonList()));
         buttonCB.getSelectionModel().select(hotkey.getButton());
         Label messageLabel = new Label("Message");
         TextField messageField = new TextField(hotkey.getMessage());
@@ -62,9 +56,7 @@ public class HotkeyView {
         Button saveButton = new Button("Save");
         Button cancelButton = new Button("Cancel");
 
-        saveButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
+        saveButton.setOnAction(event ->{
                 if (commandBox.isIgnoreCloseRequest()) {
                     event.consume();
                     commandBox.setIgnoreCloseRequest(false);
@@ -82,15 +74,9 @@ public class HotkeyView {
                         applicationView.updateHotkeyList();
                     stage.close();
                 }
-            }
         });
 
-        cancelButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                stage.close();
-            }
-        });
+        cancelButton.setOnAction(event -> stage.close());
 
         HBox buttonBox = new HBox(5);
         buttonBox.setAlignment(Pos.CENTER);

@@ -1,7 +1,5 @@
 package graphics.settings;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,9 +16,6 @@ import models.Program;
 
 import java.io.File;
 
-/**
- * Created by thb on 16.07.2014.
- */
 public class ProgramView {
 
     public ProgramView(SettingsView settingsView, Program program, boolean newItem){
@@ -50,19 +45,16 @@ public class ProgramView {
         pathField.setTooltip(new Tooltip("Path to the program or script to run"));
         Button browsePathButton = new Button("Browse");
 
-        browsePathButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                FileChooser fileChooser = new FileChooser();
-                fileChooser.setTitle("Select file to run");
-                File file = fileChooser.showOpenDialog(stage);
-                if(file != null) {
-                    pathField.setText(file.getAbsolutePath());
-                    int index = file.getName().lastIndexOf('.');
-                    String extension = file.getName().substring(index);
-                    preCommandField.setText(programCommands.getPreString(extension));
-                    preCommandField.setText(programCommands.getPostString(extension));
-                }
+        browsePathButton.setOnAction(event -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Select file to run");
+            File file = fileChooser.showOpenDialog(stage);
+            if(file != null) {
+                pathField.setText(file.getAbsolutePath());
+                int index = file.getName().lastIndexOf('.');
+                String extension = file.getName().substring(index);
+                preCommandField.setText(programCommands.getPreString(extension));
+                preCommandField.setText(programCommands.getPostString(extension));
             }
         });
 
@@ -73,37 +65,29 @@ public class ProgramView {
         Button saveButton = new Button("Save");
         Button cancelButton = new Button("Cancel");
 
-        saveButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(nameField.getText().isEmpty()){
-                    nameField.setStyle("-fx-border-color: red;");
-                }
-                else if(pathField.getText().isEmpty()){
-                    pathField.setStyle("-fx-border-color: red;");
-                }
-                else {
-                    program.setName(nameField.getText());
-                    program.setPreCommand(preCommandField.getText());
-                    program.setPostCommand(postCommandField.getText());
-                    program.setPath(pathField.getText());
-
-                    if (newItem)
-                        settingsView.addProgram(program);
-                    else
-                        settingsView.updateProgramList();
-
-                    stage.close();
-                }
+        saveButton.setOnAction(event -> {
+            if(nameField.getText().isEmpty()){
+                nameField.setStyle("-fx-border-color: red;");
             }
-        });
+            else if(pathField.getText().isEmpty()){
+                pathField.setStyle("-fx-border-color: red;");
+            }
+            else {
+                program.setName(nameField.getText());
+                program.setPreCommand(preCommandField.getText());
+                program.setPostCommand(postCommandField.getText());
+                program.setPath(pathField.getText());
 
-        cancelButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
+                if (newItem)
+                    settingsView.addProgram(program);
+                else
+                    settingsView.updateProgramList();
+
                 stage.close();
             }
         });
+
+        cancelButton.setOnAction(event -> stage.close());
 
         GridPane grid = new GridPane();
         grid.setHgap(10);

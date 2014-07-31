@@ -1,8 +1,5 @@
 package models;
 
-/**
- * Created by thb on 17.07.2014.
- */
 public class Function {
     private int functionType = 0;
     private String name = "";
@@ -27,32 +24,16 @@ public class Function {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public boolean isToggle() {
         return toggle;
     }
 
-    public void setToggle(boolean toggle) {
-        this.toggle = toggle;
-    }
-
     public int getFunctionType() {
         return functionType;
-    }
-
-    public void setFunctionType(int functionType) {
-        this.functionType = functionType;
     }
 
     @Override

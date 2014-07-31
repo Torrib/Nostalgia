@@ -28,5 +28,6 @@ public interface OsHandler
     public void increaseVolume();
     public void decreaseVolume();
     public void mute();
+    public void handleRunOnStartup(boolean runOnStartup);
 
 }

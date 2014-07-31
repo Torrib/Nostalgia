@@ -15,7 +15,7 @@ public class PredefinedProgramCommands {
 
     public void AddPredefinedProgramCommands(String extension, String preString, String postString){
         preProgram.put(extension, preString);
-        postProgram.put(extension, preString);
+        postProgram.put(extension, postString);
     }
 
     public String getPreString(String extension){

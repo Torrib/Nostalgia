@@ -6,11 +6,11 @@ import models.*;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Settings {
+
+    private static final int BUTTON_PRESS_DELAY = 50;
 
     private boolean firstRun = true;
 
@@ -28,17 +28,15 @@ public class Settings {
     private int controllerPullDelay = 100;
     private boolean requireActivate = true;
     private boolean disableVibration = false;
-    private boolean disableControllers = false;
     private boolean disableHotkeys = false;
-    private int buttonPressDelay = 50;
 
     private int windowPullDelay = 1000;
     private int windowPullRefresh = 10000;
     private int windowPullRefreshCount = 10;
+    private boolean runOnStartup = false;
 
     private List<WindowSetting> windowSettings = new ArrayList<>();
     private List<Program> programs = new ArrayList<>();
-    private Map<String, String> programBindings = new HashMap<>();
 
     private boolean disableController1 = false;
     private boolean disableController2 = false;
@@ -149,20 +147,8 @@ public class Settings {
         this.windowSettings = windowSettings;
     }
 
-    public Map<String, String> getProgramBindings() {
-        return programBindings;
-    }
-
-    public void setProgramBindings(Map<String, String> programBindings) {
-        this.programBindings = programBindings;
-    }
-
     public int getButtonPressDelay() {
-        return buttonPressDelay;
-    }
-
-    public void setButtonPressDelay(int buttonPressDelay) {
-        this.buttonPressDelay = buttonPressDelay;
+        return BUTTON_PRESS_DELAY;
     }
 
     public int getMenuSelectedFontSize() {
@@ -187,14 +173,6 @@ public class Settings {
 
     public void setRequireActivate(boolean requireActivate) {
         this.requireActivate = requireActivate;
-    }
-
-    public boolean isDisableControllers() {
-        return disableControllers;
-    }
-
-    public void setDisableControllers(boolean disableControllers) {
-        this.disableControllers = disableControllers;
     }
 
     public boolean isDisableHotkeys() {
@@ -260,6 +238,14 @@ public class Settings {
 
     public void setDisableController4(boolean disableController4) {
         this.disableController4 = disableController4;
+    }
+
+    public boolean isRunOnStartup() {
+        return runOnStartup;
+    }
+
+    public void setRunOnStartup(boolean runOnStartup) {
+        this.runOnStartup = runOnStartup;
     }
 
     public void store(){

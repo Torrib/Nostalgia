@@ -3,7 +3,6 @@ package graphics;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.event.EventHandler;
 import javafx.geometry.*;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -12,13 +11,10 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.effect.Bloom;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.TextAlignment;
-import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -50,15 +46,12 @@ public class MenuView {
         File file = new File("src/resources/button-29.mp3");
         menuSound = new AudioClip(file.toURI().toString());
 
-        list.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent keyEvent) {
-                if (keyEvent.getCode() == KeyCode.ENTER) {
-                    performCommand();
-                }
-                if (keyEvent.getCode() == KeyCode.BACK_SPACE) {
-                    hide();
-                }
+        list.setOnKeyReleased(keyEvent -> {
+            if (keyEvent.getCode() == KeyCode.ENTER) {
+                performCommand();
+            }
+            if (keyEvent.getCode() == KeyCode.BACK_SPACE) {
+                hide();
             }
         });
 
@@ -69,8 +62,7 @@ public class MenuView {
                 list.setCellFactory(new Callback<ListView<MenuItem>, ListCell<MenuItem>>() {
                     @Override
                     public ListCell<MenuItem> call(ListView<MenuItem> param) {
-                        ListCell<MenuItem> cell = new ListCell<MenuItem>() {
-
+                        return new ListCell<MenuItem>() {
                             @Override
                             public void updateItem(final MenuItem item, boolean empty) {
                                 super.updateItem(item, empty);
@@ -90,7 +82,6 @@ public class MenuView {
                                 }
                             }
                         };
-                        return cell;
                     }
                 });
             }
@@ -161,23 +152,20 @@ public class MenuView {
             confirmationList.getItems().addAll("OK", "Cancel");
             confirmationList.setOrientation(Orientation.HORIZONTAL);
 
-            confirmationList.setOnKeyReleased(new EventHandler<KeyEvent>() {
-                @Override
-                public void handle(KeyEvent keyEvent) {
-                    if (keyEvent.getCode() == KeyCode.ENTER) {
-                        if(confirmationList.getSelectionModel().getSelectedIndex() == 0){
-                            hide();
-                            main.command(list.getSelectionModel().getSelectedItem(), null);
-                        }
-                        else{
-                            borderPane.getChildren().removeAll(confirmationList);
-                            borderPane.setCenter(list);
-                        }
+            confirmationList.setOnKeyReleased(keyEvent -> {
+                if (keyEvent.getCode() == KeyCode.ENTER) {
+                    if(confirmationList.getSelectionModel().getSelectedIndex() == 0){
+                        hide();
+                        main.command(list.getSelectionModel().getSelectedItem(), null);
                     }
-                    if (keyEvent.getCode() == KeyCode.BACK_SPACE) {
+                    else{
                         borderPane.getChildren().removeAll(confirmationList);
                         borderPane.setCenter(list);
                     }
+                }
+                if (keyEvent.getCode() == KeyCode.BACK_SPACE) {
+                    borderPane.getChildren().removeAll(confirmationList);
+                    borderPane.setCenter(list);
                 }
             });
 
@@ -188,13 +176,13 @@ public class MenuView {
                     confirmationList.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
                         @Override
                         public ListCell<String> call(ListView<String> param) {
-                            ListCell<String> cell = new ListCell<String>() {
+                            return new ListCell<String>() {
 
                                 @Override
                                 public void updateItem(final String item, boolean empty) {
                                     super.updateItem(item, empty);
                                     if (item != null) {
-                                        if(item == newValue) {
+                                        if(item.equals(newValue)) {
                                             this.setTextFill(Color.WHITE);
                                             this.setFont(Font.font(Main.SETTINGS.getMenuSelectedFontSize()));
                                             setEffect(new Bloom(0.1));
@@ -208,7 +196,6 @@ public class MenuView {
                                     }
                                 }
                             };
-                            return cell;
                         }
                     });
                 }

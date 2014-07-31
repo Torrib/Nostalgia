@@ -14,6 +14,7 @@ public class ControllerStructure extends Structure {
     public int[] getArray(){
         return new int[] {aButton, bButton, yButton, xButton, l1, r1, back, start, l3, r3 };
     }
+
     protected List getFieldOrder() {
         return Arrays.asList(new String[]{"up", "down", "left", "right", "start", "back",
                 "aButton", "bButton", "xButton", "yButton", "guideButton",

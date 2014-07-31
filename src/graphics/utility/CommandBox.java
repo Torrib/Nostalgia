@@ -1,11 +1,8 @@
 package graphics.utility;
 
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -50,29 +47,23 @@ public class CommandBox extends VBox{
         commandList.setItems(observableCommands);
         commandList.setMaxHeight(100);
 
-        commandList.setCellFactory(new Callback<ListView<Command>, ListCell<Command>>() {
-            @Override
-            public ListCell<Command> call(ListView<Command> param) {
-                DraggableRemovableCell<Command> cell = new DraggableRemovableCell<>(observableCommands, 100);
-                cell.init(observableCommands);
-                return cell;
-            }
+        commandList.setCellFactory((ListView<Command> param) -> {
+            DraggableRemovableCell<Command> cell = new DraggableRemovableCell<>(observableCommands, 100);
+            cell.init(observableCommands);
+            return cell;
         });
 
-        commandList.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if(event.getCode().equals(KeyCode.DELETE)){
-                    if(commandList.getSelectionModel().getSelectedItem() != null){
-                        commandList.getItems().remove(commandList.getSelectionModel().getSelectedItem());
-                    }
+        commandList.setOnKeyPressed(event -> {
+            if(event.getCode().equals(KeyCode.DELETE)){
+                if(commandList.getSelectionModel().getSelectedItem() != null){
+                    commandList.getItems().remove(commandList.getSelectionModel().getSelectedItem());
                 }
             }
         });
 
         Label commandTypeLabel = new Label("Command Type");
         ComboBox<String> commandTypeCB = new ComboBox<>();
-        commandTypeCB.setItems(FXCollections.observableArrayList(new String[]{"Key presses", "Functions", "Programs"}));
+        commandTypeCB.setItems(FXCollections.observableArrayList("Key presses", "Functions", "Programs"));
 
         Pane swapPane = new Pane();
 
@@ -80,31 +71,28 @@ public class CommandBox extends VBox{
         VBox functionCommandBox = createFunctionBox();
         HBox programCommandBox = createProgramBox(programs);
 
-        commandTypeCB.valueProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                swapPane.getChildren().removeAll(swapPane.getChildren());
+        commandTypeCB.valueProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            swapPane.getChildren().removeAll(swapPane.getChildren());
 
-                if(showingToggleInfo){
-                    getScene().getWindow().setHeight(getScene().getWindow().getHeight() - 140);
-                    showingToggleInfo = false;
-                }
+            if(showingToggleInfo){
+                getScene().getWindow().setHeight(getScene().getWindow().getHeight() - 140);
+                showingToggleInfo = false;
+            }
 
-                switch (commandTypeCB.getSelectionModel().getSelectedIndex()){
-                    case Command.KEY:
-                        swapPane.getChildren().add(keyCommandBox);
-                        break;
-                    case Command.FUNCTION:
-                        swapPane.getChildren().add(functionCommandBox);
-                        if(functionCombobox.getSelectionModel().getSelectedItem().isToggle()){
-                            getScene().getWindow().setHeight(getScene().getWindow().getHeight() + 140);
-                            showingToggleInfo = true;
-                        }
-                        break;
-                    case Command.PROGRAM:
-                        swapPane.getChildren().add(programCommandBox);
-                        break;
-                }
+            switch (commandTypeCB.getSelectionModel().getSelectedIndex()){
+                case Command.KEY:
+                    swapPane.getChildren().add(keyCommandBox);
+                    break;
+                case Command.FUNCTION:
+                    swapPane.getChildren().add(functionCommandBox);
+                    if(functionCombobox.getSelectionModel().getSelectedItem().isToggle()){
+                        getScene().getWindow().setHeight(getScene().getWindow().getHeight() + 140);
+                        showingToggleInfo = true;
+                    }
+                    break;
+                case Command.PROGRAM:
+                    swapPane.getChildren().add(programCommandBox);
+                    break;
             }
         });
 
@@ -131,75 +119,66 @@ public class CommandBox extends VBox{
 
         addButton.setGraphic(addImage);
 
-        addButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-
-                switch (commandTypeCB.getSelectionModel().getSelectedIndex()){
-                    case Command.KEY:
-                        if(keyCommand.getKeyCode() != null) {
-                            commandList.getItems().add(new Command(keyCommand, Integer.parseInt(delayField.getText())));
-                        }
-                        break;
-                    case Command.FUNCTION:
-                        Command command = new Command(functionCombobox.getSelectionModel().getSelectedItem(),
-                                Integer.parseInt(delayField.getText()));
-                        if(command.getFunction().isToggle()){
-                            command.setEnableMenuText(enableTextField.getText());
-                            command.setEnableMessage(enableMessageField.getText());
-                            command.setDisableMenuText(disableTextField.getText());
-                            command.setDisableMessage(disableMessageField.getText());
-                        }
-                        commandList.getItems().add(command);
-                        break;
-                    case Command.PROGRAM:
-                        commandList.getItems().add(new Command(programCombobox.getSelectionModel().getSelectedItem(),
-                                Integer.parseInt(delayField.getText())));
-                        break;
-                }
+        addButton.setOnAction(event -> {
+            switch (commandTypeCB.getSelectionModel().getSelectedIndex()){
+                case Command.KEY:
+                    if(keyCommand.getKeyCode() != null) {
+                        commandList.getItems().add(new Command(keyCommand, Integer.parseInt(delayField.getText())));
+                    }
+                    break;
+                case Command.FUNCTION:
+                    Command command = new Command(functionCombobox.getSelectionModel().getSelectedItem(),
+                            Integer.parseInt(delayField.getText()));
+                    if(command.getFunction().isToggle()){
+                        command.setEnableMenuText(enableTextField.getText());
+                        command.setEnableMessage(enableMessageField.getText());
+                        command.setDisableMenuText(disableTextField.getText());
+                        command.setDisableMessage(disableMessageField.getText());
+                    }
+                    commandList.getItems().add(command);
+                    break;
+                case Command.PROGRAM:
+                    commandList.getItems().add(new Command(programCombobox.getSelectionModel().getSelectedItem(),
+                            Integer.parseInt(delayField.getText())));
+                    break;
             }
         });
 
-        commandList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Command>() {
-            @Override
-            public void changed(ObservableValue<? extends Command> observable, Command oldValue, Command newValue) {
-                if(newValue == null)
-                    return;
+        commandList.getSelectionModel().selectedItemProperty().addListener(
+                (ObservableValue<? extends Command> observable, Command oldValue, Command newValue) -> {
+                    if(newValue == null)
+                        return;
 
-                commandTypeCB.getSelectionModel().select(newValue.getCommandType());
+                    commandTypeCB.getSelectionModel().select(newValue.getCommandType());
 
-                switch (newValue.getCommandType()){
-                    case Command.KEY:
-                        detectKeyPressField.setText(newValue.toString());
-                        break;
-                    case Command.FUNCTION:
-                        functionCombobox.getSelectionModel().select(newValue.getFunction());
-                        enableTextField.setText(newValue.getEnableMenuText());
-                        enableMessageField.setText(newValue.getEnableMessage());
-                        disableTextField.setText(newValue.getDisableMenuText());
-                        disableMessageField.setText(newValue.getDisableMessage());
-                        break;
-                    case Command.PROGRAM:
-                        programCombobox.getSelectionModel().select(newValue.getProgram());
-                        break;
-                }
-                delayField.setText(""+newValue.getDelay());
-            }
-        });
+                    switch (newValue.getCommandType()){
+                        case Command.KEY:
+                            detectKeyPressField.setText(newValue.toString());
+                            break;
+                        case Command.FUNCTION:
+                            functionCombobox.getSelectionModel().select(newValue.getFunction());
+                            enableTextField.setText(newValue.getEnableMenuText());
+                            enableMessageField.setText(newValue.getEnableMessage());
+                            disableTextField.setText(newValue.getDisableMenuText());
+                            disableMessageField.setText(newValue.getDisableMessage());
+                            break;
+                        case Command.PROGRAM:
+                            programCombobox.getSelectionModel().select(newValue.getProgram());
+                            break;
+                    }
+                    delayField.setText(""+newValue.getDelay());
+                });
 
         VBox swapBox = new VBox(10);
         swapBox.getChildren().addAll(swapPane, addButton);
 
         //Prevents the window from closing on alt+f4 press
-        stage.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(final KeyEvent event) {
-                if (event.getCode() == KeyCode.F4 && event.isAltDown()) {
-                    event.consume();
-                    ignoreCloseRequest = true;
-                }
+        stage.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.F4 && event.isAltDown()) {
                 event.consume();
+                ignoreCloseRequest = true;
             }
+            event.consume();
         });
 
         this.getChildren().addAll(commandList, commandGrid, swapBox);
@@ -213,20 +192,17 @@ public class CommandBox extends VBox{
         detectKeyPressField.setPromptText("Detect keyPress");
         detectKeyPressField.setEditable(false);
 
-        detectKeyPressField.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (!event.getCode().equals(KeyCode.CONTROL) && !event.getCode().equals(KeyCode.ALT)
-                        && !event.getCode().equals(KeyCode.SHIFT) && !event.getCode().equals(KeyCode.WINDOWS)){
-                    keyCommand.setShift(event.isShiftDown());
-                    keyCommand.setCtrl(event.isControlDown());
-                    keyCommand.setAlt(event.isAltDown());
-                    keyCommand.setWindows(event.isMetaDown());
-                    keyCommand.setKeyCode(event.getCode());
-                    detectKeyPressField.setText(keyCommand.toString());
-                }
-                event.consume();
+        detectKeyPressField.setOnKeyReleased(event -> {
+            if (!event.getCode().equals(KeyCode.CONTROL) && !event.getCode().equals(KeyCode.ALT)
+                    && !event.getCode().equals(KeyCode.SHIFT) && !event.getCode().equals(KeyCode.WINDOWS)){
+                keyCommand.setShift(event.isShiftDown());
+                keyCommand.setCtrl(event.isControlDown());
+                keyCommand.setAlt(event.isAltDown());
+                keyCommand.setWindows(event.isMetaDown());
+                keyCommand.setKeyCode(event.getCode());
+                detectKeyPressField.setText(keyCommand.toString());
             }
+            event.consume();
         });
 
         GridPane botBox = new GridPane();
@@ -242,14 +218,13 @@ public class CommandBox extends VBox{
         Label functionLabel = new Label("Function");
         functionLabel.setTooltip(new Tooltip("Functions performs system commands"));
 
-        Functions functions = new Functions();
         GridPane toggleGrid = createToggleBox();
 
-        functionCombobox = new ComboBox(FXCollections.observableArrayList(functions.getFunctions()));
+        functionCombobox = new ComboBox(FXCollections.observableArrayList(Functions.functions));
 
         functionCombobox.setCellFactory(new Callback<ListView<Function>, ListCell<Function>>() {
             public ListCell<Function> call(ListView<Function> param) {
-                ListCell<Function> cell = new ListCell<Function>() {
+                return new ListCell<Function>() {
 
                     @Override
                     public void updateItem(final Function item, boolean empty) {
@@ -260,24 +235,20 @@ public class CommandBox extends VBox{
                         }
                     }
                 };
-                return cell;
             }
         });
 
         VBox vBox = new VBox(10);
 
-        functionCombobox.valueProperty().addListener(new ChangeListener<Function>() {
-            @Override
-            public void changed(ObservableValue<? extends Function> observable, Function oldValue, Function newValue) {
-                if (newValue.isToggle() && !showingToggleInfo) {
-                    getScene().getWindow().setHeight(getScene().getWindow().getHeight() + 140);
-                    vBox.getChildren().add(toggleGrid);
-                    showingToggleInfo = true;
-                } else if (!newValue.isToggle() && showingToggleInfo) {
-                    vBox.getChildren().remove(toggleGrid);
-                    getScene().getWindow().setHeight(getScene().getWindow().getHeight() - 140);
-                    showingToggleInfo = false;
-                }
+        functionCombobox.valueProperty().addListener((ObservableValue<? extends Function> observable, Function oldValue, Function newValue) -> {
+            if (newValue.isToggle() && !showingToggleInfo) {
+                getScene().getWindow().setHeight(getScene().getWindow().getHeight() + 140);
+                vBox.getChildren().add(toggleGrid);
+                showingToggleInfo = true;
+            } else if (!newValue.isToggle() && showingToggleInfo) {
+                vBox.getChildren().remove(toggleGrid);
+                getScene().getWindow().setHeight(getScene().getWindow().getHeight() - 140);
+                showingToggleInfo = false;
             }
         });
 

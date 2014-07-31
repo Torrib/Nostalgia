@@ -1,13 +1,8 @@
 package main;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -47,8 +42,7 @@ public class Main extends Thread
     }
 
     @Override
-	public void run()
-	{
+	public void run(){
 		log("====================================================================");
         log("Starting");
 		createTrayIcon();
@@ -71,67 +65,48 @@ public class Main extends Thread
         log("Controller handler loaded");
     }
 	
-	private void startWindowPulling(int sleep)
-	{
-		ActionListener action = new ActionListener() 
-		{
-		    public void actionPerformed(ActionEvent e) 
-		    {
-		    	setActiveWindowSettings();
-		    }
-		};
+	private void startWindowPulling(int sleep){
+		ActionListener action = e ->  setActiveWindowSettings();
 		new javax.swing.Timer(sleep, action).start();
 	}
 
-	private void createTrayIcon()
-	{
-		try 
-		{
+	private void createTrayIcon(){
+		try {
 			PopupMenu popMenu= new PopupMenu();
 			MenuItem item1 = new MenuItem("Exit");
 			MenuItem item2 = new MenuItem("Config");
-			popMenu.add(item2);
-			popMenu.add(item1);
-			item1.addActionListener(new ActionListener() {
-	 
-	            public void actionPerformed(ActionEvent e)
-	            {
-	            	log("User exit(tray)");
-	                System.exit(0);
-	            }
-	        });
-
-            item2.addActionListener(new ActionListener() {
-
-                public void actionPerformed(ActionEvent e)
-                {
-                    log("Opening config");
-                    guiManager.showConfig();
-                }
+            popMenu.add(item2);
+            popMenu.add(item1);
+            item1.addActionListener(e -> {
+                log("User exit(tray)");
+                System.exit(0);
             });
+
+            item2.addActionListener(e -> {
+                log("Opening config");
+                guiManager.showConfig();
+            });
+
             File file = new File("src/resources/icon.ico");
 			Icon ico = FileSystemView.getFileSystemView().getSystemIcon(file );
 			Image img = ((ImageIcon) ico).getImage();
 			TrayIcon trayIcon = new TrayIcon(img, "Nostalgia", popMenu);
 			SystemTray.getSystemTray().add(trayIcon);
 		}
-		catch (AWTException e1) 
-		{
+		catch (AWTException e1) {
 			log(e1.toString());
 			e1.printStackTrace();
             System.exit(1);
         }
 	}
 	
-	private OsHandler getOsHandler()
-	{
+	private OsHandler getOsHandler(){
 		//TODO add linux/mac support?
 		String os = System.getProperty("os.name");
 		OsHandler wh = null;
 		if(os.contains("Windows"))
 			wh = new windows.WindowsHandler();
-		else
-		{
+		else{
 			log("Unsupported OS: " + os);
 			log("Exiting");
 			System.exit(0);
@@ -142,14 +117,14 @@ public class Main extends Thread
 	}
 
     public void command(Item item, Controller controller){
-        outputHandler.handleKeyCommands(item.getCommands());
+        outputHandler.doCommand(item.getCommands());
         showMessageBox(item.getMessage(), false);
         if(item.vibrate())
             controller.vibrate(400);
     }
 
     public void command(List<Command> commands){
-        outputHandler.handleKeyCommands(commands);
+        outputHandler.doCommand(commands);
     }
 
     public void showMenu(int controller) {
@@ -167,14 +142,11 @@ public class Main extends Thread
         return guiManager.isMenuShowing();
     }
 
-	public void pressKey(int key)
-	{
-
+	public void pressKey(int key){
 		outputHandler.pressKey(key);
 	}
 
-	public void showMessageBox(String message, boolean systemMessage)
-	{
+	public void showMessageBox(String message, boolean systemMessage){
         if(systemMessage && SETTINGS.isDisableSystemMessages())
             return;
 
@@ -191,8 +163,7 @@ public class Main extends Thread
         osHandler.setWindowFocus(activeWindowHandle);
     }
 
- 	private void setActiveWindowSettings()
- 	{
+ 	private void setActiveWindowSettings(){
         if(isGuiActive())
             return;
 
@@ -203,8 +174,7 @@ public class Main extends Thread
 
  		// Do nothing if the window handle if its the same.
  		// Refresh it every know and then(Some windows change text) every 10 sec by default.
- 		if(hWnd.equals(activeWindowHandle) && windowTextRefreshCounter < SETTINGS.getWindowPullRefreshCount())
- 		{
+ 		if(hWnd.equals(activeWindowHandle) && windowTextRefreshCounter < SETTINGS.getWindowPullRefreshCount()){
  			windowTextRefreshCounter++;
  			return;
  		}
@@ -229,8 +199,7 @@ public class Main extends Thread
         modifyWindow();
  	}
 
-    private WindowSetting getActiveWindowSettings(String windowName)
-    {
+    private WindowSetting getActiveWindowSettings(String windowName){
         for(WindowSetting windowSetting : SETTINGS.getWindowSettings())
             if(windowName.contains(windowSetting.getWindowName()))
                 return windowSetting;
@@ -239,43 +208,27 @@ public class Main extends Thread
     }
 
     private void modifyWindow(){
-        if(activeWindowSettings != null)
-        {
-            if(activeWindowSettings.isRemoveBorders())
-            {
+        if(activeWindowSettings != null){
+            if(activeWindowSettings.isRemoveBorders()){
                 osHandler.removeBorder32(activeWindowHandle);
                 osHandler.removeMenu(activeWindowHandle);
             }
-            if(activeWindowSettings.isTopmost())
-            {
+            if(activeWindowSettings.isTopmost()){
                 osHandler.setTopMost(activeWindowHandle);
             }
         }
     }
 
-	private void setWindowFocus(PointerType hwnd)
-  	{
-  		osHandler.setWindowFocus(hwnd);
-  	}
-  	
-	public void runProgram(Program program)
-	{
-		try 
-		{
+	public void runProgram(Program program){
+		try {
 			Runtime.getRuntime().exec (program.getPreCommand() + " " + program.getPath() + " " + program.getPostCommand());
-		} 
-		catch (IOException e) 
-		{
+		}
+		catch (IOException e) {
 			log(e.toString());
 		}
 	}
-
-    public void focusMenu(){
-           osHandler.setWindowFocus(osHandler.getWindowHandle("Nostalgia menu"));
-    }
 	
-	public void log(String message)
-	{
+	public void log(String message){
 		Date date = new Date();
 		try {
 		    PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("log.txt", true)));
@@ -283,8 +236,7 @@ public class Main extends Thread
 		    out.close();
 		    System.out.println(message);
 		} 
-		catch (IOException e) 
-		{
+		catch (IOException e) {
 		    e.printStackTrace();
 		}
 	}
@@ -326,7 +278,7 @@ public class Main extends Thread
     }
 
     public void toggleHotkeys(){
-        Main.SETTINGS.setDisableHotkeys(Main.SETTINGS.isDisableHotkeys() ? false : true);
+        Main.SETTINGS.setDisableHotkeys(!Main.SETTINGS.isDisableHotkeys());
     }
 
 
@@ -334,5 +286,7 @@ public class Main extends Thread
         controllerHandler.updateControllers();
     }
 
-
+    public void handleRunOnStartup() {
+        osHandler.handleRunOnStartup(SETTINGS.isRunOnStartup());
+    }
 }

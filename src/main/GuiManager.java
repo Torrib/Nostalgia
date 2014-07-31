@@ -38,21 +38,11 @@ public class GuiManager extends Application{
     }
 
     public void showMenu(List<MenuItem> menuItems, int controller){
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                menu.show(menuItems, controller);
-            }
-        });
+        Platform.runLater(() -> menu.show(menuItems, controller));
     }
 
     public void hideMenu(){
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                menu.hide();
-            }
-        });
+        Platform.runLater(() -> menu.hide());
     }
 
     public boolean isMenuShowing(){
@@ -60,20 +50,10 @@ public class GuiManager extends Application{
     }
 
     public void showMessageBox(String message){
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                messageBox.show(message);
-            }
-        });
+        Platform.runLater(() -> messageBox.show(message));
     }
 
     public void showConfig(){
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                new SettingsView(main);
-            }
-        });
+        Platform.runLater(() -> new SettingsView(main));
     }
 }

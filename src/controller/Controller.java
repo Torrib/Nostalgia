@@ -19,6 +19,7 @@ public class Controller extends Thread{
     private List<Hotkey> hotkeys = new ArrayList<>();
     private int[] buttonCounter;
     private int xCounter = 0;
+    private int bCounter = 0;
 
     public Controller(int controllerNumber, ControllerHandler controllerHandler, ControllerInterface controllerInterface){
         this.controllerNumber = controllerNumber;
@@ -59,8 +60,15 @@ public class Controller extends Thread{
                             controllerHandler.getMain().pressKey(KeyEvent.VK_LEFT);
                         else if (buttons.right == 1)
                             controllerHandler.getMain().pressKey(KeyEvent.VK_RIGHT);
-                        else if (buttons.bButton == 1)
-                            controllerHandler.getMain().pressKey(KeyEvent.VK_BACK_SPACE);
+
+                        if (buttons.bButton == 1){
+                            if(bCounter == 0) {
+                                controllerHandler.getMain().pressKey(KeyEvent.VK_BACK_SPACE);
+                            }
+                            bCounter++;
+                        }
+                        else
+                            bCounter = 0;
                     }
                 }
                 else if(checkHotkeys()){

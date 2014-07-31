@@ -28,7 +28,7 @@ public class OutputHandler
 		}
 	}
 
-    public void handleKeyCommands(List<Command> commands){
+    public void doCommand(List<Command> commands){
         for(Command command : commands){
             try {
                 Thread.sleep(command.getDelay());

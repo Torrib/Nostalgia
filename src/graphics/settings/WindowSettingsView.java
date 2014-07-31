@@ -1,8 +1,6 @@
 package graphics.settings;
 
 import graphics.utility.EditList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -111,19 +109,8 @@ public class WindowSettingsView {
         postMenuLabel.setTooltip(new Tooltip("Command that will be executed after the menu is closed"));
         postMenuButton.setTooltip(new Tooltip("Command that will be executed after the menu is closed"));
 
-        preMenuButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                openMenuCommandView(preMenuCommands, true);
-            }
-        });
-
-        postMenuButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                openMenuCommandView(postMenuCommands, false);
-            }
-        });
+        preMenuButton.setOnAction(event -> openMenuCommandView(preMenuCommands, true));
+        postMenuButton.setOnAction(event -> openMenuCommandView(postMenuCommands, false));
 
         GridPane menuCommandPane = new GridPane();
         menuCommandPane.setVgap(10);
@@ -136,38 +123,14 @@ public class WindowSettingsView {
         HBox centerBox = new HBox(20);
         centerBox.getChildren().addAll(cbGrid, cbGrid2, new Label("        "), menuCommandPane);
 
-        menuEditList = new EditList<MenuItem>(windowSetting.getMenuItems(), true);
-        menuEditList.getAddButton().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                openMenuItemView(new MenuItem(), true);
-            }
-        });
-
-        menuEditList.getEditButton().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                openMenuItemView(menuEditList.getList().getSelectionModel().getSelectedItem(), false);
-            }
-        });
+        menuEditList = new EditList<>(windowSetting.getMenuItems(), true);
+        menuEditList.getAddButton().setOnAction(event -> openMenuItemView(new MenuItem(), true));
+        menuEditList.getEditButton().setOnAction(event -> openMenuItemView(menuEditList.getList().getSelectionModel().getSelectedItem(), false));
 
         hotkeyList = new EditList<>(windowSetting.getHotkeys(), false);
 
-        hotkeyList.getAddButton().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                openHotkeyView( new Hotkey(), true);
-            }
-        });
-
-        hotkeyList.getEditButton().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-
-                openHotkeyView(hotkeyList.getSelected(), false);
-            }
-        });
-
+        hotkeyList.getAddButton().setOnAction(event -> openHotkeyView( new Hotkey(), true));
+        hotkeyList.getEditButton().setOnAction(event -> openHotkeyView(hotkeyList.getSelected(), false));
 
         VBox menuBox = new VBox(10);
         menuBox.getChildren().addAll(new Label("Menu items"), menuEditList);
@@ -176,50 +139,41 @@ public class WindowSettingsView {
         hotkeyBox.getChildren().addAll(new Label("Hotkeys"), hotkeyList);
 
 
-
         HBox listBox = new HBox(20);
         listBox.getChildren().addAll(menuBox, hotkeyBox);
 
         Button saveButton = new Button("OK");
         Button cancelButton = new Button("Cancel");
 
-        saveButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(nameField.getText().isEmpty()){
-                    nameField.setStyle("-fx-border-color: red;-fx-border-style: round|outside");
-                    return;
-                }
-                if(applicationField.getText().isEmpty()){
-                    applicationField.setStyle("-fx-border-color: red;-fx-border-style: round|outside");
-                    return;
-                }
-                windowSetting.setMenuItems(menuEditList.getItems());
-                windowSetting.setDisableMessages(disableMessagesCB.isSelected());
-                windowSetting.setName(nameField.getText());
-                windowSetting.setWindowName(applicationField.getText());
-                windowSetting.setDisableVibration(disableVibrationCB.isSelected());
-                windowSetting.setRemoveBorders(removeBorderCB.isSelected());
-                windowSetting.setDisableHotkeys(disableHotkeysCB.isSelected());
-                windowSetting.setTopmost(onTopCB.isSelected());
-                windowSetting.setHotkeys(hotkeyList.getItems());
-                windowSetting.setPreMenuComands(preMenuCommands);
-                windowSetting.setPostMenuCommands(postMenuCommands);
-
-                if(newItem)
-                    settingsView.addApplication(windowSetting);
-                else
-                    settingsView.updateApplicationList();
-                stage.close();
+        saveButton.setOnAction(event -> {
+            if(nameField.getText().isEmpty()){
+                nameField.setStyle("-fx-border-color: red;-fx-border-style: round|outside");
+                return;
             }
+            if(applicationField.getText().isEmpty()){
+                applicationField.setStyle("-fx-border-color: red;-fx-border-style: round|outside");
+                return;
+            }
+            windowSetting.setMenuItems(menuEditList.getItems());
+            windowSetting.setDisableMessages(disableMessagesCB.isSelected());
+            windowSetting.setName(nameField.getText());
+            windowSetting.setWindowName(applicationField.getText());
+            windowSetting.setDisableVibration(disableVibrationCB.isSelected());
+            windowSetting.setRemoveBorders(removeBorderCB.isSelected());
+            windowSetting.setDisableHotkeys(disableHotkeysCB.isSelected());
+            windowSetting.setTopmost(onTopCB.isSelected());
+            windowSetting.setHotkeys(hotkeyList.getItems());
+            windowSetting.setPreMenuComands(preMenuCommands);
+            windowSetting.setPostMenuCommands(postMenuCommands);
+
+            if(newItem)
+                settingsView.addApplication(windowSetting);
+            else
+                settingsView.updateApplicationList();
+            stage.close();
         });
 
-        cancelButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                stage.close();
-            }
-        });
+        cancelButton.setOnAction(event -> stage.close());
 
         HBox buttons = new HBox(10);
         buttons.getChildren().addAll(saveButton, cancelButton);

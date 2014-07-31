@@ -12,14 +12,6 @@ public class KeyCommand {
 
     public KeyCommand(){}
 
-    public KeyCommand(boolean ctrl, boolean alt, boolean shift, boolean windows, KeyCode keyCode) {
-        this.ctrl = ctrl;
-        this.alt = alt;
-        this.shift = shift;
-        this.windows = windows;
-        this.keyCode = keyCode;
-    }
-
     public boolean isCtrl() {
         return ctrl;
     }

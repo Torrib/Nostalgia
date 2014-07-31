@@ -1,13 +1,8 @@
 package models;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
-/**
- * Created by thb on 13.07.2014.
- */
 public class Functions {
 
     public static final int KILL = 0;
@@ -20,9 +15,9 @@ public class Functions {
     public static final int DECREASE_VOLUME = 7;
     public static final int MUTE = 8;
 
-    private List<Function> functions = new ArrayList<>();
+    public static List<Function> functions = new ArrayList<>();
 
-    public Functions(){
+    static {
         functions.add(new Function(KILL, "Kill", "Kills the process"));
         functions.add(new Function(EXIT_NOSTALGIA, "Exit Nostalgia", "Turns off Nostalgia"));
         functions.add(new Function(SHUTDOWN, "Shutdown", "Shutdown the computer"));

@@ -1,4 +1,4 @@
-package main;
+package windows;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

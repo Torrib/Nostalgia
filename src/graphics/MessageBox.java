@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import main.Main;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MessageBox {
@@ -49,18 +48,8 @@ public class MessageBox {
     }
 
     public void hide(){
-        ActionListener action = new ActionListener()
-        {
-            public void actionPerformed(ActionEvent e)
-            {
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        stage.hide();
-                    }
-                });
-            }
-        };
+        ActionListener action = e -> Platform.runLater(() ->  stage.hide()); //Lamdaception
+
         javax.swing.Timer timer = new javax.swing.Timer(Main.SETTINGS.getMessageDelay(), action);
         timer.setRepeats(false);
         timer.start();
@@ -73,9 +62,5 @@ public class MessageBox {
         stage.show();
         main.returnFocus();
         hide();
-    }
-
-    public boolean isShowing(){
-        return stage.isShowing();
     }
 }
