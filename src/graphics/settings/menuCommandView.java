@@ -17,13 +17,13 @@ import java.util.List;
 
 public class MenuCommandView {
 
-    public MenuCommandView(WindowSettingsView applicationView, List<Command> commands, List<Program> programs, boolean preMenuCommand){
+    public MenuCommandView(WindowSettingsView applicationView, List<Command> commands, boolean preMenuCommand){
         Stage stage = new Stage();
         stage.setTitle(preMenuCommand ? "Pre-menu Command" : "Post-menu Command");
         stage.initOwner(applicationView.getStage());
         stage.initModality(Modality.WINDOW_MODAL);
 
-        CommandBox commandBox = new CommandBox(commands, programs, stage);
+        CommandBox commandBox = new CommandBox(commands, stage);
 
         commandBox.setPadding(new Insets(15));
 

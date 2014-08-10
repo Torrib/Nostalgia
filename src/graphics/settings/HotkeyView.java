@@ -18,10 +18,10 @@ import java.util.List;
 
 public class HotkeyView {
 
-    public HotkeyView(WindowSettingsView applicationView, Hotkey hotkey, boolean newItem, List<Program> programs){
+    public HotkeyView(Stage parent, Hotkey hotkey, Runnable onSave){
         Stage stage = new Stage();
         stage.setTitle("Menu item");
-        stage.initOwner(applicationView.getStage());
+        stage.initOwner(parent);
         stage.initModality(Modality.WINDOW_MODAL);
 
 
@@ -37,7 +37,7 @@ public class HotkeyView {
         Label vibrateLabel = new Label("Vibrate");
         CheckBox vibrateCB = new CheckBox();
         vibrateCB.setSelected(hotkey.vibrate());
-        CommandBox commandBox = new CommandBox(hotkey.getCommands(), programs, stage);
+        CommandBox commandBox = new CommandBox(hotkey.getCommands(), stage);
 
         GridPane grid = new GridPane();
         grid.setVgap(10);
@@ -68,10 +68,8 @@ public class HotkeyView {
                     hotkey.setVibrate(vibrateCB.isSelected());
                     hotkey.setCommands(commandBox.getItems());
 
-                    if (newItem)
-                        applicationView.addHotkey(hotkey);
-                    else
-                        applicationView.updateHotkeyList();
+                    onSave.run();
+
                     stage.close();
                 }
         });

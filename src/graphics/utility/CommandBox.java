@@ -14,6 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import main.Main;
 import models.*;
 
 import java.util.List;
@@ -37,7 +38,7 @@ public class CommandBox extends VBox{
 
     boolean showingToggleInfo = false;
 
-    public CommandBox(List<Command> items, List<Program> programs, Stage stage){
+    public CommandBox(List<Command> items, Stage stage){
         super(10);
         keyCommand = new KeyCommand();
 
@@ -63,13 +64,13 @@ public class CommandBox extends VBox{
 
         Label commandTypeLabel = new Label("Command Type");
         ComboBox<String> commandTypeCB = new ComboBox<>();
-        commandTypeCB.setItems(FXCollections.observableArrayList("Key presses", "Functions", "Programs"));
+        commandTypeCB.setItems(FXCollections.observableArrayList("Key presses", "Functions", "Programs", "Sub menus"));
 
         Pane swapPane = new Pane();
 
         GridPane keyCommandBox = createKeyCommandBox();
         VBox functionCommandBox = createFunctionBox();
-        HBox programCommandBox = createProgramBox(programs);
+        HBox programCommandBox = createProgramBox();
 
         commandTypeCB.valueProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
             swapPane.getChildren().removeAll(swapPane.getChildren());
@@ -162,9 +163,6 @@ public class CommandBox extends VBox{
                             disableTextField.setText(newValue.getDisableMenuText());
                             disableMessageField.setText(newValue.getDisableMessage());
                             break;
-                        case Command.PROGRAM:
-                            programCombobox.getSelectionModel().select(newValue.getProgram());
-                            break;
                     }
                     delayField.setText(""+newValue.getDelay());
                 });
@@ -178,7 +176,6 @@ public class CommandBox extends VBox{
                 event.consume();
                 ignoreCloseRequest = true;
             }
-            event.consume();
         });
 
         this.getChildren().addAll(commandList, commandGrid, swapBox);
@@ -193,8 +190,10 @@ public class CommandBox extends VBox{
         detectKeyPressField.setEditable(false);
 
         detectKeyPressField.setOnKeyReleased(event -> {
+            event.consume();
             if (!event.getCode().equals(KeyCode.CONTROL) && !event.getCode().equals(KeyCode.ALT)
                     && !event.getCode().equals(KeyCode.SHIFT) && !event.getCode().equals(KeyCode.WINDOWS)){
+                keyCommand = new KeyCommand();
                 keyCommand.setShift(event.isShiftDown());
                 keyCommand.setCtrl(event.isControlDown());
                 keyCommand.setAlt(event.isAltDown());
@@ -202,7 +201,6 @@ public class CommandBox extends VBox{
                 keyCommand.setKeyCode(event.getCode());
                 detectKeyPressField.setText(keyCommand.toString());
             }
-            event.consume();
         });
 
         GridPane botBox = new GridPane();
@@ -261,11 +259,11 @@ public class CommandBox extends VBox{
         return vBox;
     }
 
-    private HBox createProgramBox(List<Program> programs){
+    private HBox createProgramBox(){
         Label programLabel = new Label("Program");
         programLabel.setTooltip(new Tooltip("Runs the program or script selected"));
 
-        programCombobox = new ComboBox(FXCollections.observableArrayList(programs));
+        programCombobox = new ComboBox(FXCollections.observableArrayList(Main.SETTINGS.getPrograms()));
 
         programCombobox.getSelectionModel().select(0);
 

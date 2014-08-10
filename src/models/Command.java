@@ -18,6 +18,8 @@ public class Command {
     private String disableMessage = "";
 
     private Program program;
+    private SubMenu subMenu;
+
 
     private int delay = 200;
 

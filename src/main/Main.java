@@ -9,7 +9,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.filechooser.FileSystemView;
 
 import com.sun.jna.PointerType;
@@ -45,7 +44,6 @@ public class Main extends Thread
 	public void run(){
 		log("====================================================================");
         log("Starting");
-		createTrayIcon();
         loadControllers();
 		outputHandler = new OutputHandler(this);
 		osHandler = getOsHandler();
@@ -68,36 +66,6 @@ public class Main extends Thread
 	private void startWindowPulling(int sleep){
 		ActionListener action = e ->  setActiveWindowSettings();
 		new javax.swing.Timer(sleep, action).start();
-	}
-
-	private void createTrayIcon(){
-		try {
-			PopupMenu popMenu= new PopupMenu();
-			MenuItem item1 = new MenuItem("Exit");
-			MenuItem item2 = new MenuItem("Config");
-            popMenu.add(item2);
-            popMenu.add(item1);
-            item1.addActionListener(e -> {
-                log("User exit(tray)");
-                System.exit(0);
-            });
-
-            item2.addActionListener(e -> {
-                log("Opening config");
-                guiManager.showConfig();
-            });
-
-            File file = new File("src/resources/icon.ico");
-			Icon ico = FileSystemView.getFileSystemView().getSystemIcon(file );
-			Image img = ((ImageIcon) ico).getImage();
-			TrayIcon trayIcon = new TrayIcon(img, "Nostalgia", popMenu);
-			SystemTray.getSystemTray().add(trayIcon);
-		}
-		catch (AWTException e1) {
-			log(e1.toString());
-			e1.printStackTrace();
-            System.exit(1);
-        }
 	}
 	
 	private OsHandler getOsHandler(){

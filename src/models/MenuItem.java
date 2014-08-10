@@ -9,16 +9,22 @@ import java.util.List;
 
 public class MenuItem implements Item {
 
+    public static final int COMMAND = 0;
+    public static final int SUBMENU = 1;
+
+    private int type = COMMAND;
+
     private String displayName = "";
     private String message = "";
-
     private boolean confirmation = false;
+    private List<Command> commands = new ArrayList<>();
 
-    List<Command> commands = new ArrayList<>();
+    private SubMenu subMenu = null;
 
     public MenuItem(){}
 
     public MenuItem(String displayName, String message){
+        this.type = COMMAND;
         this.displayName = displayName;
         this.message = message;
     }
@@ -69,8 +75,24 @@ public class MenuItem implements Item {
         this.confirmation = confirmation;
     }
 
+    public SubMenu getSubMenu() {
+        return subMenu;
+    }
+
+    public void setSubMenu(SubMenu subMenu) {
+        this.type = SUBMENU;
+        this.subMenu = subMenu;
+    }
+
+    public int getType() {
+        return type;
+    }
+
     @Override
     public String toString(){
+
+        if(type == SUBMENU)
+            return subMenu.toString();
 
         for(Command command : commands){
             if(command.getCommandType() == Command.FUNCTION){

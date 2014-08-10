@@ -11,6 +11,7 @@
 .list-cell{
     -fx-background-color: transparent;
     -fx-font-weight: normal;
+    -fx-font-size: 25;
 }
 
 .list-view .scroll-pane {

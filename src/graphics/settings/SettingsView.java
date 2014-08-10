@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import main.Main;
 import models.Hotkey;
 import models.Program;
+import models.SubMenu;
 import settings.*;
 import graphics.utility.NumberTextField;
 
@@ -45,6 +46,7 @@ public class SettingsView {
 
     private EditList<WindowSetting> windowEditList;
     private EditList<Program> programEditList;
+    private EditList<SubMenu> subMenuEditList;
 
     private Main main;
 
@@ -60,7 +62,7 @@ public class SettingsView {
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
         tabPane.getTabs().addAll(createMenuTab(), createMessageTab(), createControllerTab(),
-                createWindowsTab(), createProgramTab(), createAdvancedTab());
+                createWindowsTab(), createProgramTab(), createSubMenuTab(), createAdvancedTab());
 
         Button saveButton = new Button("Save");
         Button applyButton = new Button("Apply");
@@ -129,7 +131,6 @@ public class SettingsView {
         tab.setGraphic(image);
         return tab;
     }
-
 
     private Tab createMessageTab() {
         GridPane grid = new GridPane();
@@ -322,8 +323,14 @@ public class SettingsView {
 
         windowEditList = new EditList<>(settings.getWindowSettings(), false);
 
-        windowEditList.getAddButton().setOnAction(event -> openApplicationView(new WindowSetting(), true));
-        windowEditList.getEditButton().setOnAction(event -> openApplicationView(windowEditList.getSelected(), false));
+        windowEditList.getAddButton().setOnAction(event -> {
+            WindowSetting windowSetting = new WindowSetting();
+            new WindowSettingsView(stage, windowSetting, () -> windowEditList.getItems().add(windowSetting));
+        });
+        windowEditList.getEditButton().setOnAction(event -> {
+            WindowSetting windowSetting = windowEditList.getSelected();
+            new WindowSettingsView(stage, windowSetting, () -> windowEditList.update());
+        });
 
         windowEditList.setPadding(new Insets(25));
 
@@ -340,8 +347,14 @@ public class SettingsView {
 
         programEditList = new EditList<>(settings.getPrograms(), false);
 
-        programEditList.getAddButton().setOnAction(event -> openProgramView(new Program(), true));
-        programEditList.getEditButton().setOnAction(event -> openProgramView(programEditList.getSelected(), false));
+        programEditList.getAddButton().setOnAction(event -> {
+            Program program = new Program();
+            new ProgramView(stage, program, () -> programEditList.getItems().add(program));
+        });
+        programEditList.getEditButton().setOnAction(event -> {
+            Program program = programEditList.getSelected();
+            new ProgramView(stage, program, () -> programEditList.update());
+        });
 
         programEditList.setPadding(new Insets(25));
 
@@ -354,33 +367,28 @@ public class SettingsView {
         return tab;
     }
 
+    private Tab createSubMenuTab(){
 
-    private void openApplicationView(WindowSetting windowSetting, boolean newSetting){
-        if(windowSetting != null)
-            new WindowSettingsView(this, windowSetting, newSetting, settings.getPrograms());
-        else
-            System.out.println("Null");
-    }
+        subMenuEditList = new EditList<>(settings.getSubMenus(), false);
 
-    public void addApplication(WindowSetting windowSetting){
-        windowEditList.getItems().add(windowSetting);
-    }
+        subMenuEditList.getAddButton().setOnAction(event -> {
+            SubMenu subMenu = new SubMenu();
+            new SubMenuView(stage, subMenu, () -> subMenuEditList.getItems().add(subMenu));
+        });
+        subMenuEditList.getEditButton().setOnAction(event -> {
+            SubMenu subMenu = subMenuEditList.getSelected();
+            new SubMenuView(stage, subMenu, () -> subMenuEditList.update());
+        });
 
-    public void updateApplicationList(){
-        windowEditList.update();
-    }
+        subMenuEditList.setPadding(new Insets(25));
 
-    private void openProgramView(Program program, boolean newProgram){
-        if(program != null)
-            new ProgramView(this, program, newProgram);
-    }
+        Tab tab = new Tab();
+        tab.setContent(subMenuEditList);
+        tab.setText("Sub menus");
 
-    public void addProgram(Program program){
-        programEditList.getItems().add(program);
-    }
-
-    public void updateProgramList(){
-        programEditList.update();
+        ImageView image = new ImageView(new Image(getClass().getResourceAsStream("/resources/program.png")));
+        tab.setGraphic(image);
+        return tab;
     }
 
     private void save(){
@@ -418,6 +426,8 @@ public class SettingsView {
             for(Hotkey hotkey : ws.getHotkeys())
                 hotkey.setDelayLoops(hotkey.getDisplayTime() / settings.getControllerPullDelay());
         settings.setWindowSettings(windowEditList.getItems());
+
+        settings.setSubMenus(subMenuEditList.getItems());
 
         double selectedFontSize = settings.getMenuFontSize() + (settings.getMenuFontSize() * 0.2);
         settings.setMenuSelectedFontSize((int) selectedFontSize);

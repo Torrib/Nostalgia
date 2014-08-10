@@ -18,10 +18,10 @@ import java.io.File;
 
 public class ProgramView {
 
-    public ProgramView(SettingsView settingsView, Program program, boolean newItem){
+    public ProgramView(Stage parent, Program program, Runnable onSave){
         Stage stage = new Stage();
-        stage.setTitle(newItem ? "Add Program" : "Edit program");
-        stage.initOwner(settingsView.getStage());
+        stage.setTitle("Program");
+        stage.initOwner(parent);
         stage.initModality(Modality.WINDOW_MODAL);
 
         PredefinedProgramCommands programCommands = new PredefinedProgramCommands();
@@ -78,10 +78,7 @@ public class ProgramView {
                 program.setPostCommand(postCommandField.getText());
                 program.setPath(pathField.getText());
 
-                if (newItem)
-                    settingsView.addProgram(program);
-                else
-                    settingsView.updateProgramList();
+                onSave.run();
 
                 stage.close();
             }

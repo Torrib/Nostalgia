@@ -37,6 +37,7 @@ public class Settings {
 
     private List<WindowSetting> windowSettings = new ArrayList<>();
     private List<Program> programs = new ArrayList<>();
+    private List<SubMenu> subMenus = new ArrayList<>();
 
     private boolean disableController1 = false;
     private boolean disableController2 = false;
@@ -193,6 +194,14 @@ public class Settings {
 
     public List<Program> getPrograms() {
         return programs;
+    }
+
+    public List<SubMenu> getSubMenus() {
+        return subMenus;
+    }
+
+    public void setSubMenus(List<SubMenu> subMenus) {
+        this.subMenus = subMenus;
     }
 
     public void setPrograms(List<Program> programs) {

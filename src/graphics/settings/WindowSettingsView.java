@@ -23,18 +23,16 @@ public class WindowSettingsView {
     private Stage stage;
     private EditList<MenuItem> menuEditList;
     private EditList<Hotkey> hotkeyList;
-    private List<Program> programs;
 
     private List<Command> preMenuCommands;
     private List<Command> postMenuCommands;
 
-    public WindowSettingsView(SettingsView settingsView, WindowSetting windowSetting, boolean newItem, List<Program> programs){
+    public WindowSettingsView(Stage parent, WindowSetting windowSetting, Runnable onSave){
         stage = new Stage();
         stage.setTitle("Application");
-        stage.initOwner(settingsView.getStage());
+        stage.initOwner(parent);
         stage.initModality(Modality.WINDOW_MODAL);
 
-        this.programs = programs;
         preMenuCommands = windowSetting.getPreMenuComands();
         postMenuCommands = windowSetting.getPostMenuCommands();
 
@@ -166,10 +164,7 @@ public class WindowSettingsView {
             windowSetting.setPreMenuComands(preMenuCommands);
             windowSetting.setPostMenuCommands(postMenuCommands);
 
-            if(newItem)
-                settingsView.addApplication(windowSetting);
-            else
-                settingsView.updateApplicationList();
+            onSave.run();
             stage.close();
         });
 
@@ -192,29 +187,30 @@ public class WindowSettingsView {
     }
 
     private void openMenuItemView(MenuItem menuItem, boolean newItem){
+
+        Runnable onSave = () -> {
+            if(newItem)
+                menuEditList.getItems().add(menuItem);
+            else
+                menuEditList.update();
+        };
+
         if(menuItem != null)
-            new MenuItemView(this, menuItem, newItem, programs);
+            new MenuItemView(this.getStage(), menuItem, onSave, false);
     }
 
-    public void addMenuItem(MenuItem menuItem){
-        menuEditList.getItems().add(menuItem);
-    }
-
-    public void updateMenuItemList(){
-        menuEditList.update();
-    }
 
     private void openHotkeyView(Hotkey hotkey, boolean newItem){
+
+        Runnable onSave = () -> {
+            if(newItem)
+                hotkeyList.getItems().add(hotkey);
+            else
+                hotkeyList.update();
+        };
+
         if(hotkey != null)
-            new HotkeyView(this, hotkey, newItem, programs);
-    }
-
-    public void addHotkey(Hotkey hotkey){
-        hotkeyList.getItems().add(hotkey);
-    }
-
-    public void updateHotkeyList(){
-        hotkeyList.update();
+            new HotkeyView(this.getStage(), hotkey, onSave);
     }
 
     public Stage getStage(){
@@ -222,7 +218,7 @@ public class WindowSettingsView {
     }
 
     private void openMenuCommandView(List<Command> commands, boolean preCommand){
-        new MenuCommandView(this, commands, programs, preCommand);
+        new MenuCommandView(this, commands, preCommand);
     }
 
     public void setPreMenuCommands(List<Command> commands){
