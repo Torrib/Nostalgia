@@ -11,7 +11,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import models.Command;
-import models.Program;
 import models.Hotkey;
 import models.MenuItem;
 import settings.WindowSetting;

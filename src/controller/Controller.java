@@ -10,7 +10,6 @@ import java.util.List;
 public class Controller extends Thread{
 
     private int controllerNumber;
-    private ControllerInterface controllerInterface;
     private boolean active;
     private int guideButtonCounter;
     private boolean connected;
@@ -21,10 +20,9 @@ public class Controller extends Thread{
     private int xCounter = 0;
     private int bCounter = 0;
 
-    public Controller(int controllerNumber, ControllerHandler controllerHandler, ControllerInterface controllerInterface){
+    public Controller(int controllerNumber, ControllerHandler controllerHandler){
         this.controllerNumber = controllerNumber;
         this.controllerHandler = controllerHandler;
-        this.controllerInterface = controllerInterface;
         active = false;
         connected = false;
         connectionStatus = false;
@@ -41,7 +39,7 @@ public class Controller extends Thread{
 
         while(active){
             try {
-                controllerInterface.getControllerState(controllerNumber, buttons);
+                ControllerInput.ci.getControllerState(controllerNumber, buttons);
                 if (controllerHandler.getMain().isGuiActive()) {
                     if(controllerHandler.getMenuController() == controllerNumber) {
                         if (buttons.aButton == 1) {
@@ -96,7 +94,7 @@ public class Controller extends Thread{
 
     public boolean guidePressed(){
 
-        connectionStatus = controllerInterface.getControllerConnected(controllerNumber);
+        connectionStatus = ControllerInput.ci.getControllerConnected(controllerNumber);
 
         if(connectionStatus != connected){
             if(connectionStatus) {
@@ -114,7 +112,7 @@ public class Controller extends Thread{
         }
 
         if(connected){
-            int guideDown = controllerInterface.getGuideStatus(controllerNumber);
+            int guideDown = ControllerInput.ci.getGuideStatus(controllerNumber);
             if(guideDown > 0) {
                 guideButtonCounter++;
             }
@@ -156,9 +154,9 @@ public class Controller extends Thread{
         (new Thread() {
             public void run() {
                 try {
-                    controllerInterface.startVibration(controllerNumber, 15000, 15000);
+                    ControllerInput.ci.startVibration(controllerNumber, 15000, 15000);
                     Thread.sleep(length);
-                    controllerInterface.stopVibration(controllerNumber);
+                    ControllerInput.ci.stopVibration(controllerNumber);
                 }
                 catch (InterruptedException e){ e.printStackTrace();}
             }

@@ -6,7 +6,7 @@
         <option name="appClass" value="main.GuiManager" />
         <option name="description" value="" />
         <option name="htmlParamFile" value="" />
-        <option name="nativeBundle" value="msi" />
+        <option name="nativeBundle" value="all" />
         <option name="paramFile" value="" />
         <option name="title" value="Nostalgia" />
         <option name="vendor" value="" />
@@ -15,12 +15,15 @@
     <root id="root">
       <element id="archive" name="Nostalgia.jar">
         <element id="module-output" name="Nostalgia" />
-        <element id="dir-copy" path="$PROJECT_DIR$/windows" />
-        <element id="dir-copy" path="$PROJECT_DIR$/src/resources" />
-        <element id="library" level="project" name="jars" />
-        <element id="directory" name="META-INF">
-          <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="library" level="project" name="jars" />
+      <element id="directory" name="src">
+        <element id="directory" name="resources">
+          <element id="dir-copy" path="$PROJECT_DIR$/src/resources" />
         </element>
+      </element>
+      <element id="directory" name="windows">
+        <element id="dir-copy" path="$PROJECT_DIR$/windows" />
       </element>
     </root>
   </artifact>

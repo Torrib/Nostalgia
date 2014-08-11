@@ -65,8 +65,6 @@ public class GuiManager extends Application{
 
     private void createTrayIcon(Stage stage){
         if (SystemTray.isSupported()) {
-            stage.getIcons().add(new Image("/resources/controller2.png"));
-
             PopupMenu popMenu = new PopupMenu();
             java.awt.MenuItem item1 = new java.awt.MenuItem("Exit");
             java.awt.MenuItem item2 = new java.awt.MenuItem("Config");
@@ -80,7 +78,7 @@ public class GuiManager extends Application{
             item2.addActionListener(e -> showConfig());
 
             SystemTray tray = SystemTray.getSystemTray();
-            File file = new File(GuiManager.class.getResource("/resources/icon.ico").getFile());
+            File file = new File("src/resources/icon.ico");
             Icon ico = FileSystemView.getFileSystemView().getSystemIcon(file);
             java.awt.Image image = ((ImageIcon) ico).getImage();
             TrayIcon trayIcon = new TrayIcon(image, "Nostalgia", popMenu);

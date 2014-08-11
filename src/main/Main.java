@@ -15,6 +15,7 @@ import com.sun.jna.PointerType;
 
 import controller.Controller;
 import controller.ControllerHandler;
+import controller.FreeRoamHandler;
 import interfaces.Item;
 import interfaces.OsHandler;
 import models.Command;
@@ -48,6 +49,8 @@ public class Main extends Thread
 		outputHandler = new OutputHandler(this);
 		osHandler = getOsHandler();
 		startWindowPulling(SETTINGS.getWindowPullDelay());
+        FreeRoamHandler frh = new FreeRoamHandler(0);
+        frh.run();
     }
 	
 	private void loadControllers()
@@ -197,17 +200,17 @@ public class Main extends Thread
 	}
 	
 	public void log(String message){
-		Date date = new Date();
-		try {
-		    PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("log.txt", true)));
-		    out.println(dateFormat.format(date) + " - " + message);
-		    out.close();
-		    System.out.println(message);
-		} 
-		catch (IOException e) {
-		    e.printStackTrace();
-		}
-	}
+    Date date = new Date();
+    try {
+        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("log.txt", true)));
+        out.println(dateFormat.format(date) + " - " + message);
+        out.close();
+        System.out.println(message);
+    }
+    catch (IOException e) {
+        e.printStackTrace();
+    }
+}
 
     public WindowSetting getActiveWindowSettings(){
         return activeWindowSettings;

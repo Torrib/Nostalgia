@@ -386,7 +386,7 @@ public class SettingsView {
         tab.setContent(subMenuEditList);
         tab.setText("Sub menus");
 
-        ImageView image = new ImageView(new Image(getClass().getResourceAsStream("/resources/program.png")));
+        ImageView image = new ImageView(new Image(getClass().getResourceAsStream("/resources/submenu.png")));
         tab.setGraphic(image);
         return tab;
     }
