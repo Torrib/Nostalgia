@@ -5,27 +5,27 @@ import java.util.Map;
 
 public class PredefinedProgramCommands {
 
-    Map<String, String> preProgram = new HashMap<>();
-    Map<String, String> postProgram = new HashMap<>();
+    public static Map<String, String> preProgram = new HashMap<>();
+    public static Map<String, String> postProgram = new HashMap<>();
 
-    public PredefinedProgramCommands(){
+    static{
         AddPredefinedProgramCommands(".bat", "cmd /c ", "");
         AddPredefinedProgramCommands(".jar", "java -jar", "");
     }
 
-    public void AddPredefinedProgramCommands(String extension, String preString, String postString){
+    private static void AddPredefinedProgramCommands(String extension, String preString, String postString){
         preProgram.put(extension, preString);
         postProgram.put(extension, postString);
     }
 
-    public String getPreString(String extension){
+    public static String getPreString(String extension){
         if(preProgram.containsKey(extension))
             return preProgram.get(extension);
 
         return "";
     }
 
-    public String getPostString(String extension){
+    public static String getPostString(String extension){
         if(postProgram.containsKey(extension))
             return postProgram.get(extension);
 

@@ -17,6 +17,12 @@ public class ControllerInput {
                 ci = (ControllerInterface) Native.loadLibrary("windows/Controller.dll", ControllerInterface.class);
                 Logger.log("Controller.dll loaded");
             }
+            Logger.log("Loading controller interface");
+            boolean loaded = ci.initController();
+            if(!loaded){
+                Logger.log("Unable to load controller.dll");
+                System.exit(1);
+            }
         } catch (Exception e) {
             Logger.log(e.toString());
             Logger.log(e.getMessage());

@@ -11,5 +11,5 @@ public interface ControllerInterface extends Library {
     void stopVibration(int controller);
     void turnControllerOff(int controller); //Only works for xbox controllers
     void close();
-    void getBatteryState(int controller);
+//    void getBatteryState(int controller);
 }

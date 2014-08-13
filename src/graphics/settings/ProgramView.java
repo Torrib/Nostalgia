@@ -24,8 +24,6 @@ public class ProgramView {
         stage.initOwner(parent);
         stage.initModality(Modality.WINDOW_MODAL);
 
-        PredefinedProgramCommands programCommands = new PredefinedProgramCommands();
-
         Label nameLabel = new Label("Name");
         TextField nameField = new TextField(program.getName());
 
@@ -53,8 +51,8 @@ public class ProgramView {
                 pathField.setText(file.getAbsolutePath());
                 int index = file.getName().lastIndexOf('.');
                 String extension = file.getName().substring(index);
-                preCommandField.setText(programCommands.getPreString(extension));
-                preCommandField.setText(programCommands.getPostString(extension));
+                preCommandField.setText(PredefinedProgramCommands.getPreString(extension));
+                preCommandField.setText(PredefinedProgramCommands.getPostString(extension));
             }
         });
 

@@ -5729,3 +5729,38 @@
 11/08/2014 21:01:44 - Controller64.dll loaded
 11/08/2014 21:01:44 - Controller handler loaded
 11/08/2014 21:01:44 - Windows 7 window handler loaded
+12/08/2014 13:54:47 - ====================================================================
+12/08/2014 13:54:47 - Starting
+12/08/2014 13:54:47 - Loading controller handler
+12/08/2014 13:54:47 - Loading controller interface
+12/08/2014 13:54:47 - Controller64.dll loaded
+12/08/2014 13:54:47 - Controller handler loaded
+12/08/2014 13:54:47 - Windows 7 window handler loaded
+12/08/2014 14:17:05 - ====================================================================
+12/08/2014 14:17:05 - Starting
+12/08/2014 14:17:06 - Loading controller handler
+12/08/2014 14:17:06 - Controller handler loaded
+12/08/2014 14:17:06 - Windows 7 window handler loaded
+12/08/2014 14:17:06 - Controller64.dll loaded
+12/08/2014 14:17:06 - Loading controller interface
+12/08/2014 14:20:05 - ====================================================================
+12/08/2014 14:20:05 - Starting
+12/08/2014 14:20:06 - Loading controller handler
+12/08/2014 14:20:06 - Controller handler loaded
+12/08/2014 14:20:06 - Windows 7 window handler loaded
+12/08/2014 14:20:06 - Controller64.dll loaded
+12/08/2014 14:20:06 - Loading controller interface
+13/08/2014 16:09:37 - ====================================================================
+13/08/2014 16:09:37 - Starting
+13/08/2014 16:09:38 - Loading controller handler
+13/08/2014 16:09:38 - Controller handler loaded
+13/08/2014 16:09:39 - Windows 7 window handler loaded
+13/08/2014 16:09:39 - Controller64.dll loaded
+13/08/2014 16:09:39 - Loading controller interface
+13/08/2014 16:12:56 - ====================================================================
+13/08/2014 16:12:56 - Starting
+13/08/2014 16:12:57 - Loading controller handler
+13/08/2014 16:12:57 - Controller handler loaded
+13/08/2014 16:12:57 - Windows 7 window handler loaded
+13/08/2014 16:12:57 - Controller64.dll loaded
+13/08/2014 16:12:57 - Loading controller interface

@@ -1,5 +1,6 @@
 package controller;
 
+import main.Logger;
 import main.Main;
 import models.Hotkey;
 
@@ -14,28 +15,22 @@ public class Controller extends Thread{
     private int guideButtonCounter;
     private boolean connected;
     private ControllerHandler controllerHandler;
-    private boolean connectionStatus;
     private List<Hotkey> hotkeys = new ArrayList<>();
-    private int[] buttonCounter;
+    private int[] buttonCounter = new int[10];
     private int xCounter = 0;
     private int bCounter = 0;
 
     public Controller(int controllerNumber, ControllerHandler controllerHandler){
         this.controllerNumber = controllerNumber;
         this.controllerHandler = controllerHandler;
-        active = false;
-        connected = false;
-        connectionStatus = false;
     }
 
     @Override
     public void run() {
         active = true;
-        System.out.println("Controller: " + controllerNumber + " activated");
         ControllerStructure buttons = new ControllerStructure();
-        buttonCounter = new int[10];
         vibrate(400);
-        controllerHandler.getMain().showMessageBox("Controller " + (controllerNumber+1) + " Active", true);
+        messageBox("Controller " + (controllerNumber+1) + " Active");
 
         while(active){
             try {
@@ -94,18 +89,16 @@ public class Controller extends Thread{
 
     public boolean guidePressed(){
 
-        connectionStatus = ControllerInput.ci.getControllerConnected(controllerNumber);
+        boolean connectionStatus = ControllerInput.ci.getControllerConnected(controllerNumber);
 
         if(connectionStatus != connected){
             if(connectionStatus) {
-                controllerHandler.getMain().showMessageBox("Controller " + (controllerNumber+1) + " Connected", true);
-                System.out.println("Controller " + controllerNumber + ": connected");
+                messageBox("Controller " + (controllerNumber+1) + " Connected");
                 if(!Main.SETTINGS.isRequireActivate())
                     this.start();
             }
             else {
-                controllerHandler.getMain().showMessageBox("Controller " + (controllerNumber+1) + " Disconnected", true);
-                System.out.println("Controller " + controllerNumber + ": disconnected");
+                messageBox("Controller " + (controllerNumber+1) + " Disconnected");
                 active = false;
             }
             connected = connectionStatus;
@@ -171,5 +164,10 @@ public class Controller extends Thread{
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    private void messageBox(String message){
+        Logger.log(message);
+        controllerHandler.getMain().showMessageBox(message, true);
     }
 }

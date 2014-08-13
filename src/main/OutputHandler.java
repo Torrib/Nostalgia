@@ -8,13 +8,11 @@ import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.util.List;
 
-public class OutputHandler
-{
+public class OutputHandler{
 	private Main main;
 	private Robot robot;
 
-	public OutputHandler(Main main)
-	{
+	public OutputHandler(Main main){
 		this.main = main;
 		try 
 		{
@@ -22,13 +20,12 @@ public class OutputHandler
 		} 
 		catch (Exception e) 
 		{
-			main.log(e.toString());
-			e.printStackTrace();
+			Logger.log(e.getMessage());
 			System.exit(0);
 		}
 	}
 
-    public void doCommand(List<Command> commands){
+    public void doCommand(List<Command> commands, int controller){
         for(Command command : commands){
             try {
                 Thread.sleep(command.getDelay());
@@ -79,6 +76,9 @@ public class OutputHandler
                         case Functions.MUTE:
                             main.mute();
                             break;
+                        case Functions.FREE_ROAM:
+                            main.freeRoam(controller);
+                            break;
                     }
                 }
                 else if(command.getCommandType() == Command.PROGRAM){
@@ -91,8 +91,7 @@ public class OutputHandler
         }
     }
 
- 	public void pressKey(int key)
- 	{
+ 	public void pressKey(int key){
  		robot.keyPress(key);
  		robot.delay(Main.SETTINGS.getButtonPressDelay());
  		robot.keyRelease(key);

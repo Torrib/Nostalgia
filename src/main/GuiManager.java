@@ -5,7 +5,6 @@ import graphics.MessageBox;
 import graphics.settings.SettingsView;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import models.MenuItem;
 
@@ -28,15 +27,17 @@ public class GuiManager extends Application{
 
     @Override
     public void start(Stage primaryStage){
+        Logger.log("====================================================================");
+        Logger.log("Starting");
+
         primaryStage.setTitle("Nostalgia");
         main = new Main(this);
-        createTrayIcon(primaryStage);
+        createTrayIcon();
 
         Platform.setImplicitExit(false);
 
         menu = new MenuView(main);
         messageBox = new MessageBox(main);
-
         main.start();
 
         if(Main.SETTINGS.isFirstRun())
@@ -63,7 +64,7 @@ public class GuiManager extends Application{
         Platform.runLater(() -> new SettingsView(main));
     }
 
-    private void createTrayIcon(Stage stage){
+    private void createTrayIcon(){
         if (SystemTray.isSupported()) {
             PopupMenu popMenu = new PopupMenu();
             java.awt.MenuItem item1 = new java.awt.MenuItem("Exit");
@@ -71,7 +72,7 @@ public class GuiManager extends Application{
             popMenu.add(item2);
             popMenu.add(item1);
             item1.addActionListener(e -> {
-                main.log("User exit(tray)");
+                Logger.log("User exit(tray)");
                 System.exit(0);
             });
 
@@ -86,8 +87,8 @@ public class GuiManager extends Application{
             try {
                 tray.add(trayIcon);
             } catch (AWTException e) {
-                main.log(e.toString());
-                e.printStackTrace();
+                Logger.log(e.toString());
+                Logger.log(e.getMessage());
             }
         }
     }

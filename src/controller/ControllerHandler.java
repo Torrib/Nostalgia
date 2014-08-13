@@ -17,11 +17,6 @@ public class ControllerHandler extends Thread{
         updateControllers();
     }
 
-    public boolean load(){
-        Logger.log("Loading controller interface");
-        return ControllerInput.ci.initController();
-    }
-
     @Override
     public void run() {
         while(true) {

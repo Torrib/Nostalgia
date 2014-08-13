@@ -113,7 +113,7 @@ public class MenuView {
     public void hide(){
         main.returnFocus();
         stage.hide();
-        main.command(main.getActiveWindowSettings().getPostMenuCommands());
+        main.command(main.getActiveWindowSettings().getPostMenuCommands(), 0);
     }
 
     public boolean isShowing(){

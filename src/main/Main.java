@@ -1,15 +1,11 @@
 package main;
 
-import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-
-import javax.swing.Icon;
-import javax.swing.filechooser.FileSystemView;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import com.sun.jna.PointerType;
 
@@ -33,9 +29,9 @@ public class Main extends Thread
 	private PointerType activeWindowHandle;
     private WindowSetting activeWindowSettings;
 	private OsHandler osHandler;
-	private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 	private int windowTextRefreshCounter = 0;
     private ControllerHandler controllerHandler;
+    private FreeRoamHandler freeRoamHandler;
 
     public Main(GuiManager guiManager){
         this.guiManager = guiManager;
@@ -43,27 +39,21 @@ public class Main extends Thread
 
     @Override
 	public void run(){
-		log("====================================================================");
-        log("Starting");
         loadControllers();
 		outputHandler = new OutputHandler(this);
 		osHandler = getOsHandler();
 		startWindowPulling(SETTINGS.getWindowPullDelay());
-        FreeRoamHandler frh = new FreeRoamHandler(0);
-        frh.run();
+        //TODO remove 
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        scheduler.scheduleAtFixedRate(new Restart(), 1, 1, TimeUnit.HOURS);
     }
 	
 	private void loadControllers()
 	{
-        log("Loading controller handler");
+        Logger.log("Loading controller handler");
 		controllerHandler = new ControllerHandler(this);
-        boolean loaded = controllerHandler.load();
-        if(!loaded){
-            log("Unable to load controller.dll");
-            return;
-        }
         controllerHandler.start();
-        log("Controller handler loaded");
+        Logger.log("Controller handler loaded");
     }
 	
 	private void startWindowPulling(int sleep){
@@ -78,32 +68,35 @@ public class Main extends Thread
 		if(os.contains("Windows"))
 			wh = new windows.WindowsHandler();
 		else{
-			log("Unsupported OS: " + os);
-			log("Exiting");
+			Logger.log("Unsupported OS: " + os);
+			Logger.log("Exiting");
 			System.exit(0);
 		}
 			
-		log(os + " window handler loaded");
+		Logger.log(os + " window handler loaded");
 		return wh;
 	}
 
     public void command(Item item, Controller controller){
-        outputHandler.doCommand(item.getCommands());
+        outputHandler.doCommand(item.getCommands(), controller.getControllerNumber());
         showMessageBox(item.getMessage(), false);
         if(item.vibrate())
             controller.vibrate(400);
     }
 
-    public void command(List<Command> commands){
-        outputHandler.doCommand(commands);
+    public void command(List<Command> commands, int controller){
+        outputHandler.doCommand(commands, controller);
     }
 
     public void showMenu(int controller) {
-        if(guiManager.isMenuShowing())
+        if(guiManager.isMenuShowing()) {
+            Logger.log("Menu showing: Hiding");
             guiManager.hideMenu();
+        }
         else {
             if(!activeWindowSettings.getMenuItems().isEmpty()) {
-                command(activeWindowSettings.getPreMenuComands());
+                Logger.log("Showing menu");
+                command(activeWindowSettings.getPreMenuComands(), controller);
                 guiManager.showMenu(activeWindowSettings.getMenuItems(), controller);
             }
         }
@@ -195,22 +188,9 @@ public class Main extends Thread
 			Runtime.getRuntime().exec (program.getPreCommand() + " " + program.getPath() + " " + program.getPostCommand());
 		}
 		catch (IOException e) {
-			log(e.toString());
+			Logger.log(e.toString());
 		}
 	}
-	
-	public void log(String message){
-    Date date = new Date();
-    try {
-        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("log.txt", true)));
-        out.println(dateFormat.format(date) + " - " + message);
-        out.close();
-        System.out.println(message);
-    }
-    catch (IOException e) {
-        e.printStackTrace();
-    }
-}
 
     public WindowSetting getActiveWindowSettings(){
         return activeWindowSettings;
@@ -248,6 +228,17 @@ public class Main extends Thread
         osHandler.mute();
     }
 
+    public void freeRoam(int controller){
+        if(freeRoamHandler == null) {
+            freeRoamHandler = new FreeRoamHandler(controller);
+            freeRoamHandler.start();
+        }
+        else{
+            freeRoamHandler.disable();
+            freeRoamHandler = null;
+        }
+    }
+
     public void toggleHotkeys(){
         Main.SETTINGS.setDisableHotkeys(!Main.SETTINGS.isDisableHotkeys());
     }
@@ -259,5 +250,20 @@ public class Main extends Thread
 
     public void handleRunOnStartup() {
         osHandler.handleRunOnStartup(SETTINGS.isRunOnStartup());
+    }
+
+
+    class Restart implements Runnable{
+
+        @Override
+        public void run() {
+            try {
+                Runtime.getRuntime().exec ("java -jar nostalgia.jar");
+                System.exit(0);
+            }
+            catch (IOException e) {
+                Logger.log(e.toString());
+            }
+        }
     }
 }

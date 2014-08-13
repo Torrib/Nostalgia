@@ -7,7 +7,7 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 
-public class FreeRoamHandler implements Runnable{
+public class FreeRoamHandler extends Thread{
 
     private static final int SCROLL_FACTOR = 10000;
 
@@ -21,6 +21,7 @@ public class FreeRoamHandler implements Runnable{
     private boolean enterPressed;
     private Process keyboard = null;
     private boolean backButtonReleased = true;
+    private int pressDelayCounter = 0;
 
     public FreeRoamHandler(int controller){
         this.controller = controller;
@@ -35,6 +36,9 @@ public class FreeRoamHandler implements Runnable{
 
     @Override
     public void run() {
+        
+        Logger.log("Starting free roam for controller: " + controller+1);
+
         while(enabled){
             try {
                 handleInput();
@@ -51,13 +55,19 @@ public class FreeRoamHandler implements Runnable{
         ControllerInput.ci.getControllerState(controller, cs);
 
         moveMouse(cs);
-        handleSpeedChange(cs);
-        HandleSrolling(cs);
-        handleAClick(cs);
-        handleYClick(cs);
-        handleBClick(cs);
-        handleStart(cs);
 
+        pressDelayCounter++;
+
+        if(pressDelayCounter == 4) {
+            pressDelayCounter = 0;
+
+            handleSpeedChange(cs);
+            HandleSrolling(cs);
+            handleAClick(cs);
+            handleYClick(cs);
+            handleBClick(cs);
+            handleStart(cs);
+        }
 //        handleBackButton(cs);
     }
 
@@ -173,5 +183,9 @@ public class FreeRoamHandler implements Runnable{
         else if(!backButtonReleased){
             backButtonReleased = true;
         }
+    }
+
+    public void disable(){
+        enabled = false;
     }
 }
