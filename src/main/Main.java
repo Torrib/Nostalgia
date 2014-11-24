@@ -43,7 +43,7 @@ public class Main extends Thread
 		outputHandler = new OutputHandler(this);
 		osHandler = getOsHandler();
 		startWindowPulling(SETTINGS.getWindowPullDelay());
-        //TODO remove 
+        //TODO remove
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         scheduler.scheduleAtFixedRate(new Restart(), 1, 1, TimeUnit.HOURS);
     }
@@ -84,11 +84,15 @@ public class Main extends Thread
             controller.vibrate(400);
     }
 
-    public void command(List<Command> commands, int controller){
-        outputHandler.doCommand(commands, controller);
+    public void command(List<Command> commands, Controller controller){
+        outputHandler.doCommand(commands, controller.getControllerNumber());
     }
 
-    public void showMenu(int controller) {
+    public void command(List<Command> commands){
+        outputHandler.doCommand(commands, 0);
+    }
+
+    public void showMenu(Controller controller) {
         if(guiManager.isMenuShowing()) {
             Logger.log("Menu showing: Hiding");
             guiManager.hideMenu();

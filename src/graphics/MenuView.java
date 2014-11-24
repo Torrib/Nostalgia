@@ -1,5 +1,6 @@
 package graphics;
 
+import controller.Controller;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -43,6 +44,7 @@ public class MenuView {
     private int selectedIndex = 0;
     private List<MenuItem> mainMenuItems;
     private boolean mainMenuShowing = true;
+    private Controller controller;
 
     public MenuView(Main main){
         this.main = main;
@@ -95,11 +97,12 @@ public class MenuView {
                 (primaryScreenBounds.getWidth() / 2) - 55));
     }
 
-    public void show(List<MenuItem> menuItems, int controller){
+    public void show(List<MenuItem> menuItems, Controller controller){
+        this.controller = controller;
         stopSound = true;
         mainMenuItems = menuItems;
         updateList(menuItems);
-        controllerLabel.setText("Controller " + (controller+1));
+        controllerLabel.setText("Controller " + (controller.getControllerNumber()+1));
         show();
         stopSound = false;
     }
@@ -113,7 +116,7 @@ public class MenuView {
     public void hide(){
         main.returnFocus();
         stage.hide();
-        main.command(main.getActiveWindowSettings().getPostMenuCommands(), 0);
+        main.command(main.getActiveWindowSettings().getPostMenuCommands());
     }
 
     public boolean isShowing(){
@@ -133,7 +136,7 @@ public class MenuView {
         }
         else {
             hide();
-            main.command(list.getSelectionModel().getSelectedItem(), null);
+            main.command(list.getSelectionModel().getSelectedItem(), controller);
         }
     }
 

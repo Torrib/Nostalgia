@@ -1,5 +1,6 @@
 package main;
 
+import controller.Controller;
 import graphics.MenuView;
 import graphics.MessageBox;
 import graphics.settings.SettingsView;
@@ -44,7 +45,7 @@ public class GuiManager extends Application{
             showConfig();
     }
 
-    public void showMenu(List<MenuItem> menuItems, int controller){
+    public void showMenu(List<MenuItem> menuItems, Controller controller){
         Platform.runLater(() -> menu.show(menuItems, controller));
     }
 

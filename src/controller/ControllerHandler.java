@@ -25,7 +25,7 @@ public class ControllerHandler extends Thread{
                     if (controller.guidePressed()) {
                         if(controller.isActive()) {
                             menuController = controller.getControllerNumber();
-                            main.showMenu(menuController);
+                            main.showMenu(controller);
                         }
                         else
                             controller.start();

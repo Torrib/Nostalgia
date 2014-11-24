@@ -5764,3 +5764,24 @@
 13/08/2014 16:12:57 - Windows 7 window handler loaded
 13/08/2014 16:12:57 - Controller64.dll loaded
 13/08/2014 16:12:57 - Loading controller interface
+13/08/2014 17:02:40 - ====================================================================
+13/08/2014 17:02:40 - Starting
+13/08/2014 17:02:41 - Loading controller handler
+13/08/2014 17:02:41 - Controller handler loaded
+13/08/2014 17:02:41 - Windows 7 window handler loaded
+13/08/2014 17:02:41 - Controller64.dll loaded
+13/08/2014 17:02:41 - Loading controller interface
+13/08/2014 17:04:00 - Controller 1 Connected
+13/08/2014 17:04:00 - Controller 1 Active
+13/08/2014 17:04:08 - Showing menu
+13/08/2014 17:09:52 - ====================================================================
+13/08/2014 17:09:52 - Starting
+13/08/2014 17:09:52 - Loading controller handler
+13/08/2014 17:09:52 - Controller handler loaded
+13/08/2014 17:09:53 - Windows 7 window handler loaded
+13/08/2014 17:09:53 - Controller64.dll loaded
+13/08/2014 17:09:53 - Loading controller interface
+13/08/2014 17:09:53 - Controller 1 Connected
+13/08/2014 17:09:53 - Controller 1 Active
+13/08/2014 17:09:57 - Showing menu
+13/08/2014 17:10:09 - User exit(tray)
