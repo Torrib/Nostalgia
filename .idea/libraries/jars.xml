@@ -4,8 +4,11 @@
       <root url="jar://$PROJECT_DIR$/jars/jna-4.1.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/jars/jna-platform-4.1.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/jars/gson-2.2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jgamepad/out/artifacts/jgamepad_jar/jgamepad.jar!/" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../jgamepad-javadoc/jgamepad-javadoc.jar!/jgamepad-javadoc" />
+    </JAVADOC>
     <SOURCES />
   </library>
 </component>

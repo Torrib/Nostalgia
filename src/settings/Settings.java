@@ -10,8 +10,6 @@ import java.util.List;
 
 public class Settings {
 
-    private static final int BUTTON_PRESS_DELAY = 50;
-
     private boolean firstRun = true;
 
     private String menuFont = "";
@@ -146,10 +144,6 @@ public class Settings {
 
     public void setWindowSettings(List<WindowSetting> windowSettings) {
         this.windowSettings = windowSettings;
-    }
-
-    public int getButtonPressDelay() {
-        return BUTTON_PRESS_DELAY;
     }
 
     public int getMenuSelectedFontSize() {

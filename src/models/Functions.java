@@ -28,6 +28,6 @@ public class Functions {
         functions.add(new Function(INCREASE_VOLUME, "Increase Volume", "Increases the master volume"));
         functions.add(new Function(DECREASE_VOLUME, "Decrease Volume", "Decreases the master volume"));
         functions.add(new Function(MUTE, "Toggle Mute", "Mute the sound"));
-        functions.add(new Function(FREE_ROAM, "Free Roam", "Enables \"Free Roam\" allowing free control of the controller"));
+        functions.add(new Function(FREE_ROAM, "Free Roam", "Enables \"Free Roam\" allowing free control of the controllerOld"));
     }
 }

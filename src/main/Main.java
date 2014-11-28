@@ -47,13 +47,12 @@ public class Main extends Thread
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         scheduler.scheduleAtFixedRate(new Restart(), 1, 1, TimeUnit.HOURS);
     }
-	
-	private void loadControllers()
-	{
+
+	private void loadControllers(){
         Logger.log("Loading controller handler");
 		controllerHandler = new ControllerHandler(this);
         controllerHandler.start();
-        Logger.log("Controller handler loaded");
+        Logger.log("controller handler loaded");
     }
 	
 	private void startWindowPulling(int sleep){
@@ -78,18 +77,18 @@ public class Main extends Thread
 	}
 
     public void command(Item item, Controller controller){
-        outputHandler.doCommand(item.getCommands(), controller.getControllerNumber());
+        outputHandler.doCommand(item.getCommands(), controller);
         showMessageBox(item.getMessage(), false);
         if(item.vibrate())
             controller.vibrate(400);
     }
 
     public void command(List<Command> commands, Controller controller){
-        outputHandler.doCommand(commands, controller.getControllerNumber());
+        outputHandler.doCommand(commands, controller);
     }
 
     public void command(List<Command> commands){
-        outputHandler.doCommand(commands, 0);
+        outputHandler.doCommand(commands, null);
     }
 
     public void showMenu(Controller controller) {
@@ -100,6 +99,7 @@ public class Main extends Thread
         else {
             if(!activeWindowSettings.getMenuItems().isEmpty()) {
                 Logger.log("Showing menu");
+                controller.activateMenu();
                 command(activeWindowSettings.getPreMenuComands(), controller);
                 guiManager.showMenu(activeWindowSettings.getMenuItems(), controller);
             }
@@ -217,7 +217,7 @@ public class Main extends Thread
     }
 
     public void turnOffControllers(){
-        controllerHandler.turnOffControllers();
+//        controllerHandler.turnOffControllers();
     }
 
     public void increaseVolume(){
@@ -232,15 +232,21 @@ public class Main extends Thread
         osHandler.mute();
     }
 
-    public void freeRoam(int controller){
+    public void startFreeRoam(Controller controller){
         if(freeRoamHandler == null) {
-            freeRoamHandler = new FreeRoamHandler(controller);
+            showMessageBox("Freeroam enabled", true);
+            freeRoamHandler = new FreeRoamHandler(controller, this);
             freeRoamHandler.start();
         }
         else{
-            freeRoamHandler.disable();
-            freeRoamHandler = null;
+            stopFreeRoam();
         }
+    }
+
+    public void stopFreeRoam(){
+        showMessageBox("Freeroam disabled", true);
+        freeRoamHandler.end();
+        freeRoamHandler = null;
     }
 
     public void toggleHotkeys(){
@@ -249,7 +255,7 @@ public class Main extends Thread
 
 
     public void updateControllerStatus(){
-        controllerHandler.updateControllers();
+//        controllerHandler.updateControllers();
     }
 
     public void handleRunOnStartup() {

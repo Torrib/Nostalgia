@@ -171,10 +171,10 @@ public class SettingsView {
         grid.add(disableMessagesCB, 1, 3);
 
         Label disableSystemMessagesLabel = new Label("Disable system messages");
-        disableSystemMessagesLabel.setTooltip(new Tooltip("This will prevent messages from being shown when for instance a controller connects"));
+        disableSystemMessagesLabel.setTooltip(new Tooltip("This will prevent messages from being shown when for instance a controllerOld connects"));
         disableSystemMessagesCB = new CheckBox();
         disableSystemMessagesCB.setSelected(settings.isDisableSystemMessages());
-        disableSystemMessagesCB.setTooltip(new Tooltip("This will prevent messages from being shown when for instance a controller connects"));
+        disableSystemMessagesCB.setTooltip(new Tooltip("This will prevent messages from being shown when for instance a controllerOld connects"));
 
         grid.add(disableSystemMessagesLabel, 0, 4);
         grid.add(disableSystemMessagesCB, 1, 4);
@@ -196,19 +196,19 @@ public class SettingsView {
         grid.setVgap(12);
         grid.setPadding(new Insets(15));
 
-        Label pullDelayLabel = new Label("Controller pull delay(ms)");
-        pullDelayLabel.setTooltip(new Tooltip("The delay between controller data pulling"));
+        Label pullDelayLabel = new Label("controller pull delay(ms)");
+        pullDelayLabel.setTooltip(new Tooltip("The delay between controllerOld data pulling"));
         pullDelayField = new NumberTextField(settings.getControllerPullDelay());
-        pullDelayField.setTooltip(new Tooltip("The delay between controller data pulling"));
+        pullDelayField.setTooltip(new Tooltip("The delay between controllerOld data pulling"));
 
         grid.add(pullDelayLabel, 0, 0);
         grid.add(pullDelayField, 1, 0);
 
         Label requireActivateLabel = new Label("Require activate");
-        requireActivateLabel.setTooltip(new Tooltip("The controller has to be activated before the menu and hotkeys can be used"));
+        requireActivateLabel.setTooltip(new Tooltip("The controllerOld has to be activated before the menu and hotkeys can be used"));
         requireActivateCB = new CheckBox();
         requireActivateCB.setSelected(settings.isRequireActivate());
-        requireActivateCB.setTooltip(new Tooltip("The controller has to be activated before the menu and hotkeys can be used"));
+        requireActivateCB.setTooltip(new Tooltip("The controllerOld has to be activated before the menu and hotkeys can be used"));
 
         grid.add(requireActivateLabel, 0, 1);
         grid.add(requireActivateCB, 1, 1);
@@ -231,29 +231,29 @@ public class SettingsView {
         grid.add(disableHotkeysLabel, 0, 3);
         grid.add(disableHotkeysCB, 1, 3);
 
-        Label disableC1Label = new Label("Disable controller 1");
-        disableC1Label.setTooltip(new Tooltip("Prevents Controller 1 from using Nostalgia functionality"));
+        Label disableC1Label = new Label("Disable controllerOld 1");
+        disableC1Label.setTooltip(new Tooltip("Prevents controller 1 from using Nostalgia functionality"));
         disableController1 = new CheckBox();
         disableController1.setSelected(settings.isDisableController1());
-        disableController1.setTooltip(new Tooltip("Prevents Controller 1 from using Nostalgia functionality"));
+        disableController1.setTooltip(new Tooltip("Prevents controller 1 from using Nostalgia functionality"));
 
-        Label disableC2Label = new Label("Disable controller 2");
-        disableC2Label.setTooltip(new Tooltip("Prevents Controller 2 from using Nostalgia functionality"));
+        Label disableC2Label = new Label("Disable controllerOld 2");
+        disableC2Label.setTooltip(new Tooltip("Prevents controller 2 from using Nostalgia functionality"));
         disableController2 = new CheckBox();
         disableController2.setSelected(settings.isDisableController2());
-        disableController2.setTooltip(new Tooltip("Prevents Controller 2 from using Nostalgia functionality"));
+        disableController2.setTooltip(new Tooltip("Prevents controller 2 from using Nostalgia functionality"));
 
-        Label disableC3Label = new Label("Disable controller 3");
-        disableC3Label.setTooltip(new Tooltip("Prevents Controller 3 from using Nostalgia functionality"));
+        Label disableC3Label = new Label("Disable controllerOld 3");
+        disableC3Label.setTooltip(new Tooltip("Prevents controller 3 from using Nostalgia functionality"));
         disableController3 = new CheckBox();
         disableController3.setSelected(settings.isDisableController3());
-        disableController3.setTooltip(new Tooltip("Prevents Controller 3 from using Nostalgia functionality"));
+        disableController3.setTooltip(new Tooltip("Prevents controller 3 from using Nostalgia functionality"));
 
-        Label disableC4Label = new Label("Disable controller 4");
-        disableC4Label.setTooltip(new Tooltip("Prevents Controller 4 from using Nostalgia functionality"));
+        Label disableC4Label = new Label("Disable controllerOld 4");
+        disableC4Label.setTooltip(new Tooltip("Prevents controller 4 from using Nostalgia functionality"));
         disableController4 = new CheckBox();
         disableController4.setSelected(settings.isDisableController4());
-        disableController4.setTooltip(new Tooltip("Prevents Controller 4 from using Nostalgia functionality"));
+        disableController4.setTooltip(new Tooltip("Prevents controller 4 from using Nostalgia functionality"));
 
         GridPane disableControllersGrid = new GridPane();
         disableControllersGrid.setHgap(10);
@@ -423,8 +423,6 @@ public class SettingsView {
 
 
         for(WindowSetting ws : windowEditList.getItems())
-            for(Hotkey hotkey : ws.getHotkeys())
-                hotkey.setDelayLoops(hotkey.getDisplayTime() / settings.getControllerPullDelay());
         settings.setWindowSettings(windowEditList.getItems());
 
         settings.setSubMenus(subMenuEditList.getItems());

@@ -1,191 +1,125 @@
 package controller;
 
+import jgamepad.enums.*;
+import jgamepad.enums.Button;
+import jgamepad.interfaces.ButtonListener;
+import jgamepad.listeners.ButtonHoldListener;
+import jgamepad.listeners.ButtonPressedListener;
 import main.Logger;
+import main.Main;
 
 import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FreeRoamHandler extends Thread{
 
-    private static final int SCROLL_FACTOR = 10000;
+    private final static int IGNORE_ZONE = 6000;
 
-    private int controller;
-    private boolean enabled;
-    private int speedFactor = 900;
-    private Robot robot;
-    private boolean mouseButton1Pressed;
-    private boolean mouseButton3Pressed;
-    private boolean escPressed;
-    private boolean enterPressed;
-    private Process keyboard = null;
-    private boolean backButtonReleased = true;
-    private int pressDelayCounter = 0;
+    private Controller controller;
+    private boolean run = true;
+    private double speedFactor = 1200;
+    private Robot robot = null;
+    private List<ButtonListener> buttonListeners = new ArrayList<>();
+    private Main main;
 
-    public FreeRoamHandler(int controller){
+    public FreeRoamHandler(Controller controller, Main main){
         this.controller = controller;
-        enabled = true;
+        this.main = main;
         try {
             robot = new Robot();
         } catch (AWTException e) {
-            Logger.log(e.toString());
-            e.printStackTrace();
+            Logger.log("Unable to load robot");
+            Logger.log(e.getMessage());
         }
+
+        registerListeners();
     }
 
-    @Override
-    public void run() {
-        
-        Logger.log("Starting free roam for controller: " + controller+1);
+    public void run(){
 
-        while(enabled){
+        int x;
+        int y;
+
+        while(run){
             try {
-                handleInput();
-                Thread.sleep(25);
+                x = controller.getAnalogValue(Analog.leftStickX);
+                y = controller.getAnalogValue(Analog.leftStickY);
+
+                if(x > IGNORE_ZONE || x < -IGNORE_ZONE)
+                    x /= speedFactor;
+                else
+                    x = 0;
+                if(y > IGNORE_ZONE || y < -IGNORE_ZONE)
+                    y /= speedFactor;
+                else
+                    y = 0;
+
+                if(y != 0 || x != 0){
+                    Point point = MouseInfo.getPointerInfo().getLocation();
+                    robot.mouseMove((int) point.getX() + x, (int) point.getY() - y);
+                }
+
+                if(speedFactor < 2000)
+                    speedFactor += (controller.getAnalogValue(Analog.L2) / 30);
+                if(speedFactor > 400)
+                    speedFactor -= (controller.getAnalogValue(Analog.R2) / 30);
+
+                Thread.sleep(20);
             } catch (InterruptedException e) {
-                Logger.log(e.toString());
                 e.printStackTrace();
             }
         }
+        clearListeners();
     }
 
-    private void handleInput(){
-        ControllerStructure cs = new ControllerStructure();
-        ControllerInput.ci.getControllerState(controller, cs);
-
-        moveMouse(cs);
-
-        pressDelayCounter++;
-
-        if(pressDelayCounter == 4) {
-            pressDelayCounter = 0;
-
-            handleSpeedChange(cs);
-            HandleSrolling(cs);
-            handleAClick(cs);
-            handleYClick(cs);
-            handleBClick(cs);
-            handleStart(cs);
-        }
-//        handleBackButton(cs);
+    public void end(){
+        run = false;
     }
 
-    private void handleStart(ControllerStructure cs) {
-        if(cs.start == 1 && !enterPressed){
-            enterPressed = true;
-            robot.keyPress(KeyEvent.VK_ENTER);
-        }
-        else if(cs.start == 0 && enterPressed){
-            enterPressed = false;
-            robot.keyRelease(KeyEvent.VK_ENTER);
-        }
-    }
+    private void registerListeners(){
 
-    private void handleBClick(ControllerStructure cs) {
-        if(cs.bButton == 1 && !escPressed){
-            escPressed = true;
-            robot.keyPress(KeyEvent.VK_ESCAPE);
-        }
-        else if(cs.bButton == 0 && escPressed){
-            escPressed = false;
-            robot.keyRelease(KeyEvent.VK_ESCAPE);
-        }
-    }
+        buttonListeners.add(new ButtonHoldListener(Button.GUIDE, 1000, () -> {
+            main.stopFreeRoam();
+        }));
 
-    private void handleYClick(ControllerStructure cs) {
-        if(cs.yButton == 1 && !mouseButton3Pressed){
-            mouseButton3Pressed = true;
-            robot.mousePress(InputEvent.BUTTON3_MASK);
-        }
-        else if(cs.yButton == 0 && mouseButton3Pressed){
-            mouseButton3Pressed = false;
-            robot.mouseRelease(InputEvent.BUTTON3_MASK);
-        }
-    }
-
-    private void handleAClick(ControllerStructure cs) {
-        if(cs.aButton == 1 && !mouseButton1Pressed){
-            mouseButton1Pressed = true;
-            robot.mousePress(InputEvent.BUTTON1_MASK);
-        }
-        else if(cs.aButton == 0 && mouseButton1Pressed){
-            mouseButton1Pressed = false;
-            robot.mouseRelease(InputEvent.BUTTON1_MASK);
-        }
-    }
-
-    private void HandleSrolling(ControllerStructure cs) {
-        int scrollDistance = 0;
-
-        if(cs.rightStickX > 10000 || cs.rightStickX < -10000){
-            scrollDistance = (cs.rightStickX / SCROLL_FACTOR) * -1;
-        }
-
-        if(scrollDistance != 0) {
-            robot.mouseWheel(scrollDistance);
-        }
-    }
-
-    private void moveMouse(ControllerStructure cs) {
-        int yDiff = 0;
-        int xDiff = 0;
-
-        if(cs.leftStickY > 5000 || cs.leftStickY < -5000){
-            yDiff = cs.leftStickY / speedFactor;
-        }
-
-        if(cs.leftStickX > 5000 || cs.leftStickX < -5000){
-            xDiff = cs.leftStickX / speedFactor;
-        }
-
-        if(yDiff != 0 || xDiff != 0) {
-            Point point = MouseInfo.getPointerInfo().getLocation();
-
-            int newX = (int) (point.getX() + yDiff);
-            int newY = (int) (point.getY() - xDiff);
-
-            robot.mouseMove(newX, newY);
-        }
-    }
-
-    private void handleSpeedChange(ControllerStructure cs) {
-        if(cs.l2 != 0){
-            alterSpeed(cs.l2 / 50);
-        }
-        else if(cs.r2 != 0){
-            alterSpeed(-(cs.r2 / 50));
-        }
-    }
-
-    private void alterSpeed(int speed){
-        speedFactor += speed;
-    }
-
-    private void handleBackButton(ControllerStructure cs) {
-        if(cs.back == 1){
-            if(backButtonReleased) {
-                backButtonReleased = false;
-                if (keyboard == null) {
-
-                    try {
-                        keyboard = Runtime.getRuntime().exec("cmd /C " + System.getenv("SystemRoot") + "/system32/osk.exe");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    System.out.println("Destroying");
-                    keyboard.destroy();
-                    keyboard = null;
-                }
+        buttonListeners.add(new ButtonPressedListener(Button.A, pressed -> {
+            if(pressed) {
+                robot.mousePress(InputEvent.BUTTON1_MASK);
             }
-        }
-        else if(!backButtonReleased){
-            backButtonReleased = true;
-        }
+            else{
+                robot.mouseRelease(InputEvent.BUTTON1_MASK);
+            }
+        }));
+
+        buttonListeners.add(new ButtonPressedListener(Button.DOWN, pressed ->{
+            if(pressed)
+                robot.keyPress(KeyEvent.VK_DOWN);
+        }));
+
+        buttonListeners.add(new ButtonPressedListener(Button.UP, pressed ->{
+            if(pressed)
+                robot.keyPress(KeyEvent.VK_UP);
+        }));
+
+        buttonListeners.add(new ButtonPressedListener(Button.LEFT, pressed ->{
+            if(pressed)
+                robot.keyPress(KeyEvent.VK_LEFT);
+        }));
+
+        buttonListeners.add(new ButtonPressedListener(Button.RIGHT, pressed ->{
+            if(pressed)
+                robot.keyPress(KeyEvent.VK_RIGHT);
+        }));
+
+
+        controller.addButtonListener(buttonListeners);
     }
 
-    public void disable(){
-        enabled = false;
+    private void clearListeners(){
+        controller.removeButtonListener(buttonListeners);
     }
+
 }

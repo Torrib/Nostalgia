@@ -1,5 +1,6 @@
 package main;
 
+import controller.Controller;
 import models.Command;
 import models.Functions;
 import models.KeyCommand;
@@ -17,6 +18,7 @@ public class OutputHandler{
 		try 
 		{
 			robot = new Robot();
+            robot.setAutoDelay(100);
 		} 
 		catch (Exception e) 
 		{
@@ -25,7 +27,7 @@ public class OutputHandler{
 		}
 	}
 
-    public void doCommand(List<Command> commands, int controller){
+    public void doCommand(List<Command> commands, Controller controller){
         for(Command command : commands){
             try {
                 Thread.sleep(command.getDelay());
@@ -77,7 +79,7 @@ public class OutputHandler{
                             main.mute();
                             break;
                         case Functions.FREE_ROAM:
-                            main.freeRoam(controller);
+                            main.startFreeRoam(controller);
                             break;
                     }
                 }
@@ -93,7 +95,6 @@ public class OutputHandler{
 
  	public void pressKey(int key){
  		robot.keyPress(key);
- 		robot.delay(Main.SETTINGS.getButtonPressDelay());
  		robot.keyRelease(key);
  	}
 }

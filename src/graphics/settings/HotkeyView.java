@@ -11,10 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import models.Program;
 import models.Hotkey;
-
-import java.util.List;
 
 public class HotkeyView {
 
@@ -28,12 +25,12 @@ public class HotkeyView {
         Label nameLabel = new Label("Name");
         TextField nameField = new TextField(hotkey.getName());
         Label buttonLabel = new Label("Button");
-        ComboBox<String> buttonCB = new ComboBox(FXCollections.observableArrayList(hotkey.getButtonList()));
-        buttonCB.getSelectionModel().select(hotkey.getButton());
+        ComboBox<jgamepad.enums.Button> buttonCB = new ComboBox(FXCollections.observableArrayList(jgamepad.enums.Button.values()));
+        buttonCB.getSelectionModel().select(hotkey.getButtonValue());
         Label messageLabel = new Label("Message");
         TextField messageField = new TextField(hotkey.getMessage());
         Label displayTimeLabel = new Label("Hold time");
-        TextField displayTimeField = new TextField(""+hotkey.getDisplayTime());
+        TextField displayTimeField = new TextField(""+hotkey.getDelay());
         Label vibrateLabel = new Label("Vibrate");
         CheckBox vibrateCB = new CheckBox();
         vibrateCB.setSelected(hotkey.vibrate());
@@ -62,9 +59,9 @@ public class HotkeyView {
                     commandBox.setIgnoreCloseRequest(false);
                 } else {
                     hotkey.setName(nameField.getText());
-                    hotkey.setButton(buttonCB.getSelectionModel().getSelectedIndex());
+                    hotkey.setButton(buttonCB.getSelectionModel().getSelectedItem());
                     hotkey.setMessage(messageField.getText());
-                    hotkey.setDisplayTime(Integer.parseInt(displayTimeField.getText()));
+                    hotkey.setDelay(Integer.parseInt(displayTimeField.getText()));
                     hotkey.setVibrate(vibrateCB.isSelected());
                     hotkey.setCommands(commandBox.getItems());
 

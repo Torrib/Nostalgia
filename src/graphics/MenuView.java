@@ -102,7 +102,7 @@ public class MenuView {
         stopSound = true;
         mainMenuItems = menuItems;
         updateList(menuItems);
-        controllerLabel.setText("Controller " + (controller.getControllerNumber()+1));
+        controllerLabel.setText("controller " + (controller.getControllerNumber()+1));
         show();
         stopSound = false;
     }
@@ -116,6 +116,7 @@ public class MenuView {
     public void hide(){
         main.returnFocus();
         stage.hide();
+        controller.deactivateMenu();
         main.command(main.getActiveWindowSettings().getPostMenuCommands());
     }
 

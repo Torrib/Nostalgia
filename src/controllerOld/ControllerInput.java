@@ -1,4 +1,4 @@
-package controller;
+package controllerOld;
 
 
 import com.sun.jna.Native;
@@ -14,13 +14,13 @@ public class ControllerInput {
                 ci = (ControllerInterface) Native.loadLibrary("windows/Controller64.dll", ControllerInterface.class);
                 Logger.log("Controller64.dll loaded");
             } else {
-                ci = (ControllerInterface) Native.loadLibrary("windows/Controller.dll", ControllerInterface.class);
-                Logger.log("Controller.dll loaded");
+                ci = (ControllerInterface) Native.loadLibrary("windows/controller.dll", ControllerInterface.class);
+                Logger.log("controller.dll loaded");
             }
-            Logger.log("Loading controller interface");
+            Logger.log("Loading controllerOld interface");
             boolean loaded = ci.initController();
             if(!loaded){
-                Logger.log("Unable to load controller.dll");
+                Logger.log("Unable to load controllerOld.dll");
                 System.exit(1);
             }
         } catch (Exception e) {

@@ -1,6 +1,7 @@
 package models;
 
 import interfaces.Item;
+import jgamepad.enums.Button;
 import main.Main;
 
 import java.util.ArrayList;
@@ -9,21 +10,26 @@ import java.util.List;
 public class Hotkey implements Item {
 
     private String name = "";
-    private int button = 0;
+    private Button button;
     private String message = "";
-    private int displayTime = 2000;
+    private int delay = 2000;
     private boolean vibrate = true;
 
     List<Command> commands = new ArrayList<>();
 
-    private int delayLoops = -1;
-
-    public int getButton() {
+    public Button getButton() {
         return button;
     }
 
-    public void setButton(int button) {
+    public void setButton(Button button) {
         this.button = button;
+    }
+
+    public int getButtonValue(){
+        if(button != null){
+            return button.value;
+        }
+        return 0;
     }
 
     public String getMessage() {
@@ -43,24 +49,16 @@ public class Hotkey implements Item {
         this.message = message;
     }
 
-    public int getDisplayTime() {
-        return displayTime;
+    public int getDelay() {
+        return delay;
     }
 
-    public void setDisplayTime(int displayTime) {
-        this.displayTime = displayTime;
+    public void setDelay(int delay) {
+        this.delay = delay;
     }
 
     public void setVibrate(boolean vibrate) {
         this.vibrate = vibrate;
-    }
-
-    public int getDelayLoops() {
-        return delayLoops;
-    }
-
-    public void setDelayLoops(int delayLoops) {
-        this.delayLoops = delayLoops;
     }
 
     public String getName() {
@@ -88,9 +86,9 @@ public class Hotkey implements Item {
     @Override
     public String toString(){
         if(!name.isEmpty())
-            return name + "(" + getButtonList()[button] + ")";
+            return name + "(" + getButtonList()[getButtonValue()] + ")";
         else
-            return getButtonList()[button];
+            return getButtonList()[getButtonValue()];
     }
 
     public void setCommands(List<Command> commands) {

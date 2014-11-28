@@ -1,85 +1,50 @@
 package controller;
 
-import main.Logger;
+import jgamepad.enums.Button;
+import jgamepad.interfaces.ButtonListener;
+import jgamepad.listeners.ButtonHoldListener;
 import main.Main;
 import models.Hotkey;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ControllerHandler extends Thread{
-
+    private Controller controller;
     private Main main;
-    private List<Controller> controllers = new ArrayList<>();
-    private int menuController;
+    private List<ButtonListener> activeListeners = new ArrayList<>();
 
-    public ControllerHandler(Main main) {
+
+    public ControllerHandler(Main main){
         this.main = main;
-        updateControllers();
     }
 
     @Override
     public void run() {
-        while(true) {
-            try {
-                for (Controller controller : controllers) {
-                    if (controller.guidePressed()) {
-                        if(controller.isActive()) {
-                            menuController = controller.getControllerNumber();
-                            main.showMenu(controller);
-                        }
-                        else
-                            controller.start();
-                    }
-                }
-                Thread.sleep(500);
-            }
-            catch (InterruptedException e){
-                Logger.log(e.toString());
-                e.printStackTrace();
-            }
-        }
+        jgamepad.Controller.dllPath = "C:\\Users\\thb\\Downloads\\simpleDLL\\x64\\Release";
+        controller = new Controller(0, main);
+
+        if(Main.SETTINGS.isRequireActivate())
+            controller.addButtonListener(new ButtonHoldListener(Button.GUIDE, 2000, () -> activate()));
+        else
+            activate();
+    }
+
+    private void activate() {
+        controller.vibrate();
+        controller.enableGuideListener();
     }
 
     public void setHotkeys(List<Hotkey> hotkeys){
-        for(Controller controller : controllers)
-            controller.setHotkeys(hotkeys);
-    }
+        controller.removeButtonListener(activeListeners);
+        activeListeners.clear();
 
-    public Main getMain(){
-        return main;
-    }
-
-    public int getMenuController(){
-        return menuController;
-    }
-
-    public void updateControllers(){
-        List<Boolean> controllerState = Main.SETTINGS.getControllerDisabledStatus();
-        for(int i = 0; i < controllers.size(); i++){
-            if(controllerState.get(controllers.get(i).getControllerNumber())){
-                controllers.get(i).setActive(false);
-                controllers.remove(i);
-                i--;
-            }
+        for(Hotkey hotkey : hotkeys){
+            activeListeners.add(new ButtonHoldListener(hotkey.getButton(), hotkey.getDelay(), () -> {
+                main.command(hotkey.getCommands(), controller);
+            }));
         }
 
-        for(int i = 0; i < controllerState.size(); i++){
-            if(!controllerState.get(i)){
-                boolean controllerAdded = false;
-                for(Controller controller : controllers){
-                    if (controller.getControllerNumber() == i)
-                        controllerAdded = true;
-                }
-                if(!controllerAdded)
-                    controllers.add(new Controller(i, this));
-            }
-        }
-    }
-
-    public void turnOffControllers(){
-        for(int i = 0; i < 4; i++){
-            ControllerInput.ci.turnControllerOff(i);
-        }
+        controller.addButtonListener(activeListeners);
     }
 }
-
