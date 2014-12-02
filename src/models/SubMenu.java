@@ -2,9 +2,11 @@ package models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class SubMenu {
 
+    private UUID uuid = UUID.randomUUID();
     private String name = "";
     private List<MenuItem> menuItems = new ArrayList<>();
 
@@ -28,5 +30,9 @@ public class SubMenu {
     @Override
     public String toString(){
         return name;
+    }
+
+    public UUID getUUID(){
+        return uuid;
     }
 }

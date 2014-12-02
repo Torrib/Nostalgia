@@ -52,7 +52,7 @@ public class ProgramView {
                 int index = file.getName().lastIndexOf('.');
                 String extension = file.getName().substring(index);
                 preCommandField.setText(PredefinedProgramCommands.getPreString(extension));
-                preCommandField.setText(PredefinedProgramCommands.getPostString(extension));
+                postCommandField.setText(PredefinedProgramCommands.getPostString(extension));
             }
         });
 
@@ -89,12 +89,12 @@ public class ProgramView {
         grid.setVgap(10);
         grid.add(nameLabel, 0, 0);
         grid.add(nameField, 1, 0);
-        grid.add(preCommandLabel, 0, 1);
-        grid.add(preCommandField, 1, 1);
-        grid.add(postCommandLabel, 0, 2);
-        grid.add(postCommandField, 1, 2);
-        grid.add(pathLabel, 0, 3);
-        grid.add(pathBox, 1, 3);
+        grid.add(pathLabel, 0, 1);
+        grid.add(pathBox, 1, 1);
+        grid.add(preCommandLabel, 0, 2);
+        grid.add(preCommandField, 1, 2);
+        grid.add(postCommandLabel, 0, 3);
+        grid.add(postCommandField, 1, 3);
         grid.add(saveButton, 0, 4);
         grid.add(cancelButton, 1, 4);
 

@@ -57,6 +57,10 @@ public class GuiManager extends Application{
         return menu.isShowing();
     }
 
+    public void updateMenuSettings(){
+        menu.applySettings();
+    }
+
     public void showMessageBox(String message){
         Platform.runLater(() -> messageBox.show(message));
     }

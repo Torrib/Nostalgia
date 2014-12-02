@@ -79,16 +79,13 @@ public class Hotkey implements Item {
         return vibrate;
     }
 
-    public String[] getButtonList(){
-        return new String[] { "A/Cross", "B/Circle", "Y/Triangle", "X/Square", "L1", "R1", "Back/Select", "Start", "L3", "R3"};
-    }
 
     @Override
     public String toString(){
         if(!name.isEmpty())
-            return name + "(" + getButtonList()[getButtonValue()] + ")";
+            return name + "(" + button.toString() + ")";
         else
-            return getButtonList()[getButtonValue()];
+            return button.toString();
     }
 
     public void setCommands(List<Command> commands) {

@@ -10,9 +10,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import main.Main;
-import models.Hotkey;
-import models.Program;
-import models.SubMenu;
+import models.*;
+import models.MenuItem;
+import org.controlsfx.control.action.Action;
+import org.controlsfx.dialog.Dialog;
+import org.controlsfx.dialog.Dialogs;
 import settings.*;
 import graphics.utility.NumberTextField;
 
@@ -74,7 +76,19 @@ public class SettingsView {
         });
 
         applyButton.setOnAction(event -> save());
-        cancelButton.setOnAction(event -> stage.close());
+        cancelButton.setOnAction(event -> {
+
+            //TODO check if any changes have actually been made before asking for confirmation
+            Action response = Dialogs.create()
+                    .owner(stage)
+                    .title("Cancel?")
+                    .masthead("Any unsaved changes will be lost")
+                    .message("Do you want to continue?")
+                    .showConfirm();
+
+            if(response == Dialog.ACTION_YES)
+                stage.close();
+        });
 
         HBox buttons = new HBox(5);
         buttons.getChildren().addAll(saveButton, applyButton, cancelButton);
@@ -171,10 +185,10 @@ public class SettingsView {
         grid.add(disableMessagesCB, 1, 3);
 
         Label disableSystemMessagesLabel = new Label("Disable system messages");
-        disableSystemMessagesLabel.setTooltip(new Tooltip("This will prevent messages from being shown when for instance a controllerOld connects"));
+        disableSystemMessagesLabel.setTooltip(new Tooltip("This will prevent messages from being shown when for instance a controller connects"));
         disableSystemMessagesCB = new CheckBox();
         disableSystemMessagesCB.setSelected(settings.isDisableSystemMessages());
-        disableSystemMessagesCB.setTooltip(new Tooltip("This will prevent messages from being shown when for instance a controllerOld connects"));
+        disableSystemMessagesCB.setTooltip(new Tooltip("This will prevent messages from being shown when for instance a controller connects"));
 
         grid.add(disableSystemMessagesLabel, 0, 4);
         grid.add(disableSystemMessagesCB, 1, 4);
@@ -197,18 +211,18 @@ public class SettingsView {
         grid.setPadding(new Insets(15));
 
         Label pullDelayLabel = new Label("controller pull delay(ms)");
-        pullDelayLabel.setTooltip(new Tooltip("The delay between controllerOld data pulling"));
+        pullDelayLabel.setTooltip(new Tooltip("The delay between controller data pulling"));
         pullDelayField = new NumberTextField(settings.getControllerPullDelay());
-        pullDelayField.setTooltip(new Tooltip("The delay between controllerOld data pulling"));
+        pullDelayField.setTooltip(new Tooltip("The delay between controller data pulling"));
 
         grid.add(pullDelayLabel, 0, 0);
         grid.add(pullDelayField, 1, 0);
 
         Label requireActivateLabel = new Label("Require activate");
-        requireActivateLabel.setTooltip(new Tooltip("The controllerOld has to be activated before the menu and hotkeys can be used"));
+        requireActivateLabel.setTooltip(new Tooltip("The controller has to be activated before the menu and hotkeys can be used"));
         requireActivateCB = new CheckBox();
         requireActivateCB.setSelected(settings.isRequireActivate());
-        requireActivateCB.setTooltip(new Tooltip("The controllerOld has to be activated before the menu and hotkeys can be used"));
+        requireActivateCB.setTooltip(new Tooltip("The controller has to be activated before the menu and hotkeys can be used"));
 
         grid.add(requireActivateLabel, 0, 1);
         grid.add(requireActivateCB, 1, 1);
@@ -231,25 +245,25 @@ public class SettingsView {
         grid.add(disableHotkeysLabel, 0, 3);
         grid.add(disableHotkeysCB, 1, 3);
 
-        Label disableC1Label = new Label("Disable controllerOld 1");
+        Label disableC1Label = new Label("Disable controller 1");
         disableC1Label.setTooltip(new Tooltip("Prevents controller 1 from using Nostalgia functionality"));
         disableController1 = new CheckBox();
         disableController1.setSelected(settings.isDisableController1());
         disableController1.setTooltip(new Tooltip("Prevents controller 1 from using Nostalgia functionality"));
 
-        Label disableC2Label = new Label("Disable controllerOld 2");
+        Label disableC2Label = new Label("Disable controller 2");
         disableC2Label.setTooltip(new Tooltip("Prevents controller 2 from using Nostalgia functionality"));
         disableController2 = new CheckBox();
         disableController2.setSelected(settings.isDisableController2());
         disableController2.setTooltip(new Tooltip("Prevents controller 2 from using Nostalgia functionality"));
 
-        Label disableC3Label = new Label("Disable controllerOld 3");
+        Label disableC3Label = new Label("Disable controller 3");
         disableC3Label.setTooltip(new Tooltip("Prevents controller 3 from using Nostalgia functionality"));
         disableController3 = new CheckBox();
         disableController3.setSelected(settings.isDisableController3());
         disableController3.setTooltip(new Tooltip("Prevents controller 3 from using Nostalgia functionality"));
 
-        Label disableC4Label = new Label("Disable controllerOld 4");
+        Label disableC4Label = new Label("Disable controller 4");
         disableC4Label.setTooltip(new Tooltip("Prevents controller 4 from using Nostalgia functionality"));
         disableController4 = new CheckBox();
         disableController4.setSelected(settings.isDisableController4());
@@ -392,6 +406,10 @@ public class SettingsView {
     }
 
     private void save(){
+
+        updateSubMenus();
+        updatePrograms();
+
         settings.setFirstRun(false);
 
         settings.setMenuFont(menuFontField.getText());
@@ -422,7 +440,6 @@ public class SettingsView {
         settings.setPrograms(programEditList.getItems());
 
 
-        for(WindowSetting ws : windowEditList.getItems())
         settings.setWindowSettings(windowEditList.getItems());
 
         settings.setSubMenus(subMenuEditList.getItems());
@@ -432,10 +449,52 @@ public class SettingsView {
 
         settings.store();
         main.updateControllerStatus();
+        main.updateMenuSettings();
         main.handleRunOnStartup();
     }
 
     public Stage getStage(){
         return stage;
+    }
+
+    private void updateSubMenus(){
+        for(SubMenu subMenu : subMenuEditList.getItems()){
+            for(WindowSetting ws : windowEditList.getItems()){
+                for(MenuItem menuItem : ws.getMenuItems()){
+                    if(menuItem.getType() == MenuItem.SUBMENU){
+                        if(menuItem.getSubMenu().getUUID().equals(subMenu.getUUID())){
+                            menuItem.setSubMenu(subMenu);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void updatePrograms(){
+        for(Program program : programEditList.getItems()){
+            for(WindowSetting ws : windowEditList.getItems()) {
+
+                for (MenuItem menuItem : ws.getMenuItems()) {
+                    for (Command command : menuItem.getCommands()) {
+                        if (command.getCommandType() == Command.PROGRAM) {
+                            if (command.getProgram().getUUID().equals(program.getUUID())) {
+                                command.setProgram(program);
+                            }
+                        }
+                    }
+                }
+
+                for(Hotkey hotkey : ws.getHotkeys()){
+                    for(Command command : hotkey.getCommands()){
+                        if(command.getCommandType() == Command.PROGRAM){
+                            if(command.getProgram().getUUID().equals(program.getUUID())){
+                                command.setProgram(program);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

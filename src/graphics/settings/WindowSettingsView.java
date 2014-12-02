@@ -55,10 +55,10 @@ public class WindowSettingsView {
         disableMessagesCB.setTooltip(new Tooltip("This will prevent any messages from being shown when this application is active"));
 
         Label disableVibrationLabel = new Label("Disable vibration");
-        disableVibrationLabel.setTooltip(new Tooltip("This will prevent controllerOld vibration when this application is active"));
+        disableVibrationLabel.setTooltip(new Tooltip("This will prevent controller vibration when this application is active"));
         CheckBox disableVibrationCB = new CheckBox();
         disableVibrationCB.setSelected(windowSetting.isDisableVibration());
-        disableVibrationCB.setTooltip(new Tooltip("This will prevent controllerOld vibration when this application is active"));
+        disableVibrationCB.setTooltip(new Tooltip("This will prevent controller vibration when this application is active"));
 
         Label disableHotkeysLabel= new Label("Disable hotkeys");
         CheckBox disableHotkeysCB = new CheckBox();

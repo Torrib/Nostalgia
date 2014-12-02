@@ -18,6 +18,7 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -39,12 +40,15 @@ public class MenuView {
     private Label controllerLabel;
 
     private AudioClip menuSound;
-    private boolean stopSound;
+    private boolean playSound;
 
     private int selectedIndex = 0;
     private List<MenuItem> mainMenuItems;
     private boolean mainMenuShowing = true;
     private Controller controller;
+    private Rectangle2D primaryScreenBounds;
+
+    private double confirmationListWidth = 0;
 
     public MenuView(Main main){
         this.main = main;
@@ -55,8 +59,8 @@ public class MenuView {
         File file = new File("src/resources/button-29.mp3");
         menuSound = new AudioClip(file.toURI().toString());
 
-        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-        setupControllerLabel(primaryScreenBounds);
+        primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+        controllerLabel = new Label();
 
         borderPane = new BorderPane();
         borderPane.setTop(controllerLabel);
@@ -69,7 +73,9 @@ public class MenuView {
         scene.setFill(Color.rgb(0, 0, 0, 0.95));
 
         setupKeyHandler();
-        setupListener();
+        setupMenuListener();
+
+        applySettings();
 
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);
@@ -78,39 +84,15 @@ public class MenuView {
         stage.setFullScreenExitHint("");
     }
 
-    private void setupKeyHandler() {
-        list.setOnKeyReleased(keyEvent -> {
-            if (keyEvent.getCode() == KeyCode.ENTER) {
-                performCommand();
-            }
-            if (keyEvent.getCode() == KeyCode.BACK_SPACE || keyEvent.getCode().equals(KeyCode.LEFT)) {
-                backtrack();
-            }
-        });
-    }
-
-    private void setupControllerLabel(Rectangle2D primaryScreenBounds) {
-        controllerLabel = new Label();
-        controllerLabel.setTextFill(Color.WHITE);
-        controllerLabel.setFont(Font.font(Main.SETTINGS.getMenuFont(), Main.SETTINGS.getMenuFontSize()));
-        controllerLabel.setPadding(new Insets(primaryScreenBounds.getHeight() / 5, 0, primaryScreenBounds.getHeight() / 5,
-                (primaryScreenBounds.getWidth() / 2) - 55));
-    }
-
     public void show(List<MenuItem> menuItems, Controller controller){
         this.controller = controller;
-        stopSound = true;
+        playSound = false;
         mainMenuItems = menuItems;
-        updateList(menuItems);
-        controllerLabel.setText("controller " + (controller.getControllerNumber()+1));
-        show();
-        stopSound = false;
-    }
+        updateList(menuItems, false);
+        controllerLabel.setText("Controller " + (controller.getControllerNumber() + 1));
 
-    public void playSound(){
-        if(!Main.SETTINGS.menuMuted())
-            if(!stopSound)
-                menuSound.play();
+        show();
+        playSound = true;
     }
 
     public void hide(){
@@ -124,6 +106,12 @@ public class MenuView {
         return stage.isShowing();
     }
 
+    public void applySettings(){
+        setupControllerLabel();
+        String[] confirmationListItems = {"OK", "Cancel"};
+        confirmationListWidth = calculateWidth(confirmationListItems);
+    }
+
     private void performCommand(){
         MenuItem selectedItem = list.getSelectionModel().getSelectedItem();
 
@@ -133,12 +121,105 @@ public class MenuView {
         else if(selectedItem.getType() == MenuItem.SUBMENU){
             selectedIndex = list.getSelectionModel().getSelectedIndex();
             mainMenuShowing = false;
-            updateList(selectedItem.getSubMenu().getMenuItems());
+            updateList(selectedItem.getSubMenu().getMenuItems(), false);
         }
         else {
             hide();
             main.command(list.getSelectionModel().getSelectedItem(), controller);
         }
+    }
+
+    private double calculateWidth(String[] items){
+        double width = 0;
+
+        for(int i = 0; i < items.length; i++){
+            Text text = new Text();
+            if(i == 0)
+                text.setFont(Font.font(Main.SETTINGS.getMenuFont(), Main.SETTINGS.getMenuSelectedFontSize()));
+            else
+                text.setFont(Font.font(Main.SETTINGS.getMenuFont(), Main.SETTINGS.getMenuFontSize()));
+            text.setText(items[i]);
+            width += text.getLayoutBounds().getWidth();
+        }
+        return width * 2;
+    }
+
+    private void updateList(List<MenuItem> menuItems, boolean backtrack){
+        playSound = false;
+        list.getItems().clear();
+        list.setItems(FXCollections.observableArrayList(menuItems));
+
+        if(backtrack)
+            list.getSelectionModel().select(selectedIndex);
+        else if(!mainMenuShowing)
+            list.getSelectionModel().selectFirst();
+
+        playSound = true;
+    }
+
+    private void backtrack(){
+        if(!mainMenuShowing) {
+            mainMenuShowing = true;
+            updateList(mainMenuItems, true);
+        }
+        else {
+            hide();
+        }
+    }
+
+    private void setupMenuListener(){
+        list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<MenuItem>() {
+            @Override
+            public void changed(ObservableValue<? extends MenuItem> observable, MenuItem oldValue, MenuItem newValue) {
+                playSound();
+                list.setCellFactory(new Callback<ListView<MenuItem>, ListCell<MenuItem>>() {
+                    @Override
+                    public ListCell<MenuItem> call(ListView<MenuItem> param) {
+                        return new ListCell<MenuItem>() {
+                            @Override
+                            public void updateItem(final MenuItem item, boolean empty) {
+                                super.updateItem(item, empty);
+                                if (item != null) {
+                                    if(item == newValue) {
+                                        this.setFont(Font.font(Main.SETTINGS.getMenuFont(), Main.SETTINGS.getMenuSelectedFontSize()));
+                                        this.setEffect(new Bloom(0.1));
+                                    }
+                                    else{
+                                        this.setFont(Font.font(Main.SETTINGS.getMenuFont(), Main.SETTINGS.getMenuFontSize()));
+                                    }
+                                    if(item.getType() == MenuItem.SUBMENU) {
+                                        Polygon arrow = createSubMenuArrow();
+                                        Label text = new Label(item.toString());
+                                        text.setTextFill(Color.WHITE);
+                                        HBox box = new HBox(20);
+                                        box.getChildren().addAll(text, arrow);
+                                        box.setAlignment(Pos.CENTER);
+                                        setGraphic(box);
+                                    }
+                                    else {
+                                        this.setTextFill(Color.WHITE);
+                                        this.setAlignment(Pos.CENTER);
+                                        setText(item.toString());
+                                    }
+                                }
+                            }
+                        };
+                    }
+                });
+            }
+        });
+    }
+
+    private void show(){
+        //TODO List not always focused. Find a better solution
+        stage.show();
+        try {
+            Robot bot = new Robot();
+            bot.mouseMove(0,0);
+            bot.mousePress(InputEvent.BUTTON1_MASK);
+            bot.mouseRelease(InputEvent.BUTTON1_MASK);
+        }
+        catch (AWTException e){ e.printStackTrace();}
     }
 
     private void createConfirmationList() {
@@ -149,8 +230,12 @@ public class MenuView {
         confirmationList.setOnKeyReleased(keyEvent -> {
             if (keyEvent.getCode() == KeyCode.ENTER) {
                 if(confirmationList.getSelectionModel().getSelectedIndex() == 0){
+                    borderPane.getChildren().removeAll(confirmationList);
+                    borderPane.setCenter(list);
                     hide();
-                    main.command(list.getSelectionModel().getSelectedItem(), null);
+                    main.command(list.getSelectionModel().getSelectedItem(), controller);
+                    if(!mainMenuShowing)
+                        backtrack();
                 }
                 else{
                     borderPane.getChildren().removeAll(confirmationList);
@@ -162,6 +247,8 @@ public class MenuView {
                 borderPane.setCenter(list);
             }
         });
+
+        playSound = false;
 
         confirmationList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -176,16 +263,11 @@ public class MenuView {
                             public void updateItem(final String item, boolean empty) {
                                 super.updateItem(item, empty);
                                 if (item != null) {
+                                    this.setTextFill(Color.WHITE);
+                                    this.setFont(Font.font(Main.SETTINGS.getMenuFont(), Main.SETTINGS.getMenuFontSize()));
+                                    this.setText(item);
                                     if(item.equals(newValue)) {
-                                        this.setTextFill(Color.WHITE);
-                                        this.setFont(Font.font(Main.SETTINGS.getMenuSelectedFontSize()));
-                                        setEffect(new Bloom(0.1));
-                                        setText(item);
-                                    }
-                                    else{
-                                        this.setTextFill(Color.WHITE);
-                                        this.setFont(Font.font(Main.SETTINGS.getMenuFont(), Main.SETTINGS.getMenuFontSize()));
-                                        setText(item);
+                                        this.setEffect(new Bloom(0.1));
                                     }
                                 }
                             }
@@ -199,81 +281,49 @@ public class MenuView {
 
         borderPane.getChildren().removeAll(list);
         borderPane.setCenter(confirmationList);
-        //TODO fix better centering
-        confirmationList.setMaxWidth(300);
+
+        //Centers the confirmation list
+        confirmationList.setMaxWidth(confirmationListWidth);
+
+        playSound = true;
     }
 
-    private void updateList(List<MenuItem> menuItems){
-        list.getItems().clear();
-        list.setItems(FXCollections.observableArrayList(menuItems));
-        if(mainMenuShowing)
-            list.getSelectionModel().select(selectedIndex);
-        else
-            list.getSelectionModel().selectFirst();
-    }
-
-    private void backtrack(){
-        if(mainMenuShowing) {
-            hide();
-        }
-        else {
-            mainMenuShowing = true;
-            updateList(mainMenuItems);
-        }
-    }
-
-    private void setupListener(){
-        list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<MenuItem>() {
-            @Override
-            public void changed(ObservableValue<? extends MenuItem> observable, MenuItem oldValue, MenuItem newValue) {
-                playSound();
-                list.setCellFactory(new Callback<ListView<MenuItem>, ListCell<MenuItem>>() {
-                    @Override
-                    public ListCell<MenuItem> call(ListView<MenuItem> param) {
-                        return new ListCell<MenuItem>() {
-                            @Override
-                            public void updateItem(final MenuItem item, boolean empty) {
-                                super.updateItem(item, empty);
-                                if (item != null) {
-                                    if(item == newValue) {
-                                        this.setFont(Font.font(Main.SETTINGS.getMenuSelectedFontSize()));
-                                        setEffect(new Bloom(0.1));
-                                    }
-                                    else{
-                                        this.setFont(Font.font(Main.SETTINGS.getMenuFont(), Main.SETTINGS.getMenuFontSize()));
-                                    }
-                                    this.setTextFill(Color.WHITE);
-                                    this.setAlignment(Pos.CENTER);
-                                    if(item.getType() == MenuItem.SUBMENU) {
-                                        Polygon arrow = new Polygon();
-                                        arrow.getPoints().addAll(new Double[]{0.0, 0.0, 10.0, 10.0, 0.0, 20.0});
-                                        arrow.setFill(javafx.scene.paint.Paint.valueOf("#FFFFFF"));
-                                        Label text = new Label(item.toString());
-                                        text.setTextFill(javafx.scene.paint.Paint.valueOf("#FFFFFF"));
-                                        HBox box = new HBox(20);
-                                        box.getChildren().addAll(text, arrow);
-                                        box.setAlignment(Pos.CENTER);
-                                        setGraphic(box);
-                                    }
-                                    else
-                                        setText(item.toString());
-                                }
-                            }
-                        };
-                    }
-                });
+    private void setupKeyHandler() {
+        list.setOnKeyReleased(keyEvent -> {
+            if (keyEvent.getCode() == KeyCode.ENTER) {
+                performCommand();
+            }
+            if (keyEvent.getCode() == KeyCode.BACK_SPACE) {
+                backtrack();
             }
         });
     }
 
-    private void show(){
-        stage.show();
-        try {
-            Robot bot = new Robot();
-            bot.mouseMove(0,0);
-            bot.mousePress(InputEvent.BUTTON1_MASK);
-            bot.mouseRelease(InputEvent.BUTTON1_MASK);
-        }
-        catch (AWTException e){ e.printStackTrace();}
+    private void setupControllerLabel() {
+
+        Text text = new Text("Controller 0");
+        text.setFont(Font.font(Main.SETTINGS.getMenuFont(), Main.SETTINGS.getMenuFontSize()));
+
+        controllerLabel.setTextFill(Color.WHITE);
+        controllerLabel.setFont(Font.font(Main.SETTINGS.getMenuFont(), Main.SETTINGS.getMenuFontSize()));
+
+        controllerLabel.setPadding(new Insets(primaryScreenBounds.getHeight() / 5, 0, primaryScreenBounds.getHeight() / 5,
+                (primaryScreenBounds.getWidth() / 2) - (text.getLayoutBounds().getWidth() / 2)));
+    }
+
+    private void playSound(){
+        if(!Main.SETTINGS.menuMuted() && playSound)
+            menuSound.play();
+    }
+
+    private Polygon createSubMenuArrow(){
+        Polygon arrow = new Polygon();
+
+        double smallSide = Main.SETTINGS.getMenuFontSize() / 2.5;
+
+        arrow.getPoints().addAll(new Double[]{0.0, 0.0, smallSide, smallSide, 0.0, smallSide * 2});
+        arrow.setFill(Color.WHITE);
+
+        return arrow;
     }
 }

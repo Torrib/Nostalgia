@@ -18,7 +18,7 @@ public class OutputHandler{
 		try 
 		{
 			robot = new Robot();
-            robot.setAutoDelay(100);
+            robot.setAutoDelay(150);
 		} 
 		catch (Exception e) 
 		{

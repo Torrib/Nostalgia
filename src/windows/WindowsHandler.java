@@ -12,10 +12,7 @@ import com.sun.jna.win32.W32APIOptions;
 import interfaces.OsHandler;
 
 import java.awt.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 
 public class WindowsHandler implements OsHandler
 {
@@ -160,7 +157,14 @@ public class WindowsHandler implements OsHandler
     }
 
     public void handleRunOnStartup(boolean runOnStartup){
+
+        PrintStream temp = System.err;
         try {
+            System.setErr(new PrintStream(new OutputStream() {
+                public void write(int b) {
+                }
+            }));
+
             String value = WinRegistry.readString(WinRegistry.HKEY_LOCAL_MACHINE,
                     "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", "Nostalgia");
 
@@ -179,6 +183,9 @@ public class WindowsHandler implements OsHandler
         }
         catch (Exception e) {
             e.printStackTrace();
+        }
+        finally {
+            System.setErr(temp);
         }
     }
 

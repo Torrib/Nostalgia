@@ -1,7 +1,10 @@
 package models;
 
+import java.util.UUID;
+
 public class Program {
 
+    private UUID uuid = UUID.randomUUID();
     private String name = "";
     private String preCommand = "";
     private String postCommand = "";
@@ -45,5 +48,9 @@ public class Program {
     @Override
     public String toString(){
         return name;
+    }
+
+    public UUID getUUID(){
+        return uuid;
     }
 }

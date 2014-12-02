@@ -64,7 +64,7 @@ public class CommandBox extends VBox{
 
         Label commandTypeLabel = new Label("Command Type");
         ComboBox<String> commandTypeCB = new ComboBox<>();
-        commandTypeCB.setItems(FXCollections.observableArrayList("Key presses", "Functions", "Programs", "Sub menus"));
+        commandTypeCB.setItems(FXCollections.observableArrayList("Key presses", "Functions", "Programs"));
 
         Pane swapPane = new Pane();
 

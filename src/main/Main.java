@@ -3,9 +3,6 @@ package main;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 import com.sun.jna.PointerType;
 
@@ -15,6 +12,7 @@ import controller.FreeRoamHandler;
 import interfaces.Item;
 import interfaces.OsHandler;
 import models.Command;
+import models.Hotkey;
 import models.Program;
 import settings.Settings;
 import settings.WindowSetting;
@@ -43,9 +41,6 @@ public class Main extends Thread
 		outputHandler = new OutputHandler(this);
 		osHandler = getOsHandler();
 		startWindowPulling(SETTINGS.getWindowPullDelay());
-        //TODO remove
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-        scheduler.scheduleAtFixedRate(new Restart(), 1, 1, TimeUnit.HOURS);
     }
 
 	private void loadControllers(){
@@ -83,12 +78,21 @@ public class Main extends Thread
             controller.vibrate(400);
     }
 
-    public void command(List<Command> commands, Controller controller){
-        outputHandler.doCommand(commands, controller);
+    public void command(Hotkey hotkey, Controller controller){
+        if(!Main.SETTINGS.isDisableHotkeys()) {
+            outputHandler.doCommand(hotkey.getCommands(), controller);
+            showMessageBox(hotkey.getMessage(), false);
+            if (hotkey.vibrate())
+                controller.vibrate(400);
+        }
     }
 
     public void command(List<Command> commands){
         outputHandler.doCommand(commands, null);
+    }
+
+    public void command(List<Command> commands, Controller controller){
+        outputHandler.doCommand(commands, controller);
     }
 
     public void showMenu(Controller controller) {
@@ -217,7 +221,7 @@ public class Main extends Thread
     }
 
     public void turnOffControllers(){
-//        controllerHandler.turnOffControllers();
+        controllerHandler.turnOffControllers();
     }
 
     public void increaseVolume(){
@@ -253,27 +257,15 @@ public class Main extends Thread
         Main.SETTINGS.setDisableHotkeys(!Main.SETTINGS.isDisableHotkeys());
     }
 
-
     public void updateControllerStatus(){
-//        controllerHandler.updateControllers();
+        controllerHandler.updateControllerDisabledStatus();
+    }
+
+    public void updateMenuSettings(){
+        guiManager.updateMenuSettings();
     }
 
     public void handleRunOnStartup() {
         osHandler.handleRunOnStartup(SETTINGS.isRunOnStartup());
-    }
-
-
-    class Restart implements Runnable{
-
-        @Override
-        public void run() {
-            try {
-                Runtime.getRuntime().exec ("java -jar nostalgia.jar");
-                System.exit(0);
-            }
-            catch (IOException e) {
-                Logger.log(e.toString());
-            }
-        }
     }
 }
