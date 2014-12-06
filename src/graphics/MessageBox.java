@@ -14,13 +14,16 @@ import javafx.stage.StageStyle;
 import main.Main;
 
 import java.awt.event.ActionListener;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class MessageBox {
 
     private Main main;
     private Stage stage;
     private Text text;
-    private double width;
+    private double screenWidth;
+    private Queue<String> messages = new PriorityQueue<>();
 
     public MessageBox(Main main){
         this.main = main;
@@ -36,8 +39,9 @@ public class MessageBox {
         borderPane.setStyle("-fx-background-color: rgb(0, 0, 0, 0.95);");
 
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-        width = primaryScreenBounds.getMinX() + primaryScreenBounds.getWidth();
-        stage.setY(primaryScreenBounds.getMinY() + 50);
+        screenWidth = primaryScreenBounds.getMinX() + primaryScreenBounds.getWidth();
+
+        applySettings();
 
         Scene scene = new Scene(borderPane);
         scene.setFill(null);
@@ -48,7 +52,14 @@ public class MessageBox {
     }
 
     public void hide(){
-        ActionListener action = e -> Platform.runLater(() ->  stage.hide()); //Lamdaception
+        ActionListener action = e -> Platform.runLater(() ->  {
+            if(messages.isEmpty())
+                stage.hide();
+            else{
+                changeText(messages.poll());
+                hide();
+            }
+        });
 
         javax.swing.Timer timer = new javax.swing.Timer(Main.SETTINGS.getMessageDelay(), action);
         timer.setRepeats(false);
@@ -56,11 +67,28 @@ public class MessageBox {
     }
 
     public void show(String message){
-        text.setText(message);
-        text.setFont(Font.font(Main.SETTINGS.getMessageFont(), Main.SETTINGS.getMessageFontSize()));
-        stage.setX(width - (text.getLayoutBounds().getWidth() + 50));
+        changeText(message);
+        stage.setY(50);
         stage.show();
         main.returnFocus();
         hide();
+    }
+
+    private void changeText(String message){
+        text.setText(message);
+        stage.setX(screenWidth - (text.getLayoutBounds().getWidth() + 50));
+        stage.setWidth(text.getLayoutBounds().getWidth() + 20);
+    }
+
+    public boolean isShowing(){
+        return stage.isShowing();
+    }
+
+    public void applySettings(){
+        text.setFont(Font.font(Main.SETTINGS.getMessageFont(), Main.SETTINGS.getMessageFontSize()));
+    }
+
+    public void addMessage(String message){
+        messages.add(message);
     }
 }

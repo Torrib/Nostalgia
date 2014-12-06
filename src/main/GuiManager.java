@@ -13,6 +13,7 @@ import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.io.File;
+import java.util.*;
 import java.util.List;
 
 public class GuiManager extends Application{
@@ -59,10 +60,14 @@ public class GuiManager extends Application{
 
     public void updateMenuSettings(){
         menu.applySettings();
+        messageBox.applySettings();
     }
 
     public void showMessageBox(String message){
-        Platform.runLater(() -> messageBox.show(message));
+        if(messageBox.isShowing())
+            messageBox.addMessage(message);
+        else
+            Platform.runLater(() -> messageBox.show(message));
     }
 
     public void showConfig(){
