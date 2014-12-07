@@ -15,6 +15,7 @@ public class Functions {
     public static final int DECREASE_VOLUME = 7;
     public static final int MUTE = 8;
     public static final int FREE_ROAM = 9;
+    public static final int SHOW_MENU = 10;
 
     public static List<Function> functions = new ArrayList<>();
 
@@ -29,5 +30,6 @@ public class Functions {
         functions.add(new Function(DECREASE_VOLUME, "Decrease Volume", "Decreases the master volume"));
         functions.add(new Function(MUTE, "Toggle Mute", "Mute the sound"));
         functions.add(new Function(FREE_ROAM, "Free Roam", "Enables \"Free Roam\" allowing free control of the controller"));
+        functions.add(new Function(SHOW_MENU, "Show menu", "Displays the menu"));
     }
 }

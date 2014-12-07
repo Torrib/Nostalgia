@@ -58,7 +58,7 @@ public class SubMenuView {
 
         VBox vBox = new VBox(15);
         vBox.getChildren().addAll(nameBox, menuEditList, buttons);
-        vBox.setPadding(new Insets(15));
+        vBox.setPadding(new Insets(15, 15, 0, 15));
 
         Scene scene = new Scene(vBox);
         stage.setScene(scene);

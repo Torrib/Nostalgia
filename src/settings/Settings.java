@@ -2,6 +2,7 @@ package settings;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import jgamepad.enums.Button;
 import models.*;
 
 import java.io.*;
@@ -36,6 +37,7 @@ public class Settings {
     private List<WindowSetting> windowSettings = new ArrayList<>();
     private List<Program> programs = new ArrayList<>();
     private List<SubMenu> subMenus = new ArrayList<>();
+    private List<Hotkey> systemHotkeys = createDefaultHotkeys();
 
     private boolean disableController1 = false;
     private boolean disableController2 = false;
@@ -44,6 +46,25 @@ public class Settings {
 
     public boolean isFirstRun() {
         return firstRun;
+    }
+
+    private List<Hotkey> createDefaultHotkeys(){
+        List<Hotkey> list = new ArrayList<>();
+        if(isFirstRun()){
+            Hotkey menuHotkey = new Hotkey();
+            menuHotkey.setButton(Button.GUIDE);
+            menuHotkey.setName("Show menu");
+            menuHotkey.addCommand(new Command(new Function(Functions.SHOW_MENU, "Show menu", "Displays the menu"), 2000));
+
+            Hotkey freeRoamHotkey = new Hotkey();
+            freeRoamHotkey.setButton(Button.BACK);
+            freeRoamHotkey.setName("Enable free roam");
+            freeRoamHotkey.addCommand(new Command(new Function(Functions.FREE_ROAM, "Enable free roam", "Enables free roam"), 2000));
+
+            list.add(menuHotkey);
+            list.add(freeRoamHotkey);
+        }
+        return list;
     }
 
     public void setFirstRun(boolean firstRun) {
@@ -196,6 +217,14 @@ public class Settings {
 
     public void setSubMenus(List<SubMenu> subMenus) {
         this.subMenus = subMenus;
+    }
+
+    public List<Hotkey> getSystemHotkeys() {
+        return systemHotkeys;
+    }
+
+    public void setSystemHotkeys(List<Hotkey> systemHotkeys) {
+        this.systemHotkeys = systemHotkeys;
     }
 
     public void setPrograms(List<Program> programs) {

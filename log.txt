@@ -998,3 +998,114 @@
 05/12/2014 23:28:37 - Loading controller handler
 05/12/2014 23:28:37 - controller handler loaded
 05/12/2014 23:28:37 - Windows 7 window handler loaded
+06/12/2014 23:40:27 - ====================================================================
+06/12/2014 23:40:27 - Starting
+06/12/2014 23:40:28 - Loading controller handler
+06/12/2014 23:40:28 - controller handler loaded
+06/12/2014 23:40:28 - Windows 7 window handler loaded
+06/12/2014 23:45:01 - ====================================================================
+06/12/2014 23:45:01 - Starting
+06/12/2014 23:45:01 - Loading controller handler
+06/12/2014 23:45:01 - controller handler loaded
+06/12/2014 23:45:01 - Windows 7 window handler loaded
+06/12/2014 23:47:23 - ====================================================================
+06/12/2014 23:47:23 - Starting
+06/12/2014 23:47:24 - Loading controller handler
+06/12/2014 23:47:24 - controller handler loaded
+06/12/2014 23:47:24 - Windows 7 window handler loaded
+06/12/2014 23:48:02 - ====================================================================
+06/12/2014 23:48:02 - Starting
+06/12/2014 23:48:03 - Loading controller handler
+06/12/2014 23:48:03 - controller handler loaded
+06/12/2014 23:48:03 - Windows 7 window handler loaded
+06/12/2014 23:48:32 - ====================================================================
+06/12/2014 23:48:32 - Starting
+06/12/2014 23:48:32 - Loading controller handler
+06/12/2014 23:48:32 - controller handler loaded
+06/12/2014 23:48:32 - Windows 7 window handler loaded
+06/12/2014 23:49:30 - ====================================================================
+06/12/2014 23:49:30 - Starting
+06/12/2014 23:49:31 - Loading controller handler
+06/12/2014 23:49:31 - controller handler loaded
+06/12/2014 23:49:31 - Windows 7 window handler loaded
+06/12/2014 23:50:37 - ====================================================================
+06/12/2014 23:50:37 - Starting
+06/12/2014 23:50:38 - Loading controller handler
+06/12/2014 23:50:38 - controller handler loaded
+06/12/2014 23:50:38 - Windows 7 window handler loaded
+06/12/2014 23:54:03 - ====================================================================
+06/12/2014 23:54:03 - Starting
+06/12/2014 23:54:04 - Loading controller handler
+06/12/2014 23:54:04 - controller handler loaded
+06/12/2014 23:54:04 - Windows 7 window handler loaded
+06/12/2014 23:54:55 - ====================================================================
+06/12/2014 23:54:55 - Starting
+06/12/2014 23:54:56 - Loading controller handler
+06/12/2014 23:54:56 - controller handler loaded
+06/12/2014 23:54:56 - Windows 7 window handler loaded
+06/12/2014 23:55:44 - ====================================================================
+06/12/2014 23:55:44 - Starting
+06/12/2014 23:55:45 - Loading controller handler
+06/12/2014 23:55:45 - controller handler loaded
+06/12/2014 23:55:45 - Windows 7 window handler loaded
+07/12/2014 00:02:35 - ====================================================================
+07/12/2014 00:02:35 - Starting
+07/12/2014 00:02:35 - Loading controller handler
+07/12/2014 00:02:36 - controller handler loaded
+07/12/2014 00:02:36 - Windows 7 window handler loaded
+07/12/2014 00:05:30 - ====================================================================
+07/12/2014 00:05:30 - Starting
+07/12/2014 00:05:31 - Loading controller handler
+07/12/2014 00:05:31 - controller handler loaded
+07/12/2014 00:05:31 - Windows 7 window handler loaded
+07/12/2014 00:06:39 - ====================================================================
+07/12/2014 00:06:39 - Starting
+07/12/2014 00:06:40 - Loading controller handler
+07/12/2014 00:06:40 - controller handler loaded
+07/12/2014 00:06:40 - Windows 7 window handler loaded
+07/12/2014 00:10:43 - ====================================================================
+07/12/2014 00:10:43 - Starting
+07/12/2014 00:10:44 - Loading controller handler
+07/12/2014 00:10:44 - controller handler loaded
+07/12/2014 00:10:44 - Windows 7 window handler loaded
+07/12/2014 00:11:23 - ====================================================================
+07/12/2014 00:11:23 - Starting
+07/12/2014 00:11:23 - Loading controller handler
+07/12/2014 00:11:23 - controller handler loaded
+07/12/2014 00:11:24 - Windows 7 window handler loaded
+07/12/2014 00:11:45 - ====================================================================
+07/12/2014 00:11:45 - Starting
+07/12/2014 00:11:46 - Loading controller handler
+07/12/2014 00:11:46 - controller handler loaded
+07/12/2014 00:11:46 - Windows 7 window handler loaded
+07/12/2014 00:39:38 - ====================================================================
+07/12/2014 00:39:38 - Starting
+07/12/2014 00:39:38 - Loading controller handler
+07/12/2014 00:39:38 - controller handler loaded
+07/12/2014 00:39:38 - Windows 7 window handler loaded
+07/12/2014 00:40:40 - Showing menu
+07/12/2014 00:42:58 - Showing menu
+07/12/2014 01:10:38 - ====================================================================
+07/12/2014 01:10:38 - Starting
+07/12/2014 01:10:39 - Loading controller handler
+07/12/2014 01:10:39 - controller handler loaded
+07/12/2014 01:10:39 - Windows 7 window handler loaded
+07/12/2014 01:11:19 - ====================================================================
+07/12/2014 01:11:19 - Starting
+07/12/2014 01:11:19 - Loading controller handler
+07/12/2014 01:11:19 - controller handler loaded
+07/12/2014 01:11:19 - Windows 7 window handler loaded
+07/12/2014 01:11:55 - ====================================================================
+07/12/2014 01:11:55 - Starting
+07/12/2014 01:11:56 - Loading controller handler
+07/12/2014 01:11:56 - controller handler loaded
+07/12/2014 01:11:56 - Windows 7 window handler loaded
+07/12/2014 01:13:07 - Enabling controller 0
+07/12/2014 01:13:07 - Enabling controller 1
+07/12/2014 01:13:07 - Enabling controller 2
+07/12/2014 01:13:07 - Enabling controller 3
+07/12/2014 01:13:23 - ====================================================================
+07/12/2014 01:13:23 - Starting
+07/12/2014 01:13:24 - Loading controller handler
+07/12/2014 01:13:24 - controller handler loaded
+07/12/2014 01:13:24 - Windows 7 window handler loaded

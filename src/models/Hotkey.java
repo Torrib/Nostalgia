@@ -15,7 +15,7 @@ public class Hotkey implements Item {
     private int delay = 2000;
     private boolean vibrate = true;
 
-    List<Command> commands = new ArrayList<>();
+    private List<Command> commands = new ArrayList<>();
 
     public Button getButton() {
         return button;
@@ -92,5 +92,7 @@ public class Hotkey implements Item {
         this.commands = commands;
     }
 
-
+    public void addCommand(Command command){
+        commands.add(command);
+    }
 }

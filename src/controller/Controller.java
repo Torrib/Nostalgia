@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.scene.input.KeyCode;
 import jgamepad.enums.Analog;
 import jgamepad.enums.Button;
 import jgamepad.interfaces.ButtonListener;
@@ -9,7 +8,6 @@ import jgamepad.listeners.ButtonPressedListener;
 import main.Main;
 import models.Hotkey;
 
-import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +18,7 @@ public class Controller extends jgamepad.Controller {
 
     private List<ButtonListener> menuListeners = createMenuList();
     private Main main;
-    private ButtonListener guideListener;
+    private List<ButtonListener> systemListeners = createSystemListeners();
     private Thread analogThread;
     private List<ButtonListener> hotkeyListeners = new ArrayList<>();
     private Presser presser;
@@ -28,13 +26,12 @@ public class Controller extends jgamepad.Controller {
     public Controller(int controller, Main main) {
         super(controller);
         this.main = main;
-        guideListener = new ButtonHoldListener(Button.GUIDE, 2000, () -> main.showMenu(this));
     }
 
     public void activate(){
         clearButtonListeners();
         vibrate();
-        enableMenuListener();
+        setSystemListeners();
     }
 
     private List<ButtonListener> createMenuList(){
@@ -120,13 +117,9 @@ public class Controller extends jgamepad.Controller {
 
     public void deactivateMenu() {
         this.removeButtonListener(menuListeners);
-        this.enableMenuListener();
         analogThread.interrupt();
     }
 
-    public void enableMenuListener(){
-        this.addButtonListener(guideListener);
-    }
 
     public void changeHotkeyListeners(List<Hotkey> hotkeys){
         removeButtonListener(hotkeyListeners);
@@ -138,6 +131,23 @@ public class Controller extends jgamepad.Controller {
         }
         addButtonListener(hotkeyListeners);
     }
+
+    private List<ButtonListener> createSystemListeners(){
+        List<ButtonListener> listeners = new ArrayList<>();
+
+        for(Hotkey hotkey : Main.SETTINGS.getSystemHotkeys()){
+            listeners.add(new ButtonHoldListener(hotkey.getButton(), hotkey.getDelay(),
+                    () -> main.command(hotkey, this)));
+        }
+        return listeners;
+    }
+
+    public void setSystemListeners(){
+        this.removeButtonListener(systemListeners);
+        systemListeners = createSystemListeners();
+        this.addButtonListener(systemListeners);
+    }
+
 
     class Presser extends Thread{
 
@@ -158,4 +168,6 @@ public class Controller extends jgamepad.Controller {
             run = false;
         }
     }
+
+
 }

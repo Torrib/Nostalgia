@@ -81,6 +81,9 @@ public class OutputHandler{
                         case Functions.FREE_ROAM:
                             main.startFreeRoam(controller);
                             break;
+                        case Functions.SHOW_MENU:
+                            main.showMenu(controller);
+                            break;
                     }
                 }
                 else if(command.getCommandType() == Command.PROGRAM){

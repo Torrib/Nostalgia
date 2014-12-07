@@ -257,8 +257,8 @@ public class Main extends Thread
         Main.SETTINGS.setDisableHotkeys(!Main.SETTINGS.isDisableHotkeys());
     }
 
-    public void updateControllerStatus(){
-        controllerHandler.updateControllerDisabledStatus();
+    public void updateControllers(){
+        controllerHandler.update();
     }
 
     public void updateMenuSettings(){

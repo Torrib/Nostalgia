@@ -41,7 +41,7 @@ public class ControllerHandler extends Thread{
         }
     }
 
-    public void updateControllerDisabledStatus(){
+    private void updateControllerDisabledStatus(){
         List<Boolean> statuses = Main.SETTINGS.getControllerDisabledStatus();
 
         //Disable currently running controllers that have been disabled
@@ -94,5 +94,16 @@ public class ControllerHandler extends Thread{
         controllers.add(controller);
         controller.activate();
         controller.changeHotkeyListeners(activeHotkeys);
+    }
+
+    private void updateSystemListeners(){
+        for(Controller controller : controllers){
+            controller.setSystemListeners();
+        }
+    }
+
+    public void update(){
+        updateControllerDisabledStatus();
+        updateSystemListeners();
     }
 }

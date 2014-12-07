@@ -50,6 +50,8 @@ public class SettingsView {
     private EditList<Program> programEditList;
     private EditList<SubMenu> subMenuEditList;
 
+    private EditList<Hotkey> hotkeyList;
+
     private Main main;
 
     public SettingsView(Main main){
@@ -312,6 +314,12 @@ public class SettingsView {
         runOnStartupLabel.setTooltip(new Tooltip("Run Nostalgia when the computer starts (Requires administrator rights)"));
         runOnStartupCB.setTooltip(new Tooltip("Run Nostalgia when the computer starts (Requires administrator rights)"));
 
+        hotkeyList = new EditList<>(settings.getSystemHotkeys(), false);
+        hotkeyList.setPadding(new Insets(0,15, 0, 15));
+
+        hotkeyList.getAddButton().setOnAction(event -> openHotkeyView( new Hotkey(), true));
+        hotkeyList.getEditButton().setOnAction(event -> openHotkeyView(hotkeyList.getSelected(), false));
+
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(12);
@@ -321,11 +329,18 @@ public class SettingsView {
         grid.add(windowRefreshDelayField, 1, 1);
         grid.add(runOnStartupLabel, 0, 2);
         grid.add(runOnStartupCB, 1, 2);
-
         grid.setPadding(new Insets(15));
 
+        Label hotkeyLabel = new Label("Global hotkeys");
+        hotkeyLabel.setTooltip(new Tooltip("Hotkeys that will be available from at all times"));
+        hotkeyLabel.setPadding(new Insets(0,0, 5, 15));
+
+        VBox vBox = new VBox();
+        vBox.getChildren().addAll(grid, hotkeyLabel, hotkeyList);
+
+
         Tab tab = new Tab();
-        tab.setContent(grid);
+        tab.setContent(vBox);
         tab.setText("Advanced");
 
         ImageView image = new ImageView(new Image(getClass().getResourceAsStream("/resources/advanced.png")));
@@ -444,11 +459,13 @@ public class SettingsView {
 
         settings.setSubMenus(subMenuEditList.getItems());
 
+        settings.setSystemHotkeys(hotkeyList.getItems());
+
         double selectedFontSize = settings.getMenuFontSize() + (settings.getMenuFontSize() * 0.2);
         settings.setMenuSelectedFontSize((int) selectedFontSize);
 
         settings.store();
-        main.updateControllerStatus();
+        main.updateControllers();
         main.updateMenuSettings();
         main.handleRunOnStartup();
     }
@@ -496,5 +513,18 @@ public class SettingsView {
                 }
             }
         }
+    }
+
+    private void openHotkeyView(Hotkey hotkey, boolean newItem){
+
+        Runnable onSave = () -> {
+            if(newItem)
+                hotkeyList.getItems().add(hotkey);
+            else
+                hotkeyList.update();
+        };
+
+        if(hotkey != null)
+            new HotkeyView(this.getStage(), hotkey, onSave);
     }
 }
