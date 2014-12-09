@@ -18,8 +18,6 @@ public class Command {
     private String disableMessage = "";
 
     private Program program;
-    private SubMenu subMenu;
-
 
     private int delay = 200;
 
@@ -63,7 +61,22 @@ public class Command {
     }
 
     public void setProgram(Program program) {
+        this.commandType = PROGRAM;
         this.program = program;
+    }
+
+    public void setKeyCommand(KeyCommand keyCommand){
+        this.commandType = KEY;
+        this.keyCommand = keyCommand;
+    }
+
+    public void setFunction(Function function){
+        this.commandType = FUNCTION;
+        this.function = function;
+    }
+
+    public void setDelay(int delay){
+        this.delay = delay;
     }
 
     public String getEnableMenuText() {

@@ -52,14 +52,14 @@ public class Settings {
         List<Hotkey> list = new ArrayList<>();
         if(isFirstRun()){
             Hotkey menuHotkey = new Hotkey();
-            menuHotkey.setButton(Button.GUIDE);
+            menuHotkey.addButton(Button.GUIDE);
             menuHotkey.setName("Show menu");
-            menuHotkey.addCommand(new Command(new Function(Functions.SHOW_MENU, "Show menu", "Displays the menu"), 2000));
+            menuHotkey.addCommand(new Command(new Function(Functions.SHOW_MENU, "Show menu", "Displays the menu"), 200));
 
             Hotkey freeRoamHotkey = new Hotkey();
-            freeRoamHotkey.setButton(Button.BACK);
+            freeRoamHotkey.addButton(Button.BACK);
             freeRoamHotkey.setName("Enable free roam");
-            freeRoamHotkey.addCommand(new Command(new Function(Functions.FREE_ROAM, "Enable free roam", "Enables free roam"), 2000));
+            freeRoamHotkey.addCommand(new Command(new Function(Functions.FREE_ROAM, "Enable free roam", "Enables free roam"), 200));
 
             list.add(menuHotkey);
             list.add(freeRoamHotkey);

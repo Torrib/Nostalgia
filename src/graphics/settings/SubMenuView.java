@@ -35,6 +35,7 @@ public class SubMenuView {
         menuEditList = new EditList<>(subMenu.getMenuItems(), true);
         menuEditList.getAddButton().setOnAction(event -> openMenuItemView(new MenuItem(), true));
         menuEditList.getEditButton().setOnAction(event -> openMenuItemView(menuEditList.getList().getSelectionModel().getSelectedItem(), false));
+        menuEditList.setPrefHeight(300);
 
 
         Button saveButton = new Button("Save");
@@ -55,6 +56,7 @@ public class SubMenuView {
 
         HBox buttons = new HBox(10);
         buttons.getChildren().addAll(saveButton, cancelButton);
+        buttons.setPadding(new Insets(15));
 
         VBox vBox = new VBox(15);
         vBox.getChildren().addAll(nameBox, menuEditList, buttons);

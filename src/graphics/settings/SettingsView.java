@@ -319,6 +319,7 @@ public class SettingsView {
 
         hotkeyList.getAddButton().setOnAction(event -> openHotkeyView( new Hotkey(), true));
         hotkeyList.getEditButton().setOnAction(event -> openHotkeyView(hotkeyList.getSelected(), false));
+        hotkeyList.setMaxHeight(230);
 
         GridPane grid = new GridPane();
         grid.setHgap(10);
@@ -362,6 +363,7 @@ public class SettingsView {
         });
 
         windowEditList.setPadding(new Insets(25));
+        windowEditList.setMaxHeight(400);
 
         Tab tab = new Tab();
         tab.setContent(windowEditList);
@@ -386,6 +388,7 @@ public class SettingsView {
         });
 
         programEditList.setPadding(new Insets(25));
+        programEditList.setMaxHeight(400);
 
         Tab tab = new Tab();
         tab.setContent(programEditList);
@@ -410,6 +413,7 @@ public class SettingsView {
         });
 
         subMenuEditList.setPadding(new Insets(25));
+        subMenuEditList.setMaxHeight(400);
 
         Tab tab = new Tab();
         tab.setContent(subMenuEditList);

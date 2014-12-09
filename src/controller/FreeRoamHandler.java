@@ -16,8 +16,6 @@ import java.util.List;
 
 public class FreeRoamHandler extends Thread{
 
-    private final static int IGNORE_ZONE = 6000;
-
     private Controller controller;
     private boolean run = true;
     private double speedFactor = 1200;
@@ -45,17 +43,11 @@ public class FreeRoamHandler extends Thread{
 
         while(run){
             try {
-                x = controller.getAnalogValue(Analog.leftStickX);
-                y = controller.getAnalogValue(Analog.leftStickY);
+                x = controller.getAnalogValue(Analog.leftStickX, true);
+                y = controller.getAnalogValue(Analog.leftStickY, true);
 
-                if(x > IGNORE_ZONE || x < -IGNORE_ZONE)
-                    x /= speedFactor;
-                else
-                    x = 0;
-                if(y > IGNORE_ZONE || y < -IGNORE_ZONE)
-                    y /= speedFactor;
-                else
-                    y = 0;
+                x /= speedFactor;
+                y /= speedFactor;
 
                 if(y != 0 || x != 0){
                     Point point = MouseInfo.getPointerInfo().getLocation();
@@ -63,9 +55,9 @@ public class FreeRoamHandler extends Thread{
                 }
 
                 if(speedFactor < 2000)
-                    speedFactor += (controller.getAnalogValue(Analog.L2) / 30);
+                    speedFactor += (controller.getAnalogValue(Analog.L2, true) / 30);
                 if(speedFactor > 400)
-                    speedFactor -= (controller.getAnalogValue(Analog.R2) / 30);
+                    speedFactor -= (controller.getAnalogValue(Analog.R2, true) / 30);
 
                 Thread.sleep(20);
             } catch (InterruptedException e) {

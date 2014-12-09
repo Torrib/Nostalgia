@@ -1,7 +1,7 @@
 package graphics.settings;
 
-import graphics.utility.CommandBox;
-import javafx.beans.value.ChangeListener;
+import graphics.utility.CommandView;
+import graphics.utility.EditList;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
@@ -15,14 +15,18 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import main.Main;
+import models.Command;
 import models.MenuItem;
 import models.SubMenu;
 
 public class MenuItemView{
 
+    private Stage stage;
+    private EditList<Command> commandEditList;
+
     public MenuItemView(Stage parent, MenuItem menuItem, Runnable onSave, boolean disableType){
 
-        Stage stage = new Stage();
+        stage = new Stage();
         stage.setTitle("Menu item");
         stage.initOwner(parent);
         stage.initModality(Modality.WINDOW_MODAL);
@@ -47,7 +51,11 @@ public class MenuItemView{
         confirmationLabel.setTooltip(new Tooltip("Require confirmation before performing the command"));
         confirmationCB.setTooltip(new Tooltip("Require confirmation before performing the command"));
 
-        CommandBox commandBox = new CommandBox(menuItem.getCommands(), stage);
+        commandEditList = new EditList<>(menuItem.getCommands(), true);
+        commandEditList.setPrefHeight(100);
+
+        commandEditList.getAddButton().setOnAction(event -> openCommandView(new Command(), true));
+        commandEditList.getEditButton().setOnAction(event -> openCommandView(commandEditList.getSelected(), false));
 
         GridPane grid = new GridPane();
         grid.setHgap(10);
@@ -69,7 +77,7 @@ public class MenuItemView{
         buttonBox.getChildren().addAll(saveButton, cancelButton);
 
         VBox commandView = new VBox(20);
-        commandView.getChildren().addAll(grid, commandBox);
+        commandView.getChildren().addAll(grid, commandEditList);
 
         Label subMenuLabel = new Label("Sub menu");
         subMenuLabel.setTooltip(new Tooltip("Opens the sub menu on select"));
@@ -84,22 +92,17 @@ public class MenuItemView{
 
             switch(typeCB.getSelectionModel().getSelectedIndex()) {
                 case MenuItem.COMMAND:
-                    if (commandBox.isIgnoreCloseRequest()) {
-                        event.consume();
-                        commandBox.setIgnoreCloseRequest(false);
-                    } else {
                         if (nameField.getText().isEmpty()) {
                             nameField.setStyle("-fx-border-color: red;-fx-border-style: round|outside");
                             return;
                         }
                         menuItem.setDisplayName(nameField.getText());
                         menuItem.setMessage(messageField.getText());
-                        menuItem.setCommands(commandBox.getItems());
+                        menuItem.setCommands(commandEditList.getItems());
                         menuItem.setConfirmation(confirmationCB.isSelected());
 
                         onSave.run();
                         stage.close();
-                    }
                     break;
                 case MenuItem.SUBMENU:
                     menuItem.setSubMenu(subMenuComboBox.getSelectionModel().getSelectedItem());
@@ -131,9 +134,21 @@ public class MenuItemView{
                     scene.getWindow().setHeight(scene.getWindow().getHeight() - 330);
                     break;
             }
-
         });
 
         stage.show();
+    }
+
+    private void openCommandView(Command command, boolean newItem){
+
+        Runnable onSave = () -> {
+            if(newItem)
+                commandEditList.getItems().add(command);
+            else
+                commandEditList.update();
+        };
+
+        if(command != null)
+            new CommandView(stage, command, onSave);
     }
 }

@@ -139,7 +139,7 @@ public class WindowSettingsView {
         HBox listBox = new HBox(20);
         listBox.getChildren().addAll(menuBox, hotkeyBox);
 
-        Button saveButton = new Button("OK");
+        Button saveButton = new Button("Save");
         Button cancelButton = new Button("Cancel");
 
         saveButton.setOnAction(event -> {
@@ -177,8 +177,6 @@ public class WindowSettingsView {
         vBox.getChildren().addAll(topGrid, centerBox, listBox, buttons);
 
         vBox.setPadding(new Insets(15));
-
-
 
         Scene scene = new Scene(vBox, 600, 450);
         stage.setScene(scene);

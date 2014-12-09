@@ -10,26 +10,23 @@ import java.util.List;
 public class Hotkey implements Item {
 
     private String name = "";
-    private Button button;
+    private List<Button> buttons = new ArrayList<>();
     private String message = "";
     private int delay = 2000;
     private boolean vibrate = true;
 
     private List<Command> commands = new ArrayList<>();
 
-    public Button getButton() {
-        return button;
+    public List<Button> getButtons() {
+        return buttons;
     }
 
-    public void setButton(Button button) {
-        this.button = button;
+    public void setButtons(List<Button> buttons) {
+        this.buttons = buttons;
     }
 
-    public int getButtonValue(){
-        if(button != null){
-            return button.value;
-        }
-        return 0;
+    public void addButton(Button button){
+        buttons.add(button);
     }
 
     public String getMessage() {
@@ -83,9 +80,9 @@ public class Hotkey implements Item {
     @Override
     public String toString(){
         if(!name.isEmpty())
-            return name + "(" + button.toString() + ")";
+            return name + "(" + getButtonString() + ")";
         else
-            return button.toString();
+            return getButtonString();
     }
 
     public void setCommands(List<Command> commands) {
@@ -94,5 +91,19 @@ public class Hotkey implements Item {
 
     public void addCommand(Command command){
         commands.add(command);
+    }
+
+    private String getButtonString(){
+        String buttonString = "";
+        for(Button button : buttons){
+            buttonString += button.toString() + "+";
+        }
+        if(buttonString.length() > 0){
+            buttonString = buttonString.substring(0, buttonString.length() -1);
+        }
+        else{
+            buttonString = "-";
+        }
+        return buttonString;
     }
 }

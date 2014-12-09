@@ -2,31 +2,29 @@ package graphics.utility;
 
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import main.Main;
 import models.*;
 
-import java.util.List;
+public class CommandView {
 
-
-public class CommandBox extends VBox{
-
+    private Stage stage;
+    private boolean showingToggleInfo;
     private ComboBox<Function> functionCombobox;
     private ComboBox<Program> programCombobox;
-    private KeyCommand keyCommand;
     private TextField delayField;
-    private ListView<Command> commandList;
+    private KeyCommand keyCommand;
 
     private TextField detectKeyPressField;
 
@@ -35,32 +33,13 @@ public class CommandBox extends VBox{
     private TextField disableTextField;
     private TextField disableMessageField;
     private boolean ignoreCloseRequest = false;
+    private VBox functionCommandBox;
 
-    boolean showingToggleInfo = false;
-
-    public CommandBox(List<Command> items, Stage stage){
-        super(10);
-        keyCommand = new KeyCommand();
-
-        ObservableList<Command> observableCommands = FXCollections.observableArrayList(items);
-
-        commandList = new ListView<>();
-        commandList.setItems(observableCommands);
-        commandList.setMaxHeight(100);
-
-        commandList.setCellFactory((ListView<Command> param) -> {
-            DraggableRemovableCell<Command> cell = new DraggableRemovableCell<>(observableCommands, 100);
-            cell.init(observableCommands);
-            return cell;
-        });
-
-        commandList.setOnKeyPressed(event -> {
-            if(event.getCode().equals(KeyCode.DELETE)){
-                if(commandList.getSelectionModel().getSelectedItem() != null){
-                    commandList.getItems().remove(commandList.getSelectionModel().getSelectedItem());
-                }
-            }
-        });
+    public CommandView(Stage parent, Command command, Runnable onSave ){
+        stage = new Stage();
+        stage.setTitle("Commands");
+        stage.initOwner(parent);
+        stage.initModality(Modality.WINDOW_MODAL);
 
         Label commandTypeLabel = new Label("Command Type");
         ComboBox<String> commandTypeCB = new ComboBox<>();
@@ -69,14 +48,14 @@ public class CommandBox extends VBox{
         Pane swapPane = new Pane();
 
         GridPane keyCommandBox = createKeyCommandBox();
-        VBox functionCommandBox = createFunctionBox();
+        functionCommandBox = createFunctionBox();
         HBox programCommandBox = createProgramBox();
 
         commandTypeCB.valueProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
             swapPane.getChildren().removeAll(swapPane.getChildren());
 
             if(showingToggleInfo){
-                getScene().getWindow().setHeight(getScene().getWindow().getHeight() - 140);
+                stage.getScene().getWindow().setHeight(stage.getScene().getWindow().getHeight() - 140);
                 showingToggleInfo = false;
             }
 
@@ -87,7 +66,7 @@ public class CommandBox extends VBox{
                 case Command.FUNCTION:
                     swapPane.getChildren().add(functionCommandBox);
                     if(functionCombobox.getSelectionModel().getSelectedItem().isToggle()){
-                        getScene().getWindow().setHeight(getScene().getWindow().getHeight() + 140);
+                        stage.getScene().getWindow().setHeight(stage.getScene().getWindow().getHeight() + 140);
                         showingToggleInfo = true;
                     }
                     break;
@@ -97,11 +76,11 @@ public class CommandBox extends VBox{
             }
         });
 
-        commandTypeCB.getSelectionModel().select(0);
+        commandTypeCB.getSelectionModel().select(command.getCommandType());
 
         Label delayLabel = new Label("Delay");
         delayLabel.setTooltip(new Tooltip("The delay to wait before performing the command"));
-        delayField = new NumberTextField("200");
+        delayField = new NumberTextField(command.getDelay());
 
         GridPane commandGrid = new GridPane();
         commandGrid.setHgap(10);
@@ -111,64 +90,36 @@ public class CommandBox extends VBox{
         commandGrid.add(delayLabel, 0, 1);
         commandGrid.add(delayField, 1, 1);
 
-        Button addButton = new Button();
-        addButton.setMaxWidth(Double.MAX_VALUE);
+        Button saveButton = new Button("Save");
+        saveButton.setMaxWidth(Double.MAX_VALUE);
 
-        ImageView addImage = new ImageView(new Image(getClass().getResourceAsStream("/resources/add.png")));
-        addImage.setFitHeight(15);
-        addImage.setFitWidth(15);
-
-        addButton.setGraphic(addImage);
-
-        addButton.setOnAction(event -> {
-            switch (commandTypeCB.getSelectionModel().getSelectedIndex()){
+        saveButton.setOnAction(event -> {
+            command.setDelay(Integer.parseInt(delayField.getText()));
+            switch (commandTypeCB.getSelectionModel().getSelectedIndex()) {
                 case Command.KEY:
-                    if(keyCommand.getKeyCode() != null) {
-                        commandList.getItems().add(new Command(keyCommand, Integer.parseInt(delayField.getText())));
+                    if (keyCommand.getKeyCode() != null) {
+                        command.setKeyCommand(keyCommand);
                     }
                     break;
                 case Command.FUNCTION:
-                    Command command = new Command(functionCombobox.getSelectionModel().getSelectedItem(),
-                            Integer.parseInt(delayField.getText()));
-                    if(command.getFunction().isToggle()){
+                    command.setFunction(functionCombobox.getSelectionModel().getSelectedItem());
+                    if (command.getFunction().isToggle()) {
                         command.setEnableMenuText(enableTextField.getText());
                         command.setEnableMessage(enableMessageField.getText());
                         command.setDisableMenuText(disableTextField.getText());
                         command.setDisableMessage(disableMessageField.getText());
                     }
-                    commandList.getItems().add(command);
                     break;
                 case Command.PROGRAM:
-                    commandList.getItems().add(new Command(programCombobox.getSelectionModel().getSelectedItem(),
-                            Integer.parseInt(delayField.getText())));
+                    command.setProgram(programCombobox.getSelectionModel().getSelectedItem());
                     break;
             }
+            onSave.run();
+            stage.close();
         });
 
-        commandList.getSelectionModel().selectedItemProperty().addListener(
-                (ObservableValue<? extends Command> observable, Command oldValue, Command newValue) -> {
-                    if(newValue == null)
-                        return;
-
-                    commandTypeCB.getSelectionModel().select(newValue.getCommandType());
-
-                    switch (newValue.getCommandType()){
-                        case Command.KEY:
-                            detectKeyPressField.setText(newValue.toString());
-                            break;
-                        case Command.FUNCTION:
-                            functionCombobox.getSelectionModel().select(newValue.getFunction());
-                            enableTextField.setText(newValue.getEnableMenuText());
-                            enableMessageField.setText(newValue.getEnableMessage());
-                            disableTextField.setText(newValue.getDisableMenuText());
-                            disableMessageField.setText(newValue.getDisableMessage());
-                            break;
-                    }
-                    delayField.setText(""+newValue.getDelay());
-                });
-
         VBox swapBox = new VBox(10);
-        swapBox.getChildren().addAll(swapPane, addButton);
+        swapBox.getChildren().addAll(swapPane, saveButton);
 
         //Prevents the window from closing on alt+f4 press
         stage.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
@@ -178,7 +129,21 @@ public class CommandBox extends VBox{
             }
         });
 
-        this.getChildren().addAll(commandList, commandGrid, swapBox);
+        stage.setOnCloseRequest(event -> {
+            if(ignoreCloseRequest) {
+                event.consume();
+                ignoreCloseRequest = false;
+            }
+        });
+
+        VBox vBox = new VBox(10);
+        vBox.getChildren().addAll(commandGrid, swapBox);
+        vBox.setPadding(new Insets(15));
+
+        Scene scene = new Scene(vBox);
+        stage.setScene(scene);
+        stage.show();
+        loadCommand(command);
     }
 
     private GridPane createKeyCommandBox(){
@@ -240,12 +205,12 @@ public class CommandBox extends VBox{
 
         functionCombobox.valueProperty().addListener((ObservableValue<? extends Function> observable, Function oldValue, Function newValue) -> {
             if (newValue.isToggle() && !showingToggleInfo) {
-                getScene().getWindow().setHeight(getScene().getWindow().getHeight() + 140);
+                stage.getScene().getWindow().setHeight(stage.getScene().getWindow().getHeight() + 140);
                 vBox.getChildren().add(toggleGrid);
                 showingToggleInfo = true;
             } else if (!newValue.isToggle() && showingToggleInfo) {
                 vBox.getChildren().remove(toggleGrid);
-                getScene().getWindow().setHeight(getScene().getWindow().getHeight() - 140);
+                stage.getScene().getWindow().setHeight(stage.getScene().getWindow().getHeight() - 140);
                 showingToggleInfo = false;
             }
         });
@@ -270,10 +235,6 @@ public class CommandBox extends VBox{
         HBox hBox = new HBox(10);
         hBox.getChildren().addAll(programLabel, programCombobox);
         return hBox;
-    }
-
-    public List<Command> getItems(){
-        return commandList.getItems();
     }
 
     private GridPane createToggleBox(){
@@ -309,11 +270,24 @@ public class CommandBox extends VBox{
         return grid;
     }
 
-    public boolean isIgnoreCloseRequest() {
-        return ignoreCloseRequest;
-    }
-
-    public void setIgnoreCloseRequest(boolean ignoreCloseRequest) {
-        this.ignoreCloseRequest = ignoreCloseRequest;
+    private void loadCommand(Command command){
+        switch (command.getCommandType()){
+            case Command.KEY:
+                if(command.getKeyCommand() != null)
+                    detectKeyPressField.setText(command.getKeyCommand().toString());
+                break;
+            case Command.FUNCTION:
+                functionCombobox.getSelectionModel().select(command.getFunction());
+                if(command.getFunction().isToggle()){
+                    enableTextField.setText(command.getEnableMenuText());
+                    enableMessageField.setText(command.getEnableMessage());
+                    disableTextField.setText(command.getDisableMenuText());
+                    disableMessageField.setText(command.getDisableMessage());
+                }
+                break;
+            case Command.PROGRAM:
+                programCombobox.getSelectionModel().select(command.getProgram());
+                break;
+        }
     }
 }
