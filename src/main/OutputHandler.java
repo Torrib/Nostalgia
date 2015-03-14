@@ -3,28 +3,13 @@ package main;
 import controller.Controller;
 import models.Command;
 import models.Functions;
-import models.KeyCommand;
-
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
 import java.util.List;
 
 public class OutputHandler{
 	private Main main;
-	private Robot robot;
 
 	public OutputHandler(Main main){
 		this.main = main;
-		try 
-		{
-			robot = new Robot();
-            robot.setAutoDelay(150);
-		} 
-		catch (Exception e) 
-		{
-			Logger.log(e.getMessage());
-			System.exit(0);
-		}
 	}
 
     public void doCommand(List<Command> commands, Controller controller){
@@ -33,21 +18,7 @@ public class OutputHandler{
                 Thread.sleep(command.getDelay());
 
                 if(command.getCommandType() == Command.KEY) {
-                    KeyCommand keyCommand = command.getKeyCommand();
-                    if(keyCommand == null || keyCommand.getKeyCode() == null)
-                        return;
-
-                    if (keyCommand.isCtrl()) robot.keyPress(KeyEvent.VK_CONTROL);
-                    if (keyCommand.isAlt()) robot.keyPress(KeyEvent.VK_ALT);
-                    if (keyCommand.isShift()) robot.keyPress(KeyEvent.VK_SHIFT);
-                    if (keyCommand.isWindows()) robot.keyPress(KeyEvent.VK_WINDOWS);
-
-                    pressKey(keyCommand.getKeyCode().impl_getCode());
-
-                    if (keyCommand.isCtrl()) robot.keyRelease(KeyEvent.VK_CONTROL);
-                    if (keyCommand.isAlt()) robot.keyRelease(KeyEvent.VK_ALT);
-                    if (keyCommand.isShift()) robot.keyRelease(KeyEvent.VK_SHIFT);
-                    if (keyCommand.isWindows()) robot.keyRelease(KeyEvent.VK_WINDOWS);
+                    Output.pressKey(command.getKeyCommand());
                 }
                 else if(command.getCommandType() == Command.FUNCTION){
                     switch (command.getFunction().getFunctionType()){
@@ -84,6 +55,9 @@ public class OutputHandler{
                         case Functions.SHOW_MENU:
                             main.showMenu(controller);
                             break;
+                        case Functions.LOG_WINDOW_TEXT:
+                            main.logActiveWindowText();
+                            break;
                     }
                 }
                 else if(command.getCommandType() == Command.PROGRAM){
@@ -95,10 +69,5 @@ public class OutputHandler{
             }
         }
     }
-
- 	public void pressKey(int key){
- 		robot.keyPress(key);
- 		robot.keyRelease(key);
- 	}
 }
 

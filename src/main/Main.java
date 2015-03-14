@@ -30,6 +30,7 @@ public class Main extends Thread
 	private int windowTextRefreshCounter = 0;
     private ControllerHandler controllerHandler;
     private FreeRoamHandler freeRoamHandler;
+    private String activeWindowName;
 
     public Main(GuiManager guiManager){
         this.guiManager = guiManager;
@@ -115,7 +116,7 @@ public class Main extends Thread
     }
 
 	public void pressKey(int key){
-		outputHandler.pressKey(key);
+		Output.pressKey(key);
 	}
 
 	public void showMessageBox(String message, boolean systemMessage){
@@ -136,7 +137,7 @@ public class Main extends Thread
     }
 
  	private void setActiveWindowSettings(){
-        if(isGuiActive())
+        if(isGuiActive() || isMessageBoxShowing())
             return;
 
  		PointerType hWnd = osHandler.GetForegroundWindow();
@@ -152,12 +153,9 @@ public class Main extends Thread
  		}
  		windowTextRefreshCounter = 0;
 
- 		String windowName = osHandler.getWindowText(hWnd);
+ 		activeWindowName = osHandler.getWindowText(hWnd);
 
-        if(windowName.equals("Nostalgia message"))
-            return;
-
- 		activeWindowSettings = getActiveWindowSettings(windowName);
+ 		activeWindowSettings = getActiveWindowSettings(activeWindowName);
  		activeWindowHandle = hWnd;
 
  		// If no bindings are found, a default is set, as long as useDefaultWindowBindings is true
@@ -165,7 +163,7 @@ public class Main extends Thread
             activeWindowSettings = getActiveWindowSettings("~Default");
 
         if(activeWindowSettings == null)
-            activeWindowSettings = new WindowSetting();
+            activeWindowSettings = new WindowSetting(false);
 
         controllerHandler.setHotkeys(activeWindowSettings.getHotkeys());
         modifyWindow();
@@ -267,5 +265,13 @@ public class Main extends Thread
 
     public void handleRunOnStartup() {
         osHandler.handleRunOnStartup(SETTINGS.isRunOnStartup());
+    }
+
+    public boolean isMessageBoxShowing(){
+        return guiManager.isMessageBoxShowing();
+    }
+
+    public void logActiveWindowText(){
+        Logger.log(activeWindowName);
     }
 }

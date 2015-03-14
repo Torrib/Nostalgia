@@ -4,9 +4,9 @@ import jgamepad.enums.Analog;
 import jgamepad.enums.Button;
 import jgamepad.interfaces.ButtonListener;
 import jgamepad.interfaces.MultipleButtonListener;
-import jgamepad.listeners.ButtonHoldListener;
 import jgamepad.listeners.ButtonPressedListener;
 import jgamepad.listeners.MultipleButtonHoldListener;
+import main.Logger;
 import main.Main;
 import models.Hotkey;
 
@@ -16,7 +16,7 @@ import java.util.List;
 
 public class Controller extends jgamepad.Controller {
 
-    private static final int STICK_ZONE = 10000;
+    private static final int STICK_ZONE = 1000;
 
     private List<ButtonListener> menuListeners = createMenuList();
     private Main main;
@@ -138,8 +138,11 @@ public class Controller extends jgamepad.Controller {
         List<MultipleButtonListener> listeners = new ArrayList<>();
 
         for(Hotkey hotkey : Main.SETTINGS.getSystemHotkeys()){
-            listeners.add(new MultipleButtonHoldListener(hotkey.getButtons(), hotkey.getDelay(),
-                    () -> main.command(hotkey, this)));
+            if(hotkey.getButtons().isEmpty())
+                Logger.log("Button list empty for " + hotkey.getName());
+            else
+                listeners.add(new MultipleButtonHoldListener(hotkey.getButtons(), hotkey.getDelay(),
+                        () -> main.command(hotkey, this)));
         }
         return listeners;
     }

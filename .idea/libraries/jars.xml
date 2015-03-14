@@ -4,8 +4,8 @@
       <root url="jar://$PROJECT_DIR$/jars/jna-4.1.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/jars/jna-platform-4.1.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/jars/gson-2.2.4.jar!/" />
-      <root url="jar://$PROJECT_DIR$/jars/jgamepad-1.0.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/jars/controlsfx-8.20.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/jgamepad-1.0.0.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/jars/jgamepad-javadoc-1.0.0.jar!/jgamepad-javadoc" />

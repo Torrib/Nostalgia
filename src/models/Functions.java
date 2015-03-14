@@ -16,6 +16,7 @@ public class Functions {
     public static final int MUTE = 8;
     public static final int FREE_ROAM = 9;
     public static final int SHOW_MENU = 10;
+    public static final int LOG_WINDOW_TEXT = 11;
 
     public static List<Function> functions = new ArrayList<>();
 
@@ -31,5 +32,6 @@ public class Functions {
         functions.add(new Function(MUTE, "Toggle Mute", "Mute the sound"));
         functions.add(new Function(FREE_ROAM, "Free Roam", "Enables \"Free Roam\" allowing free control of the controller"));
         functions.add(new Function(SHOW_MENU, "Show menu", "Displays the menu"));
+        functions.add(new Function(LOG_WINDOW_TEXT, "Log window text", "Logs the active windows text"));
     }
 }

@@ -12,6 +12,7 @@ import java.util.List;
 public class ControllerHandler extends Thread{
     private Main main;
     private List<Controller> controllers = new ArrayList<>();
+    private List<Controller> disabledControllers = new ArrayList<>();
     private List<Hotkey> activeHotkeys = new ArrayList<>();
 
     public ControllerHandler(Main main){
@@ -24,6 +25,9 @@ public class ControllerHandler extends Thread{
         for(int i = 0; i <= 3; i++) {
             if (!Main.SETTINGS.getControllerDisabledStatus().get(i)) {
                 addController(i);
+            }
+            else{
+                disabledControllers.add(new Controller(i, main));
             }
         }
     }
@@ -48,29 +52,31 @@ public class ControllerHandler extends Thread{
         for(int i = 0; i < controllers.size(); i++){
             Controller controller = controllers.get(i);
             if(statuses.get(controller.getControllerNumber())){
-                Logger.log("Disabling controller " + i);
+                Logger.log("Disabling controller " + controller.getControllerNumber());
                 controller.stop();
                 controllers.remove(controller);
+                disabledControllers.add(controller);
                 i--;
             }
         }
 
         //Enable previously disabled controllers
         for(int i = 0; i < statuses.size(); i++){
-            if(!statuses.get(i) && controllerDisabled(i)){
+            if(!statuses.get(i) && controllerDisabled(i) != null){
                 Logger.log("Enabling controller " + i);
+                disabledControllers.remove(controllerDisabled(i));
                 addController(i);
             }
         }
     }
 
-    private boolean controllerDisabled(int i){
-        for(Controller controller : controllers){
+    private Controller controllerDisabled(int i){
+        for(Controller controller : disabledControllers){
             if(controller.getControllerNumber() == i){
-                return false;
+                return controller;
             }
         }
-        return true;
+        return null;
     }
 
     private void addController(int controllerNumber){

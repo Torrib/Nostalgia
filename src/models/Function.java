@@ -7,6 +7,11 @@ public class Function {
 
     private boolean toggle = false;
 
+    public Function(int functionType, String name){
+        this.functionType = functionType;
+        this.name = name;
+    }
+
     public Function(int functionType, String name, String description){
         this.functionType = functionType;
         this.name = name;

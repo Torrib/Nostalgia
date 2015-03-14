@@ -22,8 +22,9 @@ public class WindowSetting {
     private List<MenuItem> menuItems = new ArrayList<>();
     private List<Hotkey> hotkeys = new ArrayList<>();
 
-    public WindowSetting(){
-        menuItems.add(new MenuItem("Continue", ""));
+    public WindowSetting(boolean createDefault){
+        if(createDefault)
+            menuItems.add(new MenuItem("Continue", ""));
     }
 
     public String getName() {

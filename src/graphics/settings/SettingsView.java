@@ -18,6 +18,8 @@ import org.controlsfx.dialog.Dialogs;
 import settings.*;
 import graphics.utility.NumberTextField;
 
+import javax.xml.ws.Response;
+
 public class SettingsView {
 
     private Stage stage;
@@ -79,17 +81,25 @@ public class SettingsView {
 
         applyButton.setOnAction(event -> save());
         cancelButton.setOnAction(event -> {
+            Action response = showDialog();
 
-            //TODO check if any changes have actually been made before asking for confirmation
-            Action response = Dialogs.create()
-                    .owner(stage)
-                    .title("Cancel?")
-                    .masthead("Any unsaved changes will be lost")
-                    .message("Do you want to continue?")
-                    .showConfirm();
-
-            if(response == Dialog.ACTION_YES)
+            if(response == Dialog.ACTION_YES) {
+                save();
                 stage.close();
+            }
+            else if(response == Dialog.ACTION_NO){
+                stage.close();
+            }
+        });
+
+        stage.setOnCloseRequest(event -> {
+            Action response = showDialog();
+
+            if(response == Dialog.ACTION_YES){
+                save();
+            }
+            if(response == Dialog.ACTION_CANCEL)
+                event.consume();
         });
 
         HBox buttons = new HBox(5);
@@ -105,6 +115,10 @@ public class SettingsView {
         scene.getStylesheets().add(("resources/settings.css"));
         stage.setScene(scene);
         stage.show();
+
+        if(settings.isFirstRun()){
+            save();
+        }
     }
 
     private Tab createMenuTab(){
@@ -354,7 +368,7 @@ public class SettingsView {
         windowEditList = new EditList<>(settings.getWindowSettings(), false);
 
         windowEditList.getAddButton().setOnAction(event -> {
-            WindowSetting windowSetting = new WindowSetting();
+            WindowSetting windowSetting = new WindowSetting(true);
             new WindowSettingsView(stage, windowSetting, () -> windowEditList.getItems().add(windowSetting));
         });
         windowEditList.getEditButton().setOnAction(event -> {
@@ -458,7 +472,6 @@ public class SettingsView {
 
         settings.setPrograms(programEditList.getItems());
 
-
         settings.setWindowSettings(windowEditList.getItems());
 
         settings.setSubMenus(subMenuEditList.getItems());
@@ -530,5 +543,16 @@ public class SettingsView {
 
         if(hotkey != null)
             new HotkeyView(this.getStage(), hotkey, onSave);
+    }
+
+    private Action showDialog(){
+        Action response = Dialogs.create()
+                .owner(stage)
+                .title("Hide window?")
+                .masthead("Any unsaved changes will be lost")
+                .message("Do you want to save the changes?")
+                .showConfirm();
+
+        return response;
     }
 }

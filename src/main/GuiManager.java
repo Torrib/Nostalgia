@@ -42,7 +42,7 @@ public class GuiManager extends Application{
         messageBox = new MessageBox(main);
         main.start();
 
-//        if(Main.SETTINGS.isFirstRun())
+        if(Main.SETTINGS.isFirstRun())
             showConfig();
     }
 
@@ -101,5 +101,9 @@ public class GuiManager extends Application{
                 Logger.log(e.getMessage());
             }
         }
+    }
+
+    public boolean isMessageBoxShowing(){
+        return messageBox.isShowing();
     }
 }

@@ -34,7 +34,7 @@ public class Settings {
     private int windowPullRefreshCount = 10;
     private boolean runOnStartup = false;
 
-    private List<WindowSetting> windowSettings = new ArrayList<>();
+    private List<WindowSetting> windowSettings = createDefaultWindowSettings();
     private List<Program> programs = new ArrayList<>();
     private List<SubMenu> subMenus = new ArrayList<>();
     private List<Hotkey> systemHotkeys = createDefaultHotkeys();
@@ -54,15 +54,63 @@ public class Settings {
             Hotkey menuHotkey = new Hotkey();
             menuHotkey.addButton(Button.GUIDE);
             menuHotkey.setName("Show menu");
-            menuHotkey.addCommand(new Command(new Function(Functions.SHOW_MENU, "Show menu", "Displays the menu"), 200));
+            menuHotkey.setVibrate(false);
+            menuHotkey.addCommand(new Command(new Function(Functions.SHOW_MENU, "Show menu"), 200));
 
             Hotkey freeRoamHotkey = new Hotkey();
             freeRoamHotkey.addButton(Button.BACK);
             freeRoamHotkey.setName("Enable free roam");
-            freeRoamHotkey.addCommand(new Command(new Function(Functions.FREE_ROAM, "Enable free roam", "Enables free roam"), 200));
+            freeRoamHotkey.addCommand(new Command(new Function(Functions.FREE_ROAM, "Free roam"), 200));
 
             list.add(menuHotkey);
             list.add(freeRoamHotkey);
+        }
+        return list;
+    }
+
+    private List<WindowSetting> createDefaultWindowSettings(){
+        List<WindowSetting> list = new ArrayList<>();
+        if(isFirstRun()){
+            List<MenuItem> items = new ArrayList<>();
+            items.add(new MenuItem("Continue", ""));
+
+            List<Command> printCommands = new ArrayList<>();
+            printCommands.add(new Command(new Function(Functions.LOG_WINDOW_TEXT, "Print window name"), 200));
+            MenuItem printItem = new MenuItem("Print window name", "Window name printed");
+            printItem.setCommands(printCommands);
+
+            items.add(printItem);
+
+            List<Command> freeRoamCommands = new ArrayList<>();
+            freeRoamCommands.add(new Command(new Function(Functions.FREE_ROAM, "Free roam", ""), 200));
+            MenuItem freeRoamItem = new MenuItem("Free roam", "");
+            freeRoamItem.setCommands(freeRoamCommands);
+
+            items.add(freeRoamItem);
+
+            List<Command> exitCommands = new ArrayList<>();
+            exitCommands.add(new Command(new Function(Functions.KILL, "Exit", ""), 200));
+            MenuItem exitItem = new MenuItem("Exit", "Exiting");
+            exitItem.setCommands(exitCommands);
+
+            items.add(exitItem);
+
+            Hotkey printWindowHotkey = new Hotkey();
+            printWindowHotkey.addButton(Button.L3);
+            printWindowHotkey.setName("Print window name");
+            printWindowHotkey.addCommand(new Command(new Function(Functions.LOG_WINDOW_TEXT, "Print window name"), 200));
+
+            List<Hotkey> hotkeys = new ArrayList<>();
+            hotkeys.add(printWindowHotkey);
+
+
+            WindowSetting windowSetting = new WindowSetting(true);
+            windowSetting.setName("Default");
+            windowSetting.setWindowName("~Default");
+            windowSetting.setMenuItems(items);
+            windowSetting.setHotkeys(hotkeys);
+
+            list.add(windowSetting);
         }
         return list;
     }
